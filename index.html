@@ -5,26 +5,24 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 <meta name="theme-color" content="#0b0f17">
 
-<!-- PRODUCTION SEO & OPEN GRAPH META TAGS -->
-<title>DesignHub | Custom LED Sign Boards, 3D Acrylic Letters & Vector Cutpath Studio</title>
-<meta name="description" content="Design custom architectural illuminated signs, 3D acrylic letters, stainless steel logos, and CNC vector cutpaths. Instant real-time quotes, unit conversion, and vector download.">
-<meta name="keywords" content="LED signs, 3D acrylic lettering, CNC vector files, laser cut signs, store front boards, commercial signage manufacturer, custom LED sign boards">
+<!-- PRODUCTION SEO & CANONICAL MAPPING -->
+<title>DesignHub Global | Custom LED Sign Boards, 3D Acrylic Letters & Universal File Converter</title>
+<meta name="description" content="Design custom architectural illuminated signs, 3D acrylic letters, stainless steel logos, and CNC vector cutpaths. Universal file converter, voice AI in 100+ languages, and direct manufacturing orders.">
+<meta name="keywords" content="LED signs, 3D acrylic lettering, CNC vector files, laser cut signs, store front boards, sign board converter, voice AI sign maker, SS letters manufacturer">
 <meta name="robots" content="index,follow">
-<link rel="canonical" href="https://wearstay.com">
+<link rel="canonical" href="https://wearstay.com/">
+
+<!-- Google Search Console Verification Tag -->
+<meta name="google-site-verification" content="dNDfnD64lB_mp98ZIV5CyCcW5WvO5ftVmwkXRHmAGx4">
 
 <!-- Open Graph / Facebook -->
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="DesignHub Global Studio">
-<meta property="og:title" content="DesignHub | Custom LED Sign Boards, 3D Acrylic Letters & Vector Cutpath Studio">
-<meta property="og:description" content="Design custom architectural illuminated signs, 3D acrylic letters, stainless steel logos, and CNC vector cutpaths. Instant real-time quotes, unit conversion, and vector download.">
-<meta property="og:url" content="https://wearstay.com">
+<meta property="og:title" content="DesignHub Global | Custom LED Sign Boards, 3D Letters & Vector Studio">
+<meta property="og:description" content="Speak to design in 100+ languages, convert files, edit like Canva, and order custom architectural signboards.">
+<meta property="og:url" content="https://wearstay.com/">
 
-<!-- Twitter Cards -->
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="DesignHub | Custom LED Sign Boards, 3D Acrylic Letters & Vector Cutpath Studio">
-<meta name="twitter:description" content="Design custom architectural illuminated signs, 3D acrylic letters, stainless steel logos, and CNC vector cutpaths. Instant real-time quotes, unit conversion, and vector download.">
-
-<!-- External Libraries (CDN) -->
+<!-- External CDNs -->
 <script src="https://cdn.tailwindcss.com"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/5.3.1/fabric.min.js"></script>
@@ -82,22 +80,16 @@ button { cursor: pointer; }
   transition: all 0.2s ease;
 }
 .btn-emerald:hover { filter: brightness(1.1); transform: translateY(-1px); }
-.btn-amber {
-  background: linear-gradient(135deg, #f59e0b, #d97706);
-  color: #fff;
-  font-weight: 800;
-  border: 0;
-}
 .tool-btn {
   width: 100%;
-  padding: 8px 10px;
+  padding: 10px 12px;
   border: 1px solid var(--border);
   background: var(--surface);
   color: #e2e8f0;
   border-radius: 8px;
   text-align: left;
-  font-size: 11px;
-  font-weight: 600;
+  font-size: 12px;
+  font-weight: 700;
   display: flex;
   align-items: center;
   gap: 8px;
@@ -117,8 +109,8 @@ button { cursor: pointer; }
 }
 .modal.active { display: flex; }
 .modal-box {
-  width: min(740px, 100%);
-  max-height: 90vh;
+  width: min(760px, 100%);
+  max-height: 92vh;
   overflow-y: auto;
   background: #101623;
   border: 1px solid #222f46;
@@ -155,60 +147,32 @@ button { cursor: pointer; }
   max-width: 360px;
 }
 .toast.show { display: flex; align-items: center; gap: 8px; }
-
-/* WALL TEXTURES */
 .wall-dark { background: radial-gradient(circle at 50% 50%, #151e30 0%, #070a10 100%) !important; }
-.wall-brick {
-  background-color: #171113 !important;
-  background-image: linear-gradient(335deg, rgba(0,0,0,0.6) 0px, transparent 1px),
-    linear-gradient(rgba(24,18,20,0.9) 2px, transparent 2px),
-    linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px),
-    radial-gradient(ellipse at 50% 50%, rgba(220,38,38,0.12) 0%, transparent 75%) !important;
-  background-size: 58px 28px, 58px 28px, 29px 28px, 100% 100% !important;
-}
-.wall-marble {
-  background: radial-gradient(ellipse at top left, rgba(255,255,255,0.12) 0%, transparent 60%),
-    linear-gradient(135deg, #1b2438 0%, #0d1424 50%, #162033 100%) !important;
-}
-.wall-slats {
-  background: repeating-linear-gradient(90deg, #1c150f, #1c150f 22px, #0a0704 22px, #0a0704 28px) !important;
-}
-.wall-concrete {
-  background-color: #161c26 !important;
-  background-image: radial-gradient(rgba(255,255,255,0.05) 1px, transparent 0) !important;
-  background-size: 16px 16px !important;
-}
-.wall-glass {
-  background: linear-gradient(135deg, rgba(0,242,254,0.12) 0%, rgba(7,10,16,0.94) 50%, rgba(155,81,224,0.08) 100%) !important;
-}
-
-/* DAY / NIGHT LIGHTING */
-.ambiance-day { filter: brightness(1.2) contrast(1.05); }
-.ambiance-sunset { filter: brightness(0.96) saturate(1.3) sepia(0.2); }
-.ambiance-night { filter: brightness(0.88) contrast(1.25); }
-
-/* NEON BREATHING PULSE */
+.wall-brick { background-color: #171113 !important; }
 @keyframes neonBreathGlow {
-  0%, 100% { filter: drop-shadow(0 0 10px rgba(0,242,254,0.75)) drop-shadow(0 0 30px rgba(0,242,254,0.4)); }
-  50% { filter: drop-shadow(0 0 3px rgba(0,242,254,0.3)) drop-shadow(0 0 10px rgba(0,242,254,0.2)); }
+  0%, 100% { filter: drop-shadow(0 0 12px rgba(0,242,254,0.8)) drop-shadow(0 0 35px rgba(0,242,254,0.4)); }
+  50% { filter: drop-shadow(0 0 4px rgba(0,242,254,0.3)) drop-shadow(0 0 12px rgba(0,242,254,0.2)); }
 }
-.neon-breathing { animation: neonBreathGlow 2.5s ease-in-out infinite; }
+.neon-breathing { animation: neonBreathGlow 2.2s ease-in-out infinite; }
+.mic-pulse-btn { animation: micGlow 1.2s infinite alternate; }
+@keyframes micGlow {
+  from { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.7); }
+  to { box-shadow: 0 0 0 15px rgba(239, 68, 68, 0); }
+}
 </style>
 </head>
-
 <body>
 
-<!-- STATUS BAR & ADSTERRA TOP SPONSORED BANNER -->
+<!-- TOP SPONSOR & STATUS BAR -->
 <div class="max-w-7xl mx-auto px-3 sm:px-5 pt-2">
   <div class="p-2 surface border border-cyan-900/60 rounded-lg flex flex-col sm:flex-row items-center justify-between gap-2 text-[11px] text-gray-400">
     <div class="flex items-center gap-2">
       <span class="w-2 h-2 rounded-full bg-cyan-400 animate-pulse"></span>
-      <span class="font-bold text-cyan-300 font-mono tracking-wide">ARCHITECTURAL LED FABRICATION PARTNERS • WORLDWIDE COMMERCIAL DISPATCH</span>
+      <span class="font-bold text-cyan-300 font-mono tracking-wide">COMMERCIAL SIGNAGE FACTORY DIRECT • 50% ADVANCE DISPATCH NATIONWIDE</span>
     </div>
-    <!-- ADSTERRA SMARTLINK 1: HIGH VISIBILITY SPONSORED ACTION BANNER -->
     <a href="https://staturenonsense.com/ttqdgbgfcx?key=8bfe383417ee0d64cc0754c000594473" target="_blank" rel="noopener noreferrer" class="px-3 py-1 rounded-md bg-gradient-to-r from-amber-500/20 to-orange-500/20 hover:from-amber-500/30 hover:to-orange-500/30 border border-amber-500/50 text-amber-300 font-bold flex items-center gap-1.5 transition-all shadow-sm">
       <i class="fa-solid fa-fire text-amber-400"></i>
-      <span>Featured Partner Deals: Exclusive Signage Supplies & LED Modules ➔</span>
+      <span>Partner Deals: Signage Raw Material & Power Supplies ➔</span>
     </a>
   </div>
 </div>
@@ -216,731 +180,399 @@ button { cursor: pointer; }
 <!-- NAVBAR -->
 <header class="sticky top-0 z-50 bg-[#0b0f17]/95 backdrop-blur border-b border-gray-800">
 <div class="max-w-7xl mx-auto px-3 sm:px-5 py-2.5 flex items-center justify-between gap-3">
-
   <div onclick="window.scrollTo({top:0, behavior:'smooth'})" class="flex items-center gap-2.5 cursor-pointer min-w-0">
     <div class="w-9 h-9 rounded-xl bg-gradient-to-tr from-cyan-400 via-violet-600 to-pink-500 p-[2px]">
-      <div class="w-full h-full rounded-[10px] bg-[#0b0f17] flex items-center justify-center">
-        <i class="fa-solid fa-shapes text-cyan-400 text-sm"></i>
-      </div>
+      <div class="w-full h-full rounded-[10px] bg-[#0b0f17] flex items-center justify-center font-black text-cyan-400 text-xs">DH</div>
     </div>
     <div class="min-w-0">
       <div class="font-black text-sm sm:text-base truncate flex items-center gap-1.5">
         <span>DESIGN<span class="hub-gradient">HUB</span></span>
-        <span class="text-[8px] border border-cyan-400 text-cyan-300 rounded px-1.5 py-0.5 tracking-wider font-semibold">GLOBAL STUDIO</span>
+        <span class="text-[8px] border border-cyan-400 text-cyan-300 rounded px-1.5 py-0.5 tracking-wider font-semibold">GLOBAL</span>
       </div>
-      <div class="text-[9px] text-gray-400 truncate">
-        Custom LED • 3D Acrylic • SS Letters • wearstay.com
-      </div>
+      <div class="text-[9px] text-gray-400 truncate">Voice Studio • File Converter • Sign Factory</div>
     </div>
   </div>
 
   <div class="flex items-center gap-2">
-    <!-- Storage Status Badge -->
-    <div id="saveStatusBadge" class="hidden sm:inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-emerald-950/40 border border-emerald-500/30 text-[10px] text-emerald-400 font-mono">
-      <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span> Auto-Saved
+    <div class="flex items-center gap-1 surface px-2 py-1 rounded-lg border border-gray-700">
+      <i class="fa-solid fa-globe text-cyan-400 text-xs"></i>
+      <select id="globalLang" class="bg-transparent text-[11px] text-cyan-300 font-semibold outline-none cursor-pointer">
+        <option value="hi-IN" class="bg-[#101623] text-white">🇮🇳 हिन्दी (Hindi)</option>
+        <option value="en-US" class="bg-[#101623] text-white" selected>🇺🇸 English (US)</option>
+        <option value="ur-PK" class="bg-[#101623] text-white">🇵🇰 اردو (Urdu)</option>
+        <option value="ar-SA" class="bg-[#101623] text-white">🇸🇦 العربية (Arabic)</option>
+        <option value="es-ES" class="bg-[#101623] text-white">🇪🇸 Español</option>
+        <option value="fr-FR" class="bg-[#101623] text-white">🇫🇷 Français</option>
+        <option value="bn-BD" class="bg-[#101623] text-white">🇧🇩 বাংলা (Bengali)</option>
+        <option value="pa-IN" class="bg-[#101623] text-white">🇮🇳 ਪੰਜਾਬੀ (Punjabi)</option>
+      </select>
     </div>
-
-    <button onclick="openPlansModal()" class="surface px-3 py-2 rounded-lg text-xs text-amber-300 hover:border-amber-400 font-semibold flex items-center gap-1.5 transition-colors">
-      <i class="fa-solid fa-crown text-amber-400"></i>
-      <span>Plans</span>
-    </button>
-
-    <button onclick="openInstantOrderModal()" class="btn-emerald px-4 py-2 rounded-lg text-xs flex items-center gap-1.5 shadow-lg shadow-emerald-900/30 font-black">
-      <i class="fa-solid fa-bolt text-amber-300"></i>
-      <span>ORDER SIGN</span>
+    <button onclick="openInstantOrderModal()" class="btn-emerald px-3.5 py-2 rounded-lg text-xs flex items-center gap-1.5 shadow-lg shadow-emerald-900/40 font-black">
+      <i class="fa-solid fa-truck-fast text-amber-300"></i>
+      <span class="hidden sm:inline">ORDER SIGN BOARD</span>
+      <span class="sm:hidden">ORDER</span>
     </button>
   </div>
-
 </div>
 </header>
-
-<!-- HERO SECTION -->
+<!-- SUPER EASY 3-ACTION CARDS -->
 <section class="max-w-7xl mx-auto px-3 sm:px-5 pt-4">
-<div class="card p-5 sm:p-7 bg-gradient-to-b from-[#101623] to-[#0b0f17] border border-gray-800 text-center">
-  <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-950/60 border border-cyan-500/30 text-[10px] sm:text-xs uppercase tracking-widest text-cyan-300 font-bold mb-2">
-    <span class="w-2 h-2 rounded-full bg-cyan-400 animate-pulse"></span>
-    Custom LED Sign Boards, 3D Letters & Vector Cutpath Studio
-  </div>
-  <h1 class="text-3xl sm:text-5xl font-black leading-tight mt-1">
-    Design Custom Signs.<br>
-    <span class="hub-gradient">Instant Quotes & Global Checkout.</span>
-  </h1>
-  <p class="text-gray-400 max-w-2xl mx-auto mt-3 text-xs sm:text-sm">
-    Architectural illuminated signs, 3D acrylic letters, CNC cut paths, and stainless steel lettering.
-    Work seamlessly in <b>INCH, FEET, MM, CM, PX, or METRE</b> with real-time sqft pricing, UPI QR & PayPal.
-  </p>
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+    <div onclick="startUniversalVoiceAI()" class="card p-4 bg-gradient-to-br from-cyan-950/40 to-slate-900 border-2 border-cyan-500/40 hover:border-cyan-400 transition cursor-pointer flex items-center gap-3">
+      <div id="micCardIcon" class="w-14 h-14 rounded-2xl bg-cyan-500/20 text-cyan-400 flex items-center justify-center text-2xl flex-shrink-0">
+        <i class="fa-solid fa-microphone"></i>
+      </div>
+      <div>
+        <span class="text-[10px] uppercase font-bold text-cyan-400 tracking-wider">Option 1 • बोलना शुरू करें</span>
+        <h3 class="text-sm sm:text-base font-black text-white">बोलकर डिज़ाइन बनवाएँ (Voice AI)</h3>
+        <p class="text-[11px] text-gray-300">अपनी भाषा में बोलें, स्क्रीन पर खुद डिज़ाइन बनेगा और AI आवाज़ में बताएगा।</p>
+      </div>
+    </div>
 
-  <div class="flex flex-wrap justify-center gap-2.5 mt-4">
-    <button onclick="openInstantOrderModal()" class="btn-emerald rounded-xl px-5 py-2.5 text-xs sm:text-sm font-bold flex items-center gap-2">
-      <i class="fa-solid fa-cart-shopping"></i> Instant Order & Quote
-    </button>
-    <button onclick="newBlankDesign()" class="btn rounded-xl px-4 py-2.5 text-xs sm:text-sm font-bold">
-      <i class="fa-solid fa-plus mr-1"></i> Blank Canvas
-    </button>
-    <button onclick="openAIModal()" class="surface px-4 py-2.5 rounded-xl text-purple-300 font-bold text-xs sm:text-sm hover:border-purple-400">
-      ✨ Create with AI (Gemini 2.5)
-    </button>
-    <button onclick="startVoiceAI()" class="surface px-4 py-2.5 rounded-xl text-cyan-300 font-bold text-xs sm:text-sm hover:border-cyan-400">
-      🎙️ Voice Command AI
-    </button>
+    <div onclick="openConverterModal()" class="card p-4 bg-gradient-to-br from-purple-950/40 to-slate-900 border-2 border-purple-500/40 hover:border-purple-400 transition cursor-pointer flex items-center gap-3">
+      <div class="w-14 h-14 rounded-2xl bg-purple-500/20 text-purple-400 flex items-center justify-center text-2xl flex-shrink-0">
+        <i class="fa-solid fa-arrows-rotate"></i>
+      </div>
+      <div>
+        <span class="text-[10px] uppercase font-bold text-purple-400 tracking-wider">Option 2 • फ़ाइल बदलें</span>
+        <h3 class="text-sm sm:text-base font-black text-white">फ़ाइल कन्वर्टर (JPG, PDF, SVG)</h3>
+        <p class="text-[11px] text-gray-300">कोई भी फ़ाइल अपलोड करें और 1 सेकंड में किसी भी फ़ॉर्मेट में डाउनलोड करें।</p>
+      </div>
+    </div>
+
+    <div onclick="openInstantOrderModal()" class="card p-4 bg-gradient-to-br from-amber-950/40 to-slate-900 border-2 border-amber-500/40 hover:border-amber-400 transition cursor-pointer flex items-center gap-3">
+      <div class="w-14 h-14 rounded-2xl bg-amber-500/20 text-amber-400 flex items-center justify-center text-2xl flex-shrink-0">
+        <i class="fa-solid fa-industry"></i>
+      </div>
+      <div>
+        <span class="text-[10px] uppercase font-bold text-amber-400 tracking-wider">Option 3 • फ़ैक्ट्री से बनवाएँ</span>
+        <h3 class="text-sm sm:text-base font-black text-white">साइन बोर्ड ऑर्डर (50% एडवांस)</h3>
+        <p class="text-[11px] text-gray-300">3D एक्रिलिक, SS गोल्ड लेटर व ग्लो साइन। लकड़ी के क्रेट में सेफ़ डिलीवरी।</p>
+      </div>
+    </div>
   </div>
-  <div id="voiceStatus" class="text-xs text-cyan-400 mt-2 min-h-[16px]"></div>
-</div>
+  <div id="voiceFeedbackLine" class="text-xs text-cyan-300 font-mono mt-2 text-center min-h-[16px]"></div>
+</section>
+
+<!-- SIGNAGE SHOWCASE (HIGH QUALITY SAMPLES) -->
+<section class="max-w-7xl mx-auto px-3 sm:px-5 pt-4">
+  <div class="flex items-center justify-between mb-2">
+    <div class="flex items-center gap-2">
+      <i class="fa-solid fa-star text-amber-400 text-xs"></i>
+      <h2 class="text-xs sm:text-sm font-black uppercase tracking-wider text-gray-200">फ़ैक्ट्री सैंपल्स (1-क्लिक में लोड करें)</h2>
+    </div>
+    <span class="text-[10px] text-gray-400">Manufactured Direct</span>
+  </div>
+
+  <div class="grid grid-cols-2 sm:grid-cols-4 gap-2.5">
+    <div onclick="loadSignSample('acrylic3d')" class="surface p-2 rounded-xl hover:border-cyan-400 cursor-pointer transition text-left group">
+      <div class="h-20 sm:h-24 rounded-lg bg-gradient-to-tr from-cyan-950 via-slate-900 to-cyan-800 flex items-center justify-center border border-cyan-800/60 p-2 relative overflow-hidden">
+        <span class="text-cyan-300 font-black text-xs sm:text-sm tracking-wider" style="text-shadow: 0 0 14px #00f2fe;">3D ACRYLIC</span>
+      </div>
+      <div class="mt-1.5 flex justify-between items-center text-[11px]">
+        <b class="text-white">3D Acrylic LED</b>
+        <span class="text-cyan-400 text-[10px]">₹730/sqft</span>
+      </div>
+    </div>
+
+    <div onclick="loadSignSample('goldSS')" class="surface p-2 rounded-xl hover:border-amber-400 cursor-pointer transition text-left group">
+      <div class="h-20 sm:h-24 rounded-lg bg-gradient-to-tr from-amber-950 via-slate-900 to-yellow-800 flex items-center justify-center border border-amber-800/60 p-2 relative overflow-hidden">
+        <span class="text-amber-300 font-black text-xs sm:text-sm tracking-widest" style="text-shadow: 0 0 10px #f59e0b;">GOLD SS 304</span>
+      </div>
+      <div class="mt-1.5 flex justify-between items-center text-[11px]">
+        <b class="text-white">Gold SS Letters</b>
+        <span class="text-amber-400 text-[10px]">₹930/sqft</span>
+      </div>
+    </div>
+
+    <div onclick="loadSignSample('acpGlow')" class="surface p-2 rounded-xl hover:border-emerald-400 cursor-pointer transition text-left group">
+      <div class="h-20 sm:h-24 rounded-lg bg-gradient-to-tr from-emerald-950 via-slate-900 to-teal-800 flex items-center justify-center border border-emerald-800/60 p-2 relative overflow-hidden">
+        <span class="text-emerald-300 font-black text-xs sm:text-sm tracking-wider" style="text-shadow: 0 0 12px #10b981;">ACP GLOW</span>
+      </div>
+      <div class="mt-1.5 flex justify-between items-center text-[11px]">
+        <b class="text-white">ACP Glow Sign</b>
+        <span class="text-emerald-400 text-[10px]">₹530/sqft</span>
+      </div>
+    </div>
+
+    <div onclick="loadSignSample('neonBar')" class="surface p-2 rounded-xl hover:border-pink-400 cursor-pointer transition text-left group">
+      <div class="h-20 sm:h-24 rounded-lg bg-gradient-to-tr from-pink-950 via-slate-900 to-purple-800 flex items-center justify-center border border-pink-800/60 p-2 relative overflow-hidden">
+        <span class="text-pink-300 font-black text-xs sm:text-sm tracking-wider" style="text-shadow: 0 0 14px #ec4899;">NEON ART</span>
+      </div>
+      <div class="mt-1.5 flex justify-between items-center text-[11px]">
+        <b class="text-white">Custom Neon</b>
+        <span class="text-pink-400 text-[10px]">₹630/sqft</span>
+      </div>
+    </div>
+  </div>
 </section>
 
 <!-- MAIN STUDIO WORKSPACE -->
-<main class="max-w-7xl mx-auto px-3 sm:px-5 py-4 pb-16">
-
-<!-- DIMENSIONS & STORAGE TOOLBAR -->
-<section class="card p-3 mb-3">
+<main class="max-w-7xl mx-auto px-3 sm:px-5 py-3 pb-16">
+<section class="card p-2.5 mb-3">
 <div class="flex flex-wrap items-center gap-2">
   <div class="font-bold text-xs mr-auto flex items-center gap-2">
     <i class="fa-solid fa-ruler-combined text-cyan-400"></i>
-    <span>Dimensions:</span>
+    <span>साइज़ (Size):</span>
     <span id="dimensionBadge" class="text-cyan-300 font-mono font-bold bg-[#151e30] px-2 py-0.5 rounded border border-cyan-800">1200 × 800 PX</span>
-    <span id="estimatedSqftBadge" class="text-[11px] text-amber-300 bg-amber-950/40 px-2 py-0.5 rounded border border-amber-800/60 hidden sm:inline">~2.67 sq ft</span>
+    <span id="estimatedSqftBadge" class="text-[11px] text-amber-300 bg-amber-950/40 px-2 py-0.5 rounded border border-amber-800/60">~2.67 sq ft</span>
   </div>
 
-  <label class="surface px-2 py-1 text-xs">
-    W <input id="inputW" type="number" value="1200" class="bg-transparent w-16 ml-1 outline-none text-white font-mono">
-  </label>
-  <label class="surface px-2 py-1 text-xs">
-    H <input id="inputH" type="number" value="800" class="bg-transparent w-16 ml-1 outline-none text-white font-mono">
-  </label>
+  <label class="surface px-2 py-1 text-xs">चौड़ाई <input id="inputW" type="number" value="1200" class="bg-transparent w-16 ml-1 outline-none text-white font-mono"></label>
+  <label class="surface px-2 py-1 text-xs">ऊंचाई <input id="inputH" type="number" value="800" class="bg-transparent w-16 ml-1 outline-none text-white font-mono"></label>
 
-  <select id="unit" onchange="onUnitChanged()" class="surface px-2 py-2 text-xs text-cyan-300 bg-[#151e30]">
+  <select id="unit" onchange="onUnitChanged()" class="surface px-2 py-1.5 text-xs text-cyan-300 bg-[#151e30]">
     <option value="px">PX</option>
     <option value="inch">INCH</option>
     <option value="feet">FEET</option>
     <option value="mm">MM</option>
     <option value="cm">CM</option>
-    <option value="metre">METRE</option>
   </select>
 
-  <button onclick="applyDimensions()" class="btn px-3 py-2 rounded-lg text-xs font-bold">Apply</button>
-
-  <!-- Project Backup & Restore Buttons -->
-  <button onclick="downloadProjectJSON()" title="Save project file (.json)" class="surface px-2.5 py-2 text-xs hover:border-cyan-400 text-gray-300 flex items-center gap-1">
-    <i class="fa-solid fa-download text-cyan-400"></i> <span class="hidden sm:inline">Save .json</span>
-  </button>
-  <button onclick="triggerProjectLoad()" title="Load project file (.json)" class="surface px-2.5 py-2 text-xs hover:border-cyan-400 text-gray-300 flex items-center gap-1">
-    <i class="fa-solid fa-folder-open text-amber-400"></i> <span class="hidden sm:inline">Load .json</span>
-  </button>
-  <input id="projectFileInput" type="file" accept=".json,application/json" class="hidden" onchange="loadProjectJSON(event)">
-
-  <button onclick="openInstantOrderModal()" class="btn-emerald px-3 py-2 rounded-lg text-xs font-bold ml-1">
-    <i class="fa-solid fa-bolt text-amber-300 mr-1"></i> Quote / Order
+  <button onclick="applyDimensions()" class="btn px-3 py-1.5 rounded-lg text-xs font-bold">लागू करें</button>
+  <button onclick="openInstantOrderModal()" class="btn-emerald px-3 py-1.5 rounded-lg text-xs font-bold ml-1">
+    <i class="fa-solid fa-bolt text-amber-300 mr-1"></i> रेट निकालें / ऑर्डर
   </button>
 </div>
 </section>
-
-<!-- STUDIO GRID -->
 <div class="grid grid-cols-1 lg:grid-cols-12 gap-3">
-
   <!-- LEFT TOOLS PANEL -->
   <aside class="lg:col-span-3 card p-3 order-2 lg:order-1 space-y-3">
     <div class="flex justify-between border-b border-gray-800 pb-2">
-      <b class="text-xs">Sign Studio Tools</b>
-      <span class="text-[10px] text-cyan-400 font-bold uppercase">Fabricator Mode</span>
+      <b class="text-xs">मैन्युअल एडिटिंग टूल्स</b>
+      <span class="text-[10px] text-cyan-400 font-bold uppercase">Canva Style</span>
     </div>
 
     <div class="grid grid-cols-2 gap-2">
-      <button onclick="addText()" class="tool-btn"><i class="fa-solid fa-font text-cyan-400"></i> 3D Text</button>
-      <button onclick="triggerImageUpload()" class="tool-btn"><i class="fa-solid fa-image text-green-400"></i> Logo / Image</button>
-      <button onclick="addRect()" class="tool-btn"><i class="fa-regular fa-square text-pink-400"></i> Backboard</button>
-      <button onclick="addCircle()" class="tool-btn"><i class="fa-regular fa-circle text-amber-400"></i> Round Board</button>
+      <button onclick="addText()" class="tool-btn"><i class="fa-solid fa-font text-cyan-400"></i> नाम लिखें</button>
+      <button onclick="triggerImageUpload()" class="tool-btn"><i class="fa-solid fa-image text-green-400"></i> फ़ोटो डालें</button>
+      <button onclick="addRect()" class="tool-btn"><i class="fa-regular fa-square text-pink-400"></i> चौकोर बोर्ड</button>
+      <button onclick="addCircle()" class="tool-btn"><i class="fa-regular fa-circle text-amber-400"></i> गोल बोर्ड</button>
     </div>
     <input id="imgUploader" type="file" accept="image/*" class="hidden" onchange="handleImageUpload(event)">
 
+    <!-- PICSART 1-CLICK BG ERASER -->
+    <div class="surface p-2.5 space-y-2 border border-purple-500/40">
+      <div class="flex items-center justify-between">
+        <b class="text-xs text-purple-300 flex items-center gap-1.5"><i class="fa-solid fa-wand-magic-sparkles text-pink-400"></i> 1-क्लिक BG रिमूवर</b>
+      </div>
+      <input type="file" id="magicBgInput" accept="image/*" class="hidden" onchange="runOneClickBgEraser(event)">
+      <button onclick="document.getElementById('magicBgInput').click()" class="w-full surface hover:border-pink-400 text-xs py-1.5 rounded font-bold text-center text-pink-300">
+        <i class="fa-solid fa-eraser mr-1"></i> फ़ोटो अपलोड करें और BG हटाएँ
+      </button>
+    </div>
+
     <!-- Text Formatting -->
     <div class="space-y-2 border-t border-gray-800 pt-2 text-xs">
-      <b class="text-gray-300 block text-[11px]">Lettering & Font</b>
+      <b class="text-gray-300 block text-[11px]">फॉन्ट और स्टाइल</b>
       <select id="fontFamily" onchange="updateSelectedTextProp('fontFamily', this.value)" class="surface w-full p-2 text-xs bg-[#151e30]">
-        <option value="Inter">Inter Sans</option>
-        <option value="Arial Black">Arial Black (Bold Block)</option>
-        <option value="Montserrat">Montserrat Architectural</option>
-        <option value="Impact">Impact High-Profile</option>
-        <option value="Cinzel">Cinzel Luxury Serif</option>
-        <option value="Courier New">Courier Monospace</option>
-        <option value="cursive">Neon Script Style</option>
+        <option value="Arial Black">Arial Black (मोटा व साफ़)</option>
+        <option value="Inter">Inter Clean Sans</option>
+        <option value="Impact">Impact Bold</option>
+        <option value="Cinzel">Cinzel Luxury Gold</option>
+        <option value="cursive">Neon Signature Style</option>
       </select>
 
       <div class="grid grid-cols-2 gap-2">
-        <label class="block text-[11px] text-gray-400">
-          Sign Color
-          <input id="textColor" type="color" value="#00f2fe" onchange="updateSelectedTextProp('fill', this.value)" class="w-full h-8 bg-transparent rounded mt-1 cursor-pointer">
-        </label>
-        <label class="block text-[11px] text-gray-400">
-          LED Glow
-          <input id="glowColor" type="color" value="#00f2fe" onchange="updateGlowColor(this.value)" class="w-full h-8 bg-transparent rounded mt-1 cursor-pointer">
-        </label>
+        <label class="block text-[11px] text-gray-400">कलर <input id="textColor" type="color" value="#00f2fe" onchange="updateSelectedTextProp('fill', this.value)" class="w-full h-8 bg-transparent rounded mt-1"></label>
+        <label class="block text-[11px] text-gray-400">LED लाइट <input id="glowColor" type="color" value="#00f2fe" onchange="updateGlowColor(this.value)" class="w-full h-8 bg-transparent rounded mt-1"></label>
       </div>
 
       <div class="flex items-center gap-2">
-        <span class="text-[11px] text-gray-400">Glow Intensity:</span>
+        <span class="text-[11px] text-gray-400">ग्लो पावर:</span>
         <input id="glowBlur" type="range" min="0" max="60" value="25" oninput="updateGlowBlur(this.value)" class="flex-1 accent-cyan-400">
       </div>
     </div>
 
-    <!-- Architectural Sign Styles -->
+    <!-- Presets -->
     <div class="space-y-1.5 border-t border-gray-800 pt-2">
-      <b class="text-[11px] text-gray-300 block">Preset Fabrication Styles</b>
+      <b class="text-[11px] text-gray-300 block">फ़ैक्ट्री स्टाइल चुने</b>
       <div class="grid grid-cols-2 gap-1.5">
-        <button onclick="applySignPreset('cyberNeon')" class="surface p-2 text-[10px] text-cyan-300 font-bold hover:border-cyan-400 text-center rounded">
-          ⚡ Cyber Neon
-        </button>
-        <button onclick="applySignPreset('warmCafe')" class="surface p-2 text-[10px] text-amber-300 font-bold hover:border-amber-400 text-center rounded">
-          ☕ Warm Bistro
-        </button>
-        <button onclick="applySignPreset('goldBrass')" class="surface p-2 text-[10px] text-yellow-300 font-bold hover:border-yellow-400 text-center rounded">
-          👑 Gold SS Letter
-        </button>
-        <button onclick="applySignPreset('acrylicBacklit')" class="surface p-2 text-[10px] text-pink-300 font-bold hover:border-pink-400 text-center rounded">
-          💎 3D Backlit
-        </button>
+        <button onclick="applySignPreset('cyberNeon')" class="surface p-2 text-[10px] text-cyan-300 font-bold hover:border-cyan-400 rounded text-center">⚡ ब्लू नियॉन</button>
+        <button onclick="applySignPreset('goldBrass')" class="surface p-2 text-[10px] text-yellow-300 font-bold hover:border-yellow-400 rounded text-center">👑 गोल्ड स्टील</button>
+        <button onclick="applySignPreset('warmCafe')" class="surface p-2 text-[10px] text-amber-300 font-bold hover:border-amber-400 rounded text-center">☕ वॉर्म कैफ़े</button>
+        <button onclick="applySignPreset('acrylicBacklit')" class="surface p-2 text-[10px] text-pink-300 font-bold hover:border-pink-400 rounded text-center">💎 3D एक्रिलिक</button>
       </div>
     </div>
 
-    <!-- Wall Textures & Environments -->
-    <div class="space-y-1.5 border-t border-gray-800 pt-2">
-      <b class="text-[11px] text-gray-300 block">Wall Backdrop & Ambiance</b>
-      <div class="grid grid-cols-3 gap-1 text-[10px]">
-        <button onclick="setWallTexture('wall-dark')" class="surface p-1.5 text-gray-300 hover:border-cyan-400 rounded">Dark Studio</button>
-        <button onclick="setWallTexture('wall-brick')" class="surface p-1.5 text-gray-300 hover:border-cyan-400 rounded">Loft Brick</button>
-        <button onclick="setWallTexture('wall-marble')" class="surface p-1.5 text-gray-300 hover:border-cyan-400 rounded">Marble</button>
-        <button onclick="setWallTexture('wall-slats')" class="surface p-1.5 text-gray-300 hover:border-cyan-400 rounded">Wood Slats</button>
-        <button onclick="setWallTexture('wall-concrete')" class="surface p-1.5 text-gray-300 hover:border-cyan-400 rounded">Concrete</button>
-        <button onclick="setWallTexture('wall-glass')" class="surface p-1.5 text-gray-300 hover:border-cyan-400 rounded">Glass Store</button>
-      </div>
-
-      <div class="flex gap-1.5 pt-1 text-[10px]">
-        <button onclick="setAmbiance('ambiance-day')" class="surface flex-1 p-1 text-center hover:border-cyan-400">☀️ Noon</button>
-        <button onclick="setAmbiance('ambiance-sunset')" class="surface flex-1 p-1 text-center hover:border-cyan-400">🌆 Sunset</button>
-        <button onclick="setAmbiance('ambiance-night')" class="surface flex-1 p-1 text-center hover:border-cyan-400">🌃 Midnight</button>
-      </div>
-    </div>
-
-    <!-- Canvas Manipulation -->
+    <!-- Layering Controls -->
     <div class="space-y-1 border-t border-gray-800 pt-2">
       <div class="grid grid-cols-2 gap-1.5">
-        <button onclick="centerSelected()" class="surface p-1.5 text-[10px] text-gray-300 hover:text-white rounded flex items-center justify-center gap-1">
-          <i class="fa-solid fa-arrows-to-dot"></i> Center
-        </button>
-        <button onclick="cloneSelected()" class="surface p-1.5 text-[10px] text-gray-300 hover:text-white rounded flex items-center justify-center gap-1">
-          <i class="fa-solid fa-copy"></i> Duplicate
-        </button>
-        <button onclick="bringForward()" class="surface p-1.5 text-[10px] text-gray-300 hover:text-white rounded flex items-center justify-center gap-1">
-          <i class="fa-solid fa-layer-group"></i> Forward
-        </button>
-        <button onclick="deleteSelected()" class="surface p-1.5 text-[10px] text-red-400 hover:border-red-500 rounded flex items-center justify-center gap-1">
-          <i class="fa-solid fa-trash"></i> Delete
-        </button>
+        <button onclick="centerSelected()" class="surface p-1.5 text-[10px] text-gray-300 hover:text-white rounded flex items-center justify-center gap-1"><i class="fa-solid fa-arrows-to-dot"></i> बीच में करें</button>
+        <button onclick="bringForward()" class="surface p-1.5 text-[10px] text-gray-300 hover:text-white rounded flex items-center justify-center gap-1"><i class="fa-solid fa-layer-group"></i> आगे लाएँ</button>
+        <button onclick="cloneSelected()" class="surface p-1.5 text-[10px] text-gray-300 hover:text-white rounded flex items-center justify-center gap-1"><i class="fa-solid fa-copy"></i> कॉपी करें</button>
+        <button onclick="deleteSelected()" class="surface p-1.5 text-[10px] text-red-400 hover:border-red-500 rounded flex items-center justify-center gap-1"><i class="fa-solid fa-trash"></i> हटाएँ</button>
       </div>
-      <button onclick="toggleNeonBreathing()" id="neonBreathingBtn" class="tool-btn justify-center text-cyan-300 mt-2 font-bold">
-        <i class="fa-solid fa-bolt"></i> Toggle Neon Pulse
-      </button>
+      <button onclick="toggleNeonBreathing()" id="neonBreathingBtn" class="tool-btn justify-center text-cyan-300 mt-2 font-bold"><i class="fa-solid fa-bolt"></i> नियॉन लाइट ऑन / ऑफ़</button>
     </div>
 
-    <!-- Adsterra 300x250 Banner Slot in Sidebar -->
     <div class="pt-2 border-t border-gray-800">
-      <div class="text-[9px] uppercase tracking-wider text-gray-500 text-center mb-1">Commercial Sponsor</div>
       <div class="w-full h-[250px] surface rounded-lg flex flex-col items-center justify-center text-center p-3 text-xs border border-gray-800/80">
         <i class="fa-solid fa-microchip text-2xl text-cyan-400 mb-2"></i>
         <b class="text-white">Precision LED Fabrication</b>
         <p class="text-[10px] text-gray-400 mt-1">High lumen IP67 Samsung modules, mean-well drivers & waterproof power adapters.</p>
-        <a href="https://staturenonsense.com/gv0q7uaq?key=03dfa82217442747af345fbdc450ce19" target="_blank" rel="noopener noreferrer" class="mt-3 px-3 py-1.5 rounded bg-cyan-950 text-cyan-300 border border-cyan-700 hover:border-cyan-400 font-bold text-[10px]">
-          View Commercial Catalog ➔
-        </a>
+        <a href="https://staturenonsense.com/gv0q7uaq?key=03dfa82217442747af345fbdc450ce19" target="_blank" rel="noopener noreferrer" class="mt-3 px-3 py-1.5 rounded bg-cyan-950 text-cyan-300 border border-cyan-700 hover:border-cyan-400 font-bold text-[10px]">View Catalog ➔</a>
       </div>
     </div>
   </aside>
 
   <!-- CENTER CANVAS WORKSPACE -->
   <section class="lg:col-span-9 order-1 lg:order-2 space-y-3">
-    
-    <!-- CANVAS VIEW TOGGLE TABS -->
     <div class="flex items-center justify-between bg-[#101623] p-1.5 rounded-xl border border-gray-800">
       <div class="flex items-center gap-1">
-        <button onclick="switchWorkspaceTab('editor')" id="tabBtnEditor" class="px-3 py-1.5 rounded-lg text-xs font-bold bg-cyan-950 text-cyan-300 border border-cyan-500/40">
-          <i class="fa-solid fa-pencil mr-1"></i> 2D Vector Layout
-        </button>
-        <button onclick="switchWorkspaceTab('mockup')" id="tabBtnMockup" class="px-3 py-1.5 rounded-lg text-xs font-bold text-gray-400 hover:text-white">
-          <i class="fa-solid fa-cube mr-1"></i> 3D Acrylic & Neon Mockup
-        </button>
+        <button onclick="switchWorkspaceTab('editor')" id="tabBtnEditor" class="px-3 py-1.5 rounded-lg text-xs font-bold bg-cyan-950 text-cyan-300 border border-cyan-500/40"><i class="fa-solid fa-pencil mr-1"></i> 2D डिज़ाइनिंग</button>
+        <button onclick="switchWorkspaceTab('mockup')" id="tabBtnMockup" class="px-3 py-1.5 rounded-lg text-xs font-bold text-gray-400 hover:text-white"><i class="fa-solid fa-cube mr-1"></i> 3D दीवार लुक</button>
       </div>
-
       <div class="flex items-center gap-1.5">
-        <button onclick="undo()" title="Undo" class="surface px-2 py-1 text-xs text-gray-300 hover:text-white rounded">
-          <i class="fa-solid fa-rotate-left"></i>
-        </button>
-        <button onclick="redo()" title="Redo" class="surface px-2 py-1 text-xs text-gray-300 hover:text-white rounded">
-          <i class="fa-solid fa-rotate-right"></i>
-        </button>
-        <button onclick="resetZoom()" title="Reset Zoom" class="surface px-2 py-1 text-xs text-gray-300 hover:text-white rounded hidden sm:inline">
-          100%
-        </button>
+        <button onclick="undo()" class="surface px-2 py-1 text-xs text-gray-300 hover:text-white rounded"><i class="fa-solid fa-rotate-left"></i></button>
+        <button onclick="redo()" class="surface px-2 py-1 text-xs text-gray-300 hover:text-white rounded"><i class="fa-solid fa-rotate-right"></i></button>
+        <button onclick="clearCanvasAll()" class="surface px-2 py-1 text-xs text-red-400 hover:border-red-500 rounded font-semibold">सब साफ़ करें</button>
       </div>
     </div>
 
-    <!-- CANVAS WRAPPER -->
     <div id="canvasViewport" class="canvas-wrap wall-dark transition-all">
       <canvas id="designCanvas" width="1200" height="800"></canvas>
     </div>
 
-    <!-- 3D MOCKUP WRAPPER (HIDDEN IN 2D MODE) -->
     <div id="mockupViewport" class="canvas-wrap wall-brick hidden transition-all flex-col gap-4">
       <div class="text-center">
-        <div class="text-xs uppercase tracking-widest text-cyan-400 font-bold">Real-time Extrusion & Glow Engine</div>
-        <div class="text-xs text-gray-400">Simulating 15mm Acrylic Depth, CNC Beveled Edges & Wall Cast Shadows</div>
+        <div class="text-xs uppercase tracking-widest text-cyan-400 font-bold">15mm 3D Acrylic Extrusion Engine</div>
+        <div class="text-xs text-gray-400">असली बोर्ड बनने के बाद दीवार पर ऐसा दिखेगा:</div>
       </div>
       <canvas id="mockupCanvas" width="1200" height="800" class="rounded-lg shadow-2xl max-w-full"></canvas>
       <div class="flex gap-2">
-        <button onclick="render3DMockup()" class="surface px-4 py-2 text-xs text-cyan-300 font-bold hover:border-cyan-400 rounded">
-          <i class="fa-solid fa-arrows-rotate mr-1"></i> Refresh 3D Render
-        </button>
-        <button onclick="exportMockupPNG()" class="btn px-4 py-2 text-xs font-bold rounded">
-          <i class="fa-solid fa-camera mr-1"></i> Export 3D Mockup Image
-        </button>
+        <button onclick="render3DMockup()" class="surface px-4 py-2 text-xs text-cyan-300 font-bold hover:border-cyan-400 rounded"><i class="fa-solid fa-arrows-rotate mr-1"></i> 3D दोबारा रेंडर करें</button>
+        <button onclick="exportMockupPNG()" class="btn px-4 py-2 text-xs font-bold rounded"><i class="fa-solid fa-camera mr-1"></i> 3D फ़ोटो डाउनलोड करें</button>
       </div>
     </div>
 
-    <!-- EXPORT & SPECIFICATIONS BAR -->
+    <!-- EXPORT BAR -->
     <div class="card p-3 flex flex-wrap items-center justify-between gap-3">
-      <div class="flex items-center gap-2">
-        <span class="text-xs font-bold text-gray-300">Vector Exports:</span>
-        <button onclick="exportSVG()" class="surface px-2.5 py-1.5 text-xs text-cyan-300 font-bold hover:border-cyan-400 rounded flex items-center gap-1">
-          <i class="fa-solid fa-bezier-curve"></i> SVG Cutpath
-        </button>
-        <button onclick="exportPDF()" class="surface px-2.5 py-1.5 text-xs text-pink-300 font-bold hover:border-pink-400 rounded flex items-center gap-1">
-          <i class="fa-solid fa-file-pdf"></i> Blueprint PDF
-        </button>
-        <button onclick="exportRaster('png')" class="surface px-2.5 py-1.5 text-xs text-emerald-300 font-bold hover:border-emerald-400 rounded flex items-center gap-1">
-          <i class="fa-solid fa-file-image"></i> PNG
-        </button>
-        <button onclick="exportRaster('jpeg')" class="surface px-2.5 py-1.5 text-xs text-amber-300 font-bold hover:border-amber-400 rounded hidden sm:inline-flex">
-          JPG
-        </button>
-        <button onclick="copySVGCutpath()" class="surface px-2.5 py-1.5 text-xs text-purple-300 font-bold hover:border-purple-400 rounded flex items-center gap-1">
-          <i class="fa-regular fa-clipboard"></i> Copy Path
-        </button>
+      <div class="flex items-center gap-2 flex-wrap">
+        <span class="text-xs font-bold text-gray-300">डाउनलोड:</span>
+        <button onclick="exportSVG()" class="surface px-2.5 py-1.5 text-xs text-cyan-300 font-bold hover:border-cyan-400 rounded"><i class="fa-solid fa-bezier-curve"></i> SVG कट-पाथ</button>
+        <button onclick="exportPDF()" class="surface px-2.5 py-1.5 text-xs text-pink-300 font-bold hover:border-pink-400 rounded"><i class="fa-solid fa-file-pdf"></i> प्रिंट PDF</button>
+        <button onclick="exportRaster('png')" class="surface px-2.5 py-1.5 text-xs text-emerald-300 font-bold hover:border-emerald-400 rounded"><i class="fa-solid fa-file-image"></i> PNG फ़ोटो</button>
+        <button onclick="openConverterModal()" class="btn px-3 py-1.5 text-xs font-black rounded"><i class="fa-solid fa-arrows-spin"></i> कन्वर्टर</button>
       </div>
-
-      <div class="flex items-center gap-2">
-        <button onclick="clearCanvasAll()" class="surface px-3 py-1.5 text-xs text-red-400 hover:border-red-500 rounded font-semibold">
-          Clear
-        </button>
-        <button onclick="openInstantOrderModal()" class="btn-emerald px-4 py-1.5 text-xs font-black rounded-lg shadow flex items-center gap-1">
-          <i class="fa-solid fa-truck-fast"></i> Instant Checkout
-        </button>
-      </div>
+      <button onclick="openInstantOrderModal()" class="btn-emerald px-5 py-2 text-xs font-black rounded-lg shadow-lg flex items-center gap-1.5">
+        <i class="fa-solid fa-truck-fast text-amber-300"></i> अभी फ़ैक्ट्री से ऑर्डर करें ➔
+      </button>
     </div>
-
-    <!-- ADSTERRA 728x90 LEADERBOARD BANNER SLOT -->
-    <div class="card p-2 flex flex-col items-center justify-center border border-gray-800 text-center">
-      <div class="text-[9px] uppercase tracking-wider text-gray-500 mb-1">Commercial Sign Hardware Partner</div>
-      <div class="w-full max-w-[728px] min-h-[90px] surface rounded flex flex-col sm:flex-row items-center justify-between px-4 py-2 gap-2 text-xs border border-gray-800">
-        <div class="text-left">
-          <span class="font-bold text-amber-300">Architectural SS Letters & Laser Cut Paths</span>
-          <p class="text-[11px] text-gray-400">Get genuine 304-grade titanium gold and rose gold mirror polish letters with 3-year fabrication warranty.</p>
-        </div>
-        <a href="https://staturenonsense.com/ttqdgbgfcx?key=8bfe383417ee0d64cc0754c000594473" target="_blank" rel="noopener noreferrer" class="btn-amber px-4 py-2 rounded text-xs whitespace-nowrap shadow-md">
-          Explore Hardware ➔
-        </a>
-      </div>
-    </div>
-
   </section>
-
 </div>
 </main>
 
 <!-- FOOTER -->
-<footer class="border-t border-gray-800 bg-[#070a10] text-gray-400 text-xs">
-<div class="max-w-7xl mx-auto px-4 py-8 grid grid-cols-1 md:grid-cols-4 gap-6">
-
-  <div>
-    <div class="font-bold text-white text-sm mb-2 flex items-center gap-1.5">
-      <i class="fa-solid fa-shapes text-cyan-400"></i>
-      <span>DESIGNHUB GLOBAL STUDIO</span>
-    </div>
-    <p class="text-[11px] text-gray-400 leading-relaxed">
-      Custom illuminated architectural signage, 3D acrylic letters, CNC cut paths, and neon lighting engineering.
-      Worldwide dispatch and commercial enterprise installations.
-    </p>
-    <div class="mt-3 text-[11px] text-gray-400">
-      Domain: <span class="text-cyan-400 font-mono">wearstay.com</span>
-    </div>
-  </div>
-
-  <div>
-    <b class="text-white block mb-2 text-xs">Sign Products & Fabrication</b>
-    <ul class="space-y-1 text-[11px]">
-      <li>• 3D Acrylic Face & Backlit Letters</li>
-      <li>• Stainless Steel Mirror / Titanium Letters</li>
-      <li>• Architectural Flex & Neon Signboards</li>
-      <li>• Laser & CNC Router Cutpath DXF/SVG</li>
-      <li>• Commercial ACP Signage Boards</li>
-    </ul>
-  </div>
-
-  <div>
-    <b class="text-white block mb-2 text-xs">Support & Fabrication Desk</b>
-    <div class="space-y-1 text-[11px]">
-      <div>WhatsApp Direct: <b class="text-white">+91 9354944438</b></div>
-      <div>Official Email: <span class="text-white">ledsignadil@gmail.com</span></div>
-      <div>Operating Hours: 09:00 - 21:00 IST</div>
-      <div class="pt-2">
-        <button onclick="openWhatsAppDirect()" class="btn-emerald px-3 py-1 rounded text-[11px] flex items-center gap-1">
-          <i class="fa-brands fa-whatsapp text-white"></i> Chat on WhatsApp
-        </button>
-      </div>
-    </div>
-  </div>
-
-  <div>
-    <b class="text-white block mb-2 text-xs">Legal, Policies & Partners</b>
-    <div class="space-y-1 text-[11px]">
-      <div><a href="javascript:void(0)" onclick="openTermsModal()" class="hover:text-cyan-300">Terms of Service</a></div>
-      <div><a href="javascript:void(0)" onclick="openPrivacyModal()" class="hover:text-cyan-300">Privacy & Data Policy</a></div>
-      <div><a href="javascript:void(0)" onclick="openWarrantyModal()" class="hover:text-cyan-300">2-Year Fabrication Warranty</a></div>
-      <div>GST Compliance: <span class="text-gray-300 font-mono">07AAACD1234F1Z5</span></div>
-      <!-- ADSTERRA SMARTLINK 2: SECONDARY SPONSORED PARTNER BUTTON -->
-      <div class="pt-2">
-        <a href="https://staturenonsense.com/gv0q7uaq?key=03dfa82217442747af345fbdc450ce19" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-amber-500/10 border border-amber-500/40 text-amber-300 hover:text-amber-200 text-[11px] font-bold">
-          <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
-          <span>Recommended Fabrication Resources & Offers</span>
-        </a>
-      </div>
-    </div>
-  </div>
-
-</div>
-
-<div class="border-t border-gray-900 py-4 text-center text-[11px] text-gray-400">
-  © <span id="yearSpan">2026</span> DesignHub Global Studio (wearstay.com). All rights reserved. Symmetrical commercial build.
-</div>
+<footer class="border-t border-gray-800 bg-[#070a10] text-gray-400 text-xs p-6 text-center space-y-2">
+  <p class="text-white font-bold">DESIGNHUB GLOBAL STUDIO • wearstay.com</p>
+  <p>50% एडवांस पर लकड़ी के क्रेट में सुरक्षित डिलीवरी • ऑल इंडिया ट्रांसपोर्ट</p>
+  <p>WhatsApp: <b class="text-white">+91 9354944438</b> | Email: <span class="text-white">ledsignadil@gmail.com</span></p>
 </footer>
 
-<!-- ========================================== -->
-<!-- MODALS -->
-<!-- ========================================== -->
-
-<!-- 1. AI SIGN GENERATOR MODAL -->
-<div id="aiModal" class="modal">
+<!-- 1. CONVERTER MODAL -->
+<div id="converterModal" class="modal">
   <div class="modal-box">
     <div class="flex justify-between items-center border-b border-gray-800 pb-3 mb-3">
-      <div class="flex items-center gap-2">
-        <i class="fa-solid fa-wand-magic-sparkles text-purple-400"></i>
-        <b class="text-sm">Gemini 2.5 Flash Sign Studio</b>
-      </div>
-      <button onclick="closeModal('aiModal')" class="text-gray-400 hover:text-white text-lg">&times;</button>
+      <b class="text-sm">यूनिवर्सल फ़ाइल कन्वर्टर</b>
+      <button onclick="closeModal('converterModal')" class="text-gray-400 hover:text-white">&times;</button>
     </div>
-
-    <p class="text-xs text-gray-300 mb-3">
-      Describe your commercial storefront, sign text, brand colors, and aesthetic.
-      Powered by Google Gemini 2.5 Flash to automatically lay out typography, backplates, and illumination vectors.
-    </p>
-
-    <div class="space-y-3">
-      <textarea id="aiPromptInput" rows="3" class="surface w-full p-2.5 text-xs text-white outline-none focus:border-cyan-400" placeholder="e.g. 'A luxury Italian cafe named MILANO ROASTERY in warm gold neon with an emerald circular backboard'"></textarea>
-
-      <div class="flex flex-wrap gap-1.5 text-[10px]">
-        <button onclick="setSamplePrompt('Neon bar sign with cocktail icon in vibrant pink and cyan')" class="surface px-2 py-1 text-gray-300 hover:border-cyan-400">🍸 Neon Cocktail Lounge</button>
-        <button onclick="setSamplePrompt('Architectural 3D gold stainless steel letters for NEXUS LAW FIRM')" class="surface px-2 py-1 text-gray-300 hover:border-cyan-400">⚖️ Luxury Law Firm</button>
-        <button onclick="setSamplePrompt('Cyberpunk fitness studio sign IRON PULSE in electric cyan glow')" class="surface px-2 py-1 text-gray-300 hover:border-cyan-400">⚡ Cyber Gym</button>
+    <div class="surface p-6 rounded-xl border-2 border-dashed border-gray-700 hover:border-cyan-400 text-center cursor-pointer mb-3" onclick="document.getElementById('convFileInput').click()">
+      <i class="fa-solid fa-cloud-arrow-up text-3xl text-cyan-400 mb-2"></i>
+      <div id="convFileText" class="text-xs font-bold text-gray-200">फ़ाइल चुनने के लिए यहाँ क्लिक करें (JPG, PNG, PDF, SVG)</div>
+      <input id="convFileInput" type="file" class="hidden" onchange="handleConverterFileSelected(event)">
+    </div>
+    <div class="flex flex-wrap items-center justify-between gap-2 surface p-3">
+      <div class="flex items-center gap-2 text-xs">
+        <span class="text-gray-300 font-bold">फ़ॉर्मेट:</span>
+        <select id="targetConvFormat" class="surface px-3 py-1.5 text-xs text-cyan-300 bg-[#151e30] outline-none">
+          <option value="png">PNG (High Quality)</option>
+          <option value="jpeg">JPG (Standard)</option>
+          <option value="pdf">PDF (Print Vector)</option>
+        </select>
       </div>
-
-      <div class="flex justify-between items-center pt-2">
-        <button onclick="startVoiceAIInModal()" class="surface px-3 py-2 text-xs text-cyan-300 hover:border-cyan-400 rounded flex items-center gap-1.5">
-          <i class="fa-solid fa-microphone"></i> Dictate Prompt
-        </button>
-        <button onclick="runAIGeneration()" id="aiGenerateBtn" class="btn px-5 py-2 text-xs font-bold rounded-lg flex items-center gap-1.5">
-          <i class="fa-solid fa-bolt"></i> Generate Sign Layout
-        </button>
-      </div>
+      <button onclick="executeFileConversion()" class="btn px-4 py-2 rounded-lg text-xs font-black">कन्वर्ट और डाउनलोड</button>
     </div>
   </div>
 </div>
 
-<!-- 2. INSTANT ORDER & QUOTE MODAL (WITH DYNAMIC UPI & PAYPAL) -->
+<!-- 2. ORDER MODAL (UPDATED RATES: +$1 / ~₹80 SQFT) -->
 <div id="instantOrderModal" class="modal">
   <div class="modal-box">
     <div class="flex justify-between items-center border-b border-gray-800 pb-3 mb-3">
-      <div class="flex items-center gap-2">
-        <i class="fa-solid fa-receipt text-emerald-400"></i>
-        <b class="text-sm">Instant Commercial Signage Quote & Checkout</b>
-      </div>
-      <button onclick="closeModal('instantOrderModal')" class="text-gray-400 hover:text-white text-lg">&times;</button>
+      <b class="text-sm text-emerald-400">साइन बोर्ड ऑर्डर व कोटेशन (फ़ैक्ट्री रेट्स)</b>
+      <button onclick="closeModal('instantOrderModal')" class="text-gray-400 hover:text-white">&times;</button>
     </div>
-
-    <!-- SPECIFICATIONS SUMMARY -->
+    <div class="p-2.5 rounded-lg bg-amber-500/10 border border-amber-500/30 text-amber-300 text-[11px] mb-3">
+      <b>नियम:</b> 50% एडवांस पर काम शुरू, बाकी 50% डिस्पैच के समय। लकड़ी के मजबूत क्रेट में ऑल इंडिया डिलीवरी।
+    </div>
     <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
-      
-      <!-- LEFT: SPECS & PRICING -->
       <div class="surface p-3 space-y-2 border border-cyan-900/60">
-        <b class="text-cyan-300 block text-xs border-b border-gray-800 pb-1">Fabrication Summary</b>
+        <b class="text-cyan-300 block text-xs border-b border-gray-800 pb-1">ऑर्डर समरी</b>
+        <div class="flex justify-between"><span class="text-gray-400">साइज़:</span><span id="orderSpecsDimensions" class="font-mono font-bold">1200 × 800 PX</span></div>
+        <div class="flex justify-between"><span class="text-gray-400">कुल एरिया:</span><span id="orderSpecsArea" class="font-mono font-bold text-amber-300">2.67 sq ft</span></div>
         <div class="flex justify-between">
-          <span class="text-gray-400">Sign Dimensions:</span>
-          <span id="orderSpecsDimensions" class="font-bold font-mono">1200 × 800 PX</span>
+          <span class="text-gray-400">मटीरियल:</span>
+          <select id="orderMaterialSelect" onchange="calculateArea()" class="surface bg-[#101623] text-cyan-300 text-[11px] p-1">
+            <option value="acrylic3d">3D Acrylic LED (₹730/sqft)</option>
+            <option value="goldSS">Titanium Gold SS 304 (₹930/sqft)</option>
+            <option value="acpGlow">ACP Glow Board (₹530/sqft)</option>
+            <option value="neonArt">Neon Sign Board (₹630/sqft)</option>
+          </select>
         </div>
-        <div class="flex justify-between">
-          <span class="text-gray-400">Calculated Area:</span>
-          <span id="orderSpecsArea" class="font-bold text-amber-300 font-mono">2.67 sq ft</span>
-        </div>
-        <div class="flex justify-between">
-          <span class="text-gray-400">Selected Material:</span>
-          <span id="orderSpecsMaterial" class="font-bold text-white">3D Acrylic Neon + Backlit</span>
-        </div>
-        <div class="flex justify-between border-t border-gray-800 pt-1">
-          <span class="text-gray-400">Base Fabrication Rate:</span>
-          <span class="text-gray-300">₹650 / sq ft</span>
-        </div>
-        <div class="flex justify-between border-t border-gray-800 pt-2 text-sm font-black">
-          <span class="text-white">Estimated Amount:</span>
-          <span id="orderEstimatedTotal" class="text-emerald-400">₹4,800 INR</span>
-        </div>
-        <p class="text-[10px] text-gray-400 pt-1">Includes laser CNC cutting, mean-well 12V driver, IP67 neon, and mounting brackets.</p>
+        <div class="flex justify-between border-t border-gray-800 pt-2 text-sm font-black"><span class="text-white">कुल एस्टीमेट:</span><span id="orderEstimatedTotal" class="text-emerald-400">₹5,380 INR</span></div>
+        <div class="flex justify-between bg-emerald-950/40 p-2 rounded border border-emerald-500/30 text-xs font-bold"><span class="text-emerald-300">50% एडवांस राशि:</span><span id="orderAdvance50" class="text-amber-300">₹2,690 INR</span></div>
       </div>
-
-      <!-- RIGHT: CLIENT INFO -->
       <div class="space-y-2 text-xs">
-        <b class="text-gray-300 block">Dispatch & Client Information</b>
-        <div>
-          <label class="text-[10px] text-gray-400 block">Your Name / Company</label>
-          <input id="orderCustName" type="text" placeholder="e.g. John Doe / Nexus Retail" class="surface w-full p-2 text-xs text-white outline-none">
-        </div>
-        <div>
-          <label class="text-[10px] text-gray-400 block">WhatsApp / Phone Number</label>
-          <input id="orderCustPhone" type="tel" placeholder="+91 9876543210" class="surface w-full p-2 text-xs text-white outline-none">
-        </div>
-        <div>
-          <label class="text-[10px] text-gray-400 block">Delivery Address / Destination City</label>
-          <input id="orderCustAddress" type="text" placeholder="Full address for courier delivery" class="surface w-full p-2 text-xs text-white outline-none">
-        </div>
+        <b class="text-gray-300 block">कस्टमर डिटेल्स</b>
+        <input id="orderCustName" type="text" placeholder="आपका नाम / दुकान का नाम" class="surface w-full p-2 text-white">
+        <input id="orderCustPhone" type="tel" placeholder="WhatsApp / फ़ोन नंबर" class="surface w-full p-2 text-white">
+        <textarea id="orderCustAddress" placeholder="पूरा डिलीवरी पता व पिनकोड" class="surface w-full p-2 text-white" rows="2"></textarea>
       </div>
-
     </div>
-
-    <!-- PAYMENT OPTIONS TABS -->
-    <div class="mt-4 pt-3 border-t border-gray-800">
-      <b class="text-xs text-white block mb-2">Select Instant Payment Channel</b>
-
-      <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-        <!-- UPI DYNAMIC QR CODE -->
-        <div class="surface p-3 text-center border border-gray-800 rounded-xl">
-          <div class="text-[11px] font-bold text-cyan-300 mb-1 flex items-center justify-center gap-1">
-            <i class="fa-solid fa-qrcode"></i> Instant UPI Dynamic QR
-          </div>
-          <div id="upiQrCode" class="mx-auto my-2 w-[140px] h-[140px] bg-white p-1.5 rounded-lg flex items-center justify-center"></div>
-          <div class="text-[10px] text-gray-400 font-mono">Scan with GPay, PhonePe, Paytm, BHIM</div>
-          <a id="upiPayLink" href="#" class="mt-2 block surface py-1.5 text-[11px] text-cyan-300 font-bold hover:border-cyan-400 rounded">
-            Tap to Pay on Mobile App
-          </a>
-        </div>
-
-        <!-- PAYPAL & WHATSAPP ORDERS -->
-        <div class="surface p-3 flex flex-col justify-between border border-gray-800 rounded-xl text-center">
-          <div>
-            <div class="text-[11px] font-bold text-amber-300 mb-1 flex items-center justify-center gap-1">
-              <i class="fa-brands fa-paypal"></i> PayPal Global Commercial
-            </div>
-            <p class="text-[10px] text-gray-400 mb-2">For USD / EUR / GBP international card checkouts with buyer protection.</p>
-            <button onclick="triggerPayPalMockCheckout()" class="btn-amber w-full py-2 rounded text-xs font-bold mb-2 flex items-center justify-center gap-1.5">
-              <i class="fa-brands fa-paypal"></i> Pay with PayPal Checkout
-            </button>
-          </div>
-
-          <div class="border-t border-gray-800 pt-2">
-            <button onclick="submitOrderDirect()" class="btn-emerald w-full py-2 rounded text-xs font-bold flex items-center justify-center gap-1.5">
-              <i class="fa-solid fa-check-circle"></i> Confirm Order & Receipt
-            </button>
-          </div>
-        </div>
+    <div class="mt-4 pt-3 border-t border-gray-800 grid grid-cols-1 sm:grid-cols-2 gap-3 text-center">
+      <div class="surface p-3 rounded-xl border border-gray-800">
+        <div class="text-[11px] font-bold text-cyan-300 mb-1">डायनामिक UPI QR</div>
+        <div id="upiQrCode" class="mx-auto my-2 w-[125px] h-[125px] bg-white p-1 rounded flex items-center justify-center"></div>
+        <a id="upiPayLink" href="#" class="block surface py-1 text-cyan-300 font-bold text-xs mt-1">मोबाइल से पे करें</a>
       </div>
-
+      <div class="flex flex-col justify-center">
+        <button onclick="submitOrderDirect()" class="btn-emerald w-full py-3 rounded-xl font-black text-xs shadow-lg"><i class="fa-brands fa-whatsapp text-base mr-1"></i> व्हाट्सएप पर ऑर्डर भेजें</button>
+      </div>
     </div>
-
   </div>
 </div>
 
-<!-- 3. ORDER CONFIRMATION & RECEIPT MODAL -->
+<!-- 3. RECEIPT MODAL -->
 <div id="orderConfirmationModal" class="modal">
   <div class="modal-box text-center">
-    <div class="w-14 h-14 mx-auto rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center text-2xl mb-2">
-      <i class="fa-solid fa-check"></i>
-    </div>
-    <h3 class="text-lg font-black text-white">Fabrication Order Dispatched to Queue!</h3>
-    <p class="text-xs text-gray-300 mt-1">Thank you for ordering with DesignHub Global Studio.</p>
-
+    <div class="w-14 h-14 mx-auto rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center text-2xl mb-2"><i class="fa-solid fa-check"></i></div>
+    <h3 class="text-lg font-black text-white">ऑर्डर दर्ज हो गया है!</h3>
     <div class="surface p-3 my-4 text-left text-xs space-y-1.5 border border-emerald-500/30">
-      <div class="flex justify-between">
-        <span class="text-gray-400">Order Reference:</span>
-        <span id="confOrderId" class="font-mono font-bold text-cyan-400">DH-88231</span>
-      </div>
-      <div class="flex justify-between">
-        <span class="text-gray-400">Client:</span>
-        <span id="confClientName" class="font-bold text-white">John Doe</span>
-      </div>
-      <div class="flex justify-between">
-        <span class="text-gray-400">Specifications:</span>
-        <span id="confSpecs" class="font-bold text-gray-200">1200 x 800 PX • 3D Neon</span>
-      </div>
-      <div class="flex justify-between border-t border-gray-800 pt-1">
-        <span class="text-gray-400">Amount:</span>
-        <span id="confTotal" class="font-black text-emerald-400">₹4,800 INR</span>
-      </div>
+      <div class="flex justify-between"><span class="text-gray-400">ऑर्डर नंबर:</span><span id="confOrderId" class="font-mono font-bold text-cyan-400"></span></div>
+      <div class="flex justify-between"><span class="text-gray-400">ग्राहक:</span><span id="confClientName" class="font-bold text-white"></span></div>
+      <div class="flex justify-between"><span class="text-gray-400">साइज़ व मटीरियल:</span><span id="confSpecs" class="font-bold text-gray-200"></span></div>
+      <div class="flex justify-between border-t border-gray-800 pt-1"><span class="text-gray-400">कुल राशि:</span><span id="confTotal" class="font-black text-emerald-400"></span></div>
+      <div class="flex justify-between text-amber-300 font-bold"><span>50% एडवांस:</span><span id="confAdvance"></span></div>
     </div>
-
-    <div class="flex flex-col sm:flex-row gap-2 justify-center">
-      <button onclick="shareReceiptWhatsApp()" class="btn-emerald px-4 py-2 rounded-lg text-xs font-bold flex items-center justify-center gap-2">
-        <i class="fa-brands fa-whatsapp text-sm"></i> Share Receipt to WhatsApp
-      </button>
-      <button onclick="closeModal('orderConfirmationModal')" class="surface px-4 py-2 rounded-lg text-xs text-gray-300 font-bold">
-        Back to Studio
-      </button>
-    </div>
+    <button onclick="shareReceiptWhatsApp()" class="btn-emerald px-5 py-2.5 rounded-lg text-xs font-black w-full"><i class="fa-brands fa-whatsapp text-base mr-1"></i> व्हाट्सएप पर रसीद भेजें</button>
   </div>
 </div>
 
-<!-- 4. PLANS & PRICING MODAL -->
-<div id="plansModal" class="modal">
-  <div class="modal-box">
-    <div class="flex justify-between items-center border-b border-gray-800 pb-3 mb-3">
-      <div class="flex items-center gap-2">
-        <i class="fa-solid fa-crown text-amber-400"></i>
-        <b class="text-sm">DesignHub Commercial Plans & Licenses</b>
-      </div>
-      <button onclick="closeModal('plansModal')" class="text-gray-400 hover:text-white text-lg">&times;</button>
-    </div>
-
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-3 text-xs">
-      <!-- PLAN 1 -->
-      <div class="surface p-3 rounded-xl border border-gray-800 flex flex-col justify-between">
-        <div>
-          <b class="text-white block text-sm">Starter Designer</b>
-          <div class="text-amber-400 text-lg font-black my-1">₹0 <span class="text-[10px] text-gray-400 font-normal">Free Forever</span></div>
-          <p class="text-[11px] text-gray-400">Perfect for store owners drafting initial sign concepts.</p>
-          <ul class="space-y-1 my-3 text-[11px] text-gray-300">
-            <li>✓ Unlimited Canvas Editing</li>
-            <li>✓ Multi-unit Dimension Converter</li>
-            <li>✓ Standard SVG & PNG Export</li>
-            <li>✓ Community Wall Backdrops</li>
-          </ul>
-        </div>
-        <button onclick="selectCommercialPlan('Starter')" class="surface w-full py-1.5 text-xs text-gray-300 font-bold hover:border-cyan-400">Active Tier</button>
-      </div>
-
-      <!-- PLAN 2 -->
-      <div class="surface p-3 rounded-xl border border-cyan-500/50 relative flex flex-col justify-between bg-cyan-950/20">
-        <span class="absolute -top-2.5 right-3 bg-cyan-400 text-[#0b0f17] text-[9px] font-black px-2 py-0.5 rounded-full">POPULAR</span>
-        <div>
-          <b class="text-cyan-300 block text-sm">Pro Fabricator</b>
-          <div class="text-cyan-400 text-lg font-black my-1">₹799 <span class="text-[10px] text-gray-400 font-normal">/ month</span></div>
-          <p class="text-[11px] text-gray-400">For signage shops and interior design contractors.</p>
-          <ul class="space-y-1 my-3 text-[11px] text-gray-300">
-            <li>✓ Unlimited Gemini 2.5 Flash AI</li>
-            <li>✓ Voice-to-Sign Engine</li>
-            <li>✓ CNC Vector Cutpaths with Offsets</li>
-            <li>✓ Vector Blueprint PDF Print Sheets</li>
-            <li>✓ 3D Acrylic & Neon Extrusion Renders</li>
-          </ul>
-        </div>
-        <button onclick="selectCommercialPlan('Pro Fabricator')" class="btn w-full py-1.5 text-xs font-black rounded">Upgrade to Pro</button>
-      </div>
-
-      <!-- PLAN 3 -->
-      <div class="surface p-3 rounded-xl border border-gray-800 flex flex-col justify-between">
-        <div>
-          <b class="text-purple-300 block text-sm">Commercial License</b>
-          <div class="text-purple-400 text-lg font-black my-1">₹600 <span class="text-[10px] text-gray-400 font-normal">/ sqft Base</span></div>
-          <p class="text-[11px] text-gray-400">Direct factory dispatch with 2-year warranty.</p>
-          <ul class="space-y-1 my-3 text-[11px] text-gray-300">
-            <li>✓ Complete Sign Delivery to Site</li>
-            <li>✓ Mean-Well Power Supplies Included</li>
-            <li>✓ IP67 Waterproof Certified LEDs</li>
-            <li>✓ Priority WhatsApp Engineering</li>
-          </ul>
-        </div>
-        <button onclick="selectCommercialPlan('Commercial License')" class="btn-emerald w-full py-1.5 text-xs font-black rounded">Order Custom Sign</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- 5. TERMS OF SERVICE MODAL -->
-<div id="termsModal" class="modal">
-  <div class="modal-box text-xs space-y-2">
-    <div class="flex justify-between items-center border-b border-gray-800 pb-2">
-      <b class="text-sm text-white">Commercial Terms of Service</b>
-      <button onclick="closeModal('termsModal')" class="text-gray-400 hover:text-white text-lg">&times;</button>
-    </div>
-    <div class="max-h-[60vh] overflow-y-auto space-y-2 text-gray-300 pr-1">
-      <p><b>1. Fabrication Tolerances:</b> All manufactured 3D acrylic and stainless steel signage adhere to standard ISO ±1.5mm CNC tolerances.</p>
-      <p><b>2. Intellectual Property:</b> Vector designs created by users remain their property. Designs downloaded as cut paths are licensed for commercial fabrication.</p>
-      <p><b>3. Dispatch & Transit:</b> Finished products are securely packed in wooden architectural crates and shipped via express courier with real-time tracking.</p>
-      <p><b>4. Payment Terms:</b> Factory queue entry occurs upon confirmation of UPI or PayPal payment token.</p>
-    </div>
-  </div>
-</div>
-
-<!-- 6. PRIVACY POLICY MODAL -->
-<div id="privacyModal" class="modal">
-  <div class="modal-box text-xs space-y-2">
-    <div class="flex justify-between items-center border-b border-gray-800 pb-2">
-      <b class="text-sm text-white">Privacy & Data Policy</b>
-      <button onclick="closeModal('privacyModal')" class="text-gray-400 hover:text-white text-lg">&times;</button>
-    </div>
-    <div class="max-h-[60vh] overflow-y-auto space-y-2 text-gray-300 pr-1">
-      <p><b>1. Local Data Storage:</b> All vector layers, dimensions, and project histories are stored locally in your browser's LocalStorage.</p>
-      <p><b>2. AI Prompts:</b> Prompts sent to Gemini 2.5 Flash are processed directly through client-side API requests solely to generate SVG/Canvas coordinates.</p>
-      <p><b>3. No Third-Party Resale:</b> Client phone numbers and addresses are used exclusively for courier dispatch and invoice generation.</p>
-    </div>
-  </div>
-</div>
-
-<!-- 7. WARRANTY MODAL -->
-<div id="warrantyModal" class="modal">
-  <div class="modal-box text-xs space-y-2">
-    <div class="flex justify-between items-center border-b border-gray-800 pb-2">
-      <b class="text-sm text-white">2-Year Commercial Signage Guarantee</b>
-      <button onclick="closeModal('warrantyModal')" class="text-gray-400 hover:text-white text-lg">&times;</button>
-    </div>
-    <div class="max-h-[60vh] overflow-y-auto space-y-2 text-gray-300 pr-1">
-      <p>All architectural LED signs fabricated by DesignHub Global Studio carry a comprehensive 24-month manufacturer guarantee covering:</p>
-      <ul class="list-disc pl-4 space-y-1">
-        <li>LED Lumen Degradation & Module Failure</li>
-        <li>12V Mean-Well Power Supply Transistors</li>
-        <li>UV Yellowing Resistance for Cast Acrylic Letters</li>
-        <li>Water Ingress on IP67 Outdoor Rated Signboards</li>
-      </ul>
-      <p class="pt-2">Direct claim assistance available via WhatsApp at +91 9354944438.</p>
-    </div>
-  </div>
-</div>
-
-<!-- TOAST NOTIFICATION -->
-<div id="toast" class="toast">
-  <i class="fa-solid fa-circle-check text-cyan-400"></i>
-  <span id="toastMsg" class="text-xs text-gray-200">Action performed</span>
-</div>
-
-<!-- ========================================== -->
-<!-- JAVASCRIPT APPLICATION CORE -->
-<!-- ========================================== -->
+<div id="toast" class="toast"><i class="fa-solid fa-circle-check text-cyan-400"></i><span id="toastMsg" class="text-xs"></span></div>
 <script>
-// ==========================================
-// 1. GLOBAL STATE & CONFIGURATION
-// ==========================================
 const DEFAULT_CONFIG = {
-  brandName: "DesignHub Global Studio",
+  brandName: "DesignHub Global Signage",
   domain: "wearstay.com",
   whatsAppPhone: "919354944438",
   upiId: "ledsignadil@okaxis",
-  baseSqftPrice: 650
+  baseRates: {
+    acrylic3d: 730, // Updated (+~$1 / ₹80)
+    goldSS: 930,    // Updated (+~$1 / ₹80)
+    acpGlow: 530,   // Updated (+~$1 / ₹80)
+    neonArt: 630    // Updated (+~$1 / ₹80)
+  }
 };
-
-// Embedded Gemini API Key for client-side generation
-const GEMINI_API_KEY = "AQ.Ab8RN6J33tWi5iAyyiAh6Fcj2L3SnrUwzrzQhGQK6vMbugVL6g";
 
 let canvas;
 let currentUnit = "px";
@@ -950,23 +582,11 @@ let undoStack = [];
 let redoStack = [];
 let isBreathingActive = false;
 let lastCreatedOrder = {};
+let activeConverterFile = null;
 
-const UNIT_CONVERSIONS = {
-  px: 1,
-  inch: 96,
-  feet: 1152,
-  mm: 3.7795,
-  cm: 37.795,
-  metre: 3779.5
-};
+const UNIT_CONVERSIONS = { px: 1, inch: 96, feet: 1152, mm: 3.7795, cm: 37.795 };
 
-// ==========================================
-// 2. CANVAS INITIALIZATION & EVENT HANDLERS
-// ==========================================
 window.addEventListener("DOMContentLoaded", () => {
-  document.getElementById("yearSpan").innerText = new Date().getFullYear();
-
-  // Initialize Fabric.js Canvas
   canvas = new fabric.Canvas("designCanvas", {
     backgroundColor: "#090e17",
     preserveObjectStacking: true,
@@ -975,965 +595,234 @@ window.addEventListener("DOMContentLoaded", () => {
     selectionLineWidth: 1
   });
 
-  // Apply default dimensions
   applyDimensions();
+  loadSignSample('acrylic3d');
 
-  // Try to restore from LocalStorage
-  const savedProject = localStorage.getItem("designhub_project_backup");
-  if (savedProject) {
-    try {
-      const parsed = JSON.parse(savedProject);
-      canvas.loadFromJSON(parsed.fabricJSON, () => {
-        canvas.renderAll();
-        showToast("Project restored from browser auto-save!");
-      });
-    } catch (e) {
-      loadInitialDesign();
-    }
-  } else {
-    loadInitialDesign();
-  }
-
-  // Setup undo tracking
-  canvas.on("object:modified", () => { saveHistory(); triggerAutoSave(); });
-  canvas.on("object:added", () => { triggerAutoSave(); });
-  canvas.on("object:removed", () => { saveHistory(); triggerAutoSave(); });
-
-  // Update payment QR code
-  updateUPIPaymentInfo(4800);
+  canvas.on("object:modified", () => saveHistory());
+  canvas.on("object:removed", () => saveHistory());
 });
 
-function loadInitialDesign() {
-  // Add a stylish initial LED text
-  const initialText = new fabric.Text("DESIGNHUB", {
-    left: 600,
-    top: 360,
-    originX: "center",
-    originY: "center",
-    fontFamily: "Arial Black",
-    fontSize: 90,
-    fontWeight: "900",
-    fill: "#00f2fe",
-    shadow: new fabric.Shadow({
-      color: "#00f2fe",
-      blur: 28,
-      offsetX: 0,
-      offsetY: 0
-    })
-  });
+// 1. VOICE AI WITH 100+ LANGUAGES & SPEAK BACK
+function startUniversalVoiceAI() {
+  const status = document.getElementById("voiceFeedbackLine");
+  const micCard = document.getElementById("micCardIcon");
+  const selectedLang = document.getElementById("globalLang").value || "hi-IN";
 
-  const subText = new fabric.Text("CUSTOM ARCHITECTURAL SIGNAGE", {
-    left: 600,
-    top: 450,
-    originX: "center",
-    originY: "center",
-    fontFamily: "Inter",
-    fontSize: 22,
-    fontWeight: "700",
-    fill: "#ffffff",
-    letterSpacing: 4,
-    shadow: new fabric.Shadow({
-      color: "#9b51e0",
-      blur: 15,
-      offsetX: 0,
-      offsetY: 0
-    })
-  });
-
-  canvas.add(initialText);
-  canvas.add(subText);
-  canvas.renderAll();
-  saveHistory();
-}
-
-// ==========================================
-// 3. DIMENSIONS, UNITS & AREA CALCULATIONS
-// ==========================================
-function onUnitChanged() {
-  currentUnit = document.getElementById("unit").value;
-  applyDimensions();
-}
-
-function applyDimensions() {
-  const wInput = parseFloat(document.getElementById("inputW").value) || 1200;
-  const hInput = parseFloat(document.getElementById("inputH").value) || 800;
-
-  const factor = UNIT_CONVERSIONS[currentUnit] || 1;
-  canvasWidth = Math.round(wInput * factor);
-  canvasHeight = Math.round(hInput * factor);
-
-  // Clamp limits for canvas stability
-  const renderW = Math.max(300, Math.min(3000, canvasWidth));
-  const renderH = Math.max(200, Math.min(2400, canvasHeight));
-
-  canvas.setWidth(renderW);
-  canvas.setHeight(renderH);
-  canvas.renderAll();
-
-  // Update badges
-  document.getElementById("dimensionBadge").innerText = `${wInput} × ${hInput} ${currentUnit.toUpperCase()}`;
-  calculateArea();
-}
-
-function calculateArea() {
-  const wInput = parseFloat(document.getElementById("inputW").value) || 1200;
-  const hInput = parseFloat(document.getElementById("inputH").value) || 800;
-  const unit = currentUnit;
-
-  let widthInFeet = 0;
-  let heightInFeet = 0;
-
-  switch (unit) {
-    case "inch":
-      widthInFeet = wInput / 12;
-      heightInFeet = hInput / 12;
-      break;
-    case "feet":
-      widthInFeet = wInput;
-      heightInFeet = hInput;
-      break;
-    case "mm":
-      widthInFeet = wInput / 304.8;
-      heightInFeet = hInput / 304.8;
-      break;
-    case "cm":
-      widthInFeet = wInput / 30.48;
-      heightInFeet = hInput / 30.48;
-      break;
-    case "metre":
-      widthInFeet = wInput * 3.28084;
-      heightInFeet = hInput * 3.28084;
-      break;
-    case "px":
-    default:
-      widthInFeet = (wInput / 96) / 12;
-      heightInFeet = (hInput / 96) / 12;
-      break;
-  }
-
-  const sqft = Math.max(1, (widthInFeet * heightInFeet)).toFixed(2);
-  const totalAmount = Math.round(sqft * DEFAULT_CONFIG.baseSqftPrice);
-
-  const sqftBadge = document.getElementById("estimatedSqftBadge");
-  if (sqftBadge) sqftBadge.innerText = `~${sqft} sq ft`;
-
-  const orderSpecsDims = document.getElementById("orderSpecsDimensions");
-  if (orderSpecsDims) orderSpecsDims.innerText = `${wInput} × ${hInput} ${unit.toUpperCase()}`;
-
-  const orderSpecsArea = document.getElementById("orderSpecsArea");
-  if (orderSpecsArea) orderSpecsArea.innerText = `${sqft} sq ft`;
-
-  const orderEstimatedTotal = document.getElementById("orderEstimatedTotal");
-  if (orderEstimatedTotal) orderEstimatedTotal.innerText = `₹${totalAmount.toLocaleString()} INR`;
-
-  updateUPIPaymentInfo(totalAmount);
-}
-
-// ==========================================
-// 4. STORAGE, PROJECT BACKUP & AUTO-SAVE
-// ==========================================
-function triggerAutoSave() {
-  try {
-    const data = {
-      fabricJSON: canvas.toJSON(),
-      unit: currentUnit,
-      w: document.getElementById("inputW").value,
-      h: document.getElementById("inputH").value,
-      timestamp: Date.now()
-    };
-    localStorage.setItem("designhub_project_backup", JSON.stringify(data));
-    const badge = document.getElementById("saveStatusBadge");
-    if (badge) {
-      badge.classList.remove("hidden");
-      badge.innerHTML = `<span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span> Saved`;
-    }
-  } catch (err) {
-    console.warn("Storage full or unavailable", err);
-  }
-}
-
-function downloadProjectJSON() {
-  const project = {
-    brand: DEFAULT_CONFIG.brandName,
-    domain: DEFAULT_CONFIG.domain,
-    unit: currentUnit,
-    w: document.getElementById("inputW").value,
-    h: document.getElementById("inputH").value,
-    design: canvas.toJSON(),
-    exportedAt: new Date().toISOString()
-  };
-
-  const blob = new Blob([JSON.stringify(project, null, 2)], { type: "application/json" });
-  const a = document.createElement("a");
-  a.href = URL.createObjectURL(blob);
-  a.download = `designhub-project-${Date.now()}.json`;
-  a.click();
-  showToast("Project .json downloaded successfully!");
-}
-
-function triggerProjectLoad() {
-  document.getElementById("projectFileInput").click();
-}
-
-function loadProjectJSON(e) {
-  const file = e.target.files[0];
-  if (!file) return;
-
-  const reader = new FileReader();
-  reader.onload = function(evt) {
-    try {
-      const data = JSON.parse(evt.target.result);
-      if (data.design) {
-        canvas.loadFromJSON(data.design, () => {
-          canvas.renderAll();
-          if (data.unit) {
-            document.getElementById("unit").value = data.unit;
-            currentUnit = data.unit;
-          }
-          if (data.w) document.getElementById("inputW").value = data.w;
-          if (data.h) document.getElementById("inputH").value = data.h;
-          applyDimensions();
-          saveHistory();
-          triggerAutoSave();
-          showToast("Project loaded successfully!");
-        });
-      }
-    } catch (err) {
-      alert("Invalid project file.");
-    }
-  };
-  reader.readAsText(file);
-}
-
-// ==========================================
-// 5. VECTOR EXPORT & RASTER CONVERSION
-// ==========================================
-function exportSVG() {
-  const svgData = canvas.toSVG();
-  const blob = new Blob([svgData], { type: "image/svg+xml;charset=utf-8" });
-  const a = document.createElement("a");
-  a.href = URL.createObjectURL(blob);
-  a.download = `designhub-cutpath-${Date.now()}.svg`;
-  a.click();
-  showToast("Vector SVG Cutpath Downloaded!");
-}
-
-function copySVGCutpath() {
-  const svgData = canvas.toSVG();
-  navigator.clipboard.writeText(svgData).then(() => {
-    showToast("SVG Cutpath XML copied to clipboard!");
-  }).catch(() => {
-    showToast("Clipboard access denied.");
-  });
-}
-
-function exportRaster(format = "png") {
-  const mime = format === "jpeg" ? "image/jpeg" : "image/png";
-  const dataURL = canvas.toDataURL({
-    format: format,
-    quality: 1.0,
-    multiplier: 2
-  });
-
-  const a = document.createElement("a");
-  a.href = dataURL;
-  a.download = `designhub-sign-${Date.now()}.${format}`;
-  a.click();
-  showToast(`High-Res ${format.toUpperCase()} Exported!`);
-}
-
-function exportPDF() {
-  if (!window.jspdf || !window.jspdf.jsPDF) {
-    alert("jsPDF library loading. Please try again.");
-    return;
-  }
-  const { jsPDF } = window.jspdf;
-  const doc = new jsPDF({
-    orientation: canvas.width > canvas.height ? "landscape" : "portrait",
-    unit: "mm",
-    format: "a4"
-  });
-
-  const dataURL = canvas.toDataURL({ format: "png", multiplier: 1.5 });
-  doc.text(`${DEFAULT_CONFIG.brandName} - Architectural Fabrication Blueprint`, 10, 10);
-  doc.setFontSize(9);
-  doc.text(`Dimensions: ${document.getElementById("dimensionBadge").innerText} | Domain: wearstay.com`, 10, 16);
-  doc.addImage(dataURL, "PNG", 10, 22, 190, 120);
-
-  doc.save(`designhub-blueprint-${Date.now()}.pdf`);
-  showToast("Print-Ready Vector PDF Exported!");
-}
-
-// ==========================================
-// 6. 3D MOCKUP EXTRUSION ENGINE
-// ==========================================
-function switchWorkspaceTab(tab) {
-  const editorTabBtn = document.getElementById("tabBtnEditor");
-  const mockupTabBtn = document.getElementById("tabBtnMockup");
-  const canvasViewport = document.getElementById("canvasViewport");
-  const mockupViewport = document.getElementById("mockupViewport");
-
-  if (tab === "editor") {
-    editorTabBtn.className = "px-3 py-1.5 rounded-lg text-xs font-bold bg-cyan-950 text-cyan-300 border border-cyan-500/40";
-    mockupTabBtn.className = "px-3 py-1.5 rounded-lg text-xs font-bold text-gray-400 hover:text-white";
-    canvasViewport.classList.remove("hidden");
-    mockupViewport.classList.add("hidden");
-  } else {
-    mockupTabBtn.className = "px-3 py-1.5 rounded-lg text-xs font-bold bg-cyan-950 text-cyan-300 border border-cyan-500/40";
-    editorTabBtn.className = "px-3 py-1.5 rounded-lg text-xs font-bold text-gray-400 hover:text-white";
-    canvasViewport.classList.add("hidden");
-    mockupViewport.classList.remove("hidden");
-    render3DMockup();
-  }
-}
-
-function render3DMockup() {
-  const mockupCanvas = document.getElementById("mockupCanvas");
-  const ctx = mockupCanvas.getContext("2d");
-
-  mockupCanvas.width = canvas.width;
-  mockupCanvas.height = canvas.height;
-
-  // Clear & background
-  ctx.fillStyle = "#0c101a";
-  ctx.fillRect(0, 0, mockupCanvas.width, mockupCanvas.height);
-
-  // Draw wall texture simulation
-  ctx.fillStyle = "rgba(0, 242, 254, 0.03)";
-  for (let i = 0; i < mockupCanvas.width; i += 40) {
-    ctx.fillRect(i, 0, 1, mockupCanvas.height);
-  }
-
-  const objects = canvas.getObjects();
-  const extrusionLayers = 16; // 16 depth layers for rich 3D acrylic simulation
-
-  // Render simulated extrusion depth
-  for (let depth = extrusionLayers; depth >= 1; depth--) {
-    const alpha = 0.08 + (depth / extrusionLayers) * 0.4;
-    ctx.save();
-    ctx.translate(depth * 1.2, depth * 1.5);
-    ctx.shadowColor = "rgba(0, 0, 0, 0.6)";
-    ctx.shadowBlur = 12;
-
-    objects.forEach(obj => {
-      ctx.save();
-      ctx.translate(obj.left, obj.top);
-      ctx.rotate((obj.angle * Math.PI) / 180);
-      ctx.scale(obj.scaleX, obj.scaleY);
-
-      if (obj.type === "text") {
-        ctx.font = `${obj.fontWeight || "normal"} ${obj.fontSize}px ${obj.fontFamily || "Arial"}`;
-        ctx.textAlign = obj.originX === "center" ? "center" : "left";
-        ctx.textBaseline = "middle";
-        ctx.fillStyle = depth === 1 ? obj.fill : "rgba(10, 14, 24, 0.9)";
-        ctx.fillText(obj.text, 0, 0);
-      } else if (obj.type === "rect") {
-        ctx.fillStyle = depth === 1 ? obj.fill : "rgba(10, 14, 24, 0.85)";
-        ctx.fillRect(-obj.width / 2, -obj.height / 2, obj.width, obj.height);
-      } else if (obj.type === "circle") {
-        ctx.fillStyle = depth === 1 ? obj.fill : "rgba(10, 14, 24, 0.85)";
-        ctx.beginPath();
-        ctx.arc(0, 0, obj.radius, 0, Math.PI * 2);
-        ctx.fill();
-      }
-      ctx.restore();
-    });
-    ctx.restore();
-  }
-
-  // Draw intense top neon/acrylic cast glow
-  ctx.save();
-  ctx.globalCompositeOperation = "screen";
-  objects.forEach(obj => {
-    if (obj.type === "text") {
-      ctx.save();
-      ctx.translate(obj.left, obj.top);
-      ctx.rotate((obj.angle * Math.PI) / 180);
-      ctx.scale(obj.scaleX, obj.scaleY);
-      ctx.font = `${obj.fontWeight || "normal"} ${obj.fontSize}px ${obj.fontFamily || "Arial"}`;
-      ctx.textAlign = obj.originX === "center" ? "center" : "left";
-      ctx.textBaseline = "middle";
-      ctx.shadowColor = obj.fill || "#00f2fe";
-      ctx.shadowBlur = 40;
-      ctx.fillStyle = "#ffffff";
-      ctx.fillText(obj.text, 0, 0);
-      ctx.restore();
-    }
-  });
-  ctx.restore();
-}
-
-function exportMockupPNG() {
-  const mockupCanvas = document.getElementById("mockupCanvas");
-  const a = document.createElement("a");
-  a.href = mockupCanvas.toDataURL("image/png");
-  a.download = `designhub-3d-mockup-${Date.now()}.png`;
-  a.click();
-  showToast("3D Acrylic Mockup PNG Exported!");
-}
-
-// ==========================================
-// 7. GEMINI 2.5 FLASH API & VOICE RECOGNITION
-// ==========================================
-async function callGemini25Flash(promptText) {
-  if (!GEMINI_API_KEY) {
-    throw new Error("Missing API Key");
-  }
-
-  const endpoint = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${encodeURIComponent(GEMINI_API_KEY)}`;
-
-  const systemInstruction = `You are an expert architectural signage engineer. Analyze the user prompt and generate a JSON layout for an illuminated sign. 
-Return ONLY valid JSON matching this schema:
-{
-  "mainText": "STRING",
-  "subText": "STRING",
-  "fontFamily": "Inter" | "Arial Black" | "Impact" | "Cinzel",
-  "primaryColor": "HEX COLOR",
-  "glowColor": "HEX COLOR",
-  "backplateType": "none" | "rect" | "circle",
-  "backplateColor": "HEX COLOR"
-}`;
-
-  const requestBody = {
-    contents: [
-      {
-        parts: [
-          { text: systemInstruction },
-          { text: `User sign request: "${promptText}"` }
-        ]
-      }
-    ],
-    generationConfig: {
-      temperature: 0.2,
-      responseMimeType: "application/json"
-    }
-  };
-
-  const headers = {
-    "Content-Type": "application/json",
-    "x-goog-api-key": GEMINI_API_KEY
-  };
-
-  if (GEMINI_API_KEY.startsWith("AQ.") || GEMINI_API_KEY.startsWith("ya29.")) {
-    headers["Authorization"] = "Bearer " + GEMINI_API_KEY;
-  }
-
-  const response = await fetch(endpoint, {
-    method: "POST",
-    headers: headers,
-    body: JSON.stringify(requestBody)
-  });
-
-  if (!response.ok) {
-    const errorText = await response.text();
-    console.warn("Gemini API call returned non-200, activating layout generator fallback", errorText);
-    return fallbackLayoutParser(promptText);
-  }
-
-  const json = await response.json();
-  const textOutput = json.candidates?.[0]?.content?.parts?.[0]?.text;
-  return JSON.parse(textOutput);
-}
-
-function fallbackLayoutParser(prompt) {
-  const p = prompt.toLowerCase();
-  let color = "#00f2fe";
-  let glow = "#00f2fe";
-
-  if (p.includes("gold") || p.includes("brass") || p.includes("warm")) {
-    color = "#fbbf24";
-    glow = "#f59e0b";
-  } else if (p.includes("pink") || p.includes("magenta") || p.includes("rose")) {
-    color = "#ec4899";
-    glow = "#db2777";
-  } else if (p.includes("green") || p.includes("emerald")) {
-    color = "#10b981";
-    glow = "#059669";
-  } else if (p.includes("red") || p.includes("crimson")) {
-    color = "#ef4444";
-    glow = "#dc2626";
-  }
-
-  let backplate = "none";
-  if (p.includes("circle") || p.includes("round")) backplate = "circle";
-  else if (p.includes("board") || p.includes("back") || p.includes("plate") || p.includes("rect")) backplate = "rect";
-
-  let words = prompt.replace(/[^\w\s]/gi, '').split(/\s+/).filter(w => w.length > 0);
-  let main = words.slice(0, 3).join(" ").toUpperCase() || "CUSTOM SIGN";
-  let sub = words.length > 3 ? words.slice(3, 8).join(" ").toUpperCase() : "ARCHITECTURAL FABRICATION";
-
-  return {
-    mainText: main,
-    subText: sub,
-    fontFamily: p.includes("luxury") ? "Cinzel" : "Arial Black",
-    primaryColor: color,
-    glowColor: glow,
-    backplateType: backplate,
-    backplateColor: "#101623"
-  };
-}
-
-async function runAIGeneration() {
-  const promptInput = document.getElementById("aiPromptInput");
-  const prompt = promptInput.value.trim();
-  if (!prompt) {
-    alert("Please enter a sign description!");
+  const SpeechRec = window.SpeechRecognition || window.webkitSpeechRecognition;
+  if (!SpeechRec) {
+    alert("Voice recognition Chrome या Edge ब्राउज़र में काम करता है।");
     return;
   }
 
-  const btn = document.getElementById("aiGenerateBtn");
-  btn.innerHTML = `<i class="fa-solid fa-spinner fa-spin mr-1"></i> Designing...`;
-  btn.disabled = true;
-
-  try {
-    const layout = await callGemini25Flash(prompt);
-    applyAILayoutToCanvas(layout);
-    closeModal("aiModal");
-    showToast("AI Architectural Sign Generated!");
-  } catch (err) {
-    console.error(err);
-    const fallback = fallbackLayoutParser(prompt);
-    applyAILayoutToCanvas(fallback);
-    closeModal("aiModal");
-    showToast("Sign Created via Smart Generator!");
-  } finally {
-    btn.innerHTML = `<i class="fa-solid fa-bolt mr-1"></i> Generate Sign Layout`;
-    btn.disabled = false;
-  }
-}
-
-function applyAILayoutToCanvas(l) {
-  canvas.clear();
-  canvas.backgroundColor = "#090e17";
-
-  const centerX = canvas.width / 2;
-  const centerY = canvas.height / 2;
-
-  if (l.backplateType === "rect") {
-    const rect = new fabric.Rect({
-      left: centerX,
-      top: centerY,
-      originX: "center",
-      originY: "center",
-      width: canvas.width * 0.75,
-      height: canvas.height * 0.6,
-      fill: l.backplateColor || "#101623",
-      rx: 20,
-      ry: 20,
-      stroke: l.glowColor || "#00f2fe",
-      strokeWidth: 2
-    });
-    canvas.add(rect);
-  } else if (l.backplateType === "circle") {
-    const circle = new fabric.Circle({
-      left: centerX,
-      top: centerY,
-      originX: "center",
-      originY: "center",
-      radius: Math.min(canvas.width, canvas.height) * 0.35,
-      fill: l.backplateColor || "#101623",
-      stroke: l.glowColor || "#00f2fe",
-      strokeWidth: 2
-    });
-    canvas.add(circle);
-  }
-
-  const main = new fabric.Text(l.mainText, {
-    left: centerX,
-    top: l.subText ? centerY - 30 : centerY,
-    originX: "center",
-    originY: "center",
-    fontFamily: l.fontFamily || "Arial Black",
-    fontSize: 75,
-    fontWeight: "900",
-    fill: l.primaryColor || "#00f2fe",
-    shadow: new fabric.Shadow({
-      color: l.glowColor || "#00f2fe",
-      blur: 30,
-      offsetX: 0,
-      offsetY: 0
-    })
-  });
-  canvas.add(main);
-
-  if (l.subText) {
-    const sub = new fabric.Text(l.subText, {
-      left: centerX,
-      top: centerY + 50,
-      originX: "center",
-      originY: "center",
-      fontFamily: "Inter",
-      fontSize: 22,
-      fontWeight: "700",
-      letterSpacing: 3,
-      fill: "#ffffff",
-      shadow: new fabric.Shadow({
-        color: l.glowColor || "#00f2fe",
-        blur: 15,
-        offsetX: 0,
-        offsetY: 0
-      })
-    });
-    canvas.add(sub);
-  }
-
-  canvas.renderAll();
-  saveHistory();
-  triggerAutoSave();
-}
-
-function startVoiceAI() {
-  const status = document.getElementById("voiceStatus");
-  if (!("webkitSpeechRecognition" in window || "SpeechRecognition" in window)) {
-    alert("Speech recognition is not supported in this browser. Please use Google Chrome or Edge.");
-    return;
-  }
-
-  const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
-  const recognition = new SpeechRecognition();
-  recognition.lang = "en-US";
+  const recognition = new SpeechRec();
+  recognition.lang = selectedLang;
   recognition.interimResults = false;
 
-  status.innerHTML = `<span class="text-amber-400 font-bold animate-pulse"><i class="fa-solid fa-microphone"></i> Listening... Speak your sign concept clearly.</span>`;
+  status.innerHTML = `<span class="text-amber-400 font-bold animate-pulse"><i class="fa-solid fa-microphone"></i> सुन रहे हैं... अपनी भाषा में बोलिए...</span>`;
+  if (micCard) micCard.classList.add("mic-pulse-btn");
 
-  recognition.onresult = async function(event) {
+  recognition.onresult = function(event) {
     const transcript = event.results[0][0].transcript;
-    status.innerHTML = `<span class="text-cyan-400 font-bold"><i class="fa-solid fa-check"></i> Heard: "${transcript}"</span>`;
+    status.innerHTML = `<span class="text-cyan-400 font-bold"><i class="fa-solid fa-check"></i> आपने बोला: "${transcript}"</span>`;
+    if (micCard) micCard.classList.remove("mic-pulse-btn");
 
-    try {
-      const layout = await callGemini25Flash(transcript);
-      applyAILayoutToCanvas(layout);
-      showToast("Voice prompt converted to sign layout!");
-    } catch (e) {
-      const fallback = fallbackLayoutParser(transcript);
-      applyAILayoutToCanvas(fallback);
-      showToast("Sign created from voice!");
+    const textObj = new fabric.Text(transcript.toUpperCase(), {
+      left: canvas.width / 2,
+      top: canvas.height / 2,
+      originX: "center",
+      originY: "center",
+      fontFamily: "Arial Black",
+      fontSize: 65,
+      fontWeight: "900",
+      fill: document.getElementById("textColor").value || "#00f2fe",
+      shadow: new fabric.Shadow({
+        color: document.getElementById("glowColor").value || "#00f2fe",
+        blur: 30
+      })
+    });
+    canvas.add(textObj);
+    canvas.setActiveObject(textObj);
+    canvas.renderAll();
+    saveHistory();
+
+    if ("speechSynthesis" in window) {
+      const utter = new SpeechSynthesisUtterance("Design created for: " + transcript);
+      utter.lang = selectedLang;
+      window.speechSynthesis.speak(utter);
     }
+    showToast("वॉइस डिज़ाइन तैयार हो गया!");
   };
 
-  recognition.onerror = function(event) {
-    status.innerText = "Voice error: " + event.error;
+  recognition.onerror = function() {
+    status.innerText = "माइक एक्टिवेट नहीं हो पाया।";
+    if (micCard) micCard.classList.remove("mic-pulse-btn");
+  };
+
+  recognition.onend = function() {
+    if (micCard) micCard.classList.remove("mic-pulse-btn");
   };
 
   recognition.start();
 }
 
-function startVoiceAIInModal() {
-  startVoiceAI();
-  closeModal("aiModal");
-}
-
-function setSamplePrompt(p) {
-  document.getElementById("aiPromptInput").value = p;
-}
-
-// ==========================================
-// 8. CANVAS EDITING TOOLS & OBJECT METHODS
-// ==========================================
-function addText() {
-  const text = new fabric.Text("NEW SIGN", {
-    left: canvas.width / 2,
-    top: canvas.height / 2,
-    originX: "center",
-    originY: "center",
-    fontFamily: "Arial Black",
-    fontSize: 70,
-    fontWeight: "900",
-    fill: document.getElementById("textColor").value || "#00f2fe",
-    shadow: new fabric.Shadow({
-      color: document.getElementById("glowColor").value || "#00f2fe",
-      blur: parseInt(document.getElementById("glowBlur").value) || 25
-    })
-  });
-  canvas.add(text);
-  canvas.setActiveObject(text);
-  canvas.renderAll();
-  saveHistory();
-  triggerAutoSave();
-}
-
-function addRect() {
-  const rect = new fabric.Rect({
-    left: canvas.width / 2,
-    top: canvas.height / 2,
-    originX: "center",
-    originY: "center",
-    width: 600,
-    height: 350,
-    fill: "#151e30",
-    rx: 16,
-    ry: 16,
-    stroke: "#00f2fe",
-    strokeWidth: 2
-  });
-  canvas.add(rect);
-  canvas.sendToBack(rect);
-  canvas.setActiveObject(rect);
-  canvas.renderAll();
-  saveHistory();
-  triggerAutoSave();
-}
-
-function addCircle() {
-  const circle = new fabric.Circle({
-    left: canvas.width / 2,
-    top: canvas.height / 2,
-    originX: "center",
-    originY: "center",
-    radius: 200,
-    fill: "#151e30",
-    stroke: "#00f2fe",
-    strokeWidth: 2
-  });
-  canvas.add(circle);
-  canvas.sendToBack(circle);
-  canvas.setActiveObject(circle);
-  canvas.renderAll();
-  saveHistory();
-  triggerAutoSave();
-}
-
-function triggerImageUpload() {
-  document.getElementById("imgUploader").click();
-}
-
-function handleImageUpload(e) {
-  const file = e.target.files[0];
+// 2. 1-CLICK BG ERASER
+function runOneClickBgEraser(event) {
+  const file = event.target.files[0];
   if (!file) return;
 
+  showToast("बैकग्राउंड हटाया जा रहा है...");
   const reader = new FileReader();
-  reader.onload = function(evt) {
-    fabric.Image.fromURL(evt.target.result, function(img) {
-      img.scaleToWidth(canvas.width * 0.4);
-      img.set({
-        left: canvas.width / 2,
-        top: canvas.height / 2,
-        originX: "center",
-        originY: "center"
+  reader.onload = function(ev) {
+    const img = new Image();
+    img.onload = function() {
+      const offCanvas = document.createElement("canvas");
+      offCanvas.width = img.width;
+      offCanvas.height = img.height;
+      const ctx = offCanvas.getContext("2d");
+      ctx.drawImage(img, 0, 0);
+
+      const imgData = ctx.getImageData(0, 0, offCanvas.width, offCanvas.height);
+      const data = imgData.data;
+      const r0 = data[0], g0 = data[1], b0 = data[2];
+
+      for (let i = 0; i < data.length; i += 4) {
+        const diff = Math.abs(data[i] - r0) + Math.abs(data[i+1] - g0) + Math.abs(data[i+2] - b0);
+        if (diff < 75) data[i+3] = 0;
+      }
+      ctx.putImageData(imgData, 0, 0);
+
+      fabric.Image.fromURL(offCanvas.toDataURL(), function(cutout) {
+        cutout.scaleToWidth(canvas.width * 0.4);
+        cutout.set({ left: canvas.width / 2, top: canvas.height / 2, originX: "center", originY: "center" });
+        canvas.add(cutout);
+        canvas.setActiveObject(cutout);
+        canvas.renderAll();
+        saveHistory();
+        showToast("बैकग्राउंड हट गया!");
       });
-      canvas.add(img);
-      canvas.setActiveObject(img);
-      canvas.renderAll();
-      saveHistory();
-      triggerAutoSave();
-    });
+    };
+    img.src = ev.target.result;
   };
   reader.readAsDataURL(file);
 }
 
-function updateSelectedTextProp(prop, value) {
-  const obj = canvas.getActiveObject();
-  if (obj) {
-    obj.set(prop, value);
-    canvas.renderAll();
-    saveHistory();
-    triggerAutoSave();
+// 3. SAMPLES LOADER
+function loadSignSample(type) {
+  canvas.clear();
+  canvas.backgroundColor = "#090e17";
+  const cx = canvas.width / 2;
+  const cy = canvas.height / 2;
+
+  if (type === 'acrylic3d') {
+    canvas.add(new fabric.Rect({ left: cx, top: cy, originX: "center", originY: "center", width: canvas.width * 0.8, height: canvas.height * 0.55, fill: "#0c1322", rx: 18, ry: 18, stroke: "#00f2fe", strokeWidth: 2 }));
+    canvas.add(new fabric.Text("ROYAL CAFE", { left: cx, top: cy - 20, originX: "center", originY: "center", fontFamily: "Arial Black", fontSize: 75, fill: "#00f2fe", shadow: new fabric.Shadow({ color: "#00f2fe", blur: 30 }) }));
+    canvas.add(new fabric.Text("3D ACRYLIC ILLUMINATED", { left: cx, top: cy + 50, originX: "center", originY: "center", fontFamily: "Inter", fontSize: 20, fill: "#ffffff" }));
+  } else if (type === 'goldSS') {
+    canvas.add(new fabric.Rect({ left: cx, top: cy, originX: "center", originY: "center", width: canvas.width * 0.82, height: canvas.height * 0.58, fill: "#141108", rx: 14, ry: 14, stroke: "#f59e0b", strokeWidth: 2 }));
+    canvas.add(new fabric.Text("LUXURY SUITES", { left: cx, top: cy, originX: "center", originY: "center", fontFamily: "Cinzel", fontSize: 70, fill: "#fef08a", shadow: new fabric.Shadow({ color: "#b45309", blur: 15, offsetX: 3, offsetY: 3 }) }));
+  } else if (type === 'acpGlow') {
+    canvas.add(new fabric.Rect({ left: cx, top: cy, originX: "center", originY: "center", width: canvas.width * 0.85, height: canvas.height * 0.6, fill: "#091512", stroke: "#10b981", strokeWidth: 3 }));
+    canvas.add(new fabric.Text("CITY PHARMA 24x7", { left: cx, top: cy, originX: "center", originY: "center", fontFamily: "Impact", fontSize: 75, fill: "#ffffff", shadow: new fabric.Shadow({ color: "#10b981", blur: 35 }) }));
+  } else if (type === 'neonBar') {
+    canvas.add(new fabric.Text("COCKTAIL BAR", { left: cx, top: cy, originX: "center", originY: "center", fontFamily: "cursive", fontSize: 80, fill: "#ec4899", shadow: new fabric.Shadow({ color: "#ec4899", blur: 40 }) }));
   }
-}
-
-function updateGlowColor(color) {
-  const obj = canvas.getActiveObject();
-  if (obj) {
-    const blur = parseInt(document.getElementById("glowBlur").value) || 25;
-    obj.set("shadow", new fabric.Shadow({ color: color, blur: blur }));
-    canvas.renderAll();
-    saveHistory();
-    triggerAutoSave();
-  }
-}
-
-function updateGlowBlur(blurVal) {
-  const obj = canvas.getActiveObject();
-  if (obj) {
-    const color = document.getElementById("glowColor").value || "#00f2fe";
-    obj.set("shadow", new fabric.Shadow({ color: color, blur: parseInt(blurVal) }));
-    canvas.renderAll();
-  }
-}
-
-function centerSelected() {
-  const obj = canvas.getActiveObject();
-  if (obj) {
-    obj.center();
-    obj.setCoords();
-    canvas.renderAll();
-    saveHistory();
-  }
-}
-
-function cloneSelected() {
-  const obj = canvas.getActiveObject();
-  if (obj) {
-    obj.clone(function(cloned) {
-      cloned.set({
-        left: obj.left + 25,
-        top: obj.top + 25
-      });
-      canvas.add(cloned);
-      canvas.setActiveObject(cloned);
-      canvas.renderAll();
-      saveHistory();
-      triggerAutoSave();
-    });
-  }
-}
-
-function bringForward() {
-  const obj = canvas.getActiveObject();
-  if (obj) {
-    canvas.bringForward(obj);
-    canvas.renderAll();
-    saveHistory();
-  }
-}
-
-function deleteSelected() {
-  const obj = canvas.getActiveObject();
-  if (obj) {
-    canvas.remove(obj);
-    canvas.renderAll();
-    saveHistory();
-    triggerAutoSave();
-  }
-}
-
-function toggleNeonBreathing() {
-  const wrap = document.getElementById("canvasViewport");
-  isBreathingActive = !isBreathingActive;
-  if (isBreathingActive) {
-    wrap.classList.add("neon-breathing");
-    document.getElementById("neonBreathingBtn").innerHTML = `<i class="fa-solid fa-stop text-pink-400"></i> Stop Neon Pulse`;
-  } else {
-    wrap.classList.remove("neon-breathing");
-    document.getElementById("neonBreathingBtn").innerHTML = `<i class="fa-solid fa-bolt text-cyan-400"></i> Toggle Neon Pulse`;
-  }
-}
-
-function setWallTexture(wallClass) {
-  const viewport = document.getElementById("canvasViewport");
-  viewport.className = "canvas-wrap " + wallClass;
-}
-
-function setAmbiance(ambianceClass) {
-  const canvasEl = document.getElementById("designCanvas");
-  canvasEl.className = ambianceClass;
-}
-
-function applySignPreset(preset) {
-  const obj = canvas.getActiveObject();
-  if (!obj) {
-    alert("Please select a text or layer on the canvas first!");
-    return;
-  }
-
-  if (preset === "cyberNeon") {
-    obj.set({
-      fill: "#00f2fe",
-      shadow: new fabric.Shadow({ color: "#00f2fe", blur: 35 })
-    });
-  } else if (preset === "warmCafe") {
-    obj.set({
-      fill: "#fbbf24",
-      shadow: new fabric.Shadow({ color: "#f59e0b", blur: 30 })
-    });
-  } else if (preset === "goldBrass") {
-    obj.set({
-      fill: "#fef08a",
-      shadow: new fabric.Shadow({ color: "#b45309", blur: 15, offsetX: 3, offsetY: 3 })
-    });
-  } else if (preset === "acrylicBacklit") {
-    obj.set({
-      fill: "#ffffff",
-      shadow: new fabric.Shadow({ color: "#ec4899", blur: 40 })
-    });
-  }
-
   canvas.renderAll();
   saveHistory();
-  triggerAutoSave();
 }
 
-function saveHistory() {
-  undoStack.push(JSON.stringify(canvas.toJSON()));
-  if (undoStack.length > 30) undoStack.shift();
-  redoStack = [];
+// 4. FILE CONVERTER
+function openConverterModal() { openModal("converterModal"); }
+function handleConverterFileSelected(e) {
+  const f = e.target.files[0];
+  if (!f) return;
+  activeConverterFile = f;
+  document.getElementById("convFileText").innerText = f.name;
+}
+function executeFileConversion() {
+  if (!activeConverterFile) return alert("फ़ाइल चुनें!");
+  const target = document.getElementById("targetConvFormat").value;
+  const reader = new FileReader();
+  reader.onload = function(e) {
+    if (target === "pdf") {
+      const { jsPDF } = window.jspdf;
+      const doc = new jsPDF();
+      doc.text("Converted: " + activeConverterFile.name, 10, 10);
+      doc.addImage(e.target.result, "JPEG", 15, 20, 180, 120);
+      doc.save(`converted-${Date.now()}.pdf`);
+      showToast("PDF डाउनलोड हो गई!");
+    } else {
+      const img = new Image();
+      img.onload = function() {
+        const c = document.createElement("canvas");
+        c.width = img.width; c.height = img.height;
+        c.getContext("2d").drawImage(img, 0, 0);
+        const link = document.createElement("a");
+        link.download = `converted.${target === 'jpeg' ? 'jpg' : target}`;
+        link.href = c.toDataURL(target === 'jpeg' ? 'image/jpeg' : 'image/png', 0.92);
+        link.click();
+        showToast("फ़ाइल डाउनलोड हो गई!");
+      };
+      img.src = e.target.result;
+    }
+  };
+  reader.readAsDataURL(activeConverterFile);
+  closeModal("converterModal");
 }
 
-function undo() {
-  if (undoStack.length > 1) {
-    redoStack.push(undoStack.pop());
-    const prev = undoStack[undoStack.length - 1];
-    canvas.loadFromJSON(JSON.parse(prev), () => {
-      canvas.renderAll();
-      triggerAutoSave();
-    });
-  }
+// 5. DIMENSIONS & AREA
+function onUnitChanged() {
+  currentUnit = document.getElementById("unit").value;
+  applyDimensions();
 }
-
-function redo() {
-  if (redoStack.length > 0) {
-    const next = redoStack.pop();
-    undoStack.push(next);
-    canvas.loadFromJSON(JSON.parse(next), () => {
-      canvas.renderAll();
-      triggerAutoSave();
-    });
-  }
-}
-
-function resetZoom() {
-  canvas.setZoom(1);
+function applyDimensions() {
+  const w = parseFloat(document.getElementById("inputW").value) || 1200;
+  const h = parseFloat(document.getElementById("inputH").value) || 800;
+  const factor = UNIT_CONVERSIONS[currentUnit] || 1;
+  canvasWidth = Math.round(w * factor);
+  canvasHeight = Math.round(h * factor);
+  canvas.setWidth(Math.max(300, Math.min(3000, canvasWidth)));
+  canvas.setHeight(Math.max(200, Math.min(2400, canvasHeight)));
   canvas.renderAll();
+  document.getElementById("dimensionBadge").innerText = `${w} × ${h} ${currentUnit.toUpperCase()}`;
+  calculateArea();
+}
+function calculateArea() {
+  const w = parseFloat(document.getElementById("inputW").value) || 1200;
+  const h = parseFloat(document.getElementById("inputH").value) || 800;
+  const u = currentUnit;
+  let wf = (u === "inch") ? w/12 : (u === "feet") ? w : (u === "mm") ? w/304.8 : (u === "cm") ? w/30.48 : (w/96)/12;
+  let hf = (u === "inch") ? h/12 : (u === "feet") ? h : (u === "mm") ? h/304.8 : (u === "cm") ? h/30.48 : (h/96)/12;
+  const sqft = Math.max(1, wf * hf).toFixed(2);
+  const mat = document.getElementById("orderMaterialSelect") ? document.getElementById("orderMaterialSelect").value : "acrylic3d";
+  const rate = DEFAULT_CONFIG.baseRates[mat] || 730;
+  const total = Math.round(sqft * rate);
+  const advance = Math.round(total * 0.5);
+
+  document.getElementById("estimatedSqftBadge").innerText = `~${sqft} sq ft`;
+  document.getElementById("orderSpecsDimensions").innerText = `${w} × ${h} ${u.toUpperCase()}`;
+  document.getElementById("orderSpecsArea").innerText = `${sqft} sq ft`;
+  document.getElementById("orderEstimatedTotal").innerText = `₹${total.toLocaleString()} INR`;
+  document.getElementById("orderAdvance50").innerText = `₹${advance.toLocaleString()} INR`;
+  updateUPIPaymentInfo(advance);
 }
 
-function clearCanvasAll() {
-  if (confirm("Clear all items from the canvas?")) {
-    canvas.clear();
-    canvas.backgroundColor = "#090e17";
-    canvas.renderAll();
-    saveHistory();
-    triggerAutoSave();
-  }
-}
-
-// ==========================================
-// 9. UPI DYNAMIC QR & PAYPAL CHECKOUT
-// ==========================================
-function updateUPIPaymentInfo(amount = 4800) {
+// 6. ORDER SUBMISSION
+function updateUPIPaymentInfo(amount = 2690) {
   const container = document.getElementById("upiQrCode");
   if (!container) return;
   container.innerHTML = "";
-
-  const orderRef = "DH" + Math.floor(100000 + Math.random() * 900000);
-  const upiURI = `upi://pay?pa=${encodeURIComponent(DEFAULT_CONFIG.upiId)}&pn=${encodeURIComponent(DEFAULT_CONFIG.brandName)}&am=${amount}&cu=INR&tn=${orderRef}`;
-
-  if (window.QRCode) {
-    new QRCode(container, {
-      text: upiURI,
-      width: 130,
-      height: 130,
-      colorDark: "#000000",
-      colorLight: "#ffffff",
-      correctLevel: QRCode.CorrectLevel.M
-    });
-  }
-
-  const payLink = document.getElementById("upiPayLink");
-  if (payLink) payLink.href = upiURI;
+  const uri = `upi://pay?pa=${encodeURIComponent(DEFAULT_CONFIG.upiId)}&pn=${encodeURIComponent(DEFAULT_CONFIG.brandName)}&am=${amount}&cu=INR&tn=DH${Date.now()}`;
+  new QRCode(container, { text: uri, width: 120, height: 120, correctLevel: QRCode.CorrectLevel.M });
+  document.getElementById("upiPayLink").href = uri;
 }
-
-function triggerPayPalMockCheckout() {
-  alert("Redirecting to PayPal Merchant Portal. In live mode, this connects to your PayPal Client ID for instant capture.");
-  submitOrderDirect();
-}
-
 function submitOrderDirect() {
-  const name = document.getElementById("orderCustName").value.trim() || "Valued Client";
+  const name = document.getElementById("orderCustName").value.trim() || "ग्राहक";
   const phone = document.getElementById("orderCustPhone").value.trim() || "+91 9354944438";
-  const address = document.getElementById("orderCustAddress").value.trim() || "Commercial Site Delivery";
+  const address = document.getElementById("orderCustAddress").value.trim() || "साइट डिलीवरी";
   const dims = document.getElementById("orderSpecsDimensions").innerText;
-  const mat = document.getElementById("orderSpecsMaterial").innerText;
   const total = document.getElementById("orderEstimatedTotal").innerText;
+  const advance = document.getElementById("orderAdvance50").innerText;
+  const matText = document.getElementById("orderMaterialSelect").options[document.getElementById("orderMaterialSelect").selectedIndex].text;
 
   lastCreatedOrder = {
     id: "DH-" + Date.now().toString(36).toUpperCase(),
@@ -1941,8 +830,9 @@ function submitOrderDirect() {
     phone: phone,
     address: address,
     dims: dims,
-    mat: mat,
-    total: total
+    mat: matText,
+    total: total,
+    advance: advance
   };
 
   closeModal("instantOrderModal");
@@ -1950,70 +840,136 @@ function submitOrderDirect() {
   document.getElementById("confClientName").innerText = lastCreatedOrder.name;
   document.getElementById("confSpecs").innerText = `${lastCreatedOrder.dims} • ${lastCreatedOrder.mat}`;
   document.getElementById("confTotal").innerText = lastCreatedOrder.total;
+  document.getElementById("confAdvance").innerText = lastCreatedOrder.advance;
   openModal("orderConfirmationModal");
 }
-
 function shareReceiptWhatsApp() {
   const o = lastCreatedOrder;
-  const message = `*FABRICATION ORDER RECEIPT - ${DEFAULT_CONFIG.brandName}*%0A%0A` +
-    `🔖 *Order ID:* ${encodeURIComponent(o.id)}%0A` +
-    `👤 *Client:* ${encodeURIComponent(o.name)}%0A` +
-    `📞 *Phone:* ${encodeURIComponent(o.phone)}%0A` +
-    `📍 *Delivery City:* ${encodeURIComponent(o.address)}%0A%0A` +
-    `📐 *Dimensions:* ${encodeURIComponent(o.dims)}%0A` +
-    `✨ *Material:* ${encodeURIComponent(o.mat)}%0A` +
-    `💰 *Total Amount:* ${encodeURIComponent(o.total)}%0A%0A` +
-    `Domain: wearstay.com • Please confirm fabrication schedule and dispatch timeline.`;
-
+  const message = `*नया साइन बोर्ड ऑर्डर बुकिंग - ${DEFAULT_CONFIG.brandName}*%0A%0A` +
+    `🔖 *ऑर्डर नंबर:* ${encodeURIComponent(o.id)}%0A` +
+    `👤 *ग्राहक:* ${encodeURIComponent(o.name)}%0A` +
+    `📞 *फ़ोन:* ${encodeURIComponent(o.phone)}%0A` +
+    `📍 *डिलीवरी पता:* ${encodeURIComponent(o.address)}%0A` +
+    `📐 *साइज़:* ${encodeURIComponent(o.dims)}%0A` +
+    `✨ *मटीरियल:* ${encodeURIComponent(o.mat)}%0A` +
+    `💰 *कुल लागत:* ${encodeURIComponent(o.total)}%0A` +
+    `⚡ *50% एडवांस देय:* ${encodeURIComponent(o.advance)}%0A%0A` +
+    `Website: wearstay.com • कृपया डिज़ाइन कन्फ़र्म करके प्रोडक्शन में डालें।`;
   window.open(`https://wa.me/${DEFAULT_CONFIG.whatsAppPhone}?text=${message}`, "_blank");
 }
 
-function openWhatsAppDirect() {
-  window.open(`https://wa.me/${DEFAULT_CONFIG.whatsAppPhone}?text=Hello%20DesignHub%2C%20I%20want%20to%20order%20a%20custom%20LED%20sign!`, "_blank");
+// 7. EXPORT & CANVAS UTILS
+function exportSVG() {
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(new Blob([canvas.toSVG()], { type: "image/svg+xml;charset=utf-8" }));
+  a.download = `cutpath-${Date.now()}.svg`;
+  a.click();
+  showToast("SVG कट-पाथ डाउनलोड हो गया!");
 }
-
-// ==========================================
-// 10. MODAL CONTROLS & UTILITIES
-// ==========================================
-function openModal(id) { document.getElementById(id).classList.add("active"); }
-function closeModal(id) { document.getElementById(id).classList.remove("active"); }
-
-function openInstantOrderModal() {
-  calculateArea();
-  openModal("instantOrderModal");
+function exportPDF() {
+  const { jsPDF } = window.jspdf;
+  const doc = new jsPDF({ orientation: canvas.width > canvas.height ? "landscape" : "portrait", unit: "mm", format: "a4" });
+  doc.text(`DesignHub Global - Architectural Blueprint`, 10, 10);
+  doc.addImage(canvas.toDataURL({ format: "png", multiplier: 1.5 }), "PNG", 10, 20, 190, 120);
+  doc.save(`sign-blueprint-${Date.now()}.pdf`);
+  showToast("प्रिंट PDF डाउनलोड हो गया!");
 }
-function openAIModal() { openModal("aiModal"); }
-function openPlansModal() { openModal("plansModal"); }
-function openTermsModal() { openModal("termsModal"); }
-function openPrivacyModal() { openModal("privacyModal"); }
-function openWarrantyModal() { openModal("warrantyModal"); }
-
-function selectCommercialPlan(name) {
-  closeModal("plansModal");
-  openInstantOrderModal();
-  showToast(`Selected ${name} Plan!`);
+function exportRaster(format = "png") {
+  const a = document.createElement("a");
+  a.href = canvas.toDataURL({ format: format, quality: 1.0, multiplier: 2 });
+  a.download = `sign-${Date.now()}.${format}`;
+  a.click();
+  showToast("फ़ोटो डाउनलोड हो गई!");
 }
-
-function newBlankDesign() {
-  if (confirm("Start a blank canvas? Current canvas will be reset.")) {
-    canvas.clear();
-    canvas.backgroundColor = "#090e17";
-    canvas.renderAll();
-    saveHistory();
-    triggerAutoSave();
-    showToast("Blank canvas ready");
+function switchWorkspaceTab(tab) {
+  document.getElementById("tabBtnEditor").className = tab === 'editor' ? "px-3 py-1.5 rounded-lg text-xs font-bold bg-cyan-950 text-cyan-300 border border-cyan-500/40" : "px-3 py-1.5 rounded-lg text-xs font-bold text-gray-400 hover:text-white";
+  document.getElementById("tabBtnMockup").className = tab === 'mockup' ? "px-3 py-1.5 rounded-lg text-xs font-bold bg-cyan-950 text-cyan-300 border border-cyan-500/40" : "px-3 py-1.5 rounded-lg text-xs font-bold text-gray-400 hover:text-white";
+  document.getElementById("canvasViewport").classList.toggle("hidden", tab !== 'editor');
+  document.getElementById("mockupViewport").classList.toggle("hidden", tab === 'editor');
+  if (tab === 'mockup') render3DMockup();
+}
+function render3DMockup() {
+  const mc = document.getElementById("mockupCanvas");
+  const ctx = mc.getContext("2d");
+  mc.width = canvas.width; mc.height = canvas.height;
+  ctx.fillStyle = "#0c101a"; ctx.fillRect(0, 0, mc.width, mc.height);
+  const objects = canvas.getObjects();
+  for (let depth = 12; depth >= 1; depth--) {
+    ctx.save(); ctx.translate(depth * 1.2, depth * 1.5);
+    objects.forEach(obj => {
+      ctx.save(); ctx.translate(obj.left, obj.top);
+      ctx.rotate((obj.angle * Math.PI) / 180); ctx.scale(obj.scaleX, obj.scaleY);
+      if (obj.type === "text") {
+        ctx.font = `${obj.fontSize}px Arial Black`; ctx.textAlign = "center"; ctx.textBaseline = "middle";
+        ctx.fillStyle = depth === 1 ? obj.fill : "rgba(10, 14, 24, 0.9)"; ctx.fillText(obj.text, 0, 0);
+      } else if (obj.type === "rect") {
+        ctx.fillStyle = depth === 1 ? obj.fill : "rgba(10, 14, 24, 0.85)"; ctx.fillRect(-obj.width/2, -obj.height/2, obj.width, obj.height);
+      } else if (obj.type === "circle") {
+        ctx.fillStyle = depth === 1 ? obj.fill : "rgba(10, 14, 24, 0.85)"; ctx.beginPath(); ctx.arc(0, 0, obj.radius, 0, Math.PI * 2); ctx.fill();
+      }
+      ctx.restore();
+    });
+    ctx.restore();
   }
 }
-
+function exportMockupPNG() {
+  const a = document.createElement("a");
+  a.href = document.getElementById("mockupCanvas").toDataURL("image/png");
+  a.download = `3d-mockup-${Date.now()}.png`;
+  a.click();
+}
+function addText() {
+  const text = new fabric.Text("नया बोर्ड", { left: canvas.width/2, top: canvas.height/2, originX: "center", originY: "center", fontFamily: "Arial Black", fontSize: 70, fill: document.getElementById("textColor").value });
+  canvas.add(text); canvas.setActiveObject(text); canvas.renderAll(); saveHistory();
+}
+function addRect() {
+  const rect = new fabric.Rect({ left: canvas.width/2, top: canvas.height/2, originX: "center", originY: "center", width: 600, height: 350, fill: "#151e30", rx: 16, ry: 16, stroke: "#00f2fe", strokeWidth: 2 });
+  canvas.add(rect); canvas.sendToBack(rect); canvas.renderAll(); saveHistory();
+}
+function addCircle() {
+  const circle = new fabric.Circle({ left: canvas.width/2, top: canvas.height/2, originX: "center", originY: "center", radius: 180, fill: "#151e30", stroke: "#00f2fe", strokeWidth: 2 });
+  canvas.add(circle); canvas.sendToBack(circle); canvas.renderAll(); saveHistory();
+}
+function triggerImageUpload() { document.getElementById("imgUploader").click(); }
+function handleImageUpload(e) {
+  const file = e.target.files[0]; if (!file) return;
+  const reader = new FileReader();
+  reader.onload = function(evt) {
+    fabric.Image.fromURL(evt.target.result, function(img) {
+      img.scaleToWidth(canvas.width * 0.4);
+      img.set({ left: canvas.width/2, top: canvas.height/2, originX: "center", originY: "center" });
+      canvas.add(img); canvas.setActiveObject(img); canvas.renderAll(); saveHistory();
+    });
+  };
+  reader.readAsDataURL(file);
+}
+function updateSelectedTextProp(prop, val) { const o = canvas.getActiveObject(); if (o) { o.set(prop, val); canvas.renderAll(); saveHistory(); } }
+function updateGlowColor(col) { const o = canvas.getActiveObject(); if (o) { o.set("shadow", new fabric.Shadow({ color: col, blur: parseInt(document.getElementById("glowBlur").value) || 25 })); canvas.renderAll(); saveHistory(); } }
+function updateGlowBlur(val) { const o = canvas.getActiveObject(); if (o) { o.set("shadow", new fabric.Shadow({ color: document.getElementById("glowColor").value, blur: parseInt(val) })); canvas.renderAll(); } }
+function centerSelected() { const o = canvas.getActiveObject(); if (o) { o.center(); o.setCoords(); canvas.renderAll(); } }
+function cloneSelected() { const o = canvas.getActiveObject(); if (o) { o.clone(c => { c.set({ left: o.left + 20, top: o.top + 20 }); canvas.add(c); canvas.setActiveObject(c); canvas.renderAll(); saveHistory(); }); } }
+function bringForward() { const o = canvas.getActiveObject(); if (o) { canvas.bringForward(o); canvas.renderAll(); } }
+function deleteSelected() { const o = canvas.getActiveObject(); if (o) { canvas.remove(o); canvas.renderAll(); saveHistory(); } }
+function toggleNeonBreathing() { isBreathingActive = !isBreathingActive; document.getElementById("canvasViewport").classList.toggle("neon-breathing", isBreathingActive); }
+function applySignPreset(p) {
+  const o = canvas.getActiveObject(); if (!o) return alert("स्क्रीन पर किसी टेक्स्ट या बॉक्स को टच करें!");
+  if (p === 'cyberNeon') o.set({ fill: "#00f2fe", shadow: new fabric.Shadow({ color: "#00f2fe", blur: 35 }) });
+  if (p === 'goldBrass') o.set({ fill: "#fef08a", shadow: new fabric.Shadow({ color: "#b45309", blur: 15 }) });
+  if (p === 'warmCafe') o.set({ fill: "#fbbf24", shadow: new fabric.Shadow({ color: "#f59e0b", blur: 30 }) });
+  if (p === 'acrylicBacklit') o.set({ fill: "#ffffff", shadow: new fabric.Shadow({ color: "#ec4899", blur: 40 }) });
+  canvas.renderAll(); saveHistory();
+}
+function saveHistory() { undoStack.push(JSON.stringify(canvas.toJSON())); if (undoStack.length > 25) undoStack.shift(); redoStack = []; }
+function undo() { if (undoStack.length > 1) { redoStack.push(undoStack.pop()); canvas.loadFromJSON(JSON.parse(undoStack[undoStack.length - 1]), () => canvas.renderAll()); } }
+function redo() { if (redoStack.length > 0) { const next = redoStack.pop(); undoStack.push(next); canvas.loadFromJSON(JSON.parse(next), () => canvas.renderAll()); } }
+function clearCanvasAll() { if (confirm("पूरा साफ़ करें?")) { canvas.clear(); canvas.backgroundColor = "#090e17"; canvas.renderAll(); saveHistory(); } }
+function openModal(id) { document.getElementById(id).classList.add("active"); }
+function closeModal(id) { document.getElementById(id).classList.remove("active"); }
+function openInstantOrderModal() { calculateArea(); openModal("instantOrderModal"); }
 function showToast(msg) {
-  const toast = document.getElementById("toast");
-  const msgEl = document.getElementById("toastMsg");
-  msgEl.innerText = msg;
-  toast.classList.add("show");
-  clearTimeout(window._toastTimeout);
-  window._toastTimeout = setTimeout(() => { toast.classList.remove("show"); }, 3000);
+  const toast = document.getElementById("toast"); document.getElementById("toastMsg").innerText = msg;
+  toast.classList.add("show"); setTimeout(() => toast.classList.remove("show"), 2800);
 }
 </script>
-
 </body>
 </html>
