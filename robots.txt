@@ -1,0 +1,1 @@
+<p><span>User-agent: *</span></p><p>Allow: /</p><p><br></p><p>Sitemap: <a class="e-rte-anchor" href="https://www.wearstay.com/sitemap.xml" title="https://www.wearstay.com/sitemap.xml" target="_blank" aria-label="Open in new window">https://www.wearstay.com/sitemap.xml </a></p><p><br></p>
