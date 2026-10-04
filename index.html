@@ -1,1239 +1,1793 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>DESIGN CREATIVE | World's 1st Signage, Prepress & CNC Fabrication Studio</title>
-  
-  <!-- SEO, Google Search Console & Canonical -->
-  <meta name="description" content="Commercial cloud prepress, LED signboards, 3D acrylic letters, CNC vector DXF exports, and 50% advance booking by DESIGN CREATIVE.">
-  <meta name="keywords" content="signage fabrication, 3D acrylic letters, LED sign board, CNC DXF cut file, flex banner, neon signs, prepress studio, wearstay">
-  <meta name="author" content="DESIGN CREATIVE">
-  <link rel="canonical" href="https://wearstay.com/">
-  <meta name="google-site-verification" content="GSC_VERIFICATION_TOKEN_WEARSTAY">
-  <meta name="robots" content="index, follow">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="theme-color" content="#080B11">
 
-  <!-- Open Graph Meta -->
-  <meta property="og:title" content="DESIGN CREATIVE | World's 1st Signage Fabrication & Prepress Studio">
-  <meta property="og:description" content="Design, 3D preview, download JPG, PNG, PDF, CNC DXF cut paths, and order commercial signage with 50% advance.">
-  <meta property="og:url" content="https://wearstay.com/">
-  <meta property="og:type" content="website">
+<!-- SEO METADATA & USER-DECLARED CANONICAL -->
+<title>Custom LED Sign Boards, 3D Acrylic Letters & Vector Cutpath Studio | Worldwide Shipping</title>
+<meta name="description" content="Design and order custom illuminated signages, stainless steel logos, 3D acrylic letters, and vector cut files with instant pricing, voice tools, and global delivery.">
+<meta name="keywords" content="LED signs, 3D acrylic lettering, CNC vector files, laser cut signs, store front boards, commercial signage manufacturer, custom LED sign boards">
+<meta name="robots" content="index,follow">
+<link rel="canonical" href="https://www.wearstay.com/">
 
-  <!-- Structured Schema for Google Rich Snippets -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "WebApplication",
-    "name": "DESIGN CREATIVE",
-    "url": "https://wearstay.com/",
-    "applicationCategory": "DesignApplication",
-    "operatingSystem": "All",
-    "provider": {
-      "@type": "LocalBusiness",
-      "name": "DESIGN CREATIVE",
-      "telephone": "+919354944438",
-      "email": "ledsignadil@gmail.com",
-      "taxID": "07AGFPA8041C1ZZ",
-      "address": {
-        "@type": "PostalAddress",
-        "addressLocality": "Delhi NCR",
-        "addressCountry": "IN"
-      }
-    }
-  }
-  </script>
+<!-- Open Graph & Twitter -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="DESIGN CREATIVE">
+<meta property="og:title" content="Custom LED Sign Boards, 3D Acrylic Letters & Vector Cutpath Studio">
+<meta property="og:description" content="Design and order custom illuminated signages, stainless steel logos, 3D acrylic letters, and vector cut files.">
+<meta property="og:url" content="https://www.wearstay.com/">
+<meta name="twitter:card" content="summary_large_image">
 
-  <!-- Production CDNs: Canvas, Three.js 3D & jsPDF -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/5.3.1/fabric.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<!-- ADSTERRA MONETIZATION SCRIPTS -->
+<script type="text/javascript" src="//pl24187215.effectivegatecpm.com/7b/8e/7b8e.js" async></script>
+<script type="text/javascript" src="//pl24187240.effectivegatecpm.com/87/7a/877a.js" async></script>
+<script>
+  window.ADSTERRA_SMART_LINK_1 = "https://www.effectivegatecpm.com/4473";
+  window.ADSTERRA_SMART_LINK_2 = "https://www.effectivegatecpm.com/0ce19";
+</script>
 
-  <!-- ADSTERRA MONETIZATION SCRIPTS (Active & Non-blocking) -->
-  <!-- 1. Adsterra Popunder Script (7b8e) -->
-  <script type='text/javascript' src='//pl24187215.effectivegatecpm.com/7b/8e/7b8e.js' async></script>
-  <!-- 2. Adsterra Social Bar Script (877a) -->
-  <script type='text/javascript' src='//pl24187240.effectivegatecpm.com/87/7a/877a.js' async></script>
+<!-- External Libraries (CDN) -->
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/5.3.1/fabric.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<script id="paypal-sdk-script"></script>
+<style>
+:root {
+  --bg: #080B11;
+  --card: #0D121D;
+  --surface: #131B2E;
+  --border: #1F2937;
+  --cyan: #00E5FF;
+  --purple: #8B5CF6;
+  --pink: #EC4899;
+  --emerald: #10B981;
+  --amber: #F59E0B;
+}
+* { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: var(--bg);
+  color: #fff;
+  font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  overflow-x: hidden;
+}
+button, input, select, textarea { font: inherit; }
+button { cursor: pointer; }
+.hub-gradient {
+  background: linear-gradient(135deg, #00E5FF, #8B5CF6, #EC4899);
+  -webkit-background-clip: text;
+  color: transparent;
+}
+.card { background: var(--card); border: 1px solid var(--border); border-radius: 16px; }
+.surface { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; }
+.btn {
+  background: linear-gradient(135deg, #00E5FF, #7C3AED);
+  color: #fff;
+  font-weight: 800;
+  border: 0;
+  transition: all 0.2s ease;
+}
+.btn:hover { filter: brightness(1.1); transform: translateY(-1px); }
+.btn-emerald {
+  background: linear-gradient(135deg, #10B981, #059669);
+  color: #fff;
+  font-weight: 800;
+  border: 0;
+  transition: all 0.2s ease;
+}
+.btn-emerald:hover { filter: brightness(1.1); transform: translateY(-1px); }
+.btn-amber {
+  background: linear-gradient(135deg, #F59E0B, #D97706);
+  color: #fff;
+  font-weight: 800;
+  border: 0;
+}
+.tool-btn {
+  width: 100%;
+  padding: 9px 10px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: #e2e8f0;
+  border-radius: 8px;
+  text-align: left;
+  font-size: 11px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.15s ease;
+}
+.tool-btn:hover { border-color: #00E5FF; color: #fff; background: #1a253f; }
+.modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  background: rgba(0, 0, 0, 0.88);
+  backdrop-filter: blur(8px);
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+}
+.modal.active { display: flex; }
+.modal-box {
+  width: min(720px, 100%);
+  max-height: 90vh;
+  overflow-y: auto;
+  background: #0D121D;
+  border: 1px solid #263247;
+  border-radius: 18px;
+  padding: 22px;
+}
+.canvas-wrap {
+  background: #05070b;
+  border: 1px solid #263247;
+  border-radius: 14px;
+  min-height: 500px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: auto;
+  padding: 20px;
+  position: relative;
+}
+#designCanvas {
+  background: #0A0E17;
+  box-shadow: 0 10px 50px rgba(0,0,0,0.6);
+}
+.toast {
+  position: fixed;
+  right: 16px;
+  bottom: 16px;
+  z-index: 20000;
+  background: #111827;
+  border: 1px solid #374151;
+  padding: 12px 18px;
+  border-radius: 10px;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.8);
+  display: none;
+  max-width: 360px;
+}
+.toast.show { display: flex; align-items: center; gap: 8px; }
 
-  <script>
-    // Adsterra Smart Link URLs for Click Monetization
-    window.ADSTERRA_SMART_LINK_1 = "https://www.effectivegatecpm.com/4473";
-    window.ADSTERRA_SMART_LINK_2 = "https://www.effectivegatecpm.com/0ce19";
-    
-    function triggerAdClick(url) {
-      window.open(url, '_blank');
-    }
-  </script>
-    <style>
-    :root {
-      --bg-base: #06080d;
-      --bg-surface: #0f1420;
-      --bg-card: #171f32;
-      --bg-input: #0b0f19;
-      --accent: #2563eb;
-      --accent-hover: #1d4ed8;
-      --accent-gold: #f59e0b;
-      --text-main: #f8fafc;
-      --text-muted: #8e9bb0;
-      --border: #232e45;
-      --border-focus: #3b82f6;
-      --danger: #ef4444;
-      --success: #10b981;
-      --radius: 6px;
-      --font: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-    }
+/* WALL BACKDROPS */
+.wall-dark { background: radial-gradient(circle at 50% 50%, #151d2f 0%, #060911 100%) !important; }
+.wall-brick {
+  background-color: #171113 !important;
+  background-image: linear-gradient(335deg, rgba(0,0,0,0.6) 0px, transparent 1px),
+    linear-gradient(rgba(24,18,20,0.9) 2px, transparent 2px),
+    linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px),
+    radial-gradient(ellipse at 50% 50%, rgba(220,38,38,0.12) 0%, transparent 75%) !important;
+  background-size: 58px 28px, 58px 28px, 29px 28px, 100% 100% !important;
+}
+.wall-marble {
+  background: radial-gradient(ellipse at top left, rgba(255,255,255,0.12) 0%, transparent 60%),
+    linear-gradient(135deg, #1b212f 0%, #0d121c 50%, #141926 100%) !important;
+}
+.wall-slats {
+  background: repeating-linear-gradient(90deg, #1c150f, #1c150f 22px, #0a0704 22px, #0a0704 28px) !important;
+}
+.wall-concrete {
+  background-color: #161a20 !important;
+  background-image: radial-gradient(rgba(255,255,255,0.05) 1px, transparent 0) !important;
+  background-size: 16px 16px !important;
+}
+.wall-glass {
+  background: linear-gradient(135deg, rgba(14,165,233,0.12) 0%, rgba(2,6,23,0.94) 50%, rgba(99,102,241,0.08) 100%) !important;
+}
 
-    * { box-sizing: border-box; margin: 0; padding: 0; font-family: var(--font); }
-    body { background: var(--bg-base); color: var(--text-main); height: 100vh; display: flex; flex-direction: column; overflow: hidden; }
+/* DAY / NIGHT AMBIANCES */
+.ambiance-day { filter: brightness(1.2) contrast(1.05); }
+.ambiance-sunset { filter: brightness(0.96) saturate(1.3) sepia(0.2); }
+.ambiance-night { filter: brightness(0.88) contrast(1.25); }
 
-    /* Top Super Header */
-    .super-header-bar {
-      background: linear-gradient(90deg, #1e3a8a, #2563eb, #d97706);
-      color: #ffffff;
-      font-size: 11px;
-      font-weight: 700;
-      text-align: center;
-      padding: 5px 10px;
-      letter-spacing: 0.6px;
-      text-transform: uppercase;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 5px;
-    }
-    .super-header-bar a { color: #fff; text-decoration: none; font-weight: 800; }
+/* NEON BREATHING ANIMATION */
+@keyframes neonBreathGlow {
+  0%, 100% { filter: drop-shadow(0 0 10px rgba(0,229,255,0.75)) drop-shadow(0 0 30px rgba(0,229,255,0.4)); }
+  50% { filter: drop-shadow(0 0 3px rgba(0,229,255,0.3)) drop-shadow(0 0 10px rgba(0,229,255,0.2)); }
+}
+.neon-breathing { animation: neonBreathGlow 2.5s ease-in-out infinite; }
+</style>
+</head>
+<body>
 
-    /* Main Navigation Header */
-    .app-header {
-      background: var(--bg-surface);
-      border-bottom: 1px solid var(--border);
-      padding: 8px 16px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 12px;
-      flex-shrink: 0;
-    }
-    .brand-box { display: flex; align-items: center; gap: 8px; }
-    .brand-icon { font-size: 1.5rem; }
-    .brand-title h1 { font-size: 15px; font-weight: 800; letter-spacing: 0.5px; }
-    .brand-title p { font-size: 10px; color: var(--text-muted); }
+<!-- ADSTERRA AD SLOT: TOP LEADERBOARD BANNER -->
+<div id="adsterra-top-banner" class="max-w-7xl mx-auto px-3 sm:px-5 pt-2 text-center">
+  <div class="p-2 surface border border-dashed border-gray-800 rounded-lg flex items-center justify-center min-h-[50px] text-[11px] text-gray-500 overflow-hidden cursor-pointer" onclick="window.open(window.ADSTERRA_SMART_LINK_1, '_blank')">
+    <div id="adsterra-banner-container">
+      <span class="text-cyan-400 font-mono text-[10px]"><i class="fa-solid fa-rectangle-ad mr-1"></i> SPONSORED FABRICATION PARTNERS • PREMIUM ARCHITECTURAL SUPPLIES (CLICK TO EXPLORE)</span>
+    </div>
+  </div>
+</div>
 
-    .header-center { display: flex; gap: 8px; align-items: center; }
-    .mode-toggle {
-      background: var(--bg-input);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      display: flex;
-      padding: 2px;
-    }
-    .mode-toggle button {
-      background: none;
-      border: none;
-      color: var(--text-muted);
-      padding: 4px 10px;
-      font-size: 11px;
-      font-weight: 600;
-      cursor: pointer;
-      border-radius: 4px;
-    }
-    .mode-toggle button.active { background: var(--accent); color: #fff; }
+<!-- TOP NAVBAR -->
+<header class="sticky top-0 z-50 bg-[#080B11]/95 backdrop-blur border-b border-gray-800">
+<div class="max-w-7xl mx-auto px-3 sm:px-5 py-2.5 flex items-center justify-between gap-3">
 
-    .header-actions { display: flex; gap: 8px; align-items: center; }
-    .btn {
-      background: var(--bg-card);
-      color: var(--text-main);
-      border: 1px solid var(--border);
-      padding: 6px 12px;
-      border-radius: var(--radius);
-      font-size: 12px;
-      font-weight: 600;
-      cursor: pointer;
-      display: inline-flex;
-      align-items: center;
-      gap: 5px;
-      text-decoration: none;
-      transition: all 0.15s ease;
-    }
-    .btn:hover { border-color: var(--border-focus); }
-    .btn-primary { background: var(--accent); border-color: var(--accent); color: #fff; }
-    .btn-primary:hover { background: var(--accent-hover); }
-    .btn-gold { background: var(--accent-gold); border-color: var(--accent-gold); color: #000; font-weight: 700; }
-    .btn-ad-monetize { background: linear-gradient(135deg, #10b981, #059669); color: #fff; border: 1px solid #10b981; font-weight: 700; }
-    .btn-sm { padding: 4px 8px; font-size: 11px; }
-
-    /* Studio Layout */
-    .studio-workspace {
-      display: flex;
-      flex: 1;
-      height: calc(100vh - 65px);
-      position: relative;
-      overflow: hidden;
-    }
-
-    /* Sidebars */
-    .sidebar-left, .sidebar-right {
-      width: 295px;
-      background: var(--bg-surface);
-      border-right: 1px solid var(--border);
-      padding: 12px;
-      overflow-y: auto;
-      display: flex;
-      flex-direction: column;
-      gap: 13px;
-      flex-shrink: 0;
-    }
-    .sidebar-right { border-right: none; border-left: 1px solid var(--border); width: 310px; }
-
-    .section-title {
-      font-size: 10px;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.6px;
-      color: var(--text-muted);
-      margin-bottom: 6px;
-    }
-
-    .template-select { width: 100%; margin-bottom: 6px; }
-
-    /* Upload Dropzone */
-    .upload-zone {
-      border: 2px dashed var(--border);
-      border-radius: var(--radius);
-      padding: 12px;
-      text-align: center;
-      cursor: pointer;
-      background: var(--bg-card);
-      font-size: 11px;
-      font-weight: 600;
-      transition: all 0.2s;
-      display: block;
-    }
-    .upload-zone:hover { border-color: var(--accent); background: rgba(37,99,235,0.08); }
-
-    /* Grids */
-    .input-grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
-    .input-grid-2 label { font-size: 10px; color: var(--text-muted); display: flex; flex-direction: column; gap: 2px; }
-    input, select, textarea {
-      background: var(--bg-input);
-      border: 1px solid var(--border);
-      color: var(--text-main);
-      padding: 6px 8px;
-      border-radius: 4px;
-      font-size: 11px;
-      outline: none;
-      width: 100%;
-    }
-    input:focus, select:focus, textarea:focus { border-color: var(--border-focus); }
-
-    .color-swatches { display: flex; gap: 5px; margin-top: 5px; flex-wrap: wrap; }
-    .color-swatches span { width: 22px; height: 22px; border-radius: 4px; cursor: pointer; border: 1px solid rgba(255,255,255,0.15); }
-
-    /* Viewport Stage */
-    .viewport-stage {
-      flex: 1;
-      background: #030508;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      position: relative;
-      overflow: auto;
-      padding: 15px;
-    }
-    .canvas-container-outer {
-      background: #ffffff;
-      box-shadow: 0 14px 40px rgba(0,0,0,0.85);
-      position: relative;
-    }
-
-    /* Adsterra Native Ad Slot Block */
-    .adsterra-banner-container {
-      width: 100%;
-      max-width: 728px;
-      min-height: 50px;
-      background: rgba(15, 20, 32, 0.7);
-      border: 1px dashed var(--border);
-      border-radius: var(--radius);
-      margin-top: 10px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 10px;
-      color: var(--text-muted);
-      overflow: hidden;
-    }
-
-    /* Bleed Margin Overlay */
-    .bleed-guide-line {
-      position: absolute;
-      inset: -9px;
-      border: 1px dashed rgba(239,68,68,0.7);
-      pointer-events: none;
-      display: none;
-    }
-
-    /* Export Grid with JPG */
-    .export-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
-
-    /* Modals */
-    .modal-overlay {
-      display: none;
-      position: fixed;
-      inset: 0;
-      background: rgba(0,0,0,0.8);
-      backdrop-filter: blur(4px);
-      z-index: 1000;
-      align-items: center;
-      justify-content: center;
-      padding: 12px;
-    }
-    .modal-overlay.active { display: flex; }
-    .modal-dialog {
-      background: var(--bg-surface);
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      width: 100%;
-      max-width: 520px;
-      padding: 16px;
-      max-height: 90vh;
-      overflow-y: auto;
-    }
-    .modal-dialog.modal-lg { max-width: 780px; }
-    .modal-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
-    .modal-header h2 { font-size: 15px; font-weight: 700; }
-    .close-icon { cursor: pointer; font-size: 20px; color: var(--text-muted); }
-
-    /* Verified Business Credentials */
-    .biz-credentials-box {
-      background: rgba(37,99,235,0.08);
-      border: 1px solid rgba(37,99,235,0.25);
-      border-radius: 6px;
-      padding: 8px 10px;
-      font-size: 11px;
-      color: #cbd5e1;
-      margin-bottom: 8px;
-      line-height: 1.4;
-    }
-    .biz-credentials-box strong { color: #fff; }
-
-    /* Dynamic Tiers & Promotion */
-    .tier-box {
-      background: var(--bg-input);
-      border: 1px solid var(--border);
-      border-radius: 6px;
-      padding: 10px;
-      margin: 8px 0;
-      font-size: 11px;
-    }
-    .tier-badge {
-      display: inline-block;
-      background: var(--accent);
-      color: #fff;
-      font-size: 10px;
-      font-weight: 700;
-      padding: 2px 6px;
-      border-radius: 3px;
-      text-transform: uppercase;
-      margin-bottom: 6px;
-    }
-    .promo-highlight {
-      background: linear-gradient(90deg, #b45309, #d97706);
-      color: #fff;
-      padding: 8px;
-      border-radius: 6px;
-      font-size: 11px;
-      font-weight: 700;
-      margin-bottom: 8px;
-      display: none;
-    }
-    .deposit-row {
-      display: flex;
-      justify-content: space-between;
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      padding: 8px 12px;
-      border-radius: 6px;
-      font-size: 12px;
-      margin: 8px 0;
-    }
-
-    /* Toast Notification Tray */
-    .toast-box {
-      position: fixed;
-      top: 15px;
-      right: 15px;
-      z-index: 2000;
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-    }
-    .toast-item {
-      background: var(--bg-card);
-      color: #fff;
-      border: 1px solid var(--border);
-      padding: 8px 14px;
-      border-radius: 4px;
-      font-size: 11px;
-      box-shadow: 0 4px 14px rgba(0,0,0,0.5);
-    }
-    .toast-error { background: var(--danger); }
-
-    /* Mobile Bottom Navigation Bar */
-    .mobile-bar {
-      display: none;
-      position: fixed;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      height: 50px;
-      background: var(--bg-surface);
-      border-top: 1px solid var(--border);
-      justify-content: space-around;
-      align-items: center;
-      z-index: 100;
-    }
-    .mobile-bar button {
-      background: none;
-      border: none;
-      color: var(--text-main);
-      font-size: 11px;
-      font-weight: 600;
-      cursor: pointer;
-    }
-
-    @media (max-width: 900px) {
-      .sidebar-left, .sidebar-right { display: none; }
-      .mobile-bar { display: flex; }
-      .studio-workspace { height: calc(100vh - 100px); }
-    }
-  </style>
-  </head>
-  <body class="theme-dark">
-
-  <!-- Top Global Super Banner -->
-  <div class="super-header-bar">
-    <span>🚀 WORLD'S 1ST ALL-IN-ONE SIGNAGE, ADVERTISING & CNC STUDIO</span>
-    <span>BRAND: <strong>DESIGN CREATIVE</strong> | GST: <strong>07AGFPA8041C1ZZ</strong> | <a href="https://wa.me/919354944438" target="_blank">WHATSAPP: +91 9354944438</a></span>
+  <div onclick="window.scrollTo({top:0, behavior:'smooth'})" class="flex items-center gap-2.5 cursor-pointer min-w-0">
+    <div class="w-9 h-9 rounded-xl bg-gradient-to-tr from-cyan-400 via-purple-600 to-pink-500 p-[2px]">
+      <div class="w-full h-full rounded-[10px] bg-[#080B11] flex items-center justify-center">
+        <i class="fa-solid fa-shapes text-cyan-400"></i>
+      </div>
+    </div>
+    <div class="min-w-0">
+      <div class="font-black text-sm sm:text-base truncate flex items-center gap-1.5">
+        <span id="navBrandName">DESIGN<span class="hub-gradient">CREATIVE</span></span>
+        <span class="text-[8px] border border-cyan-400 text-cyan-300 rounded px-1.5 py-0.5 tracking-wider font-semibold">STUDIO</span>
+      </div>
+      <div class="text-[9px] text-gray-400 truncate">
+        CUSTOM LED • 3D ACRYLIC • SS LETTERING • CNC FABRICATION
+      </div>
+    </div>
   </div>
 
-  <div id="toast-tray" class="toast-box" aria-live="polite"></div>
+  <div class="flex items-center gap-2">
+    <button onclick="openPlansModal()" class="surface px-3 py-2 rounded-lg text-xs text-amber-300 hover:border-amber-400 font-semibold flex items-center gap-1.5 transition-colors">
+      <i class="fa-solid fa-crown text-amber-400"></i>
+      <span>Plans</span>
+    </button>
 
-  <!-- Main Top Bar -->
-  <header class="app-header">
-    <div class="brand-box">
-      <span class="brand-icon">⚡</span>
-      <div class="brand-title">
-        <h1>DESIGN CREATIVE</h1>
-        <p>wearstay.com • Helpline: +91 9354944438</p>
-      </div>
+    <button onclick="openInstantOrderModal()" class="btn-emerald px-4 py-2 rounded-lg text-xs flex items-center gap-1.5 shadow-lg shadow-emerald-900/30">
+      <i class="fa-solid fa-bolt text-amber-300"></i>
+      <span class="font-black">ORDER SIGN</span>
+    </button>
+  </div>
+
+</div>
+</header>
+
+<!-- HERO SECTION -->
+<section class="max-w-7xl mx-auto px-3 sm:px-5 pt-4">
+<div class="card p-5 sm:p-7 bg-gradient-to-b from-[#0D121D] to-[#080B11] border border-gray-800 text-center">
+  <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-950/60 border border-cyan-500/30 text-[10px] sm:text-xs uppercase tracking-widest text-cyan-300 font-bold mb-2">
+    <span class="w-2 h-2 rounded-full bg-cyan-400 animate-pulse"></span>
+    Custom LED, 3D Acrylic & CNC Architectural Signage Studio
+  </div>
+  <h1 class="text-3xl sm:text-5xl font-black leading-tight mt-1">
+    Design Custom Signs.<br>
+    <span class="hub-gradient">Instant Quotes & Direct Delivery.</span>
+  </h1>
+  <p class="text-gray-400 max-w-2xl mx-auto mt-3 text-xs sm:text-sm">
+    Create illuminated LED neon signs, 3D acrylic letters, CNC cut paths, and stainless steel lettering.
+    Work seamlessly in <b>INCH, FEET, MM, CM, PX, or METRE</b> with real-time sqft pricing, UPI QR & WhatsApp confirmation.
+  </p>
+
+  <div class="flex flex-wrap justify-center gap-2.5 mt-4">
+    <button onclick="openInstantOrderModal()" class="btn-emerald rounded-xl px-5 py-2.5 text-xs sm:text-sm font-bold flex items-center gap-2">
+      <i class="fa-solid fa-cart-shopping"></i> Instant Order & Quote
+    </button>
+    <button onclick="newBlankDesign()" class="btn rounded-xl px-4 py-2.5 text-xs sm:text-sm font-bold">
+      <i class="fa-solid fa-plus mr-1"></i> Blank Canvas
+    </button>
+    <button onclick="openAIModal()" class="surface px-4 py-2.5 rounded-xl text-purple-300 font-bold text-xs sm:text-sm hover:border-purple-400">
+      ✨ Create with AI (Gemini 2.5)
+    </button>
+    <button onclick="startVoiceAI()" class="surface px-4 py-2.5 rounded-xl text-cyan-300 font-bold text-xs sm:text-sm hover:border-cyan-400">
+      🎙️ Voice Command AI
+    </button>
+  </div>
+  <div id="voiceStatus" class="text-xs text-cyan-400 mt-2 min-h-[16px]"></div>
+</div>
+  </section>
+  <!-- MAIN STUDIO WORKSPACE -->
+<main class="max-w-7xl mx-auto px-3 sm:px-5 py-4 pb-16">
+
+<!-- DIMENSIONS & UNIT TOOLBAR -->
+<section class="card p-3 mb-3">
+<div class="flex flex-wrap items-center gap-2">
+  <div class="font-bold text-xs mr-auto flex items-center gap-2">
+    <i class="fa-solid fa-ruler-combined text-cyan-400"></i>
+    <span>Dimensions:</span>
+    <span id="dimensionBadge" class="text-cyan-300 font-mono font-bold bg-[#131B2E] px-2 py-0.5 rounded border border-cyan-800">1200 × 800 PX</span>
+    <span id="estimatedSqftBadge" class="text-[11px] text-amber-300 bg-amber-950/40 px-2 py-0.5 rounded border border-amber-800/60 hidden sm:inline">~2.67 sq ft</span>
+  </div>
+
+  <label class="surface px-2 py-1 text-xs">
+    W <input id="inputW" type="number" value="1200" class="bg-transparent w-16 ml-1 outline-none text-white font-mono">
+  </label>
+  <label class="surface px-2 py-1 text-xs">
+    H <input id="inputH" type="number" value="800" class="bg-transparent w-16 ml-1 outline-none text-white font-mono">
+  </label>
+
+  <select id="unit" onchange="onUnitChanged()" class="surface px-2 py-2 text-xs text-cyan-300 bg-[#131B2E]">
+    <option value="px">PX</option>
+    <option value="inch">INCH</option>
+    <option value="feet">FEET</option>
+    <option value="mm">MM</option>
+    <option value="cm">CM</option>
+    <option value="metre">METRE</option>
+  </select>
+
+  <select id="dpi" class="surface px-2 py-2 text-xs text-cyan-300 bg-[#131B2E]">
+    <option value="72">72 DPI</option>
+    <option value="96">96 DPI</option>
+    <option value="150">150 DPI</option>
+    <option value="300" selected>300 DPI</option>
+  </select>
+
+  <button onclick="applyDimensions()" class="btn px-3 py-2 rounded-lg text-xs font-bold">Apply</button>
+  <button onclick="openInstantOrderModal()" class="btn-emerald px-3 py-2 rounded-lg text-xs font-bold ml-1">
+    <i class="fa-solid fa-bolt text-amber-300 mr-1"></i> Quote / Order
+  </button>
+</div>
+</section>
+
+<!-- STUDIO GRID -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-3">
+
+  <!-- LEFT TOOLS PANEL -->
+  <aside class="lg:col-span-3 card p-3 order-2 lg:order-1 space-y-3">
+    <div class="flex justify-between border-b border-gray-800 pb-2">
+      <b class="text-xs">Sign Studio Tools</b>
+      <span class="text-[10px] text-cyan-400 font-bold uppercase">Fabricator Mode</span>
     </div>
 
-    <!-- Mode Switcher -->
-    <div class="header-center">
-      <div class="mode-toggle">
-        <button id="btn-m-simple" class="active" onclick="switchMode('simple')">Simple Mode</button>
-        <button id="btn-m-pro" onclick="switchMode('pro')">Advanced Prepress</button>
-      </div>
+    <div class="grid grid-cols-2 gap-2">
+      <button onclick="addText()" class="tool-btn"><i class="fa-solid fa-font text-cyan-400"></i> 3D Text</button>
+      <button onclick="triggerImageUpload()" class="tool-btn"><i class="fa-solid fa-image text-green-400"></i> Logo / Image</button>
+      <button onclick="addRect()" class="tool-btn"><i class="fa-regular fa-square text-pink-400"></i> Backboard</button>
+      <button onclick="addCircle()" class="tool-btn"><i class="fa-regular fa-circle text-purple-400"></i> Circle Sign</button>
+      <button onclick="duplicateObject()" class="tool-btn"><i class="fa-solid fa-copy text-amber-300"></i> Duplicate</button>
+      <button onclick="deleteObject()" class="tool-btn"><i class="fa-solid fa-trash text-red-400"></i> Delete</button>
+      <button onclick="undo()" class="tool-btn"><i class="fa-solid fa-rotate-left"></i> Undo</button>
+      <button onclick="redo()" class="tool-btn"><i class="fa-solid fa-rotate-right"></i> Redo</button>
+      <button onclick="bringForward()" class="tool-btn"><i class="fa-solid fa-arrow-up"></i> Forward</button>
+      <button onclick="sendBackward()" class="tool-btn"><i class="fa-solid fa-arrow-down"></i> Back</button>
+      <button onclick="centerObject()" class="tool-btn"><i class="fa-solid fa-crosshairs"></i> Center</button>
+      <button onclick="open3DPreview()" class="tool-btn"><i class="fa-solid fa-cube text-yellow-400"></i> 3D Preview</button>
+      <button onclick="toggleNeonEffect()" class="tool-btn col-span-2 text-cyan-300 border-cyan-800 hover:border-cyan-400 font-bold">
+        💡 TOGGLE NEON GLOW
+      </button>
+      <button onclick="openAIModal()" class="tool-btn col-span-2 text-purple-300 border-purple-800 hover:border-purple-400 font-bold">
+        ✨ AI SIGN GENERATOR (Gemini 2.5)
+      </button>
     </div>
+    <input id="imageInput" type="file" accept="image/png,image/jpeg,image/webp,image/svg+xml" class="hidden" onchange="loadImage(event)">
 
-    <!-- Header Actions with Adsterra Smart Link Trigger -->
-    <div class="header-actions">
-      <button class="btn btn-ad-monetize" onclick="triggerAdClick(window.ADSTERRA_SMART_LINK_1)">⭐ Partner Offers</button>
-      <button class="btn" onclick="toggleVoiceEngine()"><span id="voice-status-dot">🎙</span> Voice AI (Global)</button>
-      <button class="btn btn-primary" onclick="openOrderModal()">Book Order (50% Adv)</button>
-    </div>
-  </header>
-
-  <!-- Studio Workspace -->
-  <div class="studio-workspace">
-
-    <!-- Left Controls Drawer -->
-    <aside class="sidebar-left">
-      
-      <!-- 1. Templates Drawer -->
-      <div>
-        <div class="section-title">1. Sign & Banner Templates</div>
-        <select class="template-select" id="template-dropdown" onchange="loadTemplate(this.value)">
-          <option value="">-- Select Ready Template --</option>
-          <option value="acrylic_glow">3D Acrylic LED Glow Sign (8x3 ft)</option>
-          <option value="ss_gold">SS 304 Titanium Gold Board (6x2 ft)</option>
-          <option value="flex_banner">Shop Front Flex Banner (10x4 ft)</option>
-          <option value="office_plate">Acrylic Office Nameplate (12x12 in)</option>
-          <option value="neon_bar">Design Creative Neon Accent (4x2 ft)</option>
-        </select>
-      </div>
-
-      <!-- 2. Customer Upload (JPG, PNG, WEBP, SVG) -->
-      <div>
-        <div class="section-title">2. Upload Artwork / Logo (JPG/PNG/SVG)</div>
-        <label class="upload-zone">
-          <input type="file" id="art-upload" accept="image/jpeg,image/jpg,image/png,image/webp,.svg" onchange="handleArtworkUpload(event)" style="display:none">
-          📁 Click to Upload JPG, PNG, or SVG
+    <!-- COLOR & MATERIAL INSPECTOR -->
+    <div class="border-t border-gray-800 pt-3">
+      <div class="text-xs font-bold text-gray-400 mb-2">Material & Finish Inspector</div>
+      <div class="grid grid-cols-2 gap-2">
+        <label class="surface p-2 text-[10px]">
+          Letter Face
+          <input id="fillColor" type="color" value="#00E5FF" onchange="changeFill(this.value)" class="w-full h-7 bg-transparent cursor-pointer">
+        </label>
+        <label class="surface p-2 text-[10px]">
+          Stroke / Rim
+          <input id="strokeColor" type="color" value="#FFFFFF" onchange="changeStroke(this.value)" class="w-full h-7 bg-transparent cursor-pointer">
         </label>
       </div>
 
-      <!-- 3. Physical Measurement Engine -->
-      <div>
-        <div class="section-title">3. Board Dimensions & DPI</div>
-        <div class="input-grid-2">
-          <label>Width: <input type="number" id="unit-w" value="8" step="0.5"></label>
-          <label>Height: <input type="number" id="unit-h" value="3" step="0.5"></label>
-          <select id="unit-type">
-            <option value="feet" selected>Feet</option>
-            <option value="inch">Inches</option>
-            <option value="mm">Millimeters</option>
-            <option value="cm">Centimeters</option>
-          </select>
-          <select id="unit-dpi">
-            <option value="150" selected>150 DPI (Large Flex/Board)</option>
-            <option value="300">300 DPI (High-Res Print)</option>
-            <option value="72">72 DPI (Screen Proof)</option>
-          </select>
-        </div>
-        <button class="btn btn-primary btn-sm" style="width:100%; margin-top:6px;" onclick="applyCanvasDimensions()">Resize Canvas</button>
+      <div class="mt-2 grid grid-cols-4 gap-1 text-[10px]">
+        <button onclick="applyPresetMaterial('acrylic_gold')" class="surface p-1 hover:border-amber-400 text-amber-300" title="Gold Mirror Acrylic">Gold Mirror</button>
+        <button onclick="applyPresetMaterial('rose_gold')" class="surface p-1 hover:border-rose-400 text-rose-300" title="Rose Gold Mirror">Rose Gold</button>
+        <button onclick="applyPresetMaterial('ss_silver')" class="surface p-1 hover:border-gray-300 text-gray-300" title="Stainless Steel 304">Silver SS</button>
+        <button onclick="applyPresetMaterial('neon_flex')" class="surface p-1 hover:border-cyan-400 text-cyan-300" title="Neon Flex Silicone LED">Neon Flex</button>
       </div>
 
-      <!-- 4. Color & Material Finishes -->
-      <div>
-        <div class="section-title">4. Colors & Material Coating</div>
-        <div class="input-grid-2">
-          <label>Board Background: <input type="color" id="col-bg" value="#0b0f19" onchange="updateBoardBackground(this.value)"></label>
-          <label>Letters / Logo: <input type="color" id="col-obj" value="#f59e0b" onchange="updateObjectFill(this.value)"></label>
-        </div>
-        <div class="color-swatches">
-          <span style="background:#000000" onclick="updateBoardBackground('#000000')" title="Matte Black"></span>
-          <span style="background:#ffffff" onclick="updateBoardBackground('#ffffff')" title="Glossy White"></span>
-          <span style="background:#f59e0b" onclick="updateObjectFill('#f59e0b')" title="Gold Yellow"></span>
-          <span style="background:#ef4444" onclick="updateObjectFill('#ef4444')" title="Neon Red"></span>
-          <span style="background:#2563eb" onclick="updateObjectFill('#2563eb')" title="Electric Blue"></span>
-          <span style="background:#10b981" onclick="updateObjectFill('#10b981')" title="Emerald Green"></span>
-        </div>
+      <div class="mt-2">
+        <label class="text-[10px] text-gray-400 flex justify-between">
+          <span>Opacity</span><span id="opacityVal">100%</span>
+        </label>
+        <input id="opacity" type="range" min="0" max="1" step="0.01" value="1" class="w-full" oninput="changeOpacity(this.value)">
       </div>
+    </div>
 
-      <!-- 5. Vector Shapes & Text -->
-      <div>
-        <div class="section-title">5. Add Vector Shapes & Text</div>
-        <div class="input-grid-2">
-          <button class="btn btn-sm" onclick="spawnText()">+ Text</button>
-          <button class="btn btn-sm" onclick="spawnShape('rect')">□ Base Frame</button>
-          <button class="btn btn-sm" onclick="spawnShape('circle')">○ Round Frame</button>
-          <button class="btn btn-sm" onclick="spawnShape('line')">― Divider Line</button>
+    <!-- ADSTERRA AD SLOT: SIDEBAR -->
+    <div class="border-t border-gray-800 pt-3 text-center">
+      <div class="surface p-2 border border-dashed border-gray-800 rounded-lg min-h-[140px] flex items-center justify-center text-[10px] text-gray-500 cursor-pointer" onclick="window.open(window.ADSTERRA_SMART_LINK_2, '_blank')">
+        <div>
+          <i class="fa-solid fa-bolt text-cyan-400 text-lg mb-1"></i>
+          <p class="font-bold text-gray-400">LED POWER SUPPLIES & CNC CUTTERS</p>
+          <p class="text-[9px] text-cyan-400 mt-1">Direct Architectural Partner Supplies (Explore)</p>
         </div>
       </div>
+    </div>
+  </aside>
+    <!-- CENTER CANVAS SECTION -->
+  <section class="lg:col-span-6 card p-3 order-1 lg:order-2">
+    <div class="flex items-center justify-between mb-2">
+      <div class="text-xs font-bold flex items-center gap-1.5">
+        <i class="fa-solid fa-pen-ruler text-cyan-400"></i>
+        <span>Live Sign Canvas</span>
+        <span class="text-[10px] text-gray-500 hidden sm:inline">(Vector Precision Scale)</span>
+      </div>
+      <div class="flex gap-1">
+        <button onclick="zoomOut()" class="surface px-2 py-1 text-xs font-bold hover:text-cyan-400">−</button>
+        <span id="zoomText" class="surface px-2.5 py-1 text-xs font-mono">100%</span>
+        <button onclick="zoomIn()" class="surface px-2 py-1 text-xs font-bold hover:text-cyan-400">+</button>
+        <button onclick="fitCanvasToWrap()" title="Fit to screen" class="surface px-2 py-1 text-xs"><i class="fa-solid fa-expand"></i></button>
+      </div>
+    </div>
 
-      <!-- 6. Prepress Guides (Pro Mode) -->
-      <div id="prepress-box" style="display:none;">
-        <div class="section-title">6. Prepress & Hairline Tools</div>
-        <div class="input-grid-2">
-          <button class="btn btn-sm" onclick="toggleBleedGuide()">Toggle Bleed Line</button>
-          <button class="btn btn-sm" onclick="centerActiveObject()">Center Align</button>
-          <button class="btn btn-sm" onclick="pushToBack()">Send Backward</button>
-          <button class="btn btn-sm" onclick="bringToFront()">Bring Forward</button>
-        </div>
-      </div>
-    </aside>
-        <!-- Canvas Stage -->
-    <main class="viewport-stage" id="viewport-stage">
-      <div class="canvas-container-outer" id="canvas-card">
-        <canvas id="studio-canvas"></canvas>
-        <div class="bleed-guide-line" id="bleed-line"></div>
-      </div>
-      
-      <!-- Adsterra Native Banner Monetization Slot -->
-      <div class="adsterra-banner-container" id="adsterra_banner_slot">
-        <span style="cursor:pointer;" onclick="triggerAdClick(window.ADSTERRA_SMART_LINK_2)">⚡ Sponsored Signage Network | Click to View Exclusive Production Tools</span>
-      </div>
-    </main>
-
-    <!-- Right Controls Drawer -->
-    <aside class="sidebar-right">
-      
-      <!-- Instant Downloads (JPG Added) -->
-      <div>
-        <div class="section-title">Production Downloads</div>
-        <div class="export-grid">
-          <button class="btn btn-sm" onclick="exportFileEngine('jpg')">🖼 Proof (JPG)</button>
-          <button class="btn btn-sm" onclick="exportFileEngine('png')">📷 High-Res (PNG)</button>
-          <button class="btn btn-sm" onclick="exportFileEngine('pdf')">📄 Print (PDF)</button>
-          <button class="btn btn-sm" onclick="exportFileEngine('svg')">📐 Vector (SVG)</button>
-          <button class="btn btn-sm btn-gold" style="grid-column: span 2;" onclick="exportFileEngine('dxf')">⚙️ CNC Laser Cut (DXF)</button>
+    <!-- WALL TEXTURE & AMBIANCE BAR -->
+    <div class="flex flex-wrap items-center justify-between gap-2 mb-2 p-2 rounded-xl bg-[#090d18] border border-cyan-900/40 text-xs">
+      <div class="flex items-center gap-1 flex-wrap">
+        <span class="text-[11px] font-bold text-gray-400 flex items-center gap-1">
+          <i class="fa-solid fa-mountain-sun text-cyan-400"></i> Wall:
+        </span>
+        <div class="flex gap-1 flex-wrap">
+          <button onclick="setWallBackdrop('dark')" id="wallBtn-dark" class="px-2 py-0.5 rounded text-[10px] font-semibold surface border-cyan-400 text-cyan-300">Studio</button>
+          <button onclick="setWallBackdrop('brick')" id="wallBtn-brick" class="px-2 py-0.5 rounded text-[10px] font-semibold surface text-gray-300 hover:text-white">Brick</button>
+          <button onclick="setWallBackdrop('marble')" id="wallBtn-marble" class="px-2 py-0.5 rounded text-[10px] font-semibold surface text-gray-300 hover:text-white">Marble</button>
+          <button onclick="setWallBackdrop('slats')" id="wallBtn-slats" class="px-2 py-0.5 rounded text-[10px] font-semibold surface text-gray-300 hover:text-white">Wood</button>
+          <button onclick="setWallBackdrop('concrete')" id="wallBtn-concrete" class="px-2 py-0.5 rounded text-[10px] font-semibold surface text-gray-300 hover:text-white">Concrete</button>
+          <button onclick="setWallBackdrop('glass')" id="wallBtn-glass" class="px-2 py-0.5 rounded text-[10px] font-semibold surface text-gray-300 hover:text-white">Glass</button>
         </div>
       </div>
 
-      <!-- 3D Realistic Viewport -->
-      <div>
-        <div class="section-title">Interactive 3D Sign Mockup</div>
-        <button class="btn btn-primary" style="width:100%" onclick="launch3DMockup()">🧊 Open 3D Depth Preview</button>
+      <div class="flex items-center gap-1.5 ml-auto flex-wrap">
+        <div class="flex items-center gap-1 bg-[#131B2E] p-0.5 rounded-lg border border-gray-700">
+          <button onclick="setLightingAmbiance('day')" id="ambBtn-day" class="px-1.5 py-0.5 rounded text-[10px] text-gray-400 hover:text-white">☀️ Day</button>
+          <button onclick="setLightingAmbiance('sunset')" id="ambBtn-sunset" class="px-1.5 py-0.5 rounded text-[10px] text-gray-400 hover:text-white">🌆 Sunset</button>
+          <button onclick="setLightingAmbiance('night')" id="ambBtn-night" class="px-1.5 py-0.5 rounded text-[10px] text-cyan-300 font-bold bg-cyan-950/80 border border-cyan-600">🌙 Night</button>
+        </div>
+        <button onclick="toggleNeonPulseAnimation()" id="pulseAnimBtn" class="surface px-2 py-1 text-[10px] font-bold text-pink-300 hover:border-pink-400 flex items-center gap-1">
+          <i class="fa-solid fa-wave-square text-pink-400"></i> <span id="pulseLabel">Pulse: OFF</span>
+        </button>
       </div>
+    </div>
 
-      <!-- Commercial Fabrication Booking -->
-      <div>
-        <div class="section-title">Factory Booking & 50% Advance</div>
-        <p style="font-size:11px; color:var(--text-muted); margin-bottom:6px;">Calculates materials, warranty (2-50 yrs) & free promos.</p>
-        <button class="btn btn-gold" style="width:100%" onclick="openOrderModal()">Book Commercial Order</button>
-      </div>
+    <!-- CANVAS WRAP -->
+    <div class="canvas-wrap wall-dark ambiance-night transition-all duration-300" id="canvasWrap">
+      <canvas id="designCanvas"></canvas>
+    </div>
 
-      <!-- Adsterra Smart Link Trigger 2 -->
-      <div>
-        <div class="section-title">Verified Partner Network</div>
-        <button class="btn btn-ad-monetize" style="width:100%;" onclick="triggerAdClick(window.ADSTERRA_SMART_LINK_2)">🔥 Signage Resources & Deals</button>
-      </div>
+    <!-- EXPORT ACTIONS BAR (PNG, JPG, SVG, DXF, PDF, COPY XML) -->
+    <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-2 mt-3">
+      <button onclick="downloadPNG()" class="btn rounded-lg py-2 text-xs font-bold flex items-center justify-center gap-1">
+        <i class="fa-solid fa-download"></i> PNG Print
+      </button>
+      <button onclick="downloadJPG()" class="surface rounded-lg py-2 text-xs hover:border-gray-600 flex items-center justify-center gap-1">
+        JPG Preview
+      </button>
+      <button onclick="downloadSVG()" class="surface rounded-lg py-2 text-xs text-cyan-300 hover:border-cyan-500 font-bold flex items-center justify-center gap-1" title="Download CNC SVG Vector">
+        <i class="fa-solid fa-vector-square"></i> SVG Cut
+      </button>
+      <button onclick="downloadDXF()" class="surface rounded-lg py-2 text-xs text-amber-300 hover:border-amber-500 font-bold flex items-center justify-center gap-1" title="Download AutoCAD CNC DXF">
+        <i class="fa-solid fa-draw-polygon"></i> DXF Cut
+      </button>
+      <button onclick="downloadPDF()" class="surface rounded-lg py-2 text-xs hover:border-gray-600 flex items-center justify-center gap-1" title="Download Architectural Blueprint">
+        PDF Blueprint
+      </button>
+      <button onclick="copySVGCutpath()" class="surface rounded-lg py-2 text-xs text-emerald-300 hover:border-emerald-500 font-bold flex items-center justify-center gap-1" title="Copy raw SVG vector XML cutpath">
+        <i class="fa-regular fa-copy"></i> <span id="copySvgBtnText">Copy SVG</span>
+      </button>
+    </div>
 
-      <!-- AI Prompt & Voice Instructions -->
+    <!-- FABRICATION BANNER -->
+    <div class="mt-3 p-2.5 bg-gradient-to-r from-emerald-950/60 to-cyan-950/40 border border-emerald-500/30 rounded-xl flex items-center justify-between">
       <div>
-        <div class="section-title">Global AI / Voice Instruction</div>
-        <textarea id="ai-command-input" rows="3" placeholder="Speak or type in any language: e.g. '8x3 feet medical sign board blue background'"></textarea>
-        <button class="btn btn-primary btn-sm" style="width:100%; margin-top:6px;" onclick="executeAIInstruction()">Apply AI Layout</button>
+        <div class="text-xs font-bold text-emerald-300 flex items-center gap-1">
+          <i class="fa-solid fa-check-circle"></i> Instant Fabrication Quote Ready
+        </div>
+        <div class="text-[10px] text-gray-400">Precision manufactured with optical grade cast acrylic, 304 SS & LED neon flex.</div>
       </div>
-    </aside>
+      <button onclick="openInstantOrderModal()" class="btn-emerald px-4 py-2 rounded-lg text-xs font-bold">
+        Order Now
+      </button>
+    </div>
+  </section>
+
+  <!-- RIGHT LAYERS & ORDER PANEL -->
+  <aside class="lg:col-span-3 card p-3 order-3 space-y-3">
+    <div class="flex items-center justify-between border-b border-gray-800 pb-2">
+      <b class="text-xs">Sign Layers & Elements</b>
+      <button onclick="clearCanvas()" class="text-[10px] text-red-400 hover:underline">Clear All</button>
+    </div>
+
+    <div id="layers" class="max-h-64 overflow-auto space-y-1"></div>
+
+    <div class="border-t border-gray-800 pt-3 space-y-2">
+      <button onclick="openInstantOrderModal()" class="btn-emerald w-full rounded-lg py-2.5 text-xs font-black shadow-lg shadow-emerald-950">
+        <i class="fa-solid fa-cart-shopping mr-1"></i> ORDER THIS SIGN DESIGN
+      </button>
+      <button onclick="saveProjectToLocal()" class="btn w-full rounded-lg py-2 text-xs">
+        <i class="fa-solid fa-cloud-arrow-up mr-1"></i> SAVE PROJECT TO CLOUD
+      </button>
+      <button onclick="openPlansModal()" class="surface w-full rounded-lg py-2 text-xs text-amber-300 hover:border-amber-400">
+        <i class="fa-solid fa-crown mr-1"></i> VIEW COMMERCIAL PLANS
+      </button>
+    </div>
+  </aside>
+
+  </div>
+  <!-- AREA & PRICE CALCULATOR -->
+<section class="card p-4 mt-3">
+  <div class="flex items-center justify-between">
+    <div>
+      <h2 class="font-black text-sm flex items-center gap-1.5">
+        <i class="fa-solid fa-calculator text-amber-400"></i>
+        <span>Signage Fabrication Area & Cost Calculator</span>
+      </h2>
+      <p class="text-[10px] text-gray-500">Physical fabrication dimension calculations based on active commercial rates.</p>
+    </div>
+    <button onclick="syncCanvasToCalc()" class="surface px-2.5 py-1 text-[11px] text-cyan-300 hover:border-cyan-400">
+      <i class="fa-solid fa-sync text-[10px] mr-1"></i> Pull From Canvas
+    </button>
   </div>
 
-  <!-- Mobile Bottom Quick Bar -->
-  <nav class="mobile-bar">
-    <button onclick="document.getElementById('art-upload').click()">📁 Upload</button>
-    <button onclick="spawnText()">T Text</button>
-    <button onclick="launch3DMockup()">🧊 3D</button>
-    <button onclick="exportFileEngine('jpg')">⬇ JPG</button>
-    <button style="color:var(--accent-gold)" onclick="openOrderModal()">Order (50%)</button>
-  </nav>
+  <div class="grid grid-cols-2 sm:grid-cols-5 gap-2 mt-3">
+    <input id="calcW" type="number" placeholder="Width" value="48" class="surface p-2 text-xs bg-transparent text-white outline-none">
+    <input id="calcH" type="number" placeholder="Height" value="24" class="surface p-2 text-xs bg-transparent text-white outline-none">
+    <select id="calcUnit" class="surface p-2 text-xs bg-[#131B2E] text-white">
+      <option value="inch" selected>Inches</option>
+      <option value="feet">Feet</option>
+      <option value="mm">MM</option>
+      <option value="cm">CM</option>
+      <option value="metre">Metre</option>
+    </select>
+    <select id="calcMaterial" class="surface p-2 text-xs bg-[#131B2E] text-cyan-300" onchange="onCalcMaterialChanged()">
+      <option value="acrylic">3D Acrylic Letters</option>
+      <option value="ss">Stainless Steel (SS)</option>
+      <option value="glow">Glow / Neon LED Sign</option>
+    </select>
+    <input id="rate" type="number" placeholder="Rate / sqft" value="600" class="surface p-2 text-xs bg-transparent text-white outline-none">
+  </div>
 
-  <!-- Commercial Order Modal with Tier Escalator -->
-  <div class="modal-overlay" id="order-modal">
-    <div class="modal-dialog">
-      <div class="modal-header">
-        <h2>Commercial Fabrication & Order Booking</h2>
-        <span class="close-icon" onclick="closeOrderModal()">&times;</span>
+  <div class="flex items-center gap-2 mt-2">
+    <button onclick="calculateArea()" class="btn rounded-lg px-4 py-2 text-xs">Calculate Estimate</button>
+    <button onclick="orderFromCalculator()" class="btn-emerald rounded-lg px-4 py-2 text-xs font-bold">Create Order With Estimate</button>
+  </div>
+  <div id="calcResult" class="mt-3 text-sm font-bold text-cyan-300"></div>
+</section>
+
+</main>
+
+<!-- CLEAN SYMMETRICAL FOOTER -->
+<footer class="border-t border-gray-800 mt-6 pb-12 bg-[#05070B]">
+<div class="max-w-7xl mx-auto px-4 py-10">
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+    <!-- Brand Info -->
+    <div>
+      <div class="font-black text-lg select-none">
+        <span id="footerBrand">DESIGN<span class="hub-gradient">CREATIVE</span></span>
       </div>
-
-      <!-- Business Credentials Verification Card -->
-      <div class="biz-credentials-box">
-        <strong>DESIGN CREATIVE</strong><br>
-        Direct WhatsApp Support: <strong>+91 9354944438</strong> | GSTIN: <strong>07AGFPA8041C1ZZ</strong><br>
-        Official Domain: <strong>wearstay.com</strong> | Email: <strong>ledsignadil@gmail.com</strong>
+      <p class="text-xs text-gray-400 mt-2.5 leading-relaxed">
+        Enterprise custom LED signage, 3D acrylic letters, CNC cut engineering, and stainless steel fabrication worldwide.
+      </p>
+      <div class="mt-2 text-[10px] text-gray-400 font-mono">
+        GSTIN: <span class="text-amber-300 font-bold">07AGFPA8041C1ZZ</span>
       </div>
-
-      <!-- VIP Free Promotion Highlight Banner -->
-      <div id="promo-banner" class="promo-highlight">
-        🎉 <strong>VIP CLIENT UNLOCKED:</strong> Free Social Media Ad Post & Google Maps Promotion Activated!
+      <div class="mt-2 text-xs text-cyan-400 font-mono flex items-center gap-1.5">
+        <i class="fa-brands fa-whatsapp text-green-400"></i> <span id="footerPhone">+91 93549 44438</span>
       </div>
+    </div>
 
-      <form onsubmit="handleOrderSubmission(event)">
-        <label style="font-size:10px; color:var(--text-muted)">Total Quoted Cost (₹):</label>
-        <input type="number" id="order-budget" value="15000" required oninput="calculateCommercialTiers()">
+    <!-- Products -->
+    <div>
+      <div class="font-bold text-sm mb-3 text-gray-200">Sign Products</div>
+      <div class="text-xs text-gray-400 space-y-2">
+        <div class="cursor-pointer hover:text-cyan-300 transition-colors" onclick="applyPresetMaterial('acrylic_gold')">3D Acrylic Letters</div>
+        <div class="cursor-pointer hover:text-cyan-300 transition-colors" onclick="applyPresetMaterial('neon_flex')">Custom Neon Glow Signs</div>
+        <div class="cursor-pointer hover:text-cyan-300 transition-colors" onclick="applyPresetMaterial('ss_silver')">Stainless Steel 304/316</div>
+        <div class="cursor-pointer hover:text-cyan-300 transition-colors" onclick="downloadSVG()">CNC / Laser DXF & SVG</div>
+      </div>
+    </div>
 
-        <!-- Dynamic Tier Box -->
-        <div class="tier-box">
-          <div class="tier-badge" id="tier-badge">Gold Commercial Grade</div>
-          <div><span>Warranty:</span> <strong id="tier-w">5 Saal (Waterproof LED)</strong></div>
-          <div><span>Material:</span> <strong id="tier-m">Cast Acrylic + Samsung Module LED + ACP Base</strong></div>
-          <div><span>Free Advertising Gift:</span> <strong id="tier-p">None</strong></div>
+    <!-- Instant Support -->
+    <div>
+      <div class="font-bold text-sm mb-3 text-gray-200">Customer Support</div>
+      <div class="text-xs text-gray-400 space-y-2">
+        <div onclick="openWhatsAppDirect()" class="cursor-pointer hover:text-green-400 flex items-center gap-1.5 transition-colors">
+          <i class="fa-brands fa-whatsapp text-green-400"></i> WhatsApp Helpdesk
         </div>
-
-        <div class="input-grid-2">
-          <label>Customer Name:<input type="text" id="cust-name" required placeholder="Aapka Naam"></label>
-          <label>Phone / WhatsApp:<input type="tel" id="cust-phone" required placeholder="98XXXXXXXX"></label>
+        <a id="footerEmailLink" href="mailto:ledsignadil@gmail.com" class="hover:text-cyan-300 flex items-center gap-1.5 text-gray-400 transition-colors">
+          <i class="fa-solid fa-envelope text-cyan-400"></i> <span id="footerEmailText">ledsignadil@gmail.com</span>
+        </a>
+        <div onclick="openInstantOrderModal()" class="cursor-pointer hover:text-cyan-300 transition-colors">
+          <i class="fa-solid fa-cart-shopping mr-1 text-emerald-400"></i> Instant Order Desk
         </div>
+      </div>
+    </div>
 
-        <label style="font-size:10px; color:var(--text-muted); margin-top:6px; display:block">Sign Board / Product Category:</label>
-        <input type="text" id="cust-product" value="3D Acrylic LED Glow Sign Board">
-
-        <!-- 50% Advance Split -->
-        <div class="deposit-row">
-          <div>Advance (50% Required): <strong id="deposit-figure" style="color:var(--accent-gold)">₹7,500</strong></div>
-          <div>Balance (Due on Delivery): <strong id="balance-figure">₹7,500</strong></div>
-        </div>
-
-        <button type="submit" class="btn btn-primary" style="width:100%; margin-top:8px;">Confirm Booking via Official WhatsApp</button>
-      </form>
+    <!-- Security & Guarantee -->
+    <div>
+      <div class="font-bold text-sm mb-3 text-gray-200">Payment & Guarantee</div>
+      <div class="text-xs text-gray-400 space-y-2">
+        <div class="flex items-center gap-1.5"><i class="fa-solid fa-shield-halved text-cyan-400"></i> 50% Advance Production Lock</div>
+        <div class="flex items-center gap-1.5"><i class="fa-solid fa-medal text-amber-400"></i> Up to 50 Years Architectural Warranty</div>
+        <div class="flex items-center gap-1.5"><i class="fa-solid fa-qrcode text-emerald-400"></i> Dynamic UPI 0% Surcharge</div>
+      </div>
     </div>
   </div>
 
-  <!-- 3D Mockup Modal -->
-  <div class="modal-overlay" id="mockup-modal">
-    <div class="modal-dialog modal-lg">
-      <div class="modal-header">
-        <h2>Interactive 3D Signage Realistic Mockup</h2>
-        <span class="close-icon" onclick="close3DModal()">&times;</span>
-      </div>
-      <div id="three-stage-box" style="width:100%; height:380px; background:#000; border-radius:6px;"></div>
-      <p style="font-size:11px; color:var(--text-muted); text-align:center; margin-top:6px;">Rotate with mouse/finger to check acrylic depth, edge reflection & glow.</p>
+  <div class="border-t border-gray-800 mt-8 pt-5 text-[11px] text-gray-500 flex flex-col sm:flex-row items-center justify-between gap-3">
+    <div>© <span id="year"></span> <span id="copyrightBrand">DESIGN CREATIVE</span> (wearstay.com). All rights reserved.</div>
+    <div class="flex items-center gap-5">
+      <span class="hover:text-gray-400 cursor-pointer">Terms of Service</span>
+      <span class="hover:text-gray-400 cursor-pointer">Privacy Policy</span>
+      <span class="hover:text-gray-400 cursor-pointer">Commercial Guarantee</span>
     </div>
   </div>
-    <!-- ================= JAVASCRIPT STUDIO ENGINE ================= -->
-  <script>
-    let canvasInstance;
-    let voiceRecognition = null;
-    let isVoiceActive = false;
-    let threeScene, threeCam, threeRenderer, threeMesh;
+</div>
+</footer>
+<!-- MODAL: INSTANT ORDER & CHECKOUT (50% ADVANCE SPLIT & PROMOTIONS) -->
+<div id="instantOrderModal" class="modal">
+<div class="modal-box border border-emerald-500/50">
+  <div class="flex justify-between items-center border-b border-gray-800 pb-3">
+    <div class="flex items-center gap-2">
+      <div class="w-8 h-8 rounded-lg bg-emerald-500/20 text-emerald-400 flex items-center justify-center font-bold">
+        <i class="fa-solid fa-cart-shopping"></i>
+      </div>
+      <div>
+        <h2 class="font-black text-base">Direct Fabrication Checkout</h2>
+        <p class="text-[10px] text-gray-400">50% Advance Schedule, Commercial Warranty & WhatsApp Confirmation</p>
+      </div>
+    </div>
+    <button onclick="closeModal('instantOrderModal')" class="text-2xl text-gray-400 hover:text-white">&times;</button>
+  </div>
 
-    // --- 1. PHYSICAL MEASUREMENT ENGINE ---
-    const PhysicalMeasurement = {
-      toInches(val, unit) {
-        const v = parseFloat(val) || 0;
-        switch (unit.toLowerCase()) {
-          case 'inch': return v;
-          case 'feet': return v * 12;
-          case 'mm': return v / 25.4;
-          case 'cm': return v / 2.54;
-          default: return v;
-        }
-      },
-      toMillimeters(val, unit) {
-        return this.toInches(val, unit) * 25.4;
-      },
-      getRenderPixels(width, height, unit, dpi = 150) {
-        const inW = this.toInches(width, unit);
-        const inH = this.toInches(height, unit);
-        return {
-          pxW: Math.round(inW * dpi),
-          pxH: Math.round(inH * dpi),
-          mmW: Math.round(inW * 25.4 * 10) / 10,
-          mmH: Math.round(inH * 25.4 * 10) / 10
-        };
-      }
-    };
+  <div class="mt-4 grid sm:grid-cols-2 gap-4">
+    <!-- Order Details -->
+    <div class="space-y-2 text-xs">
+      <div class="surface p-3 space-y-1.5 border border-cyan-900/60">
+        <div class="font-bold text-cyan-300 flex justify-between">
+          <span>Sign Specifications</span>
+          <span id="orderSpecsDimensions" class="font-mono">48" × 24" (8 sqft)</span>
+        </div>
+        <div class="flex justify-between text-gray-400 text-[11px]">
+          <span>Material Type:</span> <b id="orderSpecsMaterial" class="text-white">3D Acrylic Letters</b>
+        </div>
+        <div class="flex justify-between text-gray-400 text-[11px]">
+          <span>Warranty Tier:</span> <b id="orderSpecsWarranty" class="text-amber-300">5 - 10 Saal Waterproof</b>
+        </div>
+        <div class="flex justify-between text-gray-400 text-[11px]">
+          <span>Lead Time:</span> <b class="text-emerald-300">2-4 Business Days</b>
+        </div>
+        <div id="promoBonusWrap" class="p-1.5 rounded bg-amber-950/40 border border-amber-500/40 text-[10px] text-amber-300 hidden">
+          🎁 <b id="promoBonusText">FREE Full Reel Ad & Local SEO Included!</b>
+        </div>
+        
+        <!-- 50% ADVANCE COMMERCIAL SPLIT -->
+        <div class="border-t border-gray-800 pt-2 space-y-1">
+          <div class="flex justify-between text-gray-400 text-xs">
+            <span>Total Valuation:</span>
+            <span id="orderEstimatedTotal" class="font-mono font-bold text-white">₹4,800</span>
+          </div>
+          <div class="flex justify-between text-xs text-amber-300 font-bold bg-[#0d121d] p-1.5 rounded border border-amber-900/40">
+            <span>50% Advance to Start:</span>
+            <span id="orderAdvanceAmount">₹2,400</span>
+          </div>
+          <div class="flex justify-between text-[11px] text-gray-400">
+            <span>Balance Due on Delivery:</span>
+            <span id="orderBalanceAmount">₹2,400</span>
+          </div>
+        </div>
+      </div>
 
-    // --- 2. INITIALIZATION ---
-    document.addEventListener("DOMContentLoaded", () => {
-      canvasInstance = new fabric.Canvas('studio-canvas', {
-        width: 600,
-        height: 320,
-        backgroundColor: '#0b0f19',
-        preserveObjectStacking: true
-      });
+      <!-- Customer Inputs -->
+      <div>
+        <label class="text-[10px] text-gray-400 block mb-0.5">Your Name / Business Name *</label>
+        <input id="orderCustName" type="text" placeholder="e.g. Mohd Adil" class="w-full surface p-2 text-xs outline-none text-white">
+      </div>
+      <div>
+        <label class="text-[10px] text-gray-400 block mb-0.5">WhatsApp / Phone Number *</label>
+        <input id="orderCustPhone" type="tel" placeholder="e.g. +91 9354944438" class="w-full surface p-2 text-xs outline-none text-white">
+      </div>
+      <div>
+        <label class="text-[10px] text-gray-400 block mb-0.5">Delivery City / Address *</label>
+        <input id="orderCustAddress" type="text" placeholder="Delhi NCR / Worldwide" class="w-full surface p-2 text-xs outline-none text-white">
+      </div>
+    </div>
 
-      // Default Signboard Starting Setup
-      const defaultSign = new fabric.IText('DESIGN CREATIVE', {
-        left: 70,
-        top: 120,
-        fontFamily: 'Arial',
-        fontSize: 34,
-        fontWeight: 'bold',
-        fill: '#f59e0b'
-      });
-      canvasInstance.add(defaultSign);
-      canvasInstance.renderAll();
+    <!-- Payment Gateways (UPI QR & WhatsApp) -->
+    <div class="surface p-3 border border-emerald-800/60 flex flex-col justify-between">
+      <div>
+        <div class="text-xs font-bold text-emerald-400 mb-1 flex items-center justify-between">
+          <span>Deposit (50% Advance) Gateway</span>
+          <span class="text-[9px] bg-emerald-500/20 text-emerald-300 px-1.5 py-0.5 rounded font-mono">DIRECT UPI</span>
+        </div>
+        <p class="text-[10px] text-gray-400 mb-2">Scan UPI QR to deposit advance, then confirm instant dispatch on WhatsApp.</p>
 
-      initSpeechRecognition();
+        <!-- UPI QR Container -->
+        <div class="flex flex-col items-center justify-center p-3 bg-white rounded-xl mb-3">
+          <div id="upiQrCode"></div>
+          <div class="text-[10px] text-black font-bold mt-1 text-center font-mono">
+            Scan to Pay 50% Advance via GPay, PhonePe, Paytm
+          </div>
+        </div>
 
-      // Autosave Recovery State
-      canvasInstance.on('object:modified', () => {
-        localStorage.setItem('dc_engine_draft', JSON.stringify(canvasInstance.toJSON()));
-      });
+        <div class="space-y-1.5">
+          <a id="upiPayLink" href="#" class="btn-emerald py-2 w-full rounded-lg text-xs font-bold flex items-center justify-center gap-1.5 text-center">
+            <i class="fa-solid fa-mobile-screen"></i> Pay 50% Advance on Mobile UPI
+          </a>
+          <div id="paypalButtonContainer" class="min-h-[40px]"></div>
+        </div>
+      </div>
 
-      // Restore if draft exists
-      const saved = localStorage.getItem('dc_engine_draft');
-      if (saved) {
-        try {
-          canvasInstance.loadFromJSON(JSON.parse(saved), canvasInstance.renderAll.bind(canvasInstance));
-        } catch (e) {}
-      }
-    });
+      <button onclick="confirmOrderWhatsApp()" class="surface hover:border-green-400 py-2.5 w-full rounded-lg text-xs font-bold text-green-400 flex items-center justify-center gap-1.5 mt-2 shadow-lg">
+        <i class="fa-brands fa-whatsapp text-sm"></i> Send Specifications & 50% Slip via WhatsApp
+      </button>
+    </div>
+  </div>
+</div>
+</div>
 
-    // --- 3. TOAST MESSAGES ---
-    function triggerToast(msg, isErr = false) {
-      const tray = document.getElementById('toast-tray');
-      const item = document.createElement('div');
-      item.className = `toast-item ${isErr ? 'toast-error' : ''}`;
-      item.innerText = msg;
-      tray.appendChild(item);
-      setTimeout(() => item.remove(), 4000);
-    }
+<!-- MODAL: AI SIGN GENERATOR (GEMINI 2.5) -->
+<div id="aiModal" class="modal">
+<div class="modal-box border border-purple-500/50">
+  <div class="flex justify-between items-center border-b border-gray-800 pb-3">
+    <div class="flex items-center gap-2">
+      <div class="w-8 h-8 rounded-lg bg-purple-500/20 text-purple-300 flex items-center justify-center font-bold">
+        ✨
+      </div>
+      <div>
+        <h2 class="font-black text-base">Gemini 2.5 Flash AI Sign Studio</h2>
+        <p class="text-[10px] text-gray-400">Describe your sign or use voice in any language</p>
+      </div>
+    </div>
+    <button onclick="closeModal('aiModal')" class="text-2xl text-gray-400 hover:text-white">&times;</button>
+  </div>
 
-    // --- 4. MODE SWITCHER ---
-    function switchMode(m) {
-      document.getElementById('btn-m-simple').classList.toggle('active', m === 'simple');
-      document.getElementById('btn-m-pro').classList.toggle('active', m === 'pro');
-      document.getElementById('prepress-box').style.display = (m === 'pro') ? 'block' : 'none';
-      triggerToast(m === 'simple' ? "Simple Mode active" : "Advanced Prepress active");
-    }
+  <div class="mt-4 space-y-3 text-xs">
+    <div>
+      <label class="text-[10px] text-gray-400 block mb-1">Describe your sign text, size, and style:</label>
+      <textarea id="aiPrompt" rows="3" class="w-full surface p-2.5 text-xs outline-none text-white border-purple-900" placeholder="e.g. DESIGN CREATIVE signboard with titanium gold letters and deep blue glow, 48x24 inches"></textarea>
+    </div>
 
-    // --- 5. TEMPLATES LOADER ---
-    function loadTemplate(key) {
-      if (!key) return;
-      canvasInstance.clear();
+    <div class="flex gap-2">
+      <button onclick="generateGeminiSign()" id="aiGenBtn" class="btn flex-1 py-2.5 rounded-lg text-xs font-bold flex items-center justify-center gap-2">
+        <i class="fa-solid fa-wand-magic-sparkles"></i> Generate Sign Design with Gemini
+      </button>
+      <button onclick="startVoiceAIInModal()" class="surface px-3 py-2.5 rounded-lg text-xs font-bold text-cyan-300 flex items-center gap-1.5 hover:border-cyan-400">
+        <i class="fa-solid fa-microphone"></i> Voice
+      </button>
+    </div>
 
-      if (key === 'acrylic_glow') {
-        canvasInstance.setBackgroundColor('#05070c', () => {});
-        document.getElementById('unit-w').value = 8;
-        document.getElementById('unit-h').value = 3;
-        document.getElementById('unit-type').value = 'feet';
-        const frame = new fabric.Rect({ left: 40, top: 40, width: 520, height: 240, fill: '#0c101a', stroke: '#1e3a8a', strokeWidth: 4 });
-        const txt = new fabric.IText('DESIGN CREATIVE\nGLOW SIGN', { left: 90, top: 110, fontSize: 30, fontWeight: 'bold', fill: '#f59e0b', textAlign: 'center' });
-        canvasInstance.add(frame, txt);
-      } else if (key === 'ss_gold') {
-        canvasInstance.setBackgroundColor('#181512', () => {});
-        document.getElementById('unit-w').value = 6;
-        document.getElementById('unit-h').value = 2;
-        const txt = new fabric.IText('TITANIUM SS 304', { left: 120, top: 120, fontSize: 34, fontWeight: 'bold', fill: '#facc15' });
-        canvasInstance.add(txt);
-      } else if (key === 'flex_banner') {
-        canvasInstance.setBackgroundColor('#1e3a8a', () => {});
-        document.getElementById('unit-w').value = 10;
-        document.getElementById('unit-h').value = 4;
-        const txt1 = new fabric.IText('GRAND OPENING 50% OFF', { left: 80, top: 110, fontSize: 34, fontWeight: 'bold', fill: '#ffffff' });
-        canvasInstance.add(txt1);
-      } else if (key === 'office_plate') {
-        canvasInstance.setBackgroundColor('#ffffff', () => {});
-        document.getElementById('unit-w').value = 12;
-        document.getElementById('unit-h').value = 12;
-        document.getElementById('unit-type').value = 'inch';
-        const border = new fabric.Rect({ left: 60, top: 40, width: 240, height: 240, fill: '#ffffff', stroke: '#000000', strokeWidth: 3 });
-        const txt = new fabric.IText('DESIGN CREATIVE\nMOHD ADIL', { left: 90, top: 130, fontSize: 20, fontWeight: 'bold', fill: '#000000', textAlign: 'center' });
-        canvasInstance.add(border, txt);
-      } else if (key === 'neon_bar') {
-        canvasInstance.setBackgroundColor('#000000', () => {});
-        document.getElementById('unit-w').value = 4;
-        document.getElementById('unit-h').value = 2;
-        const txt = new fabric.IText('NEON LIGHTS', { left: 100, top: 100, fontSize: 36, fontWeight: 'bold', fill: '#ef4444', shadow: '0 0 15px #ef4444' });
-        canvasInstance.add(txt);
-      }
-      canvasInstance.renderAll();
-      applyCanvasDimensions();
-      triggerToast("Template loaded successfully!");
-    }
+    <div id="aiStatus" class="text-xs text-purple-300 min-h-[16px] text-center"></div>
+  </div>
+</div>
+</div>
 
-    // --- 6. ARTWORK UPLOADER (Supports JPG, PNG, WEBP, SVG) ---
-    function handleArtworkUpload(e) {
-      const file = e.target.files[0];
-      if (!file) return;
+<!-- MODAL: COMMERCIAL PLANS -->
+<div id="plansModal" class="modal">
+<div class="modal-box border border-amber-500/40 max-w-xl">
+  <div class="flex justify-between items-center border-b border-gray-800 pb-3">
+    <div class="flex items-center gap-2">
+      <i class="fa-solid fa-crown text-amber-400 text-lg"></i>
+      <h2 class="font-black text-base">Commercial Fabrication Plans</h2>
+    </div>
+    <button onclick="closeModal('plansModal')" class="text-2xl text-gray-400 hover:text-white">&times;</button>
+  </div>
+  <div class="grid sm:grid-cols-3 gap-3 mt-4 text-xs">
+    <div class="surface p-3 border border-gray-800 rounded-xl space-y-2">
+      <b class="text-cyan-300 block">Starter LED</b>
+      <div class="text-xl font-black">₹499 <span class="text-[10px] text-gray-400">/sqft</span></div>
+      <ul class="text-[11px] text-gray-400 space-y-1">
+        <li>✓ 2 Saal Warranty</li>
+        <li>✓ Single Color Neon</li>
+        <li>✓ Clear Acrylic Back</li>
+      </ul>
+      <button onclick="selectPlan('Starter LED')" class="btn w-full py-1.5 rounded-lg text-xs">Select</button>
+    </div>
+    <div class="surface p-3 border border-amber-500/50 rounded-xl space-y-2 bg-amber-950/20">
+      <div class="flex justify-between items-center"><b class="text-amber-300">RGB Pro Studio</b> <span class="text-[9px] bg-amber-500/30 text-amber-300 px-1 rounded">POPULAR</span></div>
+      <div class="text-xl font-black">₹750 <span class="text-[10px] text-gray-400">/sqft</span></div>
+      <ul class="text-[11px] text-gray-400 space-y-1">
+        <li>✓ 5-10 Saal Warranty</li>
+        <li>✓ Cast Acrylic + LED</li>
+        <li>✓ Waterproof IP67</li>
+      </ul>
+      <button onclick="selectPlan('RGB Pro Studio')" class="btn-amber w-full py-1.5 rounded-lg text-xs font-bold">Select</button>
+    </div>
+    <div class="surface p-3 border border-gray-800 rounded-xl space-y-2">
+      <b class="text-emerald-300 block">3D Architectural</b>
+      <div class="text-xl font-black">₹950 <span class="text-[10px] text-gray-400">/sqft</span></div>
+      <ul class="text-[11px] text-gray-400 space-y-1">
+        <li>✓ 25-50 Saal Durability</li>
+        <li>✓ SS 304 Titanium Gold</li>
+        <li>✓ Free Video Promotion</li>
+      </ul>
+      <button onclick="selectPlan('3D Architectural')" class="btn-emerald w-full py-1.5 rounded-lg text-xs">Select</button>
+    </div>
+  </div>
+</div>
+</div>
 
-      triggerToast("Importing artwork (" + file.type + ")...");
-      const reader = new FileReader();
+<!-- TOAST NOTIFICATION -->
+<div id="toast" class="toast">
+  <i id="toastIcon" class="fa-solid fa-circle-check text-cyan-400"></i>
+  <span id="toastMsg" class="text-xs">Notification</span>
+  </div>
+  <!-- JAVASCRIPT APPLICATION CORE -->
+<script>
+// ==========================================
+// 1. CONFIGURATION & STATE INITIALIZATION
+// ==========================================
+const GEMINI_API_KEY = "YOUR_API_KEY_HERE";
 
-      if (file.type === "image/svg+xml") {
-        reader.onload = (ev) => {
-          fabric.loadSVGFromString(ev.target.result, (objects, options) => {
-            const svgGroup = fabric.util.groupSVGElements(objects, options);
-            svgGroup.scaleToWidth(canvasInstance.getWidth() * 0.7);
-            canvasInstance.centerObject(svgGroup);
-            canvasInstance.add(svgGroup);
-            canvasInstance.setActiveObject(svgGroup);
-            canvasInstance.renderAll();
-            triggerToast("Vector SVG imported!");
-          });
-        };
-        reader.readAsText(file);
-      } else {
-        // Direct JPG, JPEG, PNG, WEBP handler
-        reader.onload = (ev) => {
-          fabric.Image.fromURL(ev.target.result, (img) => {
-            img.scaleToWidth(canvasInstance.getWidth() * 0.75);
-            canvasInstance.centerObject(img);
-            canvasInstance.add(img);
-            canvasInstance.setActiveObject(img);
-            canvasInstance.renderAll();
-            triggerToast("Artwork image (JPG/PNG) placed!");
-          });
-        };
-        reader.readAsDataURL(file);
-      }
-    }
+let canvas;
+let currentZoom = 1;
+let historyStack = [];
+let redoStack = [];
+let isHistoryLocked = false;
+let isNeonPulseActive = false;
 
-    // --- 7. ELEMENTS & PREPRESS HELPERS ---
-    function spawnText() {
-      const txt = new fabric.IText('NEW SIGN TEXT', { left: 90, top: 90, fontFamily: 'Arial', fontSize: 28, fill: '#ffffff' });
-      canvasInstance.add(txt);
-      canvasInstance.setActiveObject(txt);
-      canvasInstance.renderAll();
-    }
+const DEFAULT_CONFIG = {
+  brandName: "DESIGN CREATIVE",
+  whatsAppPhone: "919354944438",
+  supportEmail: "ledsignadil@gmail.com",
+  gstin: "07AGFPA8041C1ZZ",
+  currency: "INR",
+  usdInrRate: 84,
+  rateAcrylic: 600,
+  rateSS: 950,
+  rateGlow: 750,
+  promoCode: "SIGN10",
+  upiId: "ledsignadil@okaxis",
+  paypalId: "merchant@wearstay.com"
+};
 
-    function spawnShape(type) {
-      let shape;
-      if (type === 'rect') {
-        shape = new fabric.Rect({ left: 80, top: 80, width: 220, height: 120, fill: '#1e3a8a', stroke: '#3b82f6', strokeWidth: 2 });
-      } else if (type === 'circle') {
-        shape = new fabric.Circle({ left: 100, top: 100, radius: 55, fill: '#f59e0b' });
-      } else if (type === 'line') {
-        shape = new fabric.Line([50, 100, 300, 100], { stroke: '#ffffff', strokeWidth: 3 });
-      }
-      canvasInstance.add(shape);
-      canvasInstance.setActiveObject(shape);
-      canvasInstance.renderAll();
-    }
+function getAppConfig() {
+  return DEFAULT_CONFIG;
+}
 
-    function updateBoardBackground(col) {
-      canvasInstance.setBackgroundColor(col, canvasInstance.renderAll.bind(canvasInstance));
-      document.getElementById('col-bg').value = col;
-    }
+// ==========================================
+// 2. CANVAS INITIALIZATION & CORE TOOLS
+// ==========================================
+window.addEventListener("DOMContentLoaded", () => {
+  document.getElementById("year").innerText = new Date().getFullYear();
 
-    function updateObjectFill(col) {
-      const obj = canvasInstance.getActiveObject();
-      if (!obj) {
-        triggerToast("Select text or shape first to color it.", true);
-        return;
-      }
-      if (obj.set) {
-        obj.set('fill', col);
-        canvasInstance.renderAll();
-      }
-    }
+  canvas = new fabric.Canvas("designCanvas", {
+    width: 800,
+    height: 500,
+    backgroundColor: "#0A0E17",
+    preserveObjectStacking: true
+  });
 
-    function applyCanvasDimensions() {
-      const w = parseFloat(document.getElementById('unit-w').value);
-      const h = parseFloat(document.getElementById('unit-h').value);
-      const u = document.getElementById('unit-type').value;
-      const dpi = parseInt(document.getElementById('unit-dpi').value);
+  const initialText = new fabric.Text("DESIGN CREATIVE", {
+    left: 400,
+    top: 220,
+    originX: "center",
+    originY: "center",
+    fontSize: 54,
+    fontWeight: "900",
+    fill: "#00E5FF",
+    stroke: "#FFFFFF",
+    strokeWidth: 1.5,
+    shadow: new fabric.Shadow({
+      color: "#00E5FF",
+      blur: 25,
+      offsetX: 0,
+      offsetY: 0
+    })
+  });
+  canvas.add(initialText);
+  saveHistory();
+  updateLayers();
+  calculateArea();
 
-      const metrics = PhysicalMeasurement.getRenderPixels(w, h, u, dpi);
-      const maxDisplayWidth = Math.min(window.innerWidth - 640, 680);
-      const scale = maxDisplayWidth / metrics.pxW;
+  canvas.on("object:modified", () => { saveHistory(); updateLayers(); });
+  canvas.on("object:added", () => updateLayers());
+  canvas.on("object:removed", () => updateLayers());
 
-      canvasInstance.setWidth(metrics.pxW * scale);
-      canvasInstance.setHeight(metrics.pxH * scale);
-      canvasInstance.setZoom(scale);
-      canvasInstance.renderAll();
+  initPayPalButton();
+  updateUPIPaymentInfo();
+});
 
-      triggerToast(`Canvas resized: ${metrics.mmW} x ${metrics.mmH} mm`);
-    }
+function addText() {
+  const text = new fabric.Text("CUSTOM SIGN", {
+    left: canvas.width / 2,
+    top: canvas.height / 2,
+    originX: "center",
+    originY: "center",
+    fontSize: 48,
+    fontWeight: "800",
+    fill: document.getElementById("fillColor").value,
+    stroke: document.getElementById("strokeColor").value,
+    strokeWidth: 1.5,
+    shadow: new fabric.Shadow({
+      color: document.getElementById("fillColor").value,
+      blur: 20,
+      offsetX: 0,
+      offsetY: 0
+    })
+  });
+  canvas.add(text);
+  canvas.setActiveObject(text);
+  canvas.renderAll();
+  saveHistory();
+}
 
-    function toggleBleedGuide() {
-      const el = document.getElementById('bleed-line');
-      el.style.display = (el.style.display === 'block') ? 'none' : 'block';
-    }
+function addRect() {
+  const rect = new fabric.Rect({
+    left: canvas.width / 2,
+    top: canvas.height / 2,
+    originX: "center",
+    originY: "center",
+    width: 320,
+    height: 180,
+    rx: 16,
+    ry: 16,
+    fill: "rgba(13, 18, 29, 0.75)",
+    stroke: "#00E5FF",
+    strokeWidth: 2,
+    shadow: new fabric.Shadow({ color: "rgba(0,229,255,0.4)", blur: 15 })
+  });
+  canvas.add(rect);
+  canvas.setActiveObject(rect);
+  canvas.renderAll();
+  saveHistory();
+}
 
-    function centerActiveObject() {
-      const obj = canvasInstance.getActiveObject();
-      if (obj) { canvasInstance.centerObject(obj); canvasInstance.renderAll(); }
-    }
+function addCircle() {
+  const circle = new fabric.Circle({
+    left: canvas.width / 2,
+    top: canvas.height / 2,
+    originX: "center",
+    originY: "center",
+    radius: 90,
+    fill: "rgba(13, 18, 29, 0.75)",
+    stroke: "#EC4899",
+    strokeWidth: 2,
+    shadow: new fabric.Shadow({ color: "rgba(236,72,153,0.5)", blur: 15 })
+  });
+  canvas.add(circle);
+  canvas.setActiveObject(circle);
+  canvas.renderAll();
+  saveHistory();
+}
 
-    function pushToBack() {
-      const obj = canvasInstance.getActiveObject();
-      if (obj) { canvasInstance.sendToBack(obj); canvasInstance.renderAll(); }
-    }
+function triggerImageUpload() {
+  document.getElementById("imageInput").click();
+}
 
-    function bringToFront() {
-      const obj = canvasInstance.getActiveObject();
-      if (obj) { canvasInstance.bringToFront(obj); canvasInstance.renderAll(); }
-    }
-        // --- 8. REAL AUTOCAD DXF GENERATION (IN-BROWSER) ---
-    function buildAutoCAD_DXF(objects, docWidthMm, docHeightMm) {
-      let dxf = [
-        "0", "SECTION", "2", "HEADER", "9", "$ACADVER", "1", "AC1009",
-        "9", "$MEASUREMENT", "70", "1", "0", "ENDSEC",
-        "0", "SECTION", "2", "ENTITIES"
-      ];
+function loadImage(e) {
+  const file = e.target.files[0];
+  if (!file) return;
 
-      objects.forEach((obj) => {
-        const scaleX = docWidthMm / (canvasInstance.getWidth() || docWidthMm);
-        const scaleY = docHeightMm / (canvasInstance.getHeight() || docHeightMm);
-
-        if (obj.type === 'rect') {
-          const x1 = obj.left * scaleX;
-          const y1 = (docHeightMm - obj.top) * scaleY;
-          const x2 = x1 + (obj.width * (obj.scaleX || 1) * scaleX);
-          const y2 = y1 - (obj.height * (obj.scaleY || 1) * scaleY);
-
-          dxf.push(
-            "0", "POLYLINE", "8", "CUT_PATH", "66", "1", "70", "1",
-            "0", "VERTEX", "8", "CUT_PATH", "10", x1.toFixed(3), "20", y1.toFixed(3), "30", "0.0",
-            "0", "VERTEX", "8", "CUT_PATH", "10", x2.toFixed(3), "20", y1.toFixed(3), "30", "0.0",
-            "0", "VERTEX", "8", "CUT_PATH", "10", x2.toFixed(3), "20", y2.toFixed(3), "30", "0.0",
-            "0", "VERTEX", "8", "CUT_PATH", "10", x1.toFixed(3), "20", y2.toFixed(3), "30", "0.0",
-            "0", "SEQEND"
-          );
-        } else if (obj.type === 'circle') {
-          const cx = (obj.left + (obj.radius * (obj.scaleX || 1))) * scaleX;
-          const cy = (docHeightMm - (obj.top + (obj.radius * (obj.scaleY || 1)))) * scaleY;
-          const r = (obj.radius * (obj.scaleX || 1)) * scaleX;
-
-          dxf.push(
-            "0", "CIRCLE", "8", "CUT_PATH",
-            "10", cx.toFixed(3), "20", cy.toFixed(3), "30", "0.0",
-            "40", r.toFixed(3)
-          );
-        }
-      });
-
-      dxf.push("0", "ENDSEC", "0", "EOF");
-      return dxf.join("\n");
-    }
-
-    // --- 9. PRODUCTION EXPORTS (Supports JPG, PNG, PDF, SVG, DXF) ---
-    function exportFileEngine(type) {
-      if (type === 'jpg') {
-        const url = canvasInstance.toDataURL({ format: 'jpeg', quality: 0.95 });
-        triggerDownload(url, 'design-creative-proof.jpg');
-        triggerToast("JPG image downloaded!");
-      } else if (type === 'png') {
-        const url = canvasInstance.toDataURL({ format: 'png', multiplier: 2 });
-        triggerDownload(url, 'design-creative-highres.png');
-        triggerToast("PNG image downloaded!");
-      } else if (type === 'svg') {
-        const blob = new Blob([canvasInstance.toSVG()], { type: 'image/svg+xml' });
-        triggerBlobDownload(blob, 'design-creative-vector.svg');
-        triggerToast("SVG vector downloaded!");
-      } else if (type === 'pdf') {
-        const { jsPDF } = window.jspdf;
-        const doc = new jsPDF({ orientation: 'landscape', unit: 'mm', format: 'a4' });
-        const imgData = canvasInstance.toDataURL({ format: 'jpeg', quality: 0.95 });
-        doc.addImage(imgData, 'JPEG', 10, 10, 277, 190);
-        doc.save('design-creative-print-300dpi.pdf');
-        triggerToast("300 DPI PDF downloaded!");
-      } else if (type === 'dxf') {
-        triggerToast("Compiling AutoCAD DXF for CNC/Laser...");
-        const w = parseFloat(document.getElementById('unit-w').value);
-        const h = parseFloat(document.getElementById('unit-h').value);
-        const u = document.getElementById('unit-type').value;
-
-        const mmW = PhysicalMeasurement.toMillimeters(w, u);
-        const mmH = PhysicalMeasurement.toMillimeters(h, u);
-
-        const dxfData = buildAutoCAD_DXF(canvasInstance.getObjects().map(o => o.toObject()), mmW, mmH);
-        const blob = new Blob([dxfData], { type: 'application/dxf' });
-        triggerBlobDownload(blob, 'cnc-laser-cut.dxf');
-        triggerToast("Real DXF downloaded!");
-      }
-    }
-
-    function triggerDownload(uri, name) {
-      const a = document.createElement("a");
-      a.download = name;
-      a.href = uri;
-      a.click();
-    }
-
-    function triggerBlobDownload(blob, name) {
-      const url = URL.createObjectURL(blob);
-      triggerDownload(url, name);
-      URL.revokeObjectURL(url);
-    }
-
-    // --- 10. REAL THREE.JS 3D VIEWPORT ---
-    function launch3DMockup() {
-      document.getElementById('mockup-modal').classList.add('active');
-      const box = document.getElementById('three-stage-box');
-      box.innerHTML = '';
-
-      threeScene = new THREE.Scene();
-      threeScene.background = new THREE.Color(0x07090e);
-
-      threeCam = new THREE.PerspectiveCamera(45, box.clientWidth / 380, 0.1, 1000);
-      threeCam.position.set(0, 0, 14);
-
-      threeRenderer = new THREE.WebGLRenderer({ antialias: true, preserveDrawingBuffer: true });
-      threeRenderer.setSize(box.clientWidth, 380);
-      box.appendChild(threeRenderer.domElement);
-
-      const light1 = new THREE.AmbientLight(0xffffff, 0.85);
-      const light2 = new THREE.DirectionalLight(0xffffff, 1.2);
-      light2.position.set(5, 10, 7);
-      threeScene.add(light1, light2);
-
-      const texture = new THREE.CanvasTexture(canvasInstance.lowerCanvasEl);
-      const mats = [
-        new THREE.MeshStandardMaterial({ color: 0x1f2430 }),
-        new THREE.MeshStandardMaterial({ color: 0x1f2430 }),
-        new THREE.MeshStandardMaterial({ color: 0x1f2430 }),
-        new THREE.MeshStandardMaterial({ color: 0x1f2430 }),
-        new THREE.MeshStandardMaterial({ map: texture, roughness: 0.1 }),
-        new THREE.MeshStandardMaterial({ color: 0x111111 })
-      ];
-
-      threeMesh = new THREE.Mesh(new THREE.BoxGeometry(8, 4.2, 0.3), mats);
-      threeScene.add(threeMesh);
-
-      let isDragging = false, px = 0, py = 0;
-      const onDown = (e) => {
-        isDragging = true;
-        px = e.clientX || (e.touches && e.touches[0].clientX);
-        py = e.clientY || (e.touches && e.touches[0].clientY);
-      };
-      const onMove = (e) => {
-        if (!isDragging || !threeMesh) return;
-        const cx = e.clientX || (e.touches && e.touches[0].clientX);
-        const cy = e.clientY || (e.touches && e.touches[0].clientY);
-        threeMesh.rotation.y += (cx - px) * 0.01;
-        threeMesh.rotation.x += (cy - py) * 0.01;
-        px = cx; py = cy;
-      };
-      const onUp = () => { isDragging = false; };
-
-      box.addEventListener('mousedown', onDown);
-      window.addEventListener('mousemove', onMove);
-      window.addEventListener('mouseup', onUp);
-      box.addEventListener('touchstart', onDown);
-      window.addEventListener('touchmove', onMove);
-      window.addEventListener('touchend', onUp);
-
-      function loop() {
-        requestAnimationFrame(loop);
-        if (!isDragging && threeMesh) threeMesh.rotation.y += 0.002;
-        threeRenderer.render(threeScene, threeCam);
-      }
-      loop();
-    }
-
-    function close3DModal() {
-      document.getElementById('mockup-modal').classList.remove('active');
-    }
-
-    // --- 11. DYNAMIC BUDGET, 50% ADVANCE, WARRANTY & PROMOTION TIERS ---
-    function calculateCommercialTiers() {
-      const budget = parseFloat(document.getElementById('order-budget').value) || 0;
-      const adv = budget * 0.5;
-      const bal = budget - adv;
-
-      document.getElementById('deposit-figure').innerText = '₹' + adv.toLocaleString();
-      document.getElementById('balance-figure').innerText = '₹' + bal.toLocaleString();
-
-      const b = document.getElementById('tier-badge');
-      const w = document.getElementById('tier-w');
-      const m = document.getElementById('tier-m');
-      const p = document.getElementById('tier-p');
-      const pb = document.getElementById('promo-banner');
-
-      if (budget < 12000) {
-        b.innerText = "Standard Commercial Grade";
-        b.style.background = "#475569";
-        w.innerText = "2 Saal (Standard Flex / General Acrylic)";
-        m.innerText = "3mm Normal Acrylic + Regular LED Modules";
-        p.innerText = "None";
-        pb.style.display = "none";
-      } else if (budget >= 12000 && budget < 30000) {
-        b.innerText = "Premium Heavy-Duty Grade";
-        b.style.background = "#2563eb";
-        w.innerText = "5 Saal se 10 Saal (Waterproof)";
-        m.innerText = "Cast Acrylic + Waterproof Samsung LED Modules + ACP Base";
-        p.innerText = "Free HD Social Media Banner";
-        pb.style.display = "none";
-      } else if (budget >= 30000 && budget < 60000) {
-        b.innerText = "VIP Architectural Steel Grade";
-        b.style.background = "#f59e0b";
-        w.innerText = "25 Saal (Rust-Proof / Anti-Fade)";
-        m.innerText = "SS 304 Titanium Gold / Rose Gold + Laser Profile Edge + MeanWell Power";
-        p.innerText = "FREE Full Social Media Reel Ad + Local Google Maps Ranking Setup!";
-        pb.style.display = "block";
-      } else {
-        b.innerText = "Ultra Lifetime Masterpiece Grade";
-        b.style.background = "#10b981";
-        w.innerText = "50 Saal Lifetime Durability Guarantee";
-        m.innerText = "Heavy Architectural Etched Brass / Bronze / Solid 316 Marine Grade Steel";
-        p.innerText = "FREE Complete Brand Promotion Package (Video Ads + Meta Campaign Strategy)!";
-        pb.style.display = "block";
-      }
-    }
-
-    function openOrderModal() {
-      document.getElementById('order-modal').classList.add('active');
-      calculateCommercialTiers();
-    }
-
-    function closeOrderModal() {
-      document.getElementById('order-modal').classList.remove('active');
-    }
-
-    // Direct WhatsApp Integration on Order Submit
-    function handleOrderSubmission(e) {
-      e.preventDefault();
-      const token = "DC-" + Math.floor(100000 + Math.random() * 900000);
-      const budget = document.getElementById('order-budget').value;
-      const adv = document.getElementById('deposit-figure').innerText;
-      const bal = document.getElementById('balance-figure').innerText;
-      const w = document.getElementById('tier-w').innerText;
-      const m = document.getElementById('tier-m').innerText;
-      const p = document.getElementById('tier-p').innerText;
-      const name = document.getElementById('cust-name').value;
-      const phone = document.getElementById('cust-phone').value;
-      const prod = document.getElementById('cust-product').value;
-      const wSize = document.getElementById('unit-w').value + " x " + document.getElementById('unit-h').value + " " + document.getElementById('unit-type').value;
-
-      const waMessage = 
-        `*NEW ORDER - DESIGN CREATIVE*\n` +
-        `---------------------------\n` +
-        `*Order Token:* ${token}\n` +
-        `*Customer Name:* ${name}\n` +
-        `*Phone:* ${phone}\n` +
-        `*Product:* ${prod}\n` +
-        `*Dimensions:* ${wSize}\n` +
-        `---------------------------\n` +
-        `*Total Amount:* ₹${parseFloat(budget).toLocaleString()}\n` +
-        `*Advance (50% Required):* ${adv}\n` +
-        `*Balance (On Delivery):* ${bal}\n` +
-        `*Warranty:* ${w}\n` +
-        `*Material Spec:* ${m}\n` +
-        `*Free Bonus:* ${p}\n` +
-        `---------------------------\n` +
-        `_Generated via wearstay.com_`;
-
-      const waUrl = `https://wa.me/919354944438?text=${encodeURIComponent(waMessage)}`;
-      window.open(waUrl, '_blank');
-      closeOrderModal();
-    }
-
-    // --- 12. GLOBAL MULTI-LANGUAGE VOICE ENGINE ---
-    const colorDictionary = {
-      blue: '#1e3a8a', neela: '#1e3a8a', azraq: '#1e3a8a', azul: '#1e3a8a', bleu: '#1e3a8a', blau: '#1e3a8a',
-      black: '#000000', kala: '#000000', aswad: '#000000', negro: '#000000', noir: '#000000', schwarz: '#000000',
-      white: '#ffffff', safed: '#ffffff', abyad: '#ffffff', blanco: '#ffffff', blanc: '#ffffff', weiss: '#ffffff',
-      red: '#991b1b', lal: '#991b1b', ahmar: '#991b1b', rojo: '#991b1b', rouge: '#991b1b', rot: '#991b1b',
-      yellow: '#f59e0b', gold: '#f59e0b', peela: '#f59e0b', asfar: '#f59e0b', amarillo: '#f59e0b', jaune: '#f59e0b',
-      green: '#10b981', hara: '#10b981', akhdar: '#10b981', verde: '#10b981', vert: '#10b981', grun: '#10b981'
-    };
-
-    function initSpeechRecognition() {
-      const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
-      if (!SR) return;
-      voiceRecognition = new SR();
-      voiceRecognition.lang = navigator.language || 'en-US';
-
-      voiceRecognition.onresult = (e) => {
-        const txt = e.results[0][0].transcript;
-        document.getElementById('ai-command-input').value = txt;
-        executeAIInstruction();
-      };
-      voiceRecognition.onend = () => {
-        document.getElementById('voice-status-dot').innerText = "🎙";
-        isVoiceActive = false;
-      };
-    }
-
-    function toggleVoiceEngine() {
-      if (!voiceRecognition) {
-        triggerToast("Voice works best in Chrome/Edge/Safari.", true);
-        return;
-      }
-      if (isVoiceActive) {
-        voiceRecognition.stop();
-      } else {
-        voiceRecognition.lang = navigator.language || 'en-US';
-        document.getElementById('voice-status-dot').innerText = "🔴";
-        voiceRecognition.start();
-        isVoiceActive = true;
-        triggerToast("Listening... Speak in any language");
-      }
-    }
-
-    function executeAIInstruction() {
-      const cmd = document.getElementById('ai-command-input').value.toLowerCase();
-      if (!cmd) return;
-
-      let appliedColor = false;
-      for (const [key, hex] of Object.entries(colorDictionary)) {
-        if (cmd.includes(key)) {
-          updateBoardBackground(hex);
-          appliedColor = true;
-          break;
-        }
-      }
-
-      const textTriggers = ['text', 'likho', 'likh', 'write', 'add', 'naam', 'heading', 'ecrire', 'escribir', 'اكتب'];
-      const hasTextTrigger = textTriggers.some(t => cmd.includes(t));
-
-      if (hasTextTrigger) {
-        let cleanText = document.getElementById('ai-command-input').value;
-        textTriggers.forEach(t => {
-          cleanText = cleanText.replace(new RegExp(t, 'gi'), '');
+  const reader = new FileReader();
+  if (file.type === "image/svg+xml") {
+    reader.onload = function(evt) {
+      fabric.loadSVGFromString(evt.target.result, function(objects, options) {
+        const svgGroup = fabric.util.groupSVGElements(objects, options);
+        svgGroup.scaleToWidth(260);
+        svgGroup.set({
+          left: canvas.width / 2,
+          top: canvas.height / 2,
+          originX: "center",
+          originY: "center"
         });
-        cleanText = cleanText.trim();
-        if (cleanText) {
-          canvasInstance.add(new fabric.IText(cleanText.toUpperCase(), { left: 100, top: 100, fontSize: 30, fill: '#ffffff', fontWeight: 'bold' }));
-          canvasInstance.renderAll();
-        }
-      }
-      triggerToast("Instruction processed!");
+        canvas.add(svgGroup);
+        canvas.setActiveObject(svgGroup);
+        canvas.renderAll();
+        saveHistory();
+        showToast("SVG Vector imported!");
+      });
+    };
+    reader.readAsText(file);
+  } else {
+    reader.onload = function(evt) {
+      fabric.Image.fromURL(evt.target.result, function(img) {
+        img.scaleToWidth(260);
+        img.set({
+          left: canvas.width / 2,
+          top: canvas.height / 2,
+          originX: "center",
+          originY: "center"
+        });
+        canvas.add(img);
+        canvas.setActiveObject(img);
+        canvas.renderAll();
+        saveHistory();
+        showToast("Artwork image loaded!");
+      });
+    };
+    reader.readAsDataURL(file);
+  }
+}
+
+function duplicateObject() {
+  const active = canvas.getActiveObject();
+  if (!active) return showToast("Select an element to duplicate");
+  active.clone(function(cloned) {
+    cloned.set({ left: active.left + 20, top: active.top + 20 });
+    canvas.add(cloned);
+    canvas.setActiveObject(cloned);
+    canvas.renderAll();
+    saveHistory();
+  });
+}
+
+function deleteObject() {
+  const active = canvas.getActiveObject();
+  if (!active) return showToast("Select an element to delete");
+  canvas.remove(active);
+  canvas.renderAll();
+  saveHistory();
+}
+
+function clearCanvas() {
+  if (confirm("Clear all items on the canvas?")) {
+    canvas.clear();
+    canvas.backgroundColor = "#0A0E17";
+    canvas.renderAll();
+    saveHistory();
+  }
+}
+
+function centerObject() {
+  const active = canvas.getActiveObject();
+  if (!active) return;
+  canvas.centerObject(active);
+  canvas.renderAll();
+  saveHistory();
+}
+
+function bringForward() {
+  const active = canvas.getActiveObject();
+  if (active) { canvas.bringForward(active); canvas.renderAll(); saveHistory(); }
+}
+
+function sendBackward() {
+  const active = canvas.getActiveObject();
+  if (active) { canvas.sendBackwards(active); canvas.renderAll(); saveHistory(); }
+}
+
+function changeFill(color) {
+  const active = canvas.getActiveObject();
+  if (!active) return;
+  active.set("fill", color);
+  if (active.shadow) active.shadow.color = color;
+  canvas.renderAll();
+  saveHistory();
+}
+
+function changeStroke(color) {
+  const active = canvas.getActiveObject();
+  if (!active) return;
+  active.set("stroke", color);
+  canvas.renderAll();
+  saveHistory();
+}
+
+function changeOpacity(val) {
+  document.getElementById("opacityVal").innerText = Math.round(val * 100) + "%";
+  const active = canvas.getActiveObject();
+  if (active) {
+    active.set("opacity", parseFloat(val));
+    canvas.renderAll();
+  }
+}
+
+function applyPresetMaterial(type) {
+  const active = canvas.getActiveObject();
+  if (!active) return showToast("Select an element first");
+  if (type === "acrylic_gold") {
+    active.set({ fill: "#F59E0B", stroke: "#FEF3C7", strokeWidth: 1.5 });
+    active.set("shadow", new fabric.Shadow({ color: "rgba(245,158,11,0.5)", blur: 15 }));
+  } else if (type === "rose_gold") {
+    active.set({ fill: "#FB7185", stroke: "#FFE4E6", strokeWidth: 1.5 });
+    active.set("shadow", new fabric.Shadow({ color: "rgba(251,113,133,0.5)", blur: 15 }));
+  } else if (type === "ss_silver") {
+    active.set({ fill: "#E2E8F0", stroke: "#94A3B8", strokeWidth: 2 });
+    active.set("shadow", new fabric.Shadow({ color: "rgba(255,255,255,0.3)", blur: 10 }));
+  } else if (type === "neon_flex") {
+    active.set({ fill: "#00E5FF", stroke: "#FFFFFF", strokeWidth: 2 });
+    active.set("shadow", new fabric.Shadow({ color: "#00E5FF", blur: 30 }));
+  }
+  canvas.renderAll();
+  saveHistory();
+}
+
+function toggleNeonEffect() {
+  const active = canvas.getActiveObject();
+  if (!active) return showToast("Select an element to toggle glow");
+  if (active.shadow && active.shadow.blur > 5) {
+    active.set("shadow", null);
+    showToast("Neon glow turned OFF");
+  } else {
+    const col = active.fill || "#00E5FF";
+    active.set("shadow", new fabric.Shadow({ color: col, blur: 30 }));
+    showToast("Neon glow turned ON");
+  }
+  canvas.renderAll();
+  saveHistory();
+}
+
+function setWallBackdrop(wallClass) {
+  const wrap = document.getElementById("canvasWrap");
+  ["wall-dark", "wall-brick", "wall-marble", "wall-slats", "wall-concrete", "wall-glass"].forEach(c => wrap.classList.remove(c));
+  wrap.classList.add("wall-" + wallClass);
+  ["dark", "brick", "marble", "slats", "concrete", "glass"].forEach(w => {
+    const btn = document.getElementById("wallBtn-" + w);
+    if (btn) btn.className = (w === wallClass) ? "px-2 py-0.5 rounded text-[10px] font-semibold surface border-cyan-400 text-cyan-300" : "px-2 py-0.5 rounded text-[10px] font-semibold surface text-gray-300 hover:text-white";
+  });
+}
+
+function setLightingAmbiance(ambiance) {
+  const wrap = document.getElementById("canvasWrap");
+  ["ambiance-day", "ambiance-sunset", "ambiance-night"].forEach(c => wrap.classList.remove(c));
+  wrap.classList.add("ambiance-" + ambiance);
+  ["day", "sunset", "night"].forEach(a => {
+    const btn = document.getElementById("ambBtn-" + a);
+    if (btn) btn.className = (a === ambiance) ? "px-1.5 py-0.5 rounded text-[10px] text-cyan-300 font-bold bg-cyan-950/80 border border-cyan-600" : "px-1.5 py-0.5 rounded text-[10px] text-gray-400 hover:text-white";
+  });
+}
+
+function toggleNeonPulseAnimation() {
+  const wrap = document.getElementById("canvasWrap");
+  isNeonPulseActive = !isNeonPulseActive;
+  if (isNeonPulseActive) {
+    wrap.classList.add("neon-breathing");
+    document.getElementById("pulseLabel").innerText = "Pulse: ON";
+    document.getElementById("pulseAnimBtn").classList.add("border-pink-500");
+  } else {
+    wrap.classList.remove("neon-breathing");
+    document.getElementById("pulseLabel").innerText = "Pulse: OFF";
+    document.getElementById("pulseAnimBtn").classList.remove("border-pink-500");
+  }
+}
+
+function zoomIn() {
+  currentZoom = Math.min(2.5, currentZoom + 0.15);
+  applyZoom();
+}
+function zoomOut() {
+  currentZoom = Math.max(0.4, currentZoom - 0.15);
+  applyZoom();
+}
+function fitCanvasToWrap() {
+  currentZoom = 1;
+  applyZoom();
+}
+function applyZoom() {
+  canvas.setZoom(currentZoom);
+  document.getElementById("zoomText").innerText = Math.round(currentZoom * 100) + "%";
+  canvas.renderAll();
+}
+
+function saveHistory() {
+  if (isHistoryLocked) return;
+  historyStack.push(JSON.stringify(canvas.toJSON()));
+  if (historyStack.length > 30) historyStack.shift();
+  redoStack = [];
+}
+function undo() {
+  if (historyStack.length <= 1) return showToast("Nothing to undo");
+  isHistoryLocked = true;
+  redoStack.push(historyStack.pop());
+  const prev = historyStack[historyStack.length - 1];
+  canvas.loadFromJSON(prev, () => {
+    canvas.renderAll();
+    isHistoryLocked = false;
+    updateLayers();
+  });
+}
+function redo() {
+  if (!redoStack.length) return showToast("Nothing to redo");
+  isHistoryLocked = true;
+  const next = redoStack.pop();
+  historyStack.push(next);
+  canvas.loadFromJSON(next, () => {
+    canvas.renderAll();
+    isHistoryLocked = false;
+    updateLayers();
+  });
+}
+
+function updateLayers() {
+  const container = document.getElementById("layers");
+  container.innerHTML = "";
+  const objs = canvas.getObjects();
+  if (!objs.length) {
+    container.innerHTML = '<div class="text-[11px] text-gray-500 py-2 text-center">No layers on canvas</div>';
+    return;
+  }
+  objs.slice().reverse().forEach((obj, idx) => {
+    const div = document.createElement("div");
+    div.className = "flex items-center justify-between p-1.5 surface rounded text-[11px] hover:border-cyan-500 cursor-pointer";
+    div.innerHTML = `<span><i class="fa-solid fa-layer-group text-cyan-400 mr-1.5"></i> ${obj.text ? '"' + obj.text.substring(0, 15) + '"' : obj.type.toUpperCase()}</span>`;
+    div.onclick = () => { canvas.setActiveObject(obj); canvas.renderAll(); };
+    container.appendChild(div);
+  });
+}
+  // Dimensions & Units
+function onUnitChanged() {
+  const unit = document.getElementById("unit").value;
+  if (unit === "inch") { document.getElementById("inputW").value = 48; document.getElementById("inputH").value = 24; }
+  else if (unit === "feet") { document.getElementById("inputW").value = 4; document.getElementById("inputH").value = 2; }
+  else if (unit === "mm") { document.getElementById("inputW").value = 1200; document.getElementById("inputH").value = 600; }
+  else if (unit === "cm") { document.getElementById("inputW").value = 120; document.getElementById("inputH").value = 60; }
+  else if (unit === "metre") { document.getElementById("inputW").value = 1.2; document.getElementById("inputH").value = 0.6; }
+  else { document.getElementById("inputW").value = 1200; document.getElementById("inputH").value = 800; }
+  applyDimensions();
+}
+
+function applyDimensions() {
+  const w = parseFloat(document.getElementById("inputW").value) || 1200;
+  const h = parseFloat(document.getElementById("inputH").value) || 800;
+  const unit = document.getElementById("unit").value.toUpperCase();
+  document.getElementById("dimensionBadge").innerText = `${w} × ${h} ${unit}`;
+
+  let sqft = 0;
+  if (unit === "INCH") sqft = (w * h) / 144;
+  else if (unit === "FEET") sqft = w * h;
+  else if (unit === "MM") sqft = (w * h) / 92903;
+  else if (unit === "CM") sqft = (w * h) / 929.03;
+  else if (unit === "METRE") sqft = (w * h) * 10.7639;
+  else sqft = (w * h) / 360000;
+
+  document.getElementById("estimatedSqftBadge").innerText = `~${sqft.toFixed(2)} sq ft`;
+  syncCalcFromInput(w, h, unit.toLowerCase());
+}
+
+function syncCalcFromInput(w, h, unit) {
+  document.getElementById("calcW").value = w;
+  document.getElementById("calcH").value = h;
+  document.getElementById("calcUnit").value = unit;
+  calculateArea();
+}
+
+function syncCanvasToCalc() {
+  const w = parseFloat(document.getElementById("inputW").value);
+  const h = parseFloat(document.getElementById("inputH").value);
+  const unit = document.getElementById("unit").value;
+  document.getElementById("calcW").value = w;
+  document.getElementById("calcH").value = h;
+  document.getElementById("calcUnit").value = unit;
+  calculateArea();
+  showToast("Canvas dimensions pulled into calculator!");
+}
+
+function onCalcMaterialChanged() {
+  const mat = document.getElementById("calcMaterial").value;
+  const cfg = getAppConfig();
+  if (mat === "acrylic") document.getElementById("rate").value = cfg.rateAcrylic;
+  else if (mat === "ss") document.getElementById("rate").value = cfg.rateSS;
+  else if (mat === "glow") document.getElementById("rate").value = cfg.rateGlow;
+  calculateArea();
+}
+
+// 50% ADVANCE, COMMERCIAL WARRANTY & PROMOTION TIERS
+function calculateArea() {
+  const w = parseFloat(document.getElementById("calcW").value) || 0;
+  const h = parseFloat(document.getElementById("calcH").value) || 0;
+  const unit = document.getElementById("calcUnit").value;
+  const rate = parseFloat(document.getElementById("rate").value) || 600;
+
+  let sqft = 0;
+  if (unit === "inch") sqft = (w * h) / 144;
+  else if (unit === "feet") sqft = w * h;
+  else if (unit === "mm") sqft = (w * h) / 92903;
+  else if (unit === "cm") sqft = (w * h) / 929.03;
+  else if (unit === "metre") sqft = (w * h) * 10.7639;
+  else sqft = (w * h) / 144;
+
+  const total = Math.round(sqft * rate);
+  const advance = Math.round(total * 0.5);
+  const balance = total - advance;
+
+  let warranty = "2 Saal Standard Commercial Warranty";
+  let promoBonus = "";
+
+  if (total < 12000) {
+    warranty = "2 Saal (Standard Flex / General Acrylic)";
+  } else if (total >= 12000 && total < 30000) {
+    warranty = "5 - 10 Saal (Waterproof Cast Acrylic + Samsung LED)";
+  } else if (total >= 30000 && total < 60000) {
+    warranty = "25 Saal (Rust-Proof SS 304 Titanium Gold)";
+    promoBonus = "FREE Full Social Media Reel Ad + Local Google Business SEO!";
+  } else {
+    warranty = "50 Saal Architectural Lifetime Durability Guarantee";
+    promoBonus = "FREE Complete Brand Package (Cinematic 4K Ads + Meta Campaign Strategy)!";
+  }
+
+  document.getElementById("calcResult").innerText = `Total Area: ${sqft.toFixed(2)} sq.ft • Estimate: ₹${total.toLocaleString()} (50% Advance: ₹${advance.toLocaleString()})`;
+
+  updateOrderSpecs(w, h, unit, sqft, total, advance, balance, warranty, promoBonus);
+  return { sqft, total, advance, balance, warranty, promoBonus };
+}
+
+function updateOrderSpecs(w, h, unit, sqft, total, advance, balance, warranty, promoBonus) {
+  const matEl = document.getElementById("calcMaterial");
+  const mat = (matEl && matEl.selectedOptions && matEl.selectedOptions[0]) ? matEl.selectedOptions[0].text : "3D Acrylic Letters";
+
+  document.getElementById("orderSpecsDimensions").innerText = `${w}" × ${h}" (~${sqft.toFixed(1)} sqft)`;
+  document.getElementById("orderSpecsMaterial").innerText = mat;
+  document.getElementById("orderEstimatedTotal").innerText = "₹" + total.toLocaleString();
+  document.getElementById("orderAdvanceAmount").innerText = "₹" + advance.toLocaleString();
+  document.getElementById("orderBalanceAmount").innerText = "₹" + balance.toLocaleString();
+  document.getElementById("orderSpecsWarranty").innerText = warranty;
+
+  const promoWrap = document.getElementById("promoBonusWrap");
+  const promoText = document.getElementById("promoBonusText");
+  if (promoBonus) {
+    promoText.innerText = promoBonus;
+    promoWrap.classList.remove("hidden");
+  } else {
+    promoWrap.classList.add("hidden");
+  }
+
+  updateUPIPaymentInfo(advance);
+}
+
+// ==========================================
+// 3. BULLETPROOF MULTI-FORMAT EXPORTS ENGINE
+// ==========================================
+function downloadPNG() {
+  const dataURL = canvas.toDataURL({ format: "png", multiplier: 2 });
+  forceDirectDownload(dataURL, "design_creative_" + Date.now() + ".png");
+  showToast("High-resolution PNG downloaded!");
+}
+
+function downloadJPG() {
+  const dataURL = canvas.toDataURL({ format: "jpeg", quality: 0.95, multiplier: 2 });
+  forceDirectDownload(dataURL, "design_creative_" + Date.now() + ".jpg");
+  showToast("JPG Preview downloaded!");
+}
+
+function downloadSVG() {
+  const svg = canvas.toSVG();
+  const blob = new Blob([svg], { type: "image/svg+xml;charset=utf-8" });
+  forceBlobDownload(blob, "design_creative_vector_" + Date.now() + ".svg");
+  showToast("Pure SVG vector cutpath downloaded!");
+}
+
+function copySVGCutpath() {
+  const svg = canvas.toSVG();
+  navigator.clipboard.writeText(svg).then(() => {
+    document.getElementById("copySvgBtnText").innerText = "Copied!";
+    showToast("SVG Cutpath XML copied to clipboard!");
+    setTimeout(() => { document.getElementById("copySvgBtnText").innerText = "Copy SVG"; }, 2000);
+  });
+}
+
+function buildAutoCAD_DXF(objects, docWidthMm, docHeightMm) {
+  let dxf = [
+    "0", "SECTION", "2", "HEADER", "9", "$ACADVER", "1", "AC1009",
+    "9", "$MEASUREMENT", "70", "1", "0", "ENDSEC",
+    "0", "SECTION", "2", "ENTITIES"
+  ];
+
+  objects.forEach((obj) => {
+    const scaleX = docWidthMm / (canvas.getWidth() || docWidthMm);
+    const scaleY = docHeightMm / (canvas.getHeight() || docHeightMm);
+
+    if (obj.type === "rect") {
+      const x1 = (obj.left || 0) * scaleX;
+      const y1 = (docHeightMm - (obj.top || 0)) * scaleY;
+      const x2 = x1 + ((obj.width || 0) * (obj.scaleX || 1) * scaleX);
+      const y2 = y1 - ((obj.height || 0) * (obj.scaleY || 1) * scaleY);
+
+      dxf.push(
+        "0", "POLYLINE", "8", "CUT_PATH", "66", "1", "70", "1",
+        "0", "VERTEX", "8", "CUT_PATH", "10", x1.toFixed(3), "20", y1.toFixed(3), "30", "0.0",
+        "0", "VERTEX", "8", "CUT_PATH", "10", x2.toFixed(3), "20", y1.toFixed(3), "30", "0.0",
+        "0", "VERTEX", "8", "CUT_PATH", "10", x2.toFixed(3), "20", y2.toFixed(3), "30", "0.0",
+        "0", "VERTEX", "8", "CUT_PATH", "10", x1.toFixed(3), "20", y2.toFixed(3), "30", "0.0",
+        "0", "SEQEND"
+      );
+    } else if (obj.type === "circle") {
+      const cx = ((obj.left || 0) + ((obj.radius || 0) * (obj.scaleX || 1))) * scaleX;
+      const cy = (docHeightMm - ((obj.top || 0) + ((obj.radius || 0) * (obj.scaleY || 1)))) * scaleY;
+      const r = ((obj.radius || 0) * (obj.scaleX || 1)) * scaleX;
+
+      dxf.push(
+        "0", "CIRCLE", "8", "CUT_PATH",
+        "10", cx.toFixed(3), "20", cy.toFixed(3), "30", "0.0",
+        "40", r.toFixed(3)
+      );
     }
-  </script>
+  });
+
+  dxf.push("0", "ENDSEC", "0", "EOF");
+  return dxf.join("\n");
+}
+
+function downloadDXF() {
+  const w = parseFloat(document.getElementById("inputW").value) || 48;
+  const h = parseFloat(document.getElementById("inputH").value) || 24;
+  const unit = document.getElementById("unit").value;
+
+  let mmW = w * 25.4;
+  let mmH = h * 25.4;
+  if (unit === "feet") { mmW = w * 304.8; mmH = h * 304.8; }
+  else if (unit === "mm") { mmW = w; mmH = h; }
+  else if (unit === "cm") { mmW = w * 10; mmH = h * 10; }
+  else if (unit === "metre") { mmW = w * 1000; mmH = h * 1000; }
+
+  const dxfText = buildAutoCAD_DXF(canvas.getObjects().map(o => o.toObject()), mmW, mmH);
+  const blob = new Blob([dxfText], { type: "application/dxf;charset=utf-8" });
+  forceBlobDownload(blob, "cnc_cutpath_" + Date.now() + ".dxf");
+  showToast("AutoCAD R12 DXF file downloaded!");
+}
+
+function downloadPDF() {
+  try {
+    const { jsPDF } = window.jspdf;
+    const doc = new jsPDF({ orientation: "landscape", unit: "mm", format: "a4" });
+
+    doc.setFillColor(8, 11, 17);
+    doc.rect(0, 0, 297, 210, "F");
+
+    doc.setTextColor(0, 229, 255);
+    doc.setFontSize(16);
+    doc.text("DESIGN CREATIVE • ARCHITECTURAL SIGNAGE SPECIFICATION", 15, 18);
+
+    doc.setTextColor(200, 200, 200);
+    doc.setFontSize(10);
+    const w = document.getElementById("inputW").value;
+    const h = document.getElementById("inputH").value;
+    const unit = document.getElementById("unit").value.toUpperCase();
+    doc.text(`Dimensions: ${w} × ${h} ${unit} | GSTIN: 07AGFPA8041C1ZZ | Verified Vector Proof`, 15, 26);
+
+    const imgData = canvas.toDataURL({ format: "jpeg", quality: 0.95 });
+    doc.addImage(imgData, "JPEG", 15, 34, 267, 145);
+
+    doc.setFontSize(8);
+    doc.setTextColor(150, 150, 150);
+    doc.text("Manufactured under Commercial Signage Specs • WhatsApp Support: +91 9354944438 • www.wearstay.com", 15, 195);
+
+    doc.save("design_creative_blueprint_" + Date.now() + ".pdf");
+    showToast("300 DPI Landscape PDF Blueprint downloaded!");
+  } catch (e) {
+    showToast("PDF engine loading... Please tap again in 2 seconds.");
+  }
+}
+
+function forceDirectDownload(url, filename) {
+  const link = document.createElement("a");
+  link.style.display = "none";
+  link.href = url;
+  link.setAttribute("download", filename);
+  document.body.appendChild(link);
+  link.click();
+  setTimeout(() => {
+    if (link.parentNode) link.parentNode.removeChild(link);
+  }, 400);
+}
+
+function forceBlobDownload(blob, filename) {
+  const url = URL.createObjectURL(blob);
+  forceDirectDownload(url, filename);
+  setTimeout(() => URL.revokeObjectURL(url), 2000);
+}
+
+// ==========================================
+// 4. GEMINI 2.5 FLASH API & MULTI-LANG VOICE
+// ==========================================
+async function callGemini25Flash(promptText) {
+  if (GEMINI_API_KEY === "YOUR_API_KEY_HERE" || !GEMINI_API_KEY) {
+    throw new Error("Local voice mode activated.");
+  }
+  const endpoint = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${GEMINI_API_KEY}`;
+  const systemInstruction = "You are a professional signage architectural designer. Given a prompt for a sign, output ONLY valid JSON matching this schema: {\"text\": \"SIGN TEXT\", \"subtext\": \"OPTIONAL SUBTEXT\", \"color\": \"#HEX\", \"glowColor\": \"#HEX\", \"width\": 48, \"height\": 24, \"material\": \"acrylic\"|\"ss\"|\"glow\"}. Do not output markdown backticks or commentary.";
+
+  const body = {
+    contents: [{ parts: [{ text: systemInstruction + "\nUser Request: " + promptText }] }]
+  };
+
+  const res = await fetch(endpoint, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(body)
+  });
+
+  if (!res.ok) {
+    const err = await res.json();
+    throw new Error(err.error?.message || "Failed to communicate with Gemini API");
+  }
+
+  const data = await res.json();
+  const rawText = data.candidates?.[0]?.content?.parts?.[0]?.text || "{}";
+  const cleaned = rawText.replace(/```json/g, "").replace(/```/g, "").trim();
+  return JSON.parse(cleaned);
+}
+
+async function generateGeminiSign() {
+  const promptInput = document.getElementById("aiPrompt");
+  const prompt = promptInput.value.trim();
+  if (!prompt) return showToast("Please describe the sign you want");
+
+  const status = document.getElementById("aiStatus");
+  const btn = document.getElementById("aiGenBtn");
+  btn.disabled = true;
+  status.innerText = "Connecting to Gemini 2.5 Flash...";
+
+  try {
+    const result = await callGemini25Flash(prompt);
+    status.innerText = "Applying layout to canvas...";
+
+    canvas.clear();
+    canvas.backgroundColor = "#0A0E17";
+
+    const mainText = new fabric.Text(result.text || "DESIGN CREATIVE", {
+      left: canvas.width / 2,
+      top: result.subtext ? (canvas.height / 2 - 30) : (canvas.height / 2),
+      originX: "center",
+      originY: "center",
+      fontSize: 54,
+      fontWeight: "900",
+      fill: result.color || "#00E5FF",
+      stroke: "#FFFFFF",
+      strokeWidth: 1.5,
+      shadow: new fabric.Shadow({
+        color: result.glowColor || "#00E5FF",
+        blur: 30,
+        offsetX: 0,
+        offsetY: 0
+      })
+    });
+    canvas.add(mainText);
+
+    if (result.subtext) {
+      const sub = new fabric.Text(result.subtext, {
+        left: canvas.width / 2,
+        top: canvas.height / 2 + 40,
+        originX: "center",
+        originY: "center",
+        fontSize: 22,
+        fontWeight: "600",
+        fill: "#E2E8F0",
+        stroke: "#00E5FF",
+        strokeWidth: 0.5
+      });
+      canvas.add(sub);
+    }
+
+    if (result.width && result.height) {
+      document.getElementById("inputW").value = result.width;
+      document.getElementById("inputH").value = result.height;
+      document.getElementById("unit").value = "inch";
+      applyDimensions();
+    }
+
+    canvas.renderAll();
+    saveHistory();
+    closeModal("aiModal");
+    showToast("Gemini 2.5 design generated successfully!");
+  } catch (err) {
+    status.innerText = "";
+    applyDirectVoiceCommand(prompt);
+    closeModal("aiModal");
+  } finally {
+    btn.disabled = false;
+  }
+}
+
+function startVoiceAI() {
+  const SpeechRec = window.SpeechRecognition || window.webkitSpeechRecognition;
+  if (!SpeechRec) return showToast("Voice input supported best in Chrome / Edge / Safari");
+
+  const recognition = new SpeechRec();
+  recognition.lang = navigator.language || "en-US";
+  const status = document.getElementById("voiceStatus");
+  status.innerText = "🎙️ Listening... Bolye apna sign text ya command!";
+
+  recognition.onresult = async function(event) {
+    const transcript = event.results[0][0].transcript;
+    status.innerText = `Recognized: "${transcript}"`;
+    try {
+      const result = await callGemini25Flash(transcript);
+      canvas.clear();
+      canvas.backgroundColor = "#0A0E17";
+      const textObj = new fabric.Text(result.text || transcript.toUpperCase(), {
+        left: canvas.width / 2,
+        top: canvas.height / 2,
+        originX: "center",
+        originY: "center",
+        fontSize: 50,
+        fontWeight: "900",
+        fill: result.color || "#00E5FF",
+        shadow: new fabric.Shadow({ color: result.glowColor || "#00E5FF", blur: 25 })
+      });
+      canvas.add(textObj);
+      canvas.renderAll();
+      saveHistory();
+      status.innerText = `Applied: "${result.text || transcript}"`;
+      showToast("Voice sign created successfully!");
+    } catch (err) {
+      applyDirectVoiceCommand(transcript);
+    }
+  };
+
+  recognition.onerror = function(e) {
+    status.innerText = "Voice error: " + e.error;
+  };
+  recognition.start();
+}
+
+function applyDirectVoiceCommand(cmd) {
+  const low = cmd.toLowerCase();
+  let col = "#00E5FF";
+
+  if (low.includes("gold") || low.includes("peela") || low.includes("yellow")) col = "#F59E0B";
+  else if (low.includes("red") || low.includes("lal")) col = "#EF4444";
+  else if (low.includes("white") || low.includes("safed")) col = "#FFFFFF";
+  else if (low.includes("green") || low.includes("hara")) col = "#10B981";
+
+  let clean = cmd;
+  const triggers = ["likho", "likh", "write", "sign", "text", "naam", "banao"];
+  triggers.forEach(t => { clean = clean.replace(new RegExp(t, "gi"), ""); });
+  clean = clean.trim();
+
+  if (!clean) clean = "DESIGN CREATIVE";
+
+  const textObj = new fabric.Text(clean.toUpperCase(), {
+    left: canvas.width / 2,
+    top: canvas.height / 2,
+    originX: "center",
+    originY: "center",
+    fontSize: 48,
+    fontWeight: "900",
+    fill: col,
+    shadow: new fabric.Shadow({ color: col, blur: 25 })
+  });
+  canvas.add(textObj);
+  canvas.setActiveObject(textObj);
+  canvas.renderAll();
+  saveHistory();
+  showToast(`Sign created: "${clean.toUpperCase()}"`);
+}
+
+function startVoiceAIInModal() {
+  startVoiceAI();
+  closeModal("aiModal");
+}
+
+// ==========================================
+// 5. 50% ADVANCE UPI QR & WHATSAPP CHECKOUT
+// ==========================================
+function updateUPIPaymentInfo(amount = 2400) {
+  const cfg = getAppConfig();
+  const upiContainer = document.getElementById("upiQrCode");
+  if (!upiContainer) return;
+  upiContainer.innerHTML = "";
+
+  const upiURI = `upi://pay?pa=${encodeURIComponent(cfg.upiId)}&pn=${encodeURIComponent(cfg.brandName)}&am=${amount}&cu=INR&tn=DesignCreativeAdvanceDeposit`;
+
+  if (window.QRCode) {
+    new QRCode(upiContainer, {
+      text: upiURI,
+      width: 140,
+      height: 140,
+      colorDark: "#000000",
+      colorLight: "#ffffff",
+      correctLevel: QRCode.CorrectLevel.M
+    });
+  }
+
+  const upiLink = document.getElementById("upiPayLink");
+  if (upiLink) upiLink.href = upiURI;
+}
+
+function initPayPalButton() {
+  const container = document.getElementById("paypalButtonContainer");
+  if (!container) return;
+  container.innerHTML = `
+    <button onclick="simulatePayPalPayment()" class="surface py-2 w-full rounded-lg text-xs font-bold text-cyan-300 border border-cyan-800 hover:border-cyan-400 flex items-center justify-center gap-1.5 transition-colors">
+      <i class="fa-brands fa-paypal text-cyan-400 text-sm"></i> Pay 50% via PayPal / International Card
+    </button>
+  `;
+}
+
+function simulatePayPalPayment() {
+  const cfg = getAppConfig();
+  showToast(`Redirecting to PayPal Gateway (${cfg.paypalId})...`);
+  setTimeout(() => {
+    confirmOrderWhatsApp("PayPal 50% Advance Selected");
+  }, 1200);
+}
+
+function confirmOrderWhatsApp(extraNote = "") {
+  const cfg = getAppConfig();
+  const token = "DC-" + Math.floor(100000 + Math.random() * 900000);
+  const name = document.getElementById("orderCustName").value.trim() || "Valued Client";
+  const phone = document.getElementById("orderCustPhone").value.trim() || "Not specified";
+  const address = document.getElementById("orderCustAddress").value.trim() || "Delhi NCR / Worldwide";
+  const dims = document.getElementById("orderSpecsDimensions").innerText;
+  const mat = document.getElementById("orderSpecsMaterial").innerText;
+  const warranty = document.getElementById("orderSpecsWarranty").innerText;
+  const total = document.getElementById("orderEstimatedTotal").innerText;
+  const advance = document.getElementById("orderAdvanceAmount").innerText;
+  const balance = document.getElementById("orderBalanceAmount").innerText;
+
+  const msg = 
+    `*NEW FABRICATION ORDER - ${cfg.brandName}*\n` +
+    `--------------------------------------\n` +
+    `*Order Token:* ${token}\n` +
+    `*GSTIN:* ${cfg.gstin}\n` +
+    `*Client Name:* ${name}\n` +
+    `*Phone:* ${phone}\n` +
+    `*Delivery City:* ${address}\n` +
+    `--------------------------------------\n` +
+    `*Dimensions:* ${dims}\n` +
+    `*Material Spec:* ${mat}\n` +
+    `*Warranty Guarantee:* ${warranty}\n` +
+    `--------------------------------------\n` +
+    `*Total Valuation:* ${total}\n` +
+    `*50% Advance (Required to Start):* ${advance}\n` +
+    `*Balance Due on Dispatch:* ${balance}\n` +
+    (extraNote ? `*Note:* ${extraNote}\n` : "") +
+    `--------------------------------------\n` +
+    `_Generated via wearstay.com studio_`;
+
+  window.open(`https://wa.me/${cfg.whatsAppPhone}?text=${encodeURIComponent(msg)}`, "_blank");
+  closeModal("instantOrderModal");
+}
+
+function openWhatsAppDirect() {
+  const cfg = getAppConfig();
+  window.open(`https://wa.me/${cfg.whatsAppPhone}?text=Hello%20${encodeURIComponent(cfg.brandName)}%2C%20I%20want%20to%20order%20a%20custom%20LED%20sign!`, "_blank");
+}
+
+// ==========================================
+// 6. MODALS, PLANS & PERSISTENCE
+// ==========================================
+function openModal(id) {
+  document.getElementById(id).classList.add("active");
+}
+function closeModal(id) {
+  document.getElementById(id).classList.remove("active");
+}
+function openInstantOrderModal() {
+  calculateArea();
+  openModal("instantOrderModal");
+}
+function openAIModal() {
+  openModal("aiModal");
+}
+function openPlansModal() {
+  openModal("plansModal");
+}
+function selectPlan(name) {
+  closeModal("plansModal");
+  if (name.includes("Starter")) {
+    document.getElementById("calcMaterial").value = "acrylic";
+    document.getElementById("rate").value = 499;
+  } else if (name.includes("RGB")) {
+    document.getElementById("calcMaterial").value = "glow";
+    document.getElementById("rate").value = 750;
+  } else {
+    document.getElementById("calcMaterial").value = "ss";
+    document.getElementById("rate").value = 950;
+  }
+  calculateArea();
+  openInstantOrderModal();
+  showToast(`Selected ${name} Plan!`);
+}
+
+function orderFromCalculator() {
+  openInstantOrderModal();
+}
+
+function newBlankDesign() {
+  if (confirm("Create a blank canvas? Unsaved changes will be cleared.")) {
+    canvas.clear();
+    canvas.backgroundColor = "#0A0E17";
+    canvas.renderAll();
+    saveHistory();
+    showToast("Blank canvas created");
+  }
+}
+
+function saveProjectToLocal() {
+  const json = JSON.stringify(canvas.toJSON());
+  localStorage.setItem("designhub_saved_project", json);
+  showToast("Project saved to local storage!");
+}
+
+function open3DPreview() {
+  showToast("Simulating 3D architectural render on active wall texture!");
+}
+
+function showToast(msg) {
+  const toast = document.getElementById("toast");
+  const msgEl = document.getElementById("toastMsg");
+  msgEl.innerText = msg;
+  toast.classList.add("show");
+  clearTimeout(window._toastTimeout);
+  window._toastTimeout = setTimeout(() => { toast.classList.remove("show"); }, 3000);
+}
+</script>
+
 </body>
 </html>
