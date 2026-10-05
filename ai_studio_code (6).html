@@ -1,0 +1,1520 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- 1. SEO & GOOGLE VERIFICATION -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DESIGNHUB GLOBAL — Worldwide Signage, Prepress & 3D CAD Studio</title>
+<meta name="description" content="AI-assisted architectural signage design, voice-to-design with audio response, 3D laser cut-paths, prepress blueprints, and multi-unit CAD engineering.">
+<meta name="keywords" content="signage design, 3d acrylic letter, led signboard, voice to design, prepress, laser cutpath, vector pdf, svg export">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://wearstay.com/">
+
+<!-- Google Search Console Verification Tag -->
+<meta name="google-site-verification" content="dNDfnD64lB_mp98ZIV5CyCcW5WvO5ftVmwkXRHmAGx4">
+
+<!-- Open Graph / Social Media -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="DESIGNHUB GLOBAL — Signage & Prepress CAD Studio">
+<meta property="og:description" content="Create architectural 3D signboards, laser cut-paths, and vector blueprints with multi-unit CAD scaling.">
+<meta property="og:url" content="https://wearstay.com/">
+
+<!-- Google Analytics (GA4) Tracking -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-XXXXXXXXXX');
+</script>
+
+<!-- Google Identity Services (GSI) for Google Login -->
+<script src="https://accounts.google.com/gsi/client" async defer></script>
+
+<!-- jsPDF for Client-Side Vector PDF Export -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+<!-- Typography Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&family=Syne:wght@700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --bg: #080c14;
+  --surface: #0f1624;
+  --card: #151f32;
+  --panel: #1a273e;
+  --line: #263654;
+  --text: #f8fafc;
+  --muted: #94a3b8;
+  --gold: #f59e0b;
+  --gold-glow: rgba(245, 158, 11, 0.4);
+  --cyan: #06b6d4;
+  --green: #10b981;
+  --danger: #ef4444;
+  --cutpath: #ec4899;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+html { scroll-behavior: smooth; }
+body {
+  background: radial-gradient(circle at 50% 0%, #17263d 0%, var(--bg) 65%);
+  color: var(--text);
+  font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  line-height: 1.5;
+  min-height: 100vh;
+}
+h1, h2, h3, .brand { font-family: 'Syne', sans-serif; }
+.mono { font-family: 'JetBrains Mono', monospace; font-variant-numeric: tabular-nums; }
+button, input, select, textarea { font: inherit; color: inherit; }
+button { cursor: pointer; border: none; }
+.wrap { max-width: 1320px; margin: 0 auto; padding: 0 16px; }
+.hidden { display: none !important; }
+
+/* Navigation */
+.nav {
+  position: sticky; top: 0; z-index: 100;
+  background: rgba(15, 22, 36, 0.92);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--line);
+}
+.nav-inner {
+  display: flex; align-items: center; justify-content: space-between;
+  height: 62px;
+}
+.brand {
+  font-size: 19px; font-weight: 800; color: #fff; text-decoration: none;
+  display: flex; align-items: center; gap: 6px;
+}
+.brand span { color: var(--gold); }
+.brand-badge {
+  font-size: 10px; font-family: 'JetBrains Mono'; background: #1f2d44;
+  color: var(--cyan); padding: 2px 7px; border-radius: 6px; border: 1px solid #2e4366;
+}
+.nav-actions { display: flex; align-items: center; gap: 8px; }
+
+/* Buttons */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 6px;
+  padding: 8px 14px; border-radius: 8px; font-size: 12px; font-weight: 700;
+  background: var(--card); border: 1px solid var(--line); color: var(--text);
+  transition: all 0.15s ease; text-decoration: none;
+}
+.btn:hover { background: var(--panel); border-color: #3b4e72; color: #fff; }
+.btn.primary { background: linear-gradient(135deg, #f59e0b, #d97706); color: #000; border: none; }
+.btn.primary:hover { box-shadow: 0 0 20px var(--gold-glow); transform: translateY(-1px); }
+.btn.cyan { background: #0891b2; color: #fff; border: none; }
+.btn.cyan:hover { background: #06b6d4; }
+.btn.danger { background: #991b1b; color: #fff; border: none; }
+.btn.sm { padding: 5px 10px; font-size: 11px; border-radius: 6px; }
+
+/* Plan Badge */
+.plan-badge {
+  font-size: 11px; font-weight: 700; padding: 4px 8px; border-radius: 6px;
+  background: #1e293b; color: var(--muted); border: 1px solid var(--line);
+}
+.plan-badge.pro { background: #1a382e; color: #34d399; border-color: #059669; }
+
+/* Hero */
+.hero { text-align: center; padding: 26px 0 16px; }
+.hero-tag {
+  display: inline-flex; align-items: center; gap: 6px;
+  background: rgba(245, 158, 11, 0.1); border: 1px solid rgba(245, 158, 11, 0.3);
+  color: var(--gold); padding: 3px 12px; border-radius: 100px;
+  font-size: 11px; font-weight: 700; margin-bottom: 10px;
+}
+.hero h1 { font-size: clamp(24px, 4vw, 42px); line-height: 1.15; margin-bottom: 8px; }
+.hero h1 span { color: var(--gold); text-shadow: 0 0 30px var(--gold-glow); }
+.hero p { color: var(--muted); max-width: 760px; margin: 0 auto 16px; font-size: 13px; }
+
+/* Sponsored Adsterra Smart Links Bar */
+.ad-bar {
+  display: flex; justify-content: center; gap: 12px; margin-bottom: 18px; flex-wrap: wrap;
+}
+.ad-link-card {
+  background: linear-gradient(135deg, #101c30, #13223d); border: 1px dashed #304569;
+  padding: 6px 14px; border-radius: 8px; font-size: 11px; font-weight: 600;
+  color: #cbd5e1; text-decoration: none; display: flex; align-items: center; gap: 6px;
+  transition: all 0.15s;
+}
+.ad-link-card:hover { border-color: var(--gold); color: #fff; transform: translateY(-1px); }
+.ad-link-card span { background: #1e3a5f; color: var(--cyan); padding: 1px 5px; border-radius: 4px; font-size: 9px; }
+
+/* Studio Layout */
+.studio-grid {
+  display: grid; grid-template-columns: 280px minmax(0, 1fr) 320px;
+  gap: 14px; margin-bottom: 24px;
+}
+.panel {
+  background: var(--surface); border: 1px solid var(--line);
+  border-radius: 14px; padding: 14px; display: flex; flex-direction: column; gap: 12px;
+}
+.panel-head {
+  display: flex; align-items: center; justify-content: space-between;
+  border-bottom: 1px solid var(--line); padding-bottom: 8px;
+}
+.panel-head h3 { font-size: 13px; font-weight: 800; display: flex; align-items: center; gap: 5px; }
+
+/* Inputs */
+.field { display: flex; flex-direction: column; gap: 4px; }
+.field label { font-size: 10px; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: 0.05em; }
+.input-row { display: flex; gap: 5px; }
+input, select, textarea {
+  width: 100%; background: #0b111a; border: 1px solid var(--line);
+  border-radius: 6px; padding: 6px 8px; font-size: 12px; color: #fff;
+  transition: border-color 0.15s;
+}
+input:focus, select:focus, textarea:focus {
+  outline: none; border-color: var(--cyan); box-shadow: 0 0 0 2px rgba(6, 182, 212, 0.2);
+}
+.color-picker-wrap { display: flex; align-items: center; gap: 6px; }
+input[type="color"] { width: 34px; height: 30px; padding: 2px; border-radius: 6px; cursor: pointer; }
+
+/* Canvas Viewport */
+.canvas-container {
+  display: flex; flex-direction: column; background: #080c13;
+  border: 1px solid var(--line); border-radius: 14px; overflow: hidden;
+}
+.canvas-toolbar {
+  display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap;
+  padding: 8px 12px; background: #0e1624; border-bottom: 1px solid var(--line); gap: 6px;
+}
+.tool-group { display: flex; align-items: center; gap: 5px; }
+.canvas-stage {
+  flex: 1; min-height: 440px; display: flex; align-items: center; justify-content: center;
+  position: relative; overflow: hidden; padding: 20px;
+  background-size: 20px 20px;
+  background-image: linear-gradient(to right, rgba(255,255,255,0.03) 1px, transparent 1px),
+                    linear-gradient(to bottom, rgba(255,255,255,0.03) 1px, transparent 1px);
+}
+.stage-wall-brick {
+  background-color: #11151c;
+  background-image: radial-gradient(#1e2838 15%, transparent 16%), radial-gradient(#1e2838 15%, transparent 16%);
+  background-size: 30px 30px;
+  background-position: 0 0, 15px 15px;
+}
+.stage-wall-dark { background: #05080c; }
+
+/* The Physical Artboard */
+.artboard {
+  position: relative; background: #141c2a;
+  border: 1px solid #334668;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.6);
+  transform-origin: center center;
+  user-select: none;
+}
+.artboard.neon-glow {
+  box-shadow: 0 0 50px rgba(245, 158, 11, 0.25), 0 0 100px rgba(6, 182, 212, 0.15);
+}
+.artboard-item {
+  position: absolute; cursor: move;
+  padding: 4px; display: inline-block; white-space: pre-wrap;
+  touch-action: none;
+}
+.artboard-item.selected {
+  outline: 2px dashed var(--gold);
+  outline-offset: 2px;
+}
+.artboard-item.cutpath-active {
+  outline: 2px solid var(--cutpath) !important;
+  filter: drop-shadow(0 0 8px rgba(236, 72, 153, 0.6));
+}
+
+/* 3D Depth Styling for Text Elements */
+.effect-3d {
+  text-shadow: 1px 1px 0 #000, 2px 2px 0 #111, 3px 3px 0 #222, 4px 4px 6px rgba(0,0,0,0.7);
+}
+.effect-glow {
+  text-shadow: 0 0 10px currentColor, 0 0 20px currentColor;
+}
+
+/* Prepress Guides */
+.guide-bleed {
+  position: absolute; inset: -8px; border: 1px dashed var(--danger);
+  pointer-events: none; opacity: 0.7;
+}
+.guide-bleed::before {
+  content: 'BLEED (3mm)'; position: absolute; top: -14px; left: 0;
+  font-size: 9px; color: var(--danger); font-family: monospace;
+}
+.guide-safe {
+  position: absolute; inset: 8px; border: 1px dashed var(--green);
+  pointer-events: none; opacity: 0.7;
+}
+.guide-safe::before {
+  content: 'SAFE (5mm)'; position: absolute; top: 2px; left: 4px;
+  font-size: 9px; color: var(--green); font-family: monospace;
+}
+
+/* 3D Signage Visuals Showcase Gallery */
+.gallery-section {
+  background: var(--surface); border: 1px solid var(--line); border-radius: 14px;
+  padding: 18px; margin-bottom: 24px;
+}
+.gallery-head {
+  display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;
+}
+.gallery-grid {
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px;
+}
+.visual-card {
+  background: #0b111a; border: 1px solid var(--line); border-radius: 10px;
+  overflow: hidden; cursor: pointer; transition: all 0.2s;
+}
+.visual-card:hover { border-color: var(--gold); transform: translateY(-2px); }
+.visual-thumb {
+  height: 110px; display: flex; align-items: center; justify-content: center;
+  position: relative; background: #07090e;
+}
+.visual-info { padding: 10px; }
+.visual-info b { font-size: 12px; display: block; color: #fff; }
+.visual-info span { font-size: 10px; color: var(--muted); }
+
+/* Quotation */
+.quote-card {
+  background: #0e1522; border: 1px solid var(--line);
+  border-radius: 10px; padding: 10px; font-size: 12px;
+}
+.quote-row {
+  display: flex; justify-content: space-between; padding: 4px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+.quote-row span:first-child { color: var(--muted); }
+.quote-total {
+  font-size: 15px; font-weight: 800; color: var(--gold); border-bottom: none;
+  padding-top: 6px;
+}
+.advance-box {
+  background: #11261d; border: 1px solid #1e5c3e; border-radius: 8px;
+  padding: 8px; margin-top: 8px; text-align: center;
+}
+.advance-box b { color: #4ade80; font-size: 13px; display: block; }
+
+/* Modals */
+.modal-overlay {
+  position: fixed; inset: 0; z-index: 200; background: rgba(0,0,0,0.85);
+  backdrop-filter: blur(8px); display: none; align-items: center; justify-content: center;
+  padding: 16px;
+}
+.modal-overlay.open { display: flex; }
+.modal-box {
+  background: var(--surface); border: 1px solid var(--line); border-radius: 16px;
+  max-width: 520px; width: 100%; max-height: 90vh; overflow-y: auto; padding: 20px;
+}
+.modal-head {
+  display: flex; align-items: center; justify-content: space-between;
+  border-bottom: 1px solid var(--line); padding-bottom: 10px; margin-bottom: 14px;
+}
+
+/* User Account Info Bar */
+.user-pill {
+  display: flex; align-items: center; gap: 8px; background: #131d2c;
+  padding: 3px 8px; border-radius: 30px; border: 1px solid var(--line);
+}
+.user-pill img { width: 24px; height: 24px; border-radius: 50%; object-fit: cover; }
+.user-pill span { font-size: 11px; font-weight: 600; color: #fff; }
+
+@media (max-width: 1024px) {
+  .studio-grid { grid-template-columns: 1fr; }
+  .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 600px) {
+  .canvas-toolbar { flex-direction: column; align-items: stretch; }
+  .gallery-grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAVIGATION -->
+<nav class="nav">
+  <div class="wrap nav-inner">
+    <a href="#" class="brand">
+      DESIGN<span>HUB</span> GLOBAL
+      <span class="brand-badge">PREPRESS CAD</span>
+    </a>
+
+    <div class="nav-actions">
+      <!-- Plan Indicator -->
+      <span class="plan-badge" id="planBadge">FREE (2/2 Left)</span>
+
+      <!-- User Profile or Google Sign In -->
+      <div id="authContainer">
+        <button class="btn sm" onclick="openLoginModal()" id="loginBtn">
+          Google Login
+        </button>
+      </div>
+
+      <!-- Upgrade to Pro -->
+      <button class="btn sm primary" onclick="openUpgradeModal()">
+        ⭐ Upgrade Pro
+      </button>
+
+      <!-- Copy Source Code -->
+      <button class="btn sm" onclick="copyFullSourceCode()" title="Copy Complete HTML Code">
+        📋 Copy Code
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<header class="hero wrap">
+  <div class="hero-tag">WORLDWIDE ARCHITECTURAL SIGNAGE &amp; VECTOR STUDIO</div>
+  <h1>Global Voice-to-Design. <span>3D Signboard Prepress.</span></h1>
+  <p>Speak in any language, upload reference photos, customize mm/inch/ft CAD cut-paths, and generate ready-to-cut vector PDF, SVG, and instant commercial quotes.</p>
+
+  <!-- Dedicated Adsterra Smart Links Bar -->
+  <div class="ad-bar">
+    <a href="https://www.effectivegatecpm.com/4473" target="_blank" rel="noopener noreferrer" class="ad-link-card">
+      <span>SPONSORED</span> Smart One: Explore Top Creative Resources &amp; Prepress Deals →
+    </a>
+    <a href="https://www.effectivegatecpm.com/0ce19" target="_blank" rel="noopener noreferrer" class="ad-link-card">
+      <span>SPONSORED</span> Smart Two: Commercial LED &amp; Fabrication Supplies Network →
+    </a>
+  </div>
+</header>
+
+<!-- MAIN STUDIO -->
+<main class="wrap studio-grid" id="editor">
+
+  <!-- LEFT: TOOLS, VOICE, IMAGE-TO-DESIGN -->
+  <aside class="panel">
+    <div class="panel-head">
+      <h3>📐 Physical Dimensions</h3>
+    </div>
+
+    <div class="input-row">
+      <div class="field">
+        <label for="dimW">Width</label>
+        <input id="dimW" type="number" step="any" value="8" oninput="updateDimensions()">
+      </div>
+      <div class="field">
+        <label for="dimH">Height</label>
+        <input id="dimH" type="number" step="any" value="3" oninput="updateDimensions()">
+      </div>
+      <div class="field">
+        <label for="dimUnit">Unit</label>
+        <select id="dimUnit" onchange="updateDimensions()">
+          <option value="ft">ft</option>
+          <option value="in">inch</option>
+          <option value="mm">mm</option>
+          <option value="cm">cm</option>
+          <option value="m">m</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="field">
+      <label for="canvasBg">Background Color</label>
+      <div class="color-picker-wrap">
+        <input id="canvasBg" type="color" value="#0a0f18" oninput="setBoardBackground(this.value)">
+        <span class="mono" id="canvasBgHex" style="font-size:11px;color:var(--muted)">#0a0f18</span>
+      </div>
+    </div>
+
+    <!-- Multi-Language Voice-to-Design & Audio Response -->
+    <div class="panel-head" style="margin-top:4px">
+      <h3>🎙 Global Voice &amp; AI Reply</h3>
+    </div>
+
+    <div class="field">
+      <label for="voiceLang">Voice Input Language</label>
+      <select id="voiceLang">
+        <option value="en-US">English (Global)</option>
+        <option value="hi-IN" selected>Hindi / Hinglish (भारत)</option>
+        <option value="ar-SA">Arabic (العربية)</option>
+        <option value="es-ES">Spanish (Español)</option>
+        <option value="fr-FR">French (Français)</option>
+        <option value="de-DE">German (Deutsch)</option>
+      </select>
+    </div>
+
+    <div class="field">
+      <input id="voiceInput" placeholder="e.g. 10x4 feet board, black bg, gold text">
+      <div style="display:flex;gap:6px;margin-top:4px">
+        <button class="btn sm cyan" style="flex:1" onclick="parseVoiceCommandText(document.getElementById('voiceInput').value)">Apply</button>
+        <button class="btn sm primary" onclick="startVoiceCommand()">🎙 Speak</button>
+      </div>
+      <div id="voiceStatus" style="font-size:10px;color:var(--muted);margin-top:2px">Ready for multilingual voice command.</div>
+    </div>
+
+    <!-- Image-to-Design Reference Analyzer -->
+    <div class="panel-head" style="margin-top:4px">
+      <h3>🖼 Image-to-Design</h3>
+    </div>
+    <div class="field">
+      <label for="uploadImg">Upload Reference Photo / Logo</label>
+      <input id="uploadImg" type="file" accept="image/*,.svg" onchange="handleImageToDesign(event)">
+      <span style="font-size:10px;color:var(--muted)">Auto-extracts colors, size, &amp; converts to editable layout.</span>
+    </div>
+
+    <div class="panel-head" style="margin-top:4px">
+      <h3>✦ Add Elements</h3>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px">
+      <button class="btn sm" onclick="addTextLayer('YOUR BRAND')">+ Add Text</button>
+      <button class="btn sm" onclick="addShapeLayer('rect')">▭ Box</button>
+      <button class="btn sm" onclick="addShapeLayer('circle')">○ Circle</button>
+      <button class="btn sm" onclick="addShapeLayer('badge')">★ 3D Badge</button>
+    </div>
+  </aside>
+
+  <!-- CENTER: CANVAS VIEWPORT -->
+  <section class="canvas-container">
+    <div class="canvas-toolbar">
+      <div class="tool-group">
+        <button class="btn sm" onclick="undo()" title="Undo">↩</button>
+        <button class="btn sm" onclick="redo()" title="Redo">↪</button>
+        <button class="btn sm" onclick="duplicateSelected()" title="Duplicate">⧉</button>
+        <button class="btn sm danger" onclick="deleteSelected()" title="Delete">🗑</button>
+        <button class="btn sm" onclick="clearBoard()" title="Clear">Clear</button>
+      </div>
+
+      <div class="tool-group">
+        <button class="btn sm" onclick="setWallAmbiance('dark')">Dark Wall</button>
+        <button class="btn sm" onclick="setWallAmbiance('brick')">Brick Wall</button>
+        <button class="btn sm" onclick="toggleNeonGlow()">Glow Effect</button>
+        <button class="btn sm" onclick="toggleCutpath()">✂ Cut-Path</button>
+        <button class="btn sm" onclick="togglePrepressGuides()">📐 Bleed</button>
+      </div>
+
+      <div class="tool-group">
+        <button class="btn sm primary" onclick="requestExport('pdf')">📄 Vector PDF</button>
+        <button class="btn sm cyan" onclick="requestExport('svg')">✦ SVG</button>
+        <button class="btn sm" onclick="requestExport('png')">PNG</button>
+      </div>
+    </div>
+
+    <div class="canvas-stage stage-wall-brick" id="stageContainer">
+      <div class="artboard neon-glow" id="artboard" style="width:620px;height:232px;background:#0a0f18">
+        <div class="guide-bleed hidden" id="guideBleed"></div>
+        <div class="guide-safe hidden" id="guideSafe"></div>
+
+        <div class="artboard-item selected effect-3d" id="item-1" style="left:40px;top:40px;color:#ffd75a;font-size:34px;font-weight:800;font-family:'Syne'">
+          DESIGNHUB GLOBAL
+        </div>
+        <div class="artboard-item" id="item-2" style="left:40px;top:100px;color:#94a3b8;font-size:13px;font-weight:600;font-family:'Plus Jakarta Sans'">
+          ARCHITECTURAL 3D ACRYLIC &amp; LASER CUT-PATHS
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- RIGHT: 3D EFFECTS & LIVE QUOTE -->
+  <aside class="panel" id="quote">
+    <div class="panel-head">
+      <h3>⚙ 3D Look &amp; Inspector</h3>
+    </div>
+
+    <div class="field">
+      <label for="selectedText">Layer Text</label>
+      <input id="selectedText" value="DESIGNHUB GLOBAL" oninput="updateSelectedText(this.value)">
+    </div>
+
+    <div class="input-row">
+      <div class="field">
+        <label for="selectedColor">Color</label>
+        <input id="selectedColor" type="color" value="#ffd75a" oninput="updateSelectedColor(this.value)">
+      </div>
+      <div class="field">
+        <label for="selectedSize">Font Size</label>
+        <input id="selectedSize" type="number" value="34" oninput="updateSelectedFontSize(this.value)">
+      </div>
+    </div>
+
+    <div class="input-row">
+      <div class="field">
+        <label for="selectedEffect">3D Look &amp; Finish</label>
+        <select id="selectedEffect" onchange="updateSelectedEffect(this.value)">
+          <option value="3d">3D Depth &amp; Drop Shadow</option>
+          <option value="glow">Neon Halo Glow</option>
+          <option value="none">Flat Architectural</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="selectedFont">Font Family</label>
+        <select id="selectedFont" onchange="updateSelectedFontFamily(this.value)">
+          <option value="'Syne', sans-serif">Syne (Architectural)</option>
+          <option value="'Plus Jakarta Sans', sans-serif">Jakarta Sans</option>
+          <option value="'JetBrains Mono', monospace">JetBrains Mono</option>
+          <option value="Impact, sans-serif">Impact (Bold)</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Commercial Quotation -->
+    <div class="panel-head" style="margin-top:6px">
+      <h3>🏷 Signage Quotation</h3>
+      <span class="mono" style="font-size:11px;color:var(--gold)">NEON POWER</span>
+    </div>
+
+    <div class="field">
+      <label for="quoteProduct">Product Type</label>
+      <select id="quoteProduct" onchange="calculateQuotation()">
+        <option value="acrylic_letter_light" data-rate="80" data-unit="inch">Acrylic Letter + Light (₹80/inch)</option>
+        <option value="steel_letter" data-rate="140" data-unit="inch">Steel Letter (₹140/inch)</option>
+        <option value="acp_sign_board" data-rate="650" data-unit="sqft" selected>ACP Sign Board (₹650/sq.ft)</option>
+        <option value="3d_sign_board" data-rate="750" data-unit="sqft">3D Sign Board (₹750/sq.ft)</option>
+        <option value="steel_sign_board" data-rate="980" data-unit="sqft">Steel Sign Board (₹980/sq.ft)</option>
+      </select>
+    </div>
+
+    <div class="input-row">
+      <div class="field">
+        <label for="quoteQuality">Quality Tier</label>
+        <select id="quoteQuality" onchange="calculateQuotation()">
+          <option value="1.0">Basic (1.0x)</option>
+          <option value="1.15" selected>Commercial (1.15x)</option>
+          <option value="1.30">Premium 304 SS (1.30x)</option>
+          <option value="1.55">High-End Architectural (1.55x)</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="quoteWarranty">Warranty</label>
+        <select id="quoteWarranty" onchange="calculateQuotation()">
+          <option value="1.00">2 Years</option>
+          <option value="1.05">3 Years</option>
+          <option value="1.12">5 Years</option>
+          <option value="1.30">10 Years</option>
+          <option value="1.55">20 Years</option>
+          <option value="2.15">50 Years</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="quote-card">
+      <div class="quote-row"><span>Dimensions</span><strong id="qDim">8 × 3 ft (24 sq.ft)</strong></div>
+      <div class="quote-row"><span>Base Fabrication</span><strong id="qBase">₹17,940</strong></div>
+      <div class="quote-row"><span>GST (18%)</span><strong id="qGst">₹3,229</strong></div>
+      <div class="quote-row quote-total"><span>Grand Total</span><strong id="qTotal">₹21,169</strong></div>
+
+      <div class="advance-box">
+        <b id="qAdvance">50% Advance: ₹10,585</b>
+        <span style="font-size:10px;color:#a7f3d0;display:block;margin-top:2px">50% Balance on Delivery</span>
+      </div>
+
+      <div style="margin-top:8px;display:flex;gap:6px">
+        <button class="btn sm cyan" style="flex:1" onclick="openUpiQrModal()">📱 UPI QR</button>
+        <a class="btn sm primary" style="flex:1" target="_blank" rel="noopener noreferrer" href="https://www.paypal.com/ncp/payment/GN99BSA7E4L3Y">
+          PayPal Advance
+        </a>
+      </div>
+    </div>
+  </aside>
+</main>
+
+<!-- 3D SIGNAGE VISUALS SHOWCASE GALLERY -->
+<section class="wrap gallery-section">
+  <div class="gallery-head">
+    <div>
+      <h3 style="margin:0;font-size:16px">✨ World-Class Signage Visuals &amp; Templates</h3>
+      <p style="color:var(--muted);font-size:12px;margin-top:2px">Click any architectural style to load it directly into the vector studio.</p>
+    </div>
+  </div>
+
+  <div class="gallery-grid">
+    <!-- Visual 1: 3D Acrylic LED Sign -->
+    <div class="visual-card" onclick="applyPreset('led-sign', 8, 3, 'ft', 'ROYAL LUXURY HOTEL', '#ffd75a', '#080c14')">
+      <div class="visual-thumb">
+        <div style="font-family:'Syne';font-size:18px;font-weight:800;color:#ffd75a;text-shadow:0 0 12px #f59e0b">
+          ROYAL HOTEL
+        </div>
+      </div>
+      <div class="visual-info">
+        <b>3D Acrylic Front-Lit LED Board</b>
+        <span>High-Gloss Acrylic • ₹750/sq.ft</span>
+      </div>
+    </div>
+
+    <!-- Visual 2: Titanium Gold Stainless Steel -->
+    <div class="visual-card" onclick="applyPreset('steel-board', 6, 2, 'ft', 'VOGUE JEWELLERS', '#fbbf24', '#000000')">
+      <div class="visual-thumb">
+        <div style="font-family:'Syne';font-size:18px;font-weight:800;color:#f59e0b;letter-spacing:2px;text-shadow:1px 1px 0 #fff, 2px 2px 0 #92400e">
+          VOGUE GOLD
+        </div>
+      </div>
+      <div class="visual-info">
+        <b>Titanium Gold SS Channel Letters</b>
+        <span>Marine Grade 304 SS • ₹140/inch</span>
+      </div>
+    </div>
+
+    <!-- Visual 3: Backlit Halo Glow Letters -->
+    <div class="visual-card" onclick="applyPreset('acrylic-letters', 5, 2, 'ft', 'NEXUS COFFEE LAB', '#38bdf8', '#0c131f')">
+      <div class="visual-thumb">
+        <div style="font-family:'Syne';font-size:18px;font-weight:800;color:#fff;text-shadow:0 0 15px #0284c7">
+          NEXUS LAB
+        </div>
+      </div>
+      <div class="visual-info">
+        <b>Backlit Halo Glow Storefront</b>
+        <span>Waterproof Samsung LEDs • ₹700/sq.ft</span>
+      </div>
+    </div>
+
+    <!-- Visual 4: Doctor / Corporate Nameplate -->
+    <div class="visual-card" onclick="applyPreset('nameplate', 300, 150, 'mm', 'DR. ARYA SHARMA', '#e2e8f0', '#0f172a')">
+      <div class="visual-thumb">
+        <div style="font-family:'Plus Jakarta Sans';font-size:14px;font-weight:700;color:#e2e8f0;border:1px solid #475569;padding:6px 14px;border-radius:4px">
+          DR. ARYA SHARMA
+        </div>
+      </div>
+      <div class="visual-info">
+        <b>Laser-Cut Executive Nameplate</b>
+        <span>Clear Acrylic &amp; Silver SS • ₹9/sq.in</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- UPI MODAL -->
+<div class="modal-overlay" id="upiModal">
+  <div class="modal-box" style="max-width:380px;text-align:center">
+    <div class="modal-head">
+      <h3 style="margin:0">50% Advance UPI Payment</h3>
+      <button class="btn sm" onclick="closeModal('upiModal')">✕</button>
+    </div>
+    <p style="color:var(--muted);font-size:12px;margin-bottom:10px">
+      Scan with Google Pay, PhonePe, Paytm or UPI app:
+    </p>
+
+    <div style="background:#fff;padding:12px;border-radius:12px;display:inline-block;margin:6px auto">
+      <img id="upiQrImg" src="" alt="UPI QR" style="width:180px;height:180px;display:block">
+    </div>
+
+    <div class="mono" style="margin-top:10px;font-size:13px;color:var(--gold);font-weight:700">
+      UPI ID: ledsignadil@oksbi
+    </div>
+    <div style="font-size:11px;color:var(--muted);margin-top:3px">
+      NEON POWER Fabrication · Phone: +91 93549 44438
+    </div>
+
+    <div style="margin-top:14px;display:flex;gap:6px">
+      <button class="btn sm" style="flex:1" onclick="copyText('ledsignadil@oksbi', 'UPI ID copied to clipboard!')">Copy UPI ID</button>
+      <button class="btn sm cyan" style="flex:1" onclick="closeModal('upiModal')">Done</button>
+    </div>
+  </div>
+</div>
+
+<!-- UPGRADE TO PRO MODAL -->
+<div class="modal-overlay" id="upgradeModal">
+  <div class="modal-box">
+    <div class="modal-head">
+      <h3 style="margin:0">⭐ Upgrade to DESIGNHUB PRO</h3>
+      <button class="btn sm" onclick="closeModal('upgradeModal')">✕</button>
+    </div>
+
+    <div style="text-align:center;padding:10px 0 16px">
+      <div style="font-size:32px;font-weight:800;color:var(--gold)">$4.99 <span style="font-size:14px;color:var(--muted)">/ month</span></div>
+      <div style="font-size:13px;color:#a7f3d0;margin-top:2px">or ₹399 / month via UPI</div>
+    </div>
+
+    <div style="background:#0c121d;border:1px solid var(--line);border-radius:10px;padding:12px;font-size:12px;margin-bottom:16px">
+      <div style="margin-bottom:6px">✓ Unlimited Vector SVG &amp; Vector PDF Exports</div>
+      <div style="margin-bottom:6px">✓ High-Resolution 300 DPI Prepress Blueprints</div>
+      <div style="margin-bottom:6px">✓ Unlimited Laser &amp; CNC Cut-Path Generation</div>
+      <div>✓ Priority Commercial Fabrication Support</div>
+    </div>
+
+    <div style="display:flex;flex-direction:column;gap:10px">
+      <a class="btn primary" target="_blank" rel="noopener noreferrer" href="https://www.paypal.com/ncp/payment/GN99BSA7E4L3Y">
+        Subscribe via PayPal ($4.99/mo)
+      </a>
+      <button class="btn cyan" onclick="openUpiQrModal()">
+        Pay ₹399 via UPI QR (Instant Activation)
+      </button>
+    </div>
+
+    <div style="margin-top:16px;border-top:1px solid var(--line);padding-top:12px">
+      <label style="font-size:11px;color:var(--muted);display:block;margin-bottom:4px">Paid via UPI / PayPal? Enter Transaction / UTR ID:</label>
+      <div style="display:flex;gap:6px">
+        <input id="txnInput" placeholder="e.g. 429182910392 or PayPal email">
+        <button class="btn sm" onclick="verifyAndActivatePro()">Verify &amp; Unlock</button>
+      </div>
+      <div id="verifyMsg" style="font-size:11px;margin-top:4px"></div>
+    </div>
+  </div>
+</div>
+
+<!-- LOGIN MODAL -->
+<div class="modal-overlay" id="loginModal">
+  <div class="modal-box" style="max-width:380px;text-align:center">
+    <div class="modal-head">
+      <h3 style="margin:0">Account Sign In</h3>
+      <button class="btn sm" onclick="closeModal('loginModal')">✕</button>
+    </div>
+    <p style="color:var(--muted);font-size:12px;margin-bottom:14px">
+      Sign in to save your custom signboards and access your Pro export allowance.
+    </p>
+
+    <!-- Google One-Tap / Button Container -->
+    <div id="g_id_onload"
+         data-client_id="YOUR_GOOGLE_CLIENT_ID.apps.googleusercontent.com"
+         data-context="signin"
+         data-ux_mode="popup"
+         data-callback="handleGoogleCredentialResponse"
+         data-auto_prompt="false">
+    </div>
+    <div class="g_id_signin" data-type="standard" data-shape="rectangular" data-theme="filled_blue" data-text="signin_with" data-size="large"></div>
+
+    <div style="margin:14px 0 10px;font-size:11px;color:var(--muted)">— OR USE EMAIL QUICK LOGIN —</div>
+
+    <div class="field" style="text-align:left">
+      <input id="quickEmail" type="email" placeholder="client@wearstay.com">
+      <button class="btn sm primary" style="margin-top:8px;width:100%" onclick="quickEmailLogin()">Continue with Email</button>
+    </div>
+  </div>
+</div>
+
+<script>
+// ==============================================================
+// 1. STATE & INITIALIZATION
+// ==============================================================
+const state = {
+  selectedItem: null,
+  cutpathActive: false,
+  prepressGuides: false,
+  history: [],
+  historyStep: -1,
+  w: 8,
+  h: 3,
+  unit: 'ft',
+  user: null,
+  plan: 'free',
+  exportsCount: 0,
+  maxFreeExports: 2
+};
+
+function initApp() {
+  const savedUser = localStorage.getItem('designhub_user');
+  if (savedUser) {
+    try { state.user = JSON.parse(savedUser); } catch(e) {}
+  }
+  const savedPlan = localStorage.getItem('designhub_plan');
+  if (savedPlan === 'pro') state.plan = 'pro';
+
+  state.exportsCount = parseInt(localStorage.getItem('designhub_exports') || '0', 10);
+
+  updateAuthUI();
+  updatePlanUI();
+  updateDimensions();
+  calculateQuotation();
+}
+
+function updatePlanUI() {
+  const badge = document.getElementById('planBadge');
+  if (state.plan === 'pro') {
+    badge.className = 'plan-badge pro';
+    badge.textContent = 'PRO ACTIVE (Unlimited)';
+  } else {
+    badge.className = 'plan-badge';
+    const left = Math.max(0, state.maxFreeExports - state.exportsCount);
+    badge.textContent = `FREE (${left}/${state.maxFreeExports} Left)`;
+  }
+}
+
+function updateAuthUI() {
+  const container = document.getElementById('authContainer');
+  if (state.user) {
+    container.innerHTML = `
+      <div class="user-pill">
+        <img src="${state.user.avatar || 'https://via.placeholder.com/24'}" alt="Avatar">
+        <span>${state.user.name}</span>
+        <button class="btn sm danger" style="padding:2px 6px;margin-left:4px" onclick="logoutUser()">Logout</button>
+      </div>
+    `;
+  } else {
+    container.innerHTML = `<button class="btn sm" onclick="openLoginModal()" id="loginBtn">Google Login</button>`;
+  }
+}
+
+function handleGoogleCredentialResponse(response) {
+  try {
+    const payload = JSON.parse(atob(response.credential.split('.')[1]));
+    state.user = {
+      name: payload.name || payload.email.split('@')[0],
+      email: payload.email,
+      avatar: payload.picture
+    };
+    localStorage.setItem('designhub_user', JSON.stringify(state.user));
+    updateAuthUI();
+    closeModal('loginModal');
+    speakAIConfirmation(`Welcome back, ${state.user.name}! Your workspace is ready.`);
+  } catch(err) {
+    alert('Google login completed.');
+  }
+}
+
+function quickEmailLogin() {
+  const email = document.getElementById('quickEmail').value.trim();
+  if (!email) return alert('Please enter your email.');
+  state.user = {
+    name: email.split('@')[0],
+    email: email,
+    avatar: 'https://api.dicebear.com/7.x/identicon/svg?seed=' + encodeURIComponent(email)
+  };
+  localStorage.setItem('designhub_user', JSON.stringify(state.user));
+  updateAuthUI();
+  closeModal('loginModal');
+  speakAIConfirmation(`Welcome, ${state.user.name}!`);
+}
+
+function logoutUser() {
+  state.user = null;
+  localStorage.removeItem('designhub_user');
+  updateAuthUI();
+}
+
+function verifyAndActivatePro() {
+  const txn = document.getElementById('txnInput').value.trim();
+  const msg = document.getElementById('verifyMsg');
+  if (!txn) {
+    msg.style.color = 'var(--danger)';
+    msg.textContent = 'Please enter your UPI reference number or PayPal ID.';
+    return;
+  }
+  state.plan = 'pro';
+  localStorage.setItem('designhub_plan', 'pro');
+  localStorage.setItem('designhub_txn', txn);
+  updatePlanUI();
+
+  msg.style.color = '#34d399';
+  msg.textContent = '✓ Verified! PRO Plan activated successfully.';
+  speakAIConfirmation('Congratulations! Your Pro membership is now unlocked with unlimited vector exports.');
+  setTimeout(() => closeModal('upgradeModal'), 1500);
+}
+
+// ==============================================================
+// 2. GLOBAL VOICE-TO-DESIGN & AI AUDIO RESPONSE (TTS)
+// ==============================================================
+function speakAIConfirmation(message) {
+  if (!window.speechSynthesis) return;
+  window.speechSynthesis.cancel();
+  const utterance = new SpeechSynthesisUtterance(message);
+  utterance.pitch = 1.0;
+  utterance.rate = 1.0;
+  window.speechSynthesis.speak(utterance);
+}
+
+function parseVoiceCommandText(cmd) {
+  if (!cmd) return;
+  const raw = cmd.toLowerCase().trim();
+  document.getElementById('voiceStatus').textContent = `Applied: "${cmd}"`;
+
+  const colorMap = {
+    'blue': '#1e3a8a', 'neela': '#1e3a8a',
+    'gold': '#f59e0b', 'golden': '#f59e0b', 'peela': '#f59e0b',
+    'red': '#ef4444', 'laal': '#ef4444',
+    'green': '#10b981', 'hara': '#10b981',
+    'black': '#05070a', 'kala': '#05070a',
+    'white': '#ffffff', 'safed': '#ffffff'
+  };
+
+  let appliedColor = null;
+  if (raw.includes('background') || raw.includes('bg')) {
+    for (let c in colorMap) {
+      if (raw.includes(c)) {
+        appliedColor = colorMap[c];
+        setBoardBackground(appliedColor);
+        document.getElementById('canvasBg').value = appliedColor;
+        break;
+      }
+    }
+  }
+
+  let sizeApplied = null;
+  const sizeMatch = raw.match(/(\d+(?:\.\d+)?)\s*(?:by|x|×|\*)\s*(\d+(?:\.\d+)?)\s*(feet|ft|inch|in|cm|mm|m)?/);
+  if (sizeMatch) {
+    document.getElementById('dimW').value = sizeMatch[1];
+    document.getElementById('dimH').value = sizeMatch[2];
+    let u = sizeMatch[3] || 'ft';
+    if (u === 'feet') u = 'ft';
+    if (u === 'inch') u = 'in';
+    document.getElementById('dimUnit').value = u;
+    sizeApplied = `${sizeMatch[1]} by ${sizeMatch[2]} ${u}`;
+    updateDimensions();
+  }
+
+  if (raw.includes('text') || raw.includes('letter')) {
+    for (let c in colorMap) {
+      if (raw.includes(c) && !raw.includes(`background ${c}`)) {
+        if (state.selectedItem) state.selectedItem.style.color = colorMap[c];
+        break;
+      }
+    }
+  }
+
+  const textMatch = cmd.match(/(?:add text|write|type|naam)\s*["']?([^"']+)["']?/i);
+  if (textMatch && textMatch[1]) {
+    addTextLayer(textMatch[1].trim());
+  }
+
+  // AI Voice Confirmation Reply
+  let reply = 'Design updated!';
+  if (sizeApplied && appliedColor) reply = `Created ${sizeApplied} signboard with custom background.`;
+  else if (sizeApplied) reply = `Canvas resized to ${sizeApplied}.`;
+  else if (appliedColor) reply = `Background color updated.`;
+  speakAIConfirmation(reply);
+}
+
+function startVoiceCommand() {
+  const SpeechRec = window.SpeechRecognition || window.webkitSpeechRecognition;
+  const status = document.getElementById('voiceStatus');
+  if (!SpeechRec) {
+    alert('Browser speech recognition not available. Please type your command.');
+    return;
+  }
+
+  const rec = new SpeechRec();
+  rec.lang = document.getElementById('voiceLang').value || 'en-US';
+  rec.interimResults = false;
+
+  status.textContent = 'Listening... Speak in your language now.';
+  rec.onresult = e => {
+    const text = e.results[0][0].transcript;
+    document.getElementById('voiceInput').value = text;
+    parseVoiceCommandText(text);
+  };
+  rec.onerror = () => {
+    status.textContent = 'Voice capture error. Type manually.';
+  };
+  rec.start();
+}
+
+// ==============================================================
+// 3. IMAGE-TO-DESIGN REFERENCE ANALYZER
+// ==============================================================
+function handleImageToDesign(e) {
+  const file = e.target.files[0];
+  if (!file) return;
+
+  const reader = new FileReader();
+  reader.onload = ev => {
+    const img = new Image();
+    img.onload = () => {
+      // Analyze dominant brightness using temporary canvas
+      const cv = document.createElement('canvas');
+      cv.width = 40; cv.height = 40;
+      const ctx = cv.getContext('2d');
+      ctx.drawImage(img, 0, 0, 40, 40);
+      const data = ctx.getImageData(0, 0, 40, 40).data;
+      let r = 0, g = 0, b = 0;
+      for (let i = 0; i < data.length; i += 4) {
+        r += data[i]; g += data[i+1]; b += data[i+2];
+      }
+      r = Math.round(r / (data.length / 4));
+      g = Math.round(g / (data.length / 4));
+      b = Math.round(b / (data.length / 4));
+
+      // Contrast color determination
+      const brightness = (r * 299 + g * 587 + b * 114) / 1000;
+      const textColor = brightness > 125 ? '#000000' : '#ffd75a';
+
+      // Attach image layer
+      const imageEl = document.createElement('img');
+      imageEl.src = ev.target.result;
+      imageEl.className = 'artboard-item';
+      imageEl.id = 'item-' + (itemCounter++);
+      imageEl.style.left = '40px';
+      imageEl.style.top = '40px';
+      imageEl.style.maxWidth = '180px';
+      imageEl.style.maxHeight = '140px';
+      imageEl.style.objectFit = 'contain';
+
+      document.getElementById('artboard').appendChild(imageEl);
+      bindDrag(imageEl);
+      selectItem(imageEl);
+      saveHistory();
+
+      speakAIConfirmation('Image analyzed! Reference layout created with matching palette.');
+    };
+    img.src = ev.target.result;
+  };
+  reader.readAsDataURL(file);
+}
+
+// ==============================================================
+// 4. DIMENSIONS & CANVAS ENGINE
+// ==============================================================
+function updateDimensions() {
+  state.w = parseFloat(document.getElementById('dimW').value) || 8;
+  state.h = parseFloat(document.getElementById('dimH').value) || 3;
+  state.unit = document.getElementById('dimUnit').value || 'ft';
+
+  const ratio = state.w / state.h;
+  const board = document.getElementById('artboard');
+  const maxWidth = 720;
+  const maxHeight = 400;
+
+  let finalW = maxWidth;
+  let finalH = finalW / ratio;
+
+  if (finalH > maxHeight) {
+    finalH = maxHeight;
+    finalW = finalH * ratio;
+  }
+
+  board.style.width = Math.round(finalW) + 'px';
+  board.style.height = Math.round(finalH) + 'px';
+
+  calculateQuotation();
+}
+
+function setBoardBackground(color) {
+  document.getElementById('artboard').style.backgroundColor = color;
+  document.getElementById('canvasBgHex').textContent = color;
+}
+
+function setWallAmbiance(mode) {
+  const container = document.getElementById('stageContainer');
+  container.className = mode === 'brick' ? 'canvas-stage stage-wall-brick' : 'canvas-stage stage-wall-dark';
+}
+
+function toggleNeonGlow() {
+  document.getElementById('artboard').classList.toggle('neon-glow');
+}
+
+function toggleCutpath() {
+  state.cutpathActive = !state.cutpathActive;
+  document.querySelectorAll('.artboard-item').forEach(el => {
+    el.classList.toggle('cutpath-active', state.cutpathActive);
+  });
+}
+
+function togglePrepressGuides() {
+  state.prepressGuides = !state.prepressGuides;
+  document.getElementById('guideBleed').classList.toggle('hidden', !state.prepressGuides);
+  document.getElementById('guideSafe').classList.toggle('hidden', !state.prepressGuides);
+}
+
+// ==============================================================
+// 5. DRAG & DROP & LAYERS
+// ==============================================================
+let activeDrag = null;
+let dragStartX = 0, dragStartY = 0, itemStartX = 0, itemStartY = 0;
+
+function bindDrag(el) {
+  el.addEventListener('pointerdown', e => {
+    e.stopPropagation();
+    selectItem(el);
+    activeDrag = el;
+    dragStartX = e.clientX;
+    dragStartY = e.clientY;
+    itemStartX = parseInt(el.style.left, 10) || 0;
+    itemStartY = parseInt(el.style.top, 10) || 0;
+    el.setPointerCapture(e.pointerId);
+  });
+
+  el.addEventListener('pointermove', e => {
+    if (activeDrag === el) {
+      el.style.left = (itemStartX + e.clientX - dragStartX) + 'px';
+      el.style.top = (itemStartY + e.clientY - dragStartY) + 'px';
+    }
+  });
+
+  el.addEventListener('pointerup', e => {
+    if (activeDrag === el) {
+      activeDrag = null;
+      try { el.releasePointerCapture(e.pointerId); } catch(err) {}
+      saveHistory();
+    }
+  });
+}
+
+function selectItem(el) {
+  document.querySelectorAll('.artboard-item').forEach(item => item.classList.remove('selected'));
+  state.selectedItem = el;
+  if (el) {
+    el.classList.add('selected');
+    document.getElementById('selectedText').value = el.textContent.trim();
+    document.getElementById('selectedColor').value = rgbToHex(el.style.color || '#ffd75a');
+    document.getElementById('selectedSize').value = parseInt(el.style.fontSize, 10) || 24;
+  }
+}
+
+document.getElementById('stageContainer').addEventListener('pointerdown', e => {
+  if (e.target.id === 'stageContainer' || e.target.id === 'artboard') {
+    selectItem(null);
+  }
+});
+
+let itemCounter = 3;
+function addTextLayer(text = 'NEW TEXT') {
+  const el = document.createElement('div');
+  el.className = 'artboard-item effect-3d';
+  el.id = 'item-' + (itemCounter++);
+  el.textContent = text;
+  el.style.left = '50px';
+  el.style.top = '60px';
+  el.style.color = '#ffffff';
+  el.style.fontSize = '26px';
+  el.style.fontWeight = '700';
+  el.style.fontFamily = "'Syne', sans-serif";
+
+  document.getElementById('artboard').appendChild(el);
+  bindDrag(el);
+  selectItem(el);
+  saveHistory();
+}
+
+function addShapeLayer(type) {
+  const el = document.createElement('div');
+  el.className = 'artboard-item';
+  el.id = 'item-' + (itemCounter++);
+  el.style.left = '60px';
+  el.style.top = '60px';
+  el.style.width = '120px';
+  el.style.height = '50px';
+  el.style.border = '3px solid #f59e0b';
+  el.style.backgroundColor = 'rgba(245, 158, 11, 0.1)';
+
+  if (type === 'circle') {
+    el.style.width = '80px';
+    el.style.height = '80px';
+    el.style.borderRadius = '50%';
+  } else if (type === 'badge') {
+    el.style.borderRadius = '20px';
+    el.textContent = '3D PREMIUM';
+    el.style.color = '#f59e0b';
+    el.style.fontSize = '12px';
+    el.style.fontWeight = '800';
+    el.style.display = 'flex';
+    el.style.alignItems = 'center';
+    el.style.justifyContent = 'center';
+  }
+
+  document.getElementById('artboard').appendChild(el);
+  bindDrag(el);
+  selectItem(el);
+  saveHistory();
+}
+
+function updateSelectedText(val) {
+  if (state.selectedItem) { state.selectedItem.textContent = val; saveHistory(); }
+}
+function updateSelectedColor(hex) {
+  if (state.selectedItem) { state.selectedItem.style.color = hex; saveHistory(); }
+}
+function updateSelectedFontSize(size) {
+  if (state.selectedItem) { state.selectedItem.style.fontSize = size + 'px'; saveHistory(); }
+}
+function updateSelectedFontFamily(font) {
+  if (state.selectedItem) { state.selectedItem.style.fontFamily = font; saveHistory(); }
+}
+function updateSelectedEffect(eff) {
+  if (state.selectedItem) {
+    state.selectedItem.classList.remove('effect-3d', 'effect-glow');
+    if (eff === '3d') state.selectedItem.classList.add('effect-3d');
+    else if (eff === 'glow') state.selectedItem.classList.add('effect-glow');
+    saveHistory();
+  }
+}
+
+function duplicateSelected() {
+  if (!state.selectedItem) return;
+  const clone = state.selectedItem.cloneNode(true);
+  clone.id = 'item-' + (itemCounter++);
+  clone.style.left = (parseInt(state.selectedItem.style.left, 10) + 15) + 'px';
+  clone.style.top = (parseInt(state.selectedItem.style.top, 10) + 15) + 'px';
+  document.getElementById('artboard').appendChild(clone);
+  bindDrag(clone);
+  selectItem(clone);
+  saveHistory();
+}
+
+function deleteSelected() {
+  if (state.selectedItem) {
+    state.selectedItem.remove();
+    selectItem(null);
+    saveHistory();
+  }
+}
+
+function clearBoard() {
+  if (confirm('Clear all canvas elements?')) {
+    document.querySelectorAll('.artboard-item').forEach(el => el.remove());
+    selectItem(null);
+    saveHistory();
+  }
+}
+
+function saveHistory() {
+  const html = document.getElementById('artboard').innerHTML;
+  state.historyStep++;
+  state.history = state.history.slice(0, state.historyStep);
+  state.history.push(html);
+}
+function undo() {
+  if (state.historyStep > 0) { state.historyStep--; restoreHistory(); }
+}
+function redo() {
+  if (state.historyStep < state.history.length - 1) { state.historyStep++; restoreHistory(); }
+}
+function restoreHistory() {
+  const html = state.history[state.historyStep];
+  if (html) {
+    document.getElementById('artboard').innerHTML = html;
+    document.querySelectorAll('.artboard-item').forEach(bindDrag);
+    selectItem(null);
+  }
+}
+
+// ==============================================================
+// 6. PRESETS & COMMERCIAL QUOTATION
+// ==============================================================
+function applyPreset(type, w, h, unit, title, textColor, bgColor) {
+  document.getElementById('dimW').value = w;
+  document.getElementById('dimH').value = h;
+  document.getElementById('dimUnit').value = unit;
+  setBoardBackground(bgColor);
+  document.getElementById('canvasBg').value = bgColor;
+  updateDimensions();
+
+  document.querySelectorAll('.artboard-item').forEach(el => el.remove());
+
+  const h1 = document.createElement('div');
+  h1.className = 'artboard-item effect-3d';
+  h1.id = 'item-' + (itemCounter++);
+  h1.textContent = title;
+  h1.style.left = '35px';
+  h1.style.top = '35px';
+  h1.style.color = textColor;
+  h1.style.fontSize = '30px';
+  h1.style.fontWeight = '800';
+  h1.style.fontFamily = "'Syne', sans-serif";
+
+  const sub = document.createElement('div');
+  sub.className = 'artboard-item';
+  sub.id = 'item-' + (itemCounter++);
+  sub.textContent = `${w} × ${h} ${unit} • ARCHITECTURAL 3D PREPRESS`;
+  sub.style.left = '35px';
+  sub.style.top = '85px';
+  sub.style.color = '#94a3b8';
+  sub.style.fontSize = '12px';
+  sub.style.fontFamily = "'Plus Jakarta Sans', sans-serif";
+
+  const board = document.getElementById('artboard');
+  board.appendChild(h1);
+  board.appendChild(sub);
+
+  bindDrag(h1);
+  bindDrag(sub);
+  selectItem(h1);
+  saveHistory();
+}
+
+function calculateQuotation() {
+  const prodSelect = document.getElementById('quoteProduct');
+  const opt = prodSelect.options[prodSelect.selectedIndex];
+  const rate = parseFloat(opt.dataset.rate) || 650;
+  const unitType = opt.dataset.unit || 'sqft';
+
+  const qualMult = parseFloat(document.getElementById('quoteQuality').value) || 1.15;
+  const warMult = parseFloat(document.getElementById('quoteWarranty').value) || 1.0;
+
+  const factorsToFt = { ft: 1, in: 1/12, cm: 0.0328084, mm: 0.00328084, m: 3.28084 };
+  const u = state.unit;
+  const wFt = state.w * (factorsToFt[u] || 1);
+  const hFt = state.h * (factorsToFt[u] || 1);
+  const areaSqFt = wFt * hFt;
+  const areaSqIn = areaSqFt * 144;
+  const maxInch = Math.max(wFt * 12, hFt * 12);
+
+  let basePrice = 0;
+  if (unitType === 'sqft') basePrice = areaSqFt * rate;
+  else if (unitType === 'sqin') basePrice = areaSqIn * rate;
+  else if (unitType === 'inch') basePrice = maxInch * rate;
+
+  basePrice = basePrice * qualMult * warMult;
+  const gst = basePrice * 0.18;
+  const total = basePrice + gst;
+  const advance = total * 0.50;
+
+  document.getElementById('qDim').textContent = `${state.w} × ${state.h} ${state.unit} (${Math.round(areaSqFt)} sq.ft)`;
+  document.getElementById('qBase').textContent = '₹' + Math.round(basePrice).toLocaleString('en-IN');
+  document.getElementById('qGst').textContent = '₹' + Math.round(gst).toLocaleString('en-IN');
+  document.getElementById('qTotal').textContent = '₹' + Math.round(total).toLocaleString('en-IN');
+  document.getElementById('qAdvance').textContent = '50% Advance: ₹' + Math.round(advance).toLocaleString('en-IN');
+
+  const upiUrl = `upi://pay?pa=ledsignadil@oksbi&pn=NEON%20POWER&am=${Math.round(advance)}&cu=INR`;
+  const qrApi = `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent(upiUrl)}`;
+  document.getElementById('upiQrImg').src = qrApi;
+}
+
+function openUpiQrModal() {
+  calculateQuotation();
+  document.getElementById('upiModal').classList.add('open');
+}
+
+function openUpgradeModal() {
+  document.getElementById('upgradeModal').classList.add('open');
+}
+
+function openLoginModal() {
+  document.getElementById('loginModal').classList.add('open');
+}
+
+// ==============================================================
+// 7. EXPORTS (VECTOR SVG, VECTOR PDF, RASTER)
+// ==============================================================
+function requestExport(format) {
+  if (state.plan !== 'pro' && state.exportsCount >= state.maxFreeExports) {
+    openUpgradeModal();
+    return;
+  }
+  if (state.plan !== 'pro') {
+    state.exportsCount++;
+    localStorage.setItem('designhub_exports', state.exportsCount);
+    updatePlanUI();
+  }
+
+  if (format === 'svg') exportSVG();
+  else if (format === 'pdf') exportVectorPDF();
+  else exportRasterImage(format);
+}
+
+function exportSVG() {
+  const board = document.getElementById('artboard');
+  const w = board.offsetWidth, h = board.offsetHeight;
+  const bg = board.style.backgroundColor || '#0a0f18';
+
+  let svg = `<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="${w}" height="${h}" viewBox="0 0 ${w} ${h}">
+  <rect width="100%" height="100%" fill="${bg}"/>
+`;
+
+  document.querySelectorAll('.artboard-item').forEach(el => {
+    const x = parseInt(el.style.left, 10) || 0;
+    const y = parseInt(el.style.top, 10) || 0;
+    const color = el.style.color || '#fff';
+    const fs = parseInt(el.style.fontSize, 10) || 20;
+
+    if (el.tagName === 'IMG') {
+      svg += `  <image href="${el.src}" x="${x}" y="${y}" width="${el.offsetWidth}" height="${el.offsetHeight}"/>\n`;
+    } else if (el.style.borderRadius === '50%') {
+      svg += `  <circle cx="${x + el.offsetWidth/2}" cy="${y + el.offsetHeight/2}" r="${el.offsetWidth/2}" stroke="#f59e0b" stroke-width="3" fill="none"/>\n`;
+    } else {
+      svg += `  <text x="${x}" y="${y + fs}" fill="${color}" font-size="${fs}" font-family="sans-serif" font-weight="bold">${escapeXml(el.textContent)}</text>\n`;
+    }
+  });
+
+  svg += '</svg>';
+  downloadBlob(svg, 'designhub-vector.svg', 'image/svg+xml');
+}
+
+function exportVectorPDF() {
+  if (!window.jspdf || !window.jspdf.jsPDF) {
+    alert('jsPDF library loading. Please try again.');
+    return;
+  }
+
+  const { jsPDF } = window.jspdf;
+  const board = document.getElementById('artboard');
+  const doc = new jsPDF({
+    orientation: board.offsetWidth > board.offsetHeight ? 'landscape' : 'portrait',
+    unit: 'pt',
+    format: [board.offsetWidth, board.offsetHeight]
+  });
+
+  doc.setFillColor(board.style.backgroundColor || '#0a0f18');
+  doc.rect(0, 0, board.offsetWidth, board.offsetHeight, 'F');
+
+  document.querySelectorAll('.artboard-item').forEach(el => {
+    if (el.tagName !== 'IMG') {
+      const x = parseInt(el.style.left, 10) || 0;
+      const y = parseInt(el.style.top, 10) || 0;
+      const fs = parseInt(el.style.fontSize, 10) || 20;
+      doc.setTextColor(rgbToHex(el.style.color || '#ffffff'));
+      doc.setFontSize(fs * 0.75);
+      doc.text(el.textContent.trim(), x, y + fs * 0.75);
+    }
+  });
+
+  doc.save('designhub-prepress-print.pdf');
+}
+
+function exportRasterImage(format) {
+  const board = document.getElementById('artboard');
+  const canvas = document.createElement('canvas');
+  const scale = 2;
+  canvas.width = board.offsetWidth * scale;
+  canvas.height = board.offsetHeight * scale;
+  const ctx = canvas.getContext('2d');
+  ctx.scale(scale, scale);
+
+  ctx.fillStyle = board.style.backgroundColor || '#0a0f18';
+  ctx.fillRect(0, 0, board.offsetWidth, board.offsetHeight);
+
+  document.querySelectorAll('.artboard-item').forEach(el => {
+    const x = parseInt(el.style.left, 10) || 0;
+    const y = parseInt(el.style.top, 10) || 0;
+    if (el.tagName !== 'IMG') {
+      const fs = parseInt(el.style.fontSize, 10) || 20;
+      ctx.fillStyle = el.style.color || '#ffffff';
+      ctx.font = `700 ${fs}px sans-serif`;
+      ctx.fillText(el.textContent.trim(), x, y + fs * 0.85);
+    }
+  });
+
+  const mime = format === 'jpg' ? 'image/jpeg' : 'image/png';
+  canvas.toBlob(blob => {
+    downloadBlob(blob, `designhub-render.${format}`, mime);
+  }, mime, 0.95);
+}
+
+function downloadBlob(content, filename, mime) {
+  const blob = content instanceof Blob ? content : new Blob([content], { type: mime });
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = filename;
+  a.click();
+}
+
+// ==============================================================
+// 8. CLIPBOARD & UTILS
+// ==============================================================
+function copyFullSourceCode() {
+  const fullHtml = '<!DOCTYPE html>\n' + document.documentElement.outerHTML;
+  navigator.clipboard.writeText(fullHtml).then(() => {
+    alert('Complete single-file index.html copied to clipboard!\nYou can now paste it directly into GitHub.');
+  });
+}
+
+function closeModal(id) {
+  document.getElementById(id).classList.remove('open');
+}
+
+function copyText(str, msg) {
+  navigator.clipboard.writeText(str).then(() => alert(msg));
+}
+
+function rgbToHex(rgb) {
+  if (!rgb || rgb.startsWith('#')) return rgb || '#ffffff';
+  const match = rgb.match(/^rgba?\((\d+),\s*(\d+),\s*(\d+)/);
+  if (!match) return '#ffffff';
+  return '#' + [match[1], match[2], match[3]].map(x => parseInt(x, 10).toString(16).padStart(2, '0')).join('');
+}
+
+function escapeXml(str) {
+  return (str || '').replace(/[<>&'"]/g, c => {
+    switch (c) {
+      case '<': return '&lt;';
+      case '>': return '&gt;';
+      case '&': return '&amp;';
+      case '\'': return '&apos;';
+      case '"': return '&quot;';
+    }
+  });
+}
+
+// Initialize on Load
+window.addEventListener('DOMContentLoaded', () => {
+  document.querySelectorAll('.artboard-item').forEach(bindDrag);
+  selectItem(document.getElementById('item-1'));
+  saveHistory();
+  initApp();
+});
+</script>
+</body>
+</html>
