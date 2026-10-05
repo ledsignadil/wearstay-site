@@ -1,0 +1,800 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#080b11">
+<meta name="description" content="DESIGNHUB GLOBAL — World's Easiest AI Signage, Canva-Class Prepress Studio & Manufacturing Platform.">
+<meta name="keywords" content="Signage, 3D Letters, LED Boards, Canva Alternative, Background Remover, CDR Converter, Neon Powerlines">
+<link rel="canonical" href="https://wearstay.com/">
+<title>DESIGNHUB GLOBAL — Canva-Class Studio & Signage Platform</title>
+
+<!-- Google Site Verification (Search Console) & Analytics -->
+<meta name="google-site-verification" content="YOUR_GOOGLE_VERIFICATION_CODE_HERE" />
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-XXXXXXXXXX');
+</script>
+
+<!-- Google AdSense (Monetization) -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX" crossorigin="anonymous"></script>
+
+<!-- External SDKs -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="https://www.paypal.com/sdk/js?client-id=test&currency=USD"></script>
+<style>
+:root {
+  --bg: #080b11; --panel: #111722; --line: #273245; --text: #f7f9fc; --muted: #9aa7bb;
+  --accent: #f5b400; --blue: #2387ff; --green: #20c77a; --danger: #ff5f6d;
+  --shadow: 0 18px 60px rgba(0,0,0,.28);
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { margin: 0; background: linear-gradient(180deg,#070a10,#0b1018 45%,#080b11); color: var(--text); font-family: Inter, system-ui, -apple-system, sans-serif; }
+a { color: inherit; text-decoration: none; }
+button, input, select, textarea { font: inherit; }
+button { cursor: pointer; border: 0; border-radius: 12px; padding: 12px 16px; font-weight: 800; transition: .2s; }
+button:hover { transform: translateY(-1px); }
+.btn-primary { background: linear-gradient(135deg,#ffca28,#f59e0b); color: #101318; }
+.btn-blue { background: var(--blue); color: #fff; }
+.btn-ghost { background: #172131; color: #eaf0f8; border: 1px solid var(--line); }
+.btn-small { padding: 9px 12px; font-size: 13px; }
+.btn-voice { background: linear-gradient(45deg, #ff3b4e, #ffca28); color: #fff; animation: pulse 2s infinite; }
+@keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(255, 59, 78, 0.5); } 70% { box-shadow: 0 0 0 10px rgba(255, 59, 78, 0); } 100% { box-shadow: 0 0 0 0 rgba(255, 59, 78, 0); } }
+
+.container { width: min(1180px, calc(100% - 28px)); margin: auto; }
+.nav { position: sticky; top: 0; z-index: 50; background: rgba(8,11,17,.9); backdrop-filter: blur(14px); border-bottom: 1px solid var(--line); }
+.navin { min-height: 68px; display: flex; align-items: center; gap: 18px; }
+.brand { font-weight: 900; font-size: 22px; letter-spacing: .3px; }
+.brand span { color: var(--accent); }
+.tag { font-size: 10px; color: var(--muted); display: block; font-weight: 600; }
+.navlinks { display: flex; gap: 7px; margin-left: auto; flex-wrap: wrap; }
+.navlinks a { padding: 9px 11px; color: #d9e1ed; font-size: 13px; border-radius: 10px; }
+.navlinks a:hover { background: #182233; }
+</style>
+</head>
+<body>
+<header class="nav">
+ <div class="container navin">
+  <a class="brand" href="https://wearstay.com">DESIGN<span>HUB</span><small class="tag">AI Studio & Signage Platform</small></a>
+  <nav class="navlinks">
+   <a href="#home">Home</a>
+   <a href="#canvaStudioSection">AI Design Studio</a>
+   <a href="#signage">Order Signage</a>
+  </nav>
+  <a class="btn-primary btn-small" href="#signage" style="border-radius:10px;">Order Now</a>
+ </div>
+</header>
+
+<main>
+<section id="home" class="hero" style="padding: 54px 0 35px;">
+ <div class="container heroGrid" style="display:grid; grid-template-columns:1.15fr .85fr; gap:30px; align-items:center;">
+  <div>
+   <div style="color:var(--accent); font-weight:900; text-transform:uppercase; letter-spacing:1.4px; font-size:12px;">World's Easiest Design & Manufacturing Platform</div>
+   <h1 style="font-size:clamp(34px, 5vw, 60px); line-height:.98; margin:12px 0 18px; letter-spacing:-2px;">Speak. Design. <span>Build.</span></h1>
+   <p style="font-size:16px; line-height:1.6; color:#bdc8d8; max-width:680px;">From zero skills to professional signage. Speak in your language, drag & drop elements, remove backgrounds, convert files, and order custom manufacturing with 50% advance via UPI/PayPal.</p>
+   <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:20px;">
+    <button class="btn-voice" onclick="startGlobalVoiceAI()">🎙 Speak to Design (Any Language)</button>
+    <a class="btn-primary" href="#canvaStudioSection" style="padding:12px 16px; border-radius:12px; font-weight:800; display:inline-block;">Open Canva-Grade Studio</a>
+   </div>
+  </div>
+ </div>
+</section>
+<style>
+.sectionTitle { margin-bottom: 18px; }
+.sectionTitle h2 { font-size: 26px; margin: 0 0 5px; }
+.canvaToolbar { display: flex; gap: 8px; flex-wrap: wrap; background: #111824; padding: 10px; border-radius: 12px; border: 1px solid var(--line); align-items: center; margin-bottom: 12px; }
+.canvaStudio { display: grid; grid-template-columns: 240px 1fr; gap: 15px; background: #0a0e17; border: 1px solid var(--line); border-radius: 20px; padding: 15px; min-height: 520px; }
+.canvaSidebar { background: #0e1420; border: 1px solid var(--line); border-radius: 14px; padding: 12px; display: flex; flex-direction: column; gap: 10px; }
+.canvaSidebar h4 { margin: 0 0 5px; font-size: 13px; color: var(--accent); }
+.canvaCanvasArea { position: relative; background: #05080e; border: 1px solid #29374c; border-radius: 16px; overflow: hidden; display: flex; align-items: center; justify-content: center; min-height: 485px; }
+#canvaCanvas { display: block; max-width: 100%; height: auto; cursor: crosshair; touch-action: none; }
+</style>
+
+<section id="canvaStudioSection" class="container">
+  <div class="sectionTitle">
+    <h2>Canva-Class Design Studio & AI Converter</h2>
+    <p>Add text, shapes, upload images, position layers, and export high-res artwork.</p>
+  </div>
+  
+  <div class="canvaToolbar">
+   <button class="btn-voice btn-small" onclick="startGlobalVoiceAI()">🎙 Voice Text</button>
+   <button class="btn-blue btn-small" onclick="canvaAddText()">＋ Add Heading</button>
+   <button class="btn-ghost btn-small" onclick="canvaAddShape('rect')">⬛ Add Rectangle</button>
+   <button class="btn-ghost btn-small" onclick="canvaAddShape('circle')">⏺ Add Circle</button>
+   <label class="btn-ghost btn-small" style="margin:0;cursor:pointer">📁 Upload Image <input type="file" id="canvaImageUpload" accept="image/*,.svg" style="display:none"></label>
+   <button class="btn-ghost btn-small" onclick="canvaDeleteSelected()">🗑 Delete</button>
+   <button class="btn-ghost btn-small" onclick="canvaClearAll()">Clear</button>
+   <div style="margin-left:auto;display:flex;gap:6px">
+    <button class="btn-ghost btn-small" onclick="alert('Routing to Supabase AI API for Background Removal.')">✨ Remove BG</button>
+    <button class="btn-ghost btn-small" onclick="alert('Routing vector CDR file to CloudConvert Edge Function API.')">⚙ to CDR</button>
+    <button class="btn-primary btn-small" onclick="canvaExport('png')">📥 PNG</button>
+    <button class="btn-primary btn-small" onclick="canvaExport('pdf')">📄 PDF</button>
+   </div>
+  </div>
+
+  <div class="canvaStudio">
+   <div class="canvaSidebar">
+    <h4>Layer Properties</h4>
+    <div style="margin-bottom:12px"><label style="display:block;font-size:12px;font-weight:800;color:#dbe3ef;margin-bottom:6px">Text / Label</label><input id="propText" placeholder="Select text layer" oninput="canvaUpdateText(this.value)"></div>
+    <div style="margin-bottom:12px"><label style="display:block;font-size:12px;font-weight:800;color:#dbe3ef;margin-bottom:6px">Fill Color</label><input id="propColor" type="color" value="#ffd04a" onchange="canvaUpdateColor(this.value)"></div>
+    <div style="margin-bottom:12px"><label style="display:block;font-size:12px;font-weight:800;color:#dbe3ef;margin-bottom:6px">Font Size (px)</label><input id="propSize" type="number" value="48" oninput="canvaUpdateSize(this.value)"></div>
+    <hr style="border-color:var(--line);margin:8px 0">
+    <h4>Canvas Background</h4>
+    <div><input type="color" value="#05080e" onchange="document.getElementById('canvaCanvas').style.background=this.value; canvaDrawCanvas();"></div>
+   </div>
+   <div class="canvaCanvasArea">
+    <canvas id="canvaCanvas" width="850" height="480"></canvas>
+   </div>
+  </div>
+</section>
+<style>
+.sectionTitle { margin-bottom: 18px; }
+.sectionTitle h2 { font-size: 26px; margin: 0 0 5px; }
+.canvaToolbar { display: flex; gap: 8px; flex-wrap: wrap; background: #111824; padding: 10px; border-radius: 12px; border: 1px solid var(--line); align-items: center; margin-bottom: 12px; }
+.canvaStudio { display: grid; grid-template-columns: 240px 1fr; gap: 15px; background: #0a0e17; border: 1px solid var(--line); border-radius: 20px; padding: 15px; min-height: 520px; }
+.canvaSidebar { background: #0e1420; border: 1px solid var(--line); border-radius: 14px; padding: 12px; display: flex; flex-direction: column; gap: 10px; }
+.canvaSidebar h4 { margin: 0 0 5px; font-size: 13px; color: var(--accent); }
+.canvaCanvasArea { position: relative; background: #05080e; border: 1px solid #29374c; border-radius: 16px; overflow: hidden; display: flex; align-items: center; justify-content: center; min-height: 485px; }
+#canvaCanvas { display: block; max-width: 100%; height: auto; cursor: crosshair; touch-action: none; }
+</style>
+
+<section id="canvaStudioSection" class="container">
+  <div class="sectionTitle">
+    <h2>Canva-Class Design Studio & AI Converter</h2>
+    <p>Add text, shapes, upload images, position layers, and export high-res artwork.</p>
+  </div>
+  
+  <div class="canvaToolbar">
+   <button class="btn-voice btn-small" onclick="startGlobalVoiceAI()">🎙 Voice Text</button>
+   <button class="btn-blue btn-small" onclick="canvaAddText()">＋ Add Heading</button>
+   <button class="btn-ghost btn-small" onclick="canvaAddShape('rect')">⬛ Add Rectangle</button>
+   <button class="btn-ghost btn-small" onclick="canvaAddShape('circle')">⏺ Add Circle</button>
+   <label class="btn-ghost btn-small" style="margin:0;cursor:pointer">📁 Upload Image <input type="file" id="canvaImageUpload" accept="image/*,.svg" style="display:none"></label>
+   <button class="btn-ghost btn-small" onclick="canvaDeleteSelected()">🗑 Delete</button>
+   <button class="btn-ghost btn-small" onclick="canvaClearAll()">Clear</button>
+   <div style="margin-left:auto;display:flex;gap:6px">
+    <button class="btn-ghost btn-small" onclick="alert('Routing to Supabase AI API for Background Removal.')">✨ Remove BG</button>
+    <button class="btn-ghost btn-small" onclick="alert('Routing vector CDR file to CloudConvert Edge Function API.')">⚙ to CDR</button>
+    <button class="btn-primary btn-small" onclick="canvaExport('png')">📥 PNG</button>
+    <button class="btn-primary btn-small" onclick="canvaExport('pdf')">📄 PDF</button>
+   </div>
+  </div>
+
+  <div class="canvaStudio">
+   <div class="canvaSidebar">
+    <h4>Layer Properties</h4>
+    <div style="margin-bottom:12px"><label style="display:block;font-size:12px;font-weight:800;color:#dbe3ef;margin-bottom:6px">Text / Label</label><input id="propText" placeholder="Select text layer" oninput="canvaUpdateText(this.value)"></div>
+    <div style="margin-bottom:12px"><label style="display:block;font-size:12px;font-weight:800;color:#dbe3ef;margin-bottom:6px">Fill Color</label><input id="propColor" type="color" value="#ffd04a" onchange="canvaUpdateColor(this.value)"></div>
+    <div style="margin-bottom:12px"><label style="display:block;font-size:12px;font-weight:800;color:#dbe3ef;margin-bottom:6px">Font Size (px)</label><input id="propSize" type="number" value="48" oninput="canvaUpdateSize(this.value)"></div>
+    <hr style="border-color:var(--line);margin:8px 0">
+    <h4>Canvas Background</h4>
+    <div><input type="color" value="#05080e" onchange="document.getElementById('canvaCanvas').style.background=this.value; canvaDrawCanvas();"></div>
+   </div>
+   <div class="canvaCanvasArea">
+    <canvas id="canvaCanvas" width="850" height="480"></canvas>
+   </div>
+  </div>
+</section>
+<style>
+.wizard { background: #0d131d; border: 1px solid var(--line); border-radius: 24px; overflow: hidden; box-shadow: var(--shadow); margin-top: 30px; }
+.steps { display: flex; overflow: auto; border-bottom: 1px solid var(--line); background: #101722; }
+.step { min-width: 100px; padding: 13px 10px; color: var(--muted); font-size: 11px; text-align: center; border-right: 1px solid #202a39; }
+.step.active { color: var(--accent); font-weight: 900; }
+.step i { display: block; margin: auto auto 5px; width: 23px; height: 23px; border-radius: 50%; border: 1px solid #526078; line-height: 21px; font-style: normal; }
+.step.active i { border-color: var(--accent); background: var(--accent); color: #111; }
+.wizardGrid { display: grid; grid-template-columns: minmax(0,1fr) 310px; gap: 18px; }
+.wbody { padding: 20px; }
+.panel { display: none; }
+.panel.active { display: block; }
+input, select, textarea { width: 100%; background: #0a1018; border: 1px solid #2a374b; color: #fff; border-radius: 11px; padding: 11px; outline: none; }
+.typeGrid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+.type { border: 1px solid var(--line); background: #101824; border-radius: 14px; padding: 14px; text-align: center; cursor: pointer; }
+.type.selected { border-color: var(--accent); background: #181b19; }
+.optionGrid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
+.option { border: 1px solid var(--line); background: #101824; border-radius: 14px; padding: 14px; text-align: left; cursor: pointer; }
+.option.selected { border-color: var(--blue); background: #102039; }
+.quote { position: sticky; top: 85px; background: #111a27; border: 1px solid #33425a; border-radius: 18px; padding: 18px; }
+.qrow { display: flex; justify-content: space-between; gap: 10px; padding: 6px 0; border-bottom: 1px solid #243044; font-size: 13px; }
+.qrow span:first-child { color: var(--muted); }
+.qtotal { font-size: 20px; font-weight: 900; padding-top: 10px; }
+.advance { margin-top: 10px; padding: 12px; border-radius: 12px; background: #1b251f; border: 1px solid #2f6d4e; }
+.advance b { display: block; color: #70e6a9; }
+.balance { color: #ffcc57; font-weight: 800; display:block; margin-top:4px; font-size: 12px;}
+.actions { display: flex; justify-content: space-between; gap: 10px; margin-top: 18px; padding-top: 14px; border-top: 1px solid var(--line); }
+.checklist { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.check { padding: 8px; background: #0b111a; border-radius: 9px; font-size: 12px; }
+.check:before { content: "✓"; color: #4be38f; font-weight: 900; margin-right: 7px; }
+.notice { padding: 11px; border-radius: 11px; background: #151e2b; color: #b9c5d6; font-size: 12px; border: 1px solid var(--line); line-height: 1.5; }
+.success { text-align: center; }
+.orderId { font-size: 22px; color: var(--accent); font-weight: 900; }
+</style>
+
+<section id="signage" class="container" style="padding: 40px 0;">
+  <div class="sectionTitle">
+    <h2>Professional Signage Quotation & Order</h2>
+    <p>GST: 07AGFPA8041C1ZZ | 50% Advance Required for Production</p>
+  </div>
+  <div class="wizard">
+   <div class="steps" id="steps"></div>
+   <div class="wizardGrid">
+    <div class="wbody">
+     
+     <div class="panel active" data-panel="1"><h3>1. Select Signage Product</h3><div class="typeGrid" id="typeGrid"></div></div>
+     <div class="panel" data-panel="2"><h3>2. Quality & Rate Tier</h3><p class="notice">Select finishing and build quality grade.</p><div class="optionGrid" id="qualityGrid"></div></div>
+     <div class="panel" data-panel="3"><h3>3. Warranty Tier</h3><div class="optionGrid" id="warrantyTierGrid"></div></div>
+     <div class="panel" data-panel="4"><h3>4. Size & Quantity</h3>
+      <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:10px;">
+       <div><label style="display:block;font-size:12px;font-weight:800;color:#dbe3ef;margin-bottom:6px">Width</label><input id="sigW" type="number" min="0.1" value="8" oninput="calculateQuote()"></div>
+       <div><label style="display:block;font-size:12px;font-weight:800;color:#dbe3ef;margin-bottom:6px">Height</label><input id="sigH" type="number" min="0.1" value="3" oninput="calculateQuote()"></div>
+       <div><label style="display:block;font-size:12px;font-weight:800;color:#dbe3ef;margin-bottom:6px">Unit</label><select id="sigUnit" onchange="calculateQuote()"><option value="ft">Feet (ft)</option><option value="in">Inches (in)</option><option value="cm">CM</option></select></div>
+      </div>
+      <div style="margin-top:12px"><label style="display:block;font-size:12px;font-weight:800;color:#dbe3ef;margin-bottom:6px">Quantity</label><input id="qty" type="number" min="1" value="1" oninput="calculateQuote()"></div>
+     </div>
+     <div class="panel" data-panel="5"><h3>5. Brand / Text Details</h3><div style="margin-bottom:12px"><label style="display:block;font-size:12px;font-weight:800;color:#dbe3ef;margin-bottom:6px">Brand Name / Text on Sign</label><input id="signText" value="YOUR BRAND"></div><div><label style="display:block;font-size:12px;font-weight:800;color:#dbe3ef;margin-bottom:6px">Special Instructions / Finish Notes</label><textarea id="signNotes" placeholder="Example: Warm white LED, glossy black acrylic back panel..."></textarea></div></div>
+     <div class="panel" data-panel="6"><h3>6. Delivery & Installation Options</h3>
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px;">
+       <div style="background:#151e2b; padding:15px; border-radius:12px; border:1px solid var(--line);">
+        <div style="font-weight:bold; margin-bottom:10px;">Delivery</div>
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-bottom:8px"><button class="btn-ghost btn-small" type="button" onclick="setDelivery(false)">No / Pickup</button><button class="btn-blue btn-small" type="button" onclick="setDelivery(true)">Yes</button></div>
+        <textarea id="deliveryAddress" placeholder="Full Delivery Address"></textarea>
+       </div>
+       <div style="background:#151e2b; padding:15px; border-radius:12px; border:1px solid var(--line);">
+        <div style="font-weight:bold; margin-bottom:10px;">Installation</div>
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-bottom:8px"><button class="btn-ghost btn-small" type="button" onclick="setInstall(false)">No</button><button class="btn-blue btn-small" type="button" onclick="setInstall(true)">Yes</button></div>
+        <textarea id="installAddress" placeholder="Site / Installation Address"></textarea>
+       </div>
+      </div>
+     </div>
+     <div class="panel" data-panel="7"><h3>7. Contact Details</h3>
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-bottom:12px">
+        <div><label style="display:block;font-size:12px;font-weight:800;color:#dbe3ef;margin-bottom:6px">Full Name *</label><input id="clientName" required></div>
+        <div><label style="display:block;font-size:12px;font-weight:800;color:#dbe3ef;margin-bottom:6px">Company</label><input id="clientCompany"></div>
+      </div>
+      <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:10px;">
+       <div><label style="display:block;font-size:12px;font-weight:800;color:#dbe3ef;margin-bottom:6px">Country</label><input id="clientCountry" value="India"></div>
+       <div><label style="display:block;font-size:12px;font-weight:800;color:#dbe3ef;margin-bottom:6px">Phone / WhatsApp *</label><input id="clientPhone" placeholder="+91..."></div>
+       <div><label style="display:block;font-size:12px;font-weight:800;color:#dbe3ef;margin-bottom:6px">Email *</label><input id="clientEmail" type="email"></div>
+      </div>
+     </div>
+     <div class="panel" data-panel="8"><h3>8. Review Quotation & Confirm</h3><div class="checklist" id="reviewChecklist"></div><div class="notice" style="margin-top:12px">Order status remains <b>Pending Verification</b> until the 50% advance payment is verified securely via Supabase backend.</div><button class="btn-primary" type="button" onclick="submitOrderAndPay()" style="margin-top:15px;width:100%;font-size:16px">CONFIRM ORDER & PROCEED TO SECURE PAYMENT</button></div>
+
+     <div class="panel" data-panel="9">
+      <div class="success">
+        <div style="font-size:50px;color:var(--green)">✓</div>
+        <h2>Order Successfully Registered</h2>
+        <p>Order Reference ID: <span class="orderId" id="confirmedOrderId">DH-SIG-000000</span></p>
+        <p class="notice">Please complete the 50% advance payment below via UPI or PayPal. Status updates automatically.</p>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 15px; text-align: left;">
+          <div style="background:#151e2b; padding:20px; border-radius:15px; border:1px solid var(--line); text-align:center;">
+            <h4 style="margin-top:0;">India UPI (Instant QR)</h4>
+            <div id="upiQrCodeContainer" style="display:inline-block; background:#fff; padding:8px; border-radius:8px; margin:10px 0;"></div>
+            <div style="font-size:12px; color:var(--accent); margin-bottom:10px;">UPI ID: ledsignadil@oksbi</div>
+            <a id="upiDeepLinkBtn" href="#" class="btn-blue btn-small" style="display:block;">1-Tap Pay via UPI App</a>
+          </div>
+          <div style="background:#151e2b; padding:20px; border-radius:15px; border:1px solid var(--line); text-align:center;">
+            <h4 style="margin-top:0;">Global PayPal</h4>
+            <div id="paypal-button-container" style="margin-top:15px;"></div>
+          </div>
+        </div>
+      </div>
+     </div>
+
+     <div class="actions" id="wizardActions">
+      <button class="btn-ghost" id="prevBtn" type="button" onclick="prevStep()">Back</button>
+      <button class="btn-primary" id="nextBtn" type="button" onclick="nextStep()">Next Step</button>
+     </div>
+    </div>
+
+    <!-- LIVE QUOTE ASIDE -->
+    <aside class="quote">
+     <h3>Live Quotation</h3>
+     <div class="qrow"><span>Product</span><b id="qProduct">LED Sign Board</b></div>
+     <div class="qrow"><span>Size</span><b id="qSize">8 × 3 ft</b></div>
+     <div class="qrow"><span>Quality / Warranty</span><b id="qGradeWarranty">Standard (1 Yr)</b></div>
+     <div class="qrow"><span>Subtotal</span><b id="qSubtotal">₹0</b></div>
+     <div class="qrow"><span>Delivery / Install</span><b id="qDelInst">₹0</b></div>
+     <div class="qrow"><span>GST (18%)</span><b id="qGst">₹0</b></div>
+     <div class="qrow qtotal"><span>Grand Total</span><b id="qTotal">₹0</b></div>
+     <div class="advance">
+      <b id="qAdvance">50% Advance: ₹0</b>
+      <span class="balance" id="qBalance">Balance on Delivery: ₹0</span>
+     </div>
+    </aside>
+
+   </div>
+  </div>
+</section>
+</main>
+<footer>
+ <div class="container footerGrid">
+  <div><h4>DESIGNHUB GLOBAL</h4><p>Custom Signage Manufacturing & Canva-Class Prepress Studio.</p><a href="https://wearstay.com" style="color:var(--accent)">wearstay.com</a></div>
+  <div><h4>Support & Contact</h4><a href="tel:+919354944438">+91 93549 44438</a><br><a href="mailto:ledsignadil@gmail.com">ledsignadil@gmail.com</a></div>
+  <div><h4>Billing & Security</h4><span>GST: 07AGFPA8041C1ZZ</span><br><span>Supabase & PayPal Integration</span></div>
+ </div>
+</footer>
+<script>
+// --- CANVA-GRADE STUDIO ENGINE ---
+const canvaStudio = { canvas: null, ctx: null, objects: [], selectedObj: null, isDragging: false, startX: 0, startY: 0 };
+
+function initCanvaStudio(){
+  canvaStudio.canvas = document.getElementById("canvaCanvas"); 
+  canvaStudio.ctx = canvaStudio.canvas.getContext("2d");
+  canvaStudio.objects.push({type: 'text', text: 'DESIGNHUB GLOBAL', x: 220, y: 220, color: '#ffd04a', size: 48});
+  canvaDrawCanvas();
+
+  const cv = canvaStudio.canvas;
+  cv.addEventListener("pointerdown", e => {
+    const r = cv.getBoundingClientRect();
+    const x = (e.clientX - r.left) * (cv.width / r.width);
+    const y = (e.clientY - r.top) * (cv.height / r.height);
+    
+    canvaStudio.selectedObj = null;
+    for (let i = canvaStudio.objects.length - 1; i >= 0; i--) {
+      let o = canvaStudio.objects[i];
+      if (o.type === 'text' && Math.abs(x - (o.x + (o.text.length * o.size * 0.3))) < (o.text.length * o.size * 0.3) && Math.abs(y - o.y + (o.size*0.3)) < o.size) {
+        canvaStudio.selectedObj = o; canvaStudio.isDragging = true; canvaStudio.startX = x - o.x; canvaStudio.startY = y - o.y;
+        document.getElementById("propText").value = o.text; document.getElementById("propColor").value = o.color; document.getElementById("propSize").value = o.size; break;
+      } else if ((o.type === 'rect' || o.type === 'circle' || o.type === 'image') && x >= o.x && x <= o.x + o.w && y >= o.y && y <= o.y + o.h) {
+        canvaStudio.selectedObj = o; canvaStudio.isDragging = true; canvaStudio.startX = x - o.x; canvaStudio.startY = y - o.y;
+        document.getElementById("propColor").value = o.color || '#ffffff'; break;
+      }
+    }
+    canvaDrawCanvas();
+  });
+
+  cv.addEventListener("pointermove", e => {
+    if (!canvaStudio.isDragging || !canvaStudio.selectedObj) return;
+    const r = cv.getBoundingClientRect(), x = (e.clientX - r.left) * (cv.width / r.width), y = (e.clientY - r.top) * (cv.height / r.height);
+    canvaStudio.selectedObj.x = x - canvaStudio.startX; canvaStudio.selectedObj.y = y - canvaStudio.startY; canvaDrawCanvas();
+  });
+
+  window.addEventListener("pointerup", () => { canvaStudio.isDragging = false; });
+
+  document.getElementById("canvaImageUpload").addEventListener("change", e => {
+    const file = e.target.files[0]; if(!file) return;
+    const reader = new FileReader();
+    reader.onload = event => {
+      const img = new Image();
+      img.onload = () => { canvaStudio.objects.push({type: 'image', img, x: 200, y: 150, w: 200, h: Math.round(200 * (img.height / img.width))}); canvaDrawCanvas(); };
+      img.src = event.target.result;
+    };
+    reader.readAsDataURL(file);
+  });
+}
+
+function canvaDrawCanvas(){
+  const c = canvaStudio.canvas, x = canvaStudio.ctx;
+  x.clearRect(0,0,c.width,c.height); 
+  x.fillStyle = c.style.background || "#05080e"; 
+  x.fillRect(0,0,c.width,c.height);
+  
+  canvaStudio.objects.forEach(o => {
+    x.save();
+    if(o.type === 'text'){ 
+      x.font = `700 ${o.size || 36}px Inter, sans-serif`; x.fillStyle = o.color || '#fff'; x.fillText(o.text, o.x, o.y); 
+    } else if(o.type === 'rect'){ 
+      x.fillStyle = o.color || '#2387ff'; x.fillRect(o.x, o.y, o.w, o.h); 
+    } else if(o.type === 'circle'){ 
+      x.fillStyle = o.color || '#20c77a'; x.beginPath(); x.arc(o.x + o.w/2, o.y + o.h/2, o.w/2, 0, Math.PI*2); x.fill(); 
+    } else if(o.type === 'image' && o.img){ 
+      x.drawImage(o.img, o.x, o.y, o.w, o.h); 
+    }
+    
+    if(o === canvaStudio.selectedObj){
+      x.strokeStyle = '#2387ff'; x.lineWidth = 2; x.setLineDash([5, 5]); let pad = 6;
+      let w = o.w || (o.text ? o.text.length * (o.size||36)*0.6 : 100), h = o.h || (o.size||36);
+      if(o.type === 'text') { x.strokeRect(o.x - pad, o.y - h, w + pad*2, h + pad); } 
+      else { x.strokeRect(o.x - pad, o.y - pad, w + pad*2, h + pad*2); }
+    }
+    x.restore();
+  });
+}
+
+function canvaAddText(txt = 'New Heading'){ const o = {type: 'text', text: txt, x: 250, y: 200, color: '#ffffff', size: 48}; canvaStudio.objects.push(o); canvaStudio.selectedObj = o; canvaDrawCanvas(); }
+function canvaAddShape(type){ const o = {type, x: 250, y: 180, w: 140, h: 90, color: type==='rect'?'#2387ff':'#20c77a'}; canvaStudio.objects.push(o); canvaStudio.selectedObj = o; canvaDrawCanvas(); }
+function canvaUpdateText(val){ if(canvaStudio.selectedObj?.type==='text'){ canvaStudio.selectedObj.text=val; canvaDrawCanvas(); } }
+function canvaUpdateColor(val){ if(canvaStudio.selectedObj){ canvaStudio.selectedObj.color=val; canvaDrawCanvas(); } }
+function canvaUpdateSize(val){ if(canvaStudio.selectedObj?.type==='text'){ canvaStudio.selectedObj.size=parseInt(val)||36; canvaDrawCanvas(); } }
+function canvaDeleteSelected(){ if(!canvaStudio.selectedObj) return; canvaStudio.objects = canvaStudio.objects.filter(o => o !== canvaStudio.selectedObj); canvaStudio.selectedObj = null; canvaDrawCanvas(); }
+function canvaClearAll(){ canvaStudio.objects = []; canvaStudio.selectedObj = null; canvaDrawCanvas(); }
+
+function canvaExport(type){
+  const c = canvaStudio.canvas;
+  canvaStudio.selectedObj = null; canvaDrawCanvas();
+  if(type === 'pdf'){
+    if(window.jspdf && window.jspdf.jsPDF){
+      const {jsPDF} = window.jspdf; 
+      const pdf = new jsPDF({orientation: c.width >= c.height ? "landscape" : "portrait", unit: "px", format: [c.width, c.height]});
+      pdf.addImage(c.toDataURL("image/jpeg", 1.0), "JPEG", 0, 0, c.width, c.height); 
+      pdf.save("designhub-studio.pdf");
+    } else { alert("jsPDF library not loaded."); }
+    return;
+  }
+  const a = document.createElement("a"); a.href = c.toDataURL("image/png", 1.0); a.download = "designhub-studio.png"; a.click();
+}
+
+function startGlobalVoiceAI(){
+  const SR = window.SpeechRecognition || window.webkitSpeechRecognition; 
+  if(!SR) return alert("Browser does not support Voice AI. Try Chrome on Desktop/Android.");
+  const r = new SR(); r.lang = "auto"; 
+  r.onresult = e => { const txt = e.results[0][0].transcript; canvaAddText(txt); alert(`Voice Detected: "${txt}" \nAdded to Canvas!`); }; 
+  r.start();
+}
+
+// --- SIGNAGE & PRICING RULES MATRIX ---
+const PRODUCTS = [
+  { id: "led", name: "LED Sign Board", baseRate: 800, unit: "sqft" },
+  { id: "3d", name: "3D Acrylic Letters", baseRate: 950, unit: "sqft" },
+  { id: "ss", name: "Stainless Steel Logo", baseRate: 1200, unit: "sqft" },
+  { id: "acp", name: "ACP Glow Sign", baseRate: 700, unit: "sqft" },
+  { id: "flex", name: "Flex Printing Banner", baseRate: 35, unit: "sqft" }
+];
+const QUALITIES = [
+  { name: "Standard 1.0x", mult: 1.0 },
+  { name: "Premium 1.5x", mult: 1.5 }
+];
+const WARRANTIES = [
+  { years: 1, label: "1 Year Standard", mult: 1.0 },
+  { years: 5, label: "5 Years Comprehensive", mult: 1.2 },
+  { years: 10, label: "10 Years Commercial", mult: 1.4 },
+  { years: 50, label: "50 Years Lifetime", mult: 2.0 }
+];
+
+let orderState = { step: 1, product: PRODUCTS[0], quality: QUALITIES[0], warranty: WARRANTIES[0], delivery: false, install: false };
+const $ = id => document.getElementById(id);
+function money(n){ return "₹" + Math.round(n).toLocaleString("en-IN"); }
+
+function initWizard(){
+ $("typeGrid").innerHTML = PRODUCTS.map((p,i)=>`<div class="type ${orderState.product.id===p.id?"selected":""}" onclick="selectProduct(${i})"><div style="font-size:22px;margin-bottom:8px;">✦</div><strong>${p.name}</strong><small style="color:var(--muted);display:block;margin-top:4px">₹${p.baseRate}/${p.unit}</small></div>`).join("");
+ $("qualityGrid").innerHTML = QUALITIES.map((q,i)=>`<div class="option ${orderState.quality.name===q.name?"selected":""}" onclick="selectQuality(${i})"><b>${q.name}</b></div>`).join("");
+ $("warrantyTierGrid").innerHTML = WARRANTIES.map((w,i)=>`<div class="option ${orderState.warranty.years===w.years?"selected":""}" onclick="selectWarranty(${i})"><b>${w.label}</b></div>`).join("");
+ 
+ $("steps").innerHTML = ["Product","Quality","Warranty","Size","Text","Setup","Contact","Review","Pay"].map((x,i)=>`<div class="step ${orderState.step===i+1?"active":""}"><i>${i+1}</i>${x}</div>`).join("");
+ document.querySelectorAll(".panel").forEach(p=>p.classList.toggle("active", +p.dataset.panel === orderState.step));
+ $("wizardActions").style.display = orderState.step >= 8 ? "none" : "flex";
+ $("prevBtn").style.visibility = orderState.step === 1 ? "hidden" : "visible";
+ $("nextBtn").textContent = orderState.step === 7 ? "Review Quotation" : "Next Step";
+
+ if(orderState.step === 8) buildChecklist();
+ calculateQuote();
+}
+
+function selectProduct(i){ orderState.product=PRODUCTS[i]; initWizard(); }
+function selectQuality(i){ orderState.quality=QUALITIES[i]; initWizard(); }
+function selectWarranty(i){ orderState.warranty=WARRANTIES[i]; initWizard(); }
+function setDelivery(v){ orderState.delivery=v; calculateQuote(); }
+function setInstall(v){ orderState.install=v; calculateQuote(); }
+function nextStep(){ if(orderState.step < 8){ orderState.step++; initWizard(); } }
+function prevStep(){ if(orderState.step > 1){ orderState.step--; initWizard(); } }
+
+function calculateQuote(){
+ const w = parseFloat($("sigW").value) \vert{}\vert{} 0, h = parseFloat($("sigH").value) || 0, qty = parseInt($("qty").value) \vert{}\vert{} 1, unit = $("sigUnit").value;
+ let areaSqFt = 0;
+ if(unit==='ft') areaSqFt = w * h; else if(unit==='in') areaSqFt = (w/12) * (h/12); else if(unit==='cm') areaSqFt = (w/30.48) * (h/30.48);
+
+ let base = areaSqFt * orderState.product.baseRate * qty;
+ base = base * orderState.quality.mult * orderState.warranty.mult;
+ 
+ let delCost = orderState.delivery ? Math.max(500, Math.round(areaSqFt * 110)) : 0;
+ let instCost = orderState.install ? Math.max(1000, Math.round(areaSqFt * 160)) : 0;
+ let subtotal = base + delCost + instCost;
+ let gst = subtotal * 0.18;
+ let grandTotal = Math.round(subtotal + gst);
+ let advance50 = Math.round(grandTotal * 0.5);
+
+ $("qProduct").textContent = orderState.product.name;
+ $("qSize").textContent = `${w} × ${h} ${unit} (Qty: ${qty})`;
+ $("qGradeWarranty").textContent = `${orderState.quality.name} (${orderState.warranty.years} Yr)`;
+ $("qSubtotal").textContent = money(subtotal);
+ $("qDelInst").textContent = money(delCost + instCost);
+ $("qGst").textContent = money(gst);
+ $("qTotal").textContent = money(grandTotal);
+ $("qAdvance").textContent = "50% Advance: " + money(advance50);
+ $("qBalance").textContent = "Balance on Delivery: " + money(grandTotal - advance50);
+}
+
+function buildChecklist(){
+ $("reviewChecklist").innerHTML = `
+   <div class="check"><b>Product:</b> ${orderState.product.name}</div>
+   <div class="check"><b>Size:</b> ${$("sigW").value} × ${$("sigH").value} ${$("sigUnit").value}</div>
+   <div class="check"><b>Quality:</b> ${orderState.quality.name}</div>
+   <div class="check"><b>Grand Total:</b> ${$("qTotal").textContent}</div>
+   <div class="check"><b>50% Advance:</b> ${$("qAdvance").textContent}</div>
+ `;
+}
+
+// --- SUPABASE & GLOBAL PAYMENTS ---
+const SUPABASE_URL = 'https://pnfxyxexxhbucjkgtwxj.supabase.co';
+const SUPABASE_ANON_KEY = 'Sb_publishable_YamN7OYn_ogyIJL4RjmUGw_OcClGAxE';
+const supabaseClient = window.supabase ? window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY) : null;
+
+async function submitOrderAndPay(){
+ if(!$("clientName").value || !$("clientPhone").value \vert{}\vert{} !$("clientEmail").value){
+   alert("Please fill in your required contact details."); orderState.step = 7; initWizard(); return;
+ }
+ 
+ const orderId = "DH-" + Date.now().toString().slice(-6);
+ $("confirmedOrderId").textContent = orderId;
+ orderState.step = 9; initWizard();
+
+ const advAmount = Math.round((parseFloat($("qTotal").textContent.replace(/[^0-9]/g,"")) || 100) * 0.5);
+ 
+ const upiLink = `upi://pay?pa=ledsignadil@oksbi&pn=DESIGNHUB%20GLOBAL&am=${advAmount}&cu=INR&tn=Order_${orderId}`;
+ const box = $("upiQrCodeContainer");
+ box.innerHTML = ""; 
+ new QRCode(box, { text: upiLink, width: 140, height: 140 });
+ $("upiDeepLinkBtn").href = upiLink;
+
+ if(window.paypal && !window.ppRendered){
+   window.paypal.Buttons({
+     createOrder: (data, actions) => actions.order.create({ purchase_units: [{ amount: { value: Math.max(1, Math.round(advAmount / 84)).toString() } }] }),
+     onApprove: (data, actions) => actions.order.capture().then(details => { alert('Payment Verified! Thank you, ' + details.payer.name.given_name); })
+   }).render('#paypal-button-container');
+   window.ppRendered = true;
+ }
+
+ if(supabaseClient){
+   try {
+     await supabaseClient.from('orders').insert({
+       order_id: orderId, product_name: orderState.product.name, quality: orderState.quality.name,
+       total_amount: $("qTotal").textContent, advance_amount: advAmount,
+       client_name: $("clientName").value, client_phone: $("clientPhone").value, client_email: $("clientEmail").value,
+       status: 'Pending Verification'
+     });
+   } catch(e) { console.error("Supabase insert failed", e); }
+ }
+}
+
+window.onload = () => {
+  initWizard();
+  initCanvaStudio();
+};
+</script>
+</body>
+</html>
+<script>
+// --- CANVA-GRADE STUDIO ENGINE ---
+const canvaStudio = { canvas: null, ctx: null, objects: [], selectedObj: null, isDragging: false, startX: 0, startY: 0 };
+
+function initCanvaStudio(){
+  canvaStudio.canvas = document.getElementById("canvaCanvas"); 
+  canvaStudio.ctx = canvaStudio.canvas.getContext("2d");
+  canvaStudio.objects.push({type: 'text', text: 'DESIGNHUB GLOBAL', x: 220, y: 220, color: '#ffd04a', size: 48});
+  canvaDrawCanvas();
+
+  const cv = canvaStudio.canvas;
+  cv.addEventListener("pointerdown", e => {
+    const r = cv.getBoundingClientRect();
+    const x = (e.clientX - r.left) * (cv.width / r.width);
+    const y = (e.clientY - r.top) * (cv.height / r.height);
+    
+    canvaStudio.selectedObj = null;
+    for (let i = canvaStudio.objects.length - 1; i >= 0; i--) {
+      let o = canvaStudio.objects[i];
+      if (o.type === 'text' && Math.abs(x - (o.x + (o.text.length * o.size * 0.3))) < (o.text.length * o.size * 0.3) && Math.abs(y - o.y + (o.size*0.3)) < o.size) {
+        canvaStudio.selectedObj = o; canvaStudio.isDragging = true; canvaStudio.startX = x - o.x; canvaStudio.startY = y - o.y;
+        document.getElementById("propText").value = o.text; document.getElementById("propColor").value = o.color; document.getElementById("propSize").value = o.size; break;
+      } else if ((o.type === 'rect' || o.type === 'circle' || o.type === 'image') && x >= o.x && x <= o.x + o.w && y >= o.y && y <= o.y + o.h) {
+        canvaStudio.selectedObj = o; canvaStudio.isDragging = true; canvaStudio.startX = x - o.x; canvaStudio.startY = y - o.y;
+        document.getElementById("propColor").value = o.color || '#ffffff'; break;
+      }
+    }
+    canvaDrawCanvas();
+  });
+
+  cv.addEventListener("pointermove", e => {
+    if (!canvaStudio.isDragging || !canvaStudio.selectedObj) return;
+    const r = cv.getBoundingClientRect(), x = (e.clientX - r.left) * (cv.width / r.width), y = (e.clientY - r.top) * (cv.height / r.height);
+    canvaStudio.selectedObj.x = x - canvaStudio.startX; canvaStudio.selectedObj.y = y - canvaStudio.startY; canvaDrawCanvas();
+  });
+
+  window.addEventListener("pointerup", () => { canvaStudio.isDragging = false; });
+
+  document.getElementById("canvaImageUpload").addEventListener("change", e => {
+    const file = e.target.files[0]; if(!file) return;
+    const reader = new FileReader();
+    reader.onload = event => {
+      const img = new Image();
+      img.onload = () => { canvaStudio.objects.push({type: 'image', img, x: 200, y: 150, w: 200, h: Math.round(200 * (img.height / img.width))}); canvaDrawCanvas(); };
+      img.src = event.target.result;
+    };
+    reader.readAsDataURL(file);
+  });
+}
+
+function canvaDrawCanvas(){
+  const c = canvaStudio.canvas, x = canvaStudio.ctx;
+  x.clearRect(0,0,c.width,c.height); 
+  x.fillStyle = c.style.background || "#05080e"; 
+  x.fillRect(0,0,c.width,c.height);
+  
+  canvaStudio.objects.forEach(o => {
+    x.save();
+    if(o.type === 'text'){ 
+      x.font = `700 ${o.size || 36}px Inter, sans-serif`; x.fillStyle = o.color || '#fff'; x.fillText(o.text, o.x, o.y); 
+    } else if(o.type === 'rect'){ 
+      x.fillStyle = o.color || '#2387ff'; x.fillRect(o.x, o.y, o.w, o.h); 
+    } else if(o.type === 'circle'){ 
+      x.fillStyle = o.color || '#20c77a'; x.beginPath(); x.arc(o.x + o.w/2, o.y + o.h/2, o.w/2, 0, Math.PI*2); x.fill(); 
+    } else if(o.type === 'image' && o.img){ 
+      x.drawImage(o.img, o.x, o.y, o.w, o.h); 
+    }
+    
+    if(o === canvaStudio.selectedObj){
+      x.strokeStyle = '#2387ff'; x.lineWidth = 2; x.setLineDash([5, 5]); let pad = 6;
+      let w = o.w || (o.text ? o.text.length * (o.size||36)*0.6 : 100), h = o.h || (o.size||36);
+      if(o.type === 'text') { x.strokeRect(o.x - pad, o.y - h, w + pad*2, h + pad); } 
+      else { x.strokeRect(o.x - pad, o.y - pad, w + pad*2, h + pad*2); }
+    }
+    x.restore();
+  });
+}
+
+function canvaAddText(txt = 'New Heading'){ const o = {type: 'text', text: txt, x: 250, y: 200, color: '#ffffff', size: 48}; canvaStudio.objects.push(o); canvaStudio.selectedObj = o; canvaDrawCanvas(); }
+function canvaAddShape(type){ const o = {type, x: 250, y: 180, w: 140, h: 90, color: type==='rect'?'#2387ff':'#20c77a'}; canvaStudio.objects.push(o); canvaStudio.selectedObj = o; canvaDrawCanvas(); }
+function canvaUpdateText(val){ if(canvaStudio.selectedObj?.type==='text'){ canvaStudio.selectedObj.text=val; canvaDrawCanvas(); } }
+function canvaUpdateColor(val){ if(canvaStudio.selectedObj){ canvaStudio.selectedObj.color=val; canvaDrawCanvas(); } }
+function canvaUpdateSize(val){ if(canvaStudio.selectedObj?.type==='text'){ canvaStudio.selectedObj.size=parseInt(val)||36; canvaDrawCanvas(); } }
+function canvaDeleteSelected(){ if(!canvaStudio.selectedObj) return; canvaStudio.objects = canvaStudio.objects.filter(o => o !== canvaStudio.selectedObj); canvaStudio.selectedObj = null; canvaDrawCanvas(); }
+function canvaClearAll(){ canvaStudio.objects = []; canvaStudio.selectedObj = null; canvaDrawCanvas(); }
+
+function canvaExport(type){
+  const c = canvaStudio.canvas;
+  canvaStudio.selectedObj = null; canvaDrawCanvas();
+  if(type === 'pdf'){
+    if(window.jspdf && window.jspdf.jsPDF){
+      const {jsPDF} = window.jspdf; 
+      const pdf = new jsPDF({orientation: c.width >= c.height ? "landscape" : "portrait", unit: "px", format: [c.width, c.height]});
+      pdf.addImage(c.toDataURL("image/jpeg", 1.0), "JPEG", 0, 0, c.width, c.height); 
+      pdf.save("designhub-studio.pdf");
+    } else { alert("jsPDF library not loaded."); }
+    return;
+  }
+  const a = document.createElement("a"); a.href = c.toDataURL("image/png", 1.0); a.download = "designhub-studio.png"; a.click();
+}
+
+function startGlobalVoiceAI(){
+  const SR = window.SpeechRecognition || window.webkitSpeechRecognition; 
+  if(!SR) return alert("Browser does not support Voice AI. Try Chrome on Desktop/Android.");
+  const r = new SR(); r.lang = "auto"; 
+  r.onresult = e => { const txt = e.results[0][0].transcript; canvaAddText(txt); alert(`Voice Detected: "${txt}" \nAdded to Canvas!`); }; 
+  r.start();
+}
+
+// --- SIGNAGE & PRICING RULES MATRIX ---
+const PRODUCTS = [
+  { id: "led", name: "LED Sign Board", baseRate: 800, unit: "sqft" },
+  { id: "3d", name: "3D Acrylic Letters", baseRate: 950, unit: "sqft" },
+  { id: "ss", name: "Stainless Steel Logo", baseRate: 1200, unit: "sqft" },
+  { id: "acp", name: "ACP Glow Sign", baseRate: 700, unit: "sqft" },
+  { id: "flex", name: "Flex Printing Banner", baseRate: 35, unit: "sqft" }
+];
+const QUALITIES = [
+  { name: "Standard 1.0x", mult: 1.0 },
+  { name: "Premium 1.5x", mult: 1.5 }
+];
+const WARRANTIES = [
+  { years: 1, label: "1 Year Standard", mult: 1.0 },
+  { years: 5, label: "5 Years Comprehensive", mult: 1.2 },
+  { years: 10, label: "10 Years Commercial", mult: 1.4 },
+  { years: 50, label: "50 Years Lifetime", mult: 2.0 }
+];
+
+let orderState = { step: 1, product: PRODUCTS[0], quality: QUALITIES[0], warranty: WARRANTIES[0], delivery: false, install: false };
+const $ = id => document.getElementById(id);
+function money(n){ return "₹" + Math.round(n).toLocaleString("en-IN"); }
+
+function initWizard(){
+ $("typeGrid").innerHTML = PRODUCTS.map((p,i)=>`<div class="type ${orderState.product.id===p.id?"selected":""}" onclick="selectProduct(${i})"><div style="font-size:22px;margin-bottom:8px;">✦</div><strong>${p.name}</strong><small style="color:var(--muted);display:block;margin-top:4px">₹${p.baseRate}/${p.unit}</small></div>`).join("");
+ $("qualityGrid").innerHTML = QUALITIES.map((q,i)=>`<div class="option ${orderState.quality.name===q.name?"selected":""}" onclick="selectQuality(${i})"><b>${q.name}</b></div>`).join("");
+ $("warrantyTierGrid").innerHTML = WARRANTIES.map((w,i)=>`<div class="option ${orderState.warranty.years===w.years?"selected":""}" onclick="selectWarranty(${i})"><b>${w.label}</b></div>`).join("");
+ 
+ $("steps").innerHTML = ["Product","Quality","Warranty","Size","Text","Setup","Contact","Review","Pay"].map((x,i)=>`<div class="step ${orderState.step===i+1?"active":""}"><i>${i+1}</i>${x}</div>`).join("");
+ document.querySelectorAll(".panel").forEach(p=>p.classList.toggle("active", +p.dataset.panel === orderState.step));
+ $("wizardActions").style.display = orderState.step >= 8 ? "none" : "flex";
+ $("prevBtn").style.visibility = orderState.step === 1 ? "hidden" : "visible";
+ $("nextBtn").textContent = orderState.step === 7 ? "Review Quotation" : "Next Step";
+
+ if(orderState.step === 8) buildChecklist();
+ calculateQuote();
+}
+
+function selectProduct(i){ orderState.product=PRODUCTS[i]; initWizard(); }
+function selectQuality(i){ orderState.quality=QUALITIES[i]; initWizard(); }
+function selectWarranty(i){ orderState.warranty=WARRANTIES[i]; initWizard(); }
+function setDelivery(v){ orderState.delivery=v; calculateQuote(); }
+function setInstall(v){ orderState.install=v; calculateQuote(); }
+function nextStep(){ if(orderState.step < 8){ orderState.step++; initWizard(); } }
+function prevStep(){ if(orderState.step > 1){ orderState.step--; initWizard(); } }
+
+function calculateQuote(){
+ const w = parseFloat($("sigW").value) \vert{}\vert{} 0, h = parseFloat($("sigH").value) || 0, qty = parseInt($("qty").value) \vert{}\vert{} 1, unit = $("sigUnit").value;
+ let areaSqFt = 0;
+ if(unit==='ft') areaSqFt = w * h; else if(unit==='in') areaSqFt = (w/12) * (h/12); else if(unit==='cm') areaSqFt = (w/30.48) * (h/30.48);
+
+ let base = areaSqFt * orderState.product.baseRate * qty;
+ base = base * orderState.quality.mult * orderState.warranty.mult;
+ 
+ let delCost = orderState.delivery ? Math.max(500, Math.round(areaSqFt * 110)) : 0;
+ let instCost = orderState.install ? Math.max(1000, Math.round(areaSqFt * 160)) : 0;
+ let subtotal = base + delCost + instCost;
+ let gst = subtotal * 0.18;
+ let grandTotal = Math.round(subtotal + gst);
+ let advance50 = Math.round(grandTotal * 0.5);
+
+ $("qProduct").textContent = orderState.product.name;
+ $("qSize").textContent = `${w} × ${h} ${unit} (Qty: ${qty})`;
+ $("qGradeWarranty").textContent = `${orderState.quality.name} (${orderState.warranty.years} Yr)`;
+ $("qSubtotal").textContent = money(subtotal);
+ $("qDelInst").textContent = money(delCost + instCost);
+ $("qGst").textContent = money(gst);
+ $("qTotal").textContent = money(grandTotal);
+ $("qAdvance").textContent = "50% Advance: " + money(advance50);
+ $("qBalance").textContent = "Balance on Delivery: " + money(grandTotal - advance50);
+}
+
+function buildChecklist(){
+ $("reviewChecklist").innerHTML = `
+   <div class="check"><b>Product:</b> ${orderState.product.name}</div>
+   <div class="check"><b>Size:</b> ${$("sigW").value} × ${$("sigH").value} ${$("sigUnit").value}</div>
+   <div class="check"><b>Quality:</b> ${orderState.quality.name}</div>
+   <div class="check"><b>Grand Total:</b> ${$("qTotal").textContent}</div>
+   <div class="check"><b>50% Advance:</b> ${$("qAdvance").textContent}</div>
+ `;
+}
+
+// --- SUPABASE & GLOBAL PAYMENTS ---
+const SUPABASE_URL = 'https://pnfxyxexxhbucjkgtwxj.supabase.co';
+const SUPABASE_ANON_KEY = 'Sb_publishable_YamN7OYn_ogyIJL4RjmUGw_OcClGAxE';
+const supabaseClient = window.supabase ? window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY) : null;
+
+async function submitOrderAndPay(){
+ if(!$("clientName").value || !$("clientPhone").value \vert{}\vert{} !$("clientEmail").value){
+   alert("Please fill in your required contact details."); orderState.step = 7; initWizard(); return;
+ }
+ 
+ const orderId = "DH-" + Date.now().toString().slice(-6);
+ $("confirmedOrderId").textContent = orderId;
+ orderState.step = 9; initWizard();
+
+ const advAmount = Math.round((parseFloat($("qTotal").textContent.replace(/[^0-9]/g,"")) || 100) * 0.5);
+ 
+ const upiLink = `upi://pay?pa=ledsignadil@oksbi&pn=DESIGNHUB%20GLOBAL&am=${advAmount}&cu=INR&tn=Order_${orderId}`;
+ const box = $("upiQrCodeContainer");
+ box.innerHTML = ""; 
+ new QRCode(box, { text: upiLink, width: 140, height: 140 });
+ $("upiDeepLinkBtn").href = upiLink;
+
+ if(window.paypal && !window.ppRendered){
+   window.paypal.Buttons({
+     createOrder: (data, actions) => actions.order.create({ purchase_units: [{ amount: { value: Math.max(1, Math.round(advAmount / 84)).toString() } }] }),
+     onApprove: (data, actions) => actions.order.capture().then(details => { alert('Payment Verified! Thank you, ' + details.payer.name.given_name); })
+   }).render('#paypal-button-container');
+   window.ppRendered = true;
+ }
+
+ if(supabaseClient){
+   try {
+     await supabaseClient.from('orders').insert({
+       order_id: orderId, product_name: orderState.product.name, quality: orderState.quality.name,
+       total_amount: $("qTotal").textContent, advance_amount: advAmount,
+       client_name: $("clientName").value, client_phone: $("clientPhone").value, client_email: $("clientEmail").value,
+       status: 'Pending Verification'
+     });
+   } catch(e) { console.error("Supabase insert failed", e); }
+ }
+}
+
+window.onload = () => {
+  initWizard();
+  initCanvaStudio();
+};
+</script>
+</body>
+</html>
