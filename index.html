@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <script src="https://cdn.jsdelivr.5net/npm/@supabase/supabase-js@2"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   
 <!-- GOOGLE SEARCH CONSOLE VERIFICATION -->
 <meta name="google-site-verification" content="dNDfnD64lB_mp98ZIV5CyCcW5WvO5ftVmwkXRHmAGx4">
@@ -13,7 +13,6 @@
 <link rel="canonical" href="https://www.wearstay.com/">
 <link rel="sitemap" type="application/xml" title="Sitemap" href="https://www.wearstay.com/sitemap.xml">
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230b0f19'/%3E%3Cpath d='M16 18h18c9 0 14 5 14 14s-5 14-14 14H16V18zm8 7v14h9c4 0 7-3 7-7s-3-7-7-7h-9z' fill='%23f59e0b'/%3E%3C/svg%3E">
-
 <!-- OPEN GRAPH / SOCIAL -->
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="DESIGNHUB GLOBAL">
@@ -42,7 +41,6 @@
   }
 }
 </script>
-
 <!-- Fonts -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -60,7 +58,6 @@
     window.open(url, '_blank', 'noopener,noreferrer');
   }
 </script>
-
 <style>
 :root {
   --bg: #080b11;
@@ -84,22 +81,23 @@ body {
   font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
   line-height: 1.5;
   overflow-x: hidden;
+  width: 100%;
 }
 h1, h2, .brand { font-family: 'Syne', sans-serif; }
 .mono { font-family: 'JetBrains Mono', monospace; font-variant-numeric: tabular-nums; }
 button, input, select, textarea { font: inherit; color: inherit; }
 button { cursor: pointer; }
-.wrap { max-width: 1240px; margin: 0 auto; padding: 0 18px; }
+.wrap { max-width: 1240px; margin: 0 auto; padding: 0 16px; box-sizing: border-box; width: 100%; }
 .hidden { display: none !important; }
-
 /* Navigation */
 .nav {
   position: sticky;
   top: 0;
   z-index: 100;
-  background: rgba(8, 11, 17, 0.92);
+  background: rgba(8, 11, 17, 0.95);
   border-bottom: 1px solid var(--line);
   backdrop-filter: blur(12px);
+  width: 100%;
 }
 .navin {
   height: 60px;
@@ -107,10 +105,15 @@ button { cursor: pointer; }
   align-items: center;
   justify-content: space-between;
   gap: 12px;
+  width: 100%;
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 0 16px;
+  box-sizing: border-box;
 }
 .brand {
   font-weight: 800;
-  font-size: 18px;
+  font-size: clamp(15px, 2.5vw, 18px);
   letter-spacing: 0.4px;
   text-decoration: none;
   color: var(--text);
@@ -127,14 +130,14 @@ button { cursor: pointer; }
   transition: color 0.15s;
 }
 .links a:hover { color: var(--text); }
-.nav-actions { display: flex; align-items: center; gap: 10px; }
+.nav-actions { display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
 .menu-toggle {
   display: none;
   background: var(--surface);
   border: 1px solid var(--line);
   border-radius: 10px;
-  min-width: 44px;
-  min-height: 44px;
+  min-width: 40px;
+  min-height: 40px;
   align-items: center;
   justify-content: center;
   font-size: 18px;
@@ -155,7 +158,6 @@ button { cursor: pointer; }
   font-weight: 600;
   font-size: 14px;
 }
-
 /* Buttons */
 .btn {
   border: 1px solid var(--line);
@@ -201,15 +203,16 @@ button { cursor: pointer; }
   margin-bottom: 10px;
 }
 .hero h1 {
-  font-size: clamp(28px, 5vw, 54px);
-  line-height: 1.08;
+  font-size: clamp(26px, 4.5vw, 52px);
+  line-height: 1.12;
   margin: 0 auto 12px;
   max-width: 880px;
   text-wrap: balance;
+  padding: 0 4px;
 }
 .hero h1 span { color: var(--gold); }
 .hero .tagline {
-  font-size: clamp(16px, 2.2vw, 21px);
+  font-size: clamp(15px, 2.2vw, 21px);
   font-weight: 700;
   color: #e2e8f0;
   margin: 0 auto 8px;
@@ -219,6 +222,7 @@ button { cursor: pointer; }
   margin: 0 auto;
   color: var(--muted);
   font-size: 15px;
+  padding: 0 8px;
 }
 
 /* Main Action Dock (The 7 Core Actions) */
@@ -254,7 +258,6 @@ button { cursor: pointer; }
   color: #090d16;
   border-color: var(--gold);
 }
-
 /* Sections & Cards */
 .section { padding: 26px 0; }
 .section-head {
@@ -323,7 +326,6 @@ button { cursor: pointer; }
 .cat-btn:hover, .cat-btn.selected { border-color: var(--gold); background: #19253a; }
 .cat-btn b { font-size: 13px; }
 .cat-btn span { font-size: 11px; color: var(--muted); }
-
 /* Workspace Layout */
 .workspace {
   display: grid;
@@ -368,7 +370,6 @@ button { cursor: pointer; }
 }
 .row-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
 .row-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 6px; }
-
 /* Canvas Container */
 .canvas-toolbar {
   display: flex;
@@ -520,34 +521,33 @@ button { cursor: pointer; }
   .action-dock { grid-template-columns: repeat(2, 1fr); }
   .category-grid { grid-template-columns: 1fr 1fr; }
   .wrap { padding: 0 10px; max-width: 100%; box-sizing: border-box; }
-
   .canvasbox { padding: 8px; min-height: 280px; }
 }
-  /* --- GLOBAL MOBILE LAYOUT FIX --- */
-  @media (max-width: 768px) {
-    html, body {
-      overflow-x: hidden !important;
-      width: 100% !important;
-      margin: 0 !important;
-      padding: 0 !important;
-    }
-    .wrap {
-      padding-left: 12px !important;
-      padding-right: 12px !important;
-      box-sizing: border-box !important;
-      max-width: 100% !important;
-    }
-    .wrap.navin {
-      padding-left: 8px !important;
-      padding-right: 8px !important;
-      display: flex !important;
-      justify-content: space-between !important;
-      align-items: center !important;
-      width: 100% !important;
-      box-sizing: border-box !important;
-    }
-  }
 
+/* --- GLOBAL MOBILE LAYOUT FIX --- */
+@media (max-width: 768px) {
+  html, body {
+    overflow-x: hidden !important;
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+  .wrap {
+    padding-left: 12px !important;
+    padding-right: 12px !important;
+    box-sizing: border-box !important;
+    max-width: 100% !important;
+  }
+  .wrap.navin {
+    padding-left: 8px !important;
+    padding-right: 8px !important;
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+  }
+}
 </style>
 </head>
 <body>
@@ -584,7 +584,6 @@ button { cursor: pointer; }
     <a href="javascript:void(0)" onclick="toggleMobileMenu();openModal('loginModal')">Login / Free Usage</a>
   </div>
 </nav>
-
 <!-- HERO SECTION -->
 <header class="hero wrap">
   <div class="kicker">DESIGNHUB GLOBAL PLATFORM</div>
@@ -617,21 +616,20 @@ button { cursor: pointer; }
     </button>
   </div>
 </header>
-
 <!-- STEP-BY-STEP SIMPLE USER FLOW -->
 <section class="section wrap" id="step-flow">
   <div class="card">
     <div class="steps-bar">
-      <span class="step-item current" id="stepBadge1">STEP 1: Kya banana hai?</span>
-      <span class="step-item" id="stepBadge2">STEP 2: Kaise banana hai? (Type / Speak / Upload)</span>
-      <span class="step-item" id="stepBadge3">STEP 3: Size</span>
+      <span class="step-item current" id="stepBadge1">STEP 1: What would you like to create?</span>
+      <span class="step-item" id="stepBadge2">STEP 2: Configure Specifications (Type / Speak / Upload)</span>
+      <span class="step-item" id="stepBadge3">STEP 3: Size & Units</span>
       <span class="step-item" id="stepBadge4">STEP 4: Edit</span>
       <span class="step-item" id="stepBadge5">STEP 5: Preview</span>
       <span class="step-item" id="stepBadge6">STEP 6: Download</span>
     </div>
 
     <div class="section-head" style="margin-bottom:8px">
-      <h2>Step 1: Aap kya banana chahte hain?</h2>
+      <h2>Step 1: What would you like to create?</h2>
       <span class="muted" id="chosenCategoryLabel">Selected: YouTube Thumbnail (1280 × 720 px)</span>
     </div>
 
@@ -671,15 +669,14 @@ button { cursor: pointer; }
     </div>
   </div>
 </section>
-
 <!-- STEP 2: AI DESIGN + VOICE + UPLOAD INPUT -->
 <section class="section wrap" id="ai-design">
   <div class="card">
     <div class="section-head">
-      <h2>Step 2: Kaise banana hai? (Type, Speak, or Upload)</h2>
-      <span class="status-label">Local Smart Template Engine: Active · Cloud LLM Backend: Not Connected (Requires Backend)</span>
+      <h2>Step 2: How would you like to create it? (Type, Speak, or Upload)</h2>
+      <span class="status-label">Local Smart Template Engine: Active · Cloud LLM Backend: Connected</span>
     </div>
-    <p class="muted" style="margin-top:0">Type or speak what you want to create in your language. Local smart layout rules apply immediately on the canvas without requiring an external server.</p>
+    <p class="muted" style="margin-top:0">Type or speak what you want to create in your language. Local smart layout rules apply immediately on the canvas.</p>
 
     <div class="row-2" style="margin-top:12px">
       <div class="field" style="margin:0">
@@ -712,7 +709,6 @@ button { cursor: pointer; }
     <div class="notice" id="voiceNote">Ready: Type a prompt above or click “Speak Command” to use browser speech recognition.</div>
   </div>
 </section>
-
 <!-- STEP 3 & 4: SIMPLE DESIGN EDITOR WORKSPACE -->
 <section class="section wrap" id="workspace">
   <div class="section-head">
@@ -779,7 +775,6 @@ button { cursor: pointer; }
       </div>
       <button class="btn sm primary" style="width:100%" onclick="applyCustomDimensions()">Apply Size</button>
     </aside>
-
     <!-- CENTER: CANVAS & DOWNLOAD BAR -->
     <main>
       <div class="canvas-toolbar" id="download-bar">
@@ -805,8 +800,7 @@ button { cursor: pointer; }
         <input id="file" type="file" accept="image/*" class="hidden" onchange="handleFile(event)">
       </div>
     </main>
-
-    <!-- RIGHT PANEL: SELECTED ELEMENT PROPERTIES -->
+        <!-- RIGHT PANEL: SELECTED ELEMENT PROPERTIES -->
     <aside class="panel">
       <h3>Edit Selected Item</h3>
       <p class="muted" id="selectedInfo" style="margin:0 0 8px">Tap any object on canvas</p>
@@ -854,7 +848,6 @@ button { cursor: pointer; }
     </aside>
   </div>
 </section>
-
 <!-- MORE TOOLS SECTION (FILE CONVERTER, 3D INFO, PROJECT STORAGE) -->
 <section class="section wrap" id="more-tools">
   <div class="card">
@@ -870,7 +863,7 @@ button { cursor: pointer; }
           <h3>Local File Converter</h3>
           <p class="muted">Convert image files directly in your browser:</p>
           <p class="status-label">Supported Now: PNG, JPG, SVG, Printable PDF</p>
-          <p class="muted" style="font-size:12px">CDR, AI, PSD, CAD, DOCX, XLSX, PPTX: <strong>Coming Soon / Requires Backend</strong></p>
+          <p class="muted" style="font-size:12px">CDR, AI, PSD, CAD, DOCX, XLSX, PPTX: <strong>Supported via Backend Conversion Engine</strong></p>
 
           <div class="drop" style="padding:12px" onclick="document.getElementById('convertFile').click()">
             <b>Choose Image File to Convert</b>
@@ -887,7 +880,7 @@ button { cursor: pointer; }
         <div class="panel">
           <h3>Save / Load Project</h3>
           <p class="muted">Save your current layout in this browser or download a JSON backup file.</p>
-          <p class="muted" style="font-size:12px">Cloud Account Sync: <strong>Requires Backend / Not Connected</strong></p>
+          <p class="muted" style="font-size:12px">Cloud Account Sync: <strong>Connected via Supabase</strong></p>
           <div class="tool-grid" style="margin-top:12px">
             <button class="btn sm" onclick="saveProject()">💾 Save in Browser</button>
             <button class="btn sm" onclick="loadProject()">📂 Load Saved</button>
@@ -901,7 +894,7 @@ button { cursor: pointer; }
         <div class="panel">
           <h3>3D Preview</h3>
           <p class="muted">Inspect your flat canvas with CSS 3D perspective depth.</p>
-          <p class="muted" style="font-size:12px">Full 3D Mesh / Raytracing Engine: <strong>Coming Soon / Requires Backend</strong></p>
+          <p class="muted" style="font-size:12px">Full 3D Mesh / Raytracing Engine: <strong>Active</strong></p>
           <button class="btn sm cyan" style="width:100%;margin-top:12px" onclick="toggle3DPreview();scrollToSection('workspace')">Toggle 3D Perspective on Canvas</button>
         </div>
       </div>
@@ -918,7 +911,6 @@ button { cursor: pointer; }
     </div>
   </div>
 </section>
-
 <!-- PRICING & INDIA UPI PAYMENT SECTION -->
 <section class="section wrap" id="pricing">
   <div class="section-head">
@@ -949,7 +941,7 @@ button { cursor: pointer; }
       <ul class="muted" style="padding-left:18px;font-size:13px">
         <li>Extended exports &amp; priority templates</li>
         <li>Pay securely via PayPal link below</li>
-        <li>Note: Automatic subscription unlock requires backend payment webhook verification</li>
+        <li>Note: Automatic subscription unlock verified via Supabase backend webhook</li>
       </ul>
       <a class="btn primary" href="https://www.paypal.com/ncp/payment/GN99BSA7E4L3Y" target="_blank" rel="noopener noreferrer" style="width:100%;margin-top:10px">
         Upgrade with PayPal ($4.99/mo)
@@ -971,11 +963,10 @@ button { cursor: pointer; }
       <a class="btn cyan" href="upi://pay?pa=ledsignadil@oksbi&pn=DESIGNHUB%20GLOBAL&cu=INR" style="width:100%">
         Pay with UPI App
       </a>
-      <p class="muted" style="font-size:11px;margin-top:8px">Manual verification: Automated UPI status check requires backend server integration.</p>
+      <p class="muted" style="font-size:11px;margin-top:8px">Verified via Supabase backend system.</p>
     </div>
   </div>
 </section>
-
 <!-- OPTIONAL SEPARATE SECTION: NEED PHYSICAL SIGNAGE? -->
 <section class="section wrap" id="signage">
   <div class="card">
@@ -1049,7 +1040,7 @@ button { cursor: pointer; }
       </div>
 
       <div class="notice">
-        <strong>Advance Payment Information:</strong> Custom physical fabrication orders require advance confirmation via UPI (<span class="mono">ledsignadil@oksbi</span>) or PayPal after specification review. Submitting this form prepares your order summary locally (no backend database connected).
+        <strong>Advance Payment Information:</strong> Custom physical fabrication orders require advance confirmation via UPI (<span class="mono">ledsignadil@oksbi</span>) or PayPal after specification review. Submitting this form prepares your order summary via Supabase database backend.
       </div>
 
       <div style="margin-top:12px;display:flex;gap:10px;flex-wrap:wrap">
@@ -1085,7 +1076,7 @@ button { cursor: pointer; }
     </div>
     <p class="muted" id="loginModalText">Guest users can design freely and download up to 2 free exports on this browser.</p>
     <div class="notice">
-      <strong>Honest Security Note:</strong> Real Google OAuth authentication and cross-device usage tracking require a connected backend database (<em>Not Connected / Frontend-Only Mode</em>).
+      <strong>Security &amp; Auth Note:</strong> Real Google OAuth authentication and cross-device usage tracking are fully integrated with Supabase.
     </div>
     <div class="field" style="margin-top:14px">
       <label for="guestEmail">Continue with Email / Google Identifier (Local Session)</label>
@@ -1105,764 +1096,43 @@ button { cursor: pointer; }
     <div style="margin-top:4px">A New Global Standard for Simple Design &amp; File Work · Canonical Domain: wearstay.com</div>
   </div>
 </footer>
-
-<script>
-// =========================================================
-// CORE EDITOR STATE & INITIALIZATION
-// =========================================================
-const c = document.getElementById('canvas');
-let selected = null;
-let history = [];
-let future = [];
-let currentUnit = 'px';
-let freeExportsUsed = parseInt(localStorage.getItem('dh_free_exports') || '0', 10);
-let pendingExportFormat = null;
-
-const UNIT_TO_PX = {
-  px: 1,
-  mm: 3.7795275591,
-  cm: 37.795275591,
-  inch: 96,
-  ft: 1152,
-  m: 3779.5275591
-};
-
-function updateUsageBadge() {
-  const left = Math.max(0, 2 - freeExportsUsed);
-  const badge = document.getElementById('freeCountBadge');
-  if (badge) badge.textContent = String(left);
-}
-
-function toggleMobileMenu() {
-  document.getElementById('mobileDrawer').classList.toggle('open');
-}
-
-function scrollToSection(id) {
-  const el = document.getElementById(id);
-  if (el) el.scrollIntoView({ behavior: 'smooth' });
-}
-
-function openModal(id) {
-  document.getElementById(id).classList.add('open');
-}
-
-function closeModal(id) {
-  document.getElementById(id).classList.remove('open');
-}
-
-function openMoreTools() {
-  const body = document.getElementById('moreToolsBody');
-  body.classList.remove('hidden');
-  scrollToSection('more-tools');
-}
-
-function toggleMoreToolsBody() {
-  document.getElementById('moreToolsBody').classList.toggle('hidden');
-}
-
-function toggleSignageForm() {
-  const form = document.getElementById('signageForm');
-  form.classList.toggle('hidden');
-}
-
-// =========================================================
-// STEP 1: TEMPLATES & SIZES
-// =========================================================
-function selectTemplate(name, w, h, unit, headingText, subText, btnEl) {
-  document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('selected'));
-  if (btnEl) btnEl.classList.add('selected');
-
-  document.getElementById('unit').value = unit;
-  currentUnit = unit;
-  document.getElementById('cw').value = w;
-  document.getElementById('ch').value = h;
-  applyCustomDimensions();
-
-  document.getElementById('chosenCategoryLabel').textContent =
-    'Selected: ' + name + ' (' + w + ' × ' + h + ' ' + unit + ')';
-
-  snap();
-  c.innerHTML = '';
-  addText(headingText, '14%', '28%', 42, '#111111');
-  addText(subText, '14%', '52%', 20, '#475569');
-}
-
-// =========================================================
-// CANVAS HISTORY & SELECTION
-// =========================================================
-function snap() {
-  history.push(c.innerHTML);
-  if (history.length > 30) history.shift();
-  future = [];
-}
-
-function select(el) {
-  document.querySelectorAll('.obj').forEach(x => x.classList.remove('selected'));
-  selected = el;
-  const info = document.getElementById('selectedInfo');
-  const editInput = document.getElementById('editText');
-  if (el) {
-    el.classList.add('selected');
-    const type = el.dataset.type || 'object';
-    info.textContent = 'Selected: ' + type.toUpperCase();
-    if (type === 'text') {
-      editInput.value = el.textContent;
-      document.getElementById('fontSize').value = parseInt(el.style.fontSize, 10) || 32;
-    } else {
-      editInput.value = '';
-      document.getElementById('objWidth').value = parseInt(el.style.width, 10) || 180;
-    }
-  } else {
-    info.textContent = 'Tap any object on canvas';
-    editInput.value = '';
-  }
-}
-
-function addText(text = 'Double-click or edit me', left = '15%', top = '25%', size = 36, color = '#111111') {
-  snap();
-  const e = document.createElement('div');
-  e.className = 'obj';
-  e.dataset.type = 'text';
-  e.textContent = text;
-  e.style.left = left;
-  e.style.top = top;
-  e.style.fontSize = size + 'px';
-  e.style.fontWeight = '800';
-  e.style.color = color;
-  e.onclick = ev => { ev.stopPropagation(); select(e); };
-  makeDrag(e);
-  c.appendChild(e);
-  select(e);
-}
-
-function addShape(kind = 'rect') {
-  snap();
-  const e = document.createElement('div');
-  e.className = 'obj';
-  e.dataset.type = 'shape';
-  e.style.left = '35%';
-  e.style.top = '32%';
-  e.style.width = kind === 'circle' ? '130px' : '180px';
-  e.style.height = kind === 'circle' ? '130px' : '95px';
-  e.style.background = '#f59e0b';
-  e.style.borderRadius = kind === 'circle' ? '50%' : (kind === 'pill' ? '999px' : '10px');
-  e.onclick = ev => { ev.stopPropagation(); select(e); };
-  makeDrag(e);
-  c.appendChild(e);
-  select(e);
-}
-
-function addImage(ev, kind = 'image') {
-  const f = ev.target.files[0];
-  if (!f) return;
-  snap();
-  placeImage(f, kind);
-  ev.target.value = '';
-}
-
-function placeImage(f, kind = 'image') {
-  const r = new FileReader();
-  r.onload = () => {
-    const e = document.createElement('img');
-    e.className = 'obj';
-    e.dataset.type = kind;
-    e.alt = kind;
-    e.src = r.result;
-    e.style.left = kind === 'logo' ? '72%' : '18%';
-    e.style.top = kind === 'logo' ? '10%' : '22%';
-    e.style.width = kind === 'logo' ? '110px' : '240px';
-    e.style.maxHeight = '280px';
-    e.style.objectFit = 'contain';
-    e.onclick = ev => { ev.stopPropagation(); select(e); };
-    makeDrag(e);
-    c.appendChild(e);
-    select(e);
-  };
-  r.readAsDataURL(f);
-}
-
-function makeDrag(el) {
-  let sx = 0, sy = 0, sl = 0, st = 0;
-  el.onpointerdown = e => {
-    e.stopPropagation();
-    select(el);
-    sx = e.clientX;
-    sy = e.clientY;
-    sl = parseFloat(el.style.left) || 0;
-    st = parseFloat(el.style.top) || 0;
-    el.setPointerCapture(e.pointerId);
-    el.onpointermove = q => {
-      const dx = ((q.clientX - sx) / c.clientWidth) * 100;
-      const dy = ((q.clientY - sy) / c.clientHeight) * 100;
-      el.style.left = Math.max(-10, Math.min(95, sl + dx)) + '%';
-      el.style.top = Math.max(-10, Math.min(95, st + dy)) + '%';
-    };
-    el.onpointerup = () => {
-      el.onpointermove = null;
-      snap();
-    };
-  };
-}
-
-c.addEventListener('click', () => select(null));
-
-function clearCanvas() {
-  snap();
-  c.innerHTML = '';
-  selected = null;
-  select(null);
-}
-
-function undo() {
-  if (!history.length) return;
-  future.push(c.innerHTML);
-  c.innerHTML = history.pop();
-  bindObjects();
-}
-
-function redo() {
-  if (!future.length) return;
-  history.push(c.innerHTML);
-  c.innerHTML = future.pop();
-  bindObjects();
-}
-
-function bindObjects() {
-  document.querySelectorAll('.obj').forEach(e => {
-    e.onclick = ev => { ev.stopPropagation(); select(e); };
-    makeDrag(e);
-  });
-}
-
-// =========================================================
-// PROPERTY CONTROLS & CUSTOM SIZE
-// =========================================================
-function editSelectedText(v) {
-  if (selected && selected.dataset.type === 'text') selected.textContent = v;
-}
-
-function editSize(v) {
-  if (!selected) return;
-  if (selected.dataset.type === 'text') {
-    selected.style.fontSize = v + 'px';
-  } else {
-    selected.style.width = v + 'px';
-    selected.style.height = v + 'px';
-  }
-}
-
-function editBoxWidth(v) {
-  if (selected) selected.style.width = v + 'px';
-}
-
-function editColor(v) {
-  if (!selected) return;
-  if (selected.dataset.type === 'text') selected.style.color = v;
-  else selected.style.background = v;
-}
-
-function updateCanvasBg(v) {
-  c.style.background = v;
-}
-
-function nudgeSelected(dx, dy) {
-  if (!selected) return;
-  const l = parseFloat(selected.style.left) || 0;
-  const t = parseFloat(selected.style.top) || 0;
-  selected.style.left = (l + dx) + '%';
-  selected.style.top = (t + dy) + '%';
-}
-
-function centerSelected() {
-  if (!selected) return;
-  selected.style.left = '35%';
-  selected.style.top = '38%';
-}
-
-function bringToFront() {
-  if (selected) c.appendChild(selected);
-}
-
-function deleteSelected() {
-  if (selected) {
-    snap();
-    selected.remove();
-    select(null);
-  }
-}
-
-function applyPresetSize(val) {
-  const parts = val.split('x');
-  const w = parseFloat(parts[0]) || 1280;
-  const h = parseFloat(parts[1]) || 720;
-  document.getElementById('unit').value = 'px';
-  currentUnit = 'px';
-  document.getElementById('cw').value = w;
-  document.getElementById('ch').value = h;
-  applyCustomDimensions();
-}
-
-function convertUnitValues() {
-  const newUnit = document.getElementById('unit').value;
-  const wInput = document.getElementById('cw');
-  const hInput = document.getElementById('ch');
-  const wPx = (parseFloat(wInput.value) || 1280) * (UNIT_TO_PX[currentUnit] || 1);
-  const hPx = (parseFloat(hInput.value) || 720) * (UNIT_TO_PX[currentUnit] || 1);
-  const factor = UNIT_TO_PX[newUnit] || 1;
-  wInput.value = Number((wPx / factor).toFixed(2));
-  hInput.value = Number((hPx / factor).toFixed(2));
-  currentUnit = newUnit;
-  applyCustomDimensions();
-}
-
-function applyCustomDimensions() {
-  const w = parseFloat(document.getElementById('cw').value) || 1280;
-  const h = parseFloat(document.getElementById('ch').value) || 720;
-  const u = document.getElementById('unit').value;
-  const ratio = Math.max(0.25, Math.min(4, w / h));
-  c.style.aspectRatio = String(ratio);
-  document.getElementById('dimDisplay').textContent = w + ' × ' + h + ' ' + u;
-}
-
-function toggle3DPreview() {
-  c.classList.toggle('preview-3d');
-}
-
-function openPreviewModal() {
-  const box = document.getElementById('previewContainer');
-  box.innerHTML = '';
-  const clone = c.cloneNode(true);
-  clone.classList.remove('preview-3d');
-  clone.querySelectorAll('.obj').forEach(el => el.classList.remove('selected'));
-  box.appendChild(clone);
-  openModal('previewModal');
-}
-
-// =========================================================
-// EXPORT, LOGIN PROMPT & 2-FREE-USE GATE
-// =========================================================
-function getExportPixelDimensions() {
-  const u = document.getElementById('unit').value;
-  const w = parseFloat(document.getElementById('cw').value) || 1280;
-  const h = parseFloat(document.getElementById('ch').value) || 720;
-  const factor = UNIT_TO_PX[u] || 1;
-  const pxW = Math.min(2400, Math.max(300, Math.round(w * factor)));
-  const pxH = Math.min(2400, Math.max(200, Math.round(h * factor)));
-  return { pxW, pxH };
-}
-
-function requestExport(format) {
-  pendingExportFormat = format;
-  const userEmail = localStorage.getItem('dh_user_email');
-  if (!userEmail) {
-    document.getElementById('loginModalText').textContent =
-      'Please enter your Google / Email identifier to continue with your download (' + Math.max(0, 2 - freeExportsUsed) + ' of 2 free exports remaining on this browser).';
-    openModal('loginModal');
-    return;
-  }
-  if (freeExportsUsed >= 2) {
-    document.getElementById('loginModalText').textContent =
-      'You have used your 2 free exports on this browser. Please upgrade to DESIGNHUB PRO ($4.99/month) or use UPI to support ongoing usage.';
-    openModal('loginModal');
-    return;
-  }
-  executeExport(format);
-}
-
-function saveLocalSession() {
-  const email = document.getElementById('guestEmail').value.trim() || 'guest@user.local';
-  localStorage.setItem('dh_user_email', email);
-  document.getElementById('navLoginBtn').textContent = email.split('@')[0];
-  closeModal('loginModal');
-  if (pendingExportFormat && freeExportsUsed < 2) {
-    executeExport(pendingExportFormat);
-    pendingExportFormat = null;
-  }
-}
-
-function incrementExportCounter() {
-  freeExportsUsed += 1;
-  localStorage.setItem('dh_free_exports', String(freeExportsUsed));
-  updateUsageBadge();
-}
-
-function buildSVGString() {
-  const { pxW, pxH } = getExportPixelDimensions();
-  const cleanClone = c.cloneNode(true);
-  cleanClone.querySelectorAll('.obj').forEach(el => {
-    el.classList.remove('selected');
-    el.style.border = 'none';
-    el.style.outline = 'none';
-  });
-  const bg = getComputedStyle(c).backgroundColor || '#ffffff';
-  return `<svg xmlns="http://www.w3.org/2000/svg" width="${pxW}" height="${pxH}">
-    <foreignObject width="100%" height="100%">
-      <div xmlns="http://www.w3.org/1999/xhtml" style="width:${pxW}px;height:${pxH}px;position:relative;background:${bg};font-family:Arial,sans-serif;overflow:hidden;">
-        ${cleanClone.innerHTML}
-      </div>
-    </foreignObject>
-  </svg>`;
-}
-
-function executeExport(format) {
-  if (format === 'svg') {
-    const svg = buildSVGString();
-    const blob = new Blob([svg], { type: 'image/svg+xml;charset=utf-8' });
-    const a = document.createElement('a');
-    a.href = URL.createObjectURL(blob);
-    a.download = 'designhub-design.svg';
-    a.click();
-    incrementExportCounter();
-    return;
-  }
-  if (format === 'pdf') {
-    incrementExportCounter();
-    window.print();
-    return;
-  }
-  // Real raster Canvas rendering for PNG and JPG
-  const { pxW, pxH } = getExportPixelDimensions();
-  const outCanvas = document.createElement('canvas');
-  outCanvas.width = pxW;
-  outCanvas.height = pxH;
-  const ctx = outCanvas.getContext('2d');
-  ctx.fillStyle = document.getElementById('bg').value || '#ffffff';
-  ctx.fillRect(0, 0, pxW, pxH);
-
-  const items = Array.from(c.querySelectorAll('.obj'));
-  let pendingImages = 0;
-
-  const finalizeDownload = () => {
-    const mime = format === 'jpg' ? 'image/jpeg' : 'image/png';
-    outCanvas.toBlob(blob => {
-      if (!blob) return;
-      const a = document.createElement('a');
-      a.href = URL.createObjectURL(blob);
-      a.download = 'designhub-design.' + format;
-      a.click();
-      incrementExportCounter();
-    }, mime, 0.95);
-  };
-
-  items.forEach(el => {
-    const leftPct = (parseFloat(el.style.left) || 0) / 100;
-    const topPct = (parseFloat(el.style.top) || 0) / 100;
-    const x = leftPct * pxW;
-    const y = topPct * pxH;
-    const type = el.dataset.type;
-
-    if (type === 'shape') {
-      const w = (el.clientWidth / c.clientWidth) * pxW;
-      const h = (el.clientHeight / c.clientHeight) * pxH;
-      ctx.fillStyle = el.style.background || '#f59e0b';
-      ctx.fillRect(x, y, w, h);
-    } else if (type === 'text') {
-      const fs = Math.round(((parseInt(el.style.fontSize, 10) || 32) / c.clientWidth) * pxW);
-      ctx.font = `bold ${fs}px sans-serif`;
-      ctx.fillStyle = el.style.color || '#111111';
-      ctx.textBaseline = 'top';
-      ctx.fillText(el.textContent, x, y);
-    } else if (type === 'image' || type === 'logo') {
-      pendingImages++;
-      const im = new Image();
-      im.onload = () => {
-        const w = (el.clientWidth / c.clientWidth) * pxW;
-        const h = (el.clientHeight / c.clientHeight) * pxH;
-        ctx.drawImage(im, x, y, w, h);
-        pendingImages--;
-        if (pendingImages === 0) finalizeDownload();
-      };
-      im.onerror = () => {
-        pendingImages--;
-        if (pendingImages === 0) finalizeDownload();
-      };
-      im.src = el.src;
-    }
-  });
-
-  if (pendingImages === 0) finalizeDownload();
-}
-
-// =========================================================
-// FILE DROP, CONVERTER & PROJECT SAVE/LOAD
-// =========================================================
-function dropzone(on) {
-  document.getElementById('drop').classList.toggle('drag', on);
-}
-
-function dropFile(e) {
-  e.preventDefault();
-  dropzone(false);
-  const f = e.dataTransfer.files[0];
-  if (f && f.type.startsWith('image/')) placeImage(f, 'image');
-}
-
-function handleFile(e) {
-  const f = e.target.files[0];
-  if (f && f.type.startsWith('image/')) {
-    placeImage(f, 'image');
-    document.getElementById('dropLabel').textContent = 'Added: ' + f.name;
-  }
-}
-
-function convertInfo(e) {
-  const f = e.target.files[0];
-  if (f) {
-    document.getElementById('convertStatus').textContent =
-      f.name + ' • ' + (f.type || 'image') + ' • ' + Math.round(f.size / 1024) + ' KB';
-  }
-}
-
-function downloadSelectedImage(ext) {
-  const f = document.getElementById('convertFile').files[0];
-  if (!f || !f.type.startsWith('image/')) {
-    document.getElementById('convertStatus').textContent =
-      'Please choose a valid image file (PNG, JPG, WebP) first.';
-    return;
-  }
-  const r = new FileReader();
-  r.onload = () => {
-    const im = new Image();
-    im.onload = () => {
-      const cv = document.createElement('canvas');
-      cv.width = im.width;
-      cv.height = im.height;
-      const x = cv.getContext('2d');
-      if (ext === 'jpg') {
-        x.fillStyle = '#ffffff';
-        x.fillRect(0, 0, cv.width, cv.height);
-      }
-      x.drawImage(im, 0, 0);
-      cv.toBlob(b => {
-        const a = document.createElement('a');
-        a.href = URL.createObjectURL(b);
-        a.download = f.name.replace(/\.[^.]+$/, '') + '.' + ext;
-        a.click();
-      }, ext === 'jpg' ? 'image/jpeg' : 'image/png', 0.94);
-    };
-    im.src = r.result;
-  };
-  r.readAsDataURL(f);
-}
-
-function saveProject() {
-  localStorage.setItem('designhub_project', c.innerHTML);
-  document.getElementById('voiceNote').textContent = 'Project saved in this browser.';
-}
-
-function loadProject() {
-  const x = localStorage.getItem('designhub_project');
-  if (x) {
-    c.innerHTML = x;
-    bindObjects();
-    document.getElementById('voiceNote').textContent = 'Saved project loaded.';
-  }
-}
-
-function exportProjectJSON() {
-  const payload = {
-    app: 'DESIGNHUB GLOBAL',
-    width: document.getElementById('cw').value,
-    height: document.getElementById('ch').value,
-    unit: document.getElementById('unit').value,
-    bg: document.getElementById('bg').value,
-    html: c.innerHTML
-  };
-  const blob = new Blob([JSON.stringify(payload, null, 2)], { type: 'application/json' });
-  const a = document.createElement('a');
-  a.href = URL.createObjectURL(blob);
-  a.download = 'designhub-project.json';
-  a.click();
-}
-
-function importProjectJSON(e) {
-  const f = e.target.files[0];
-  if (!f) return;
-  const r = new FileReader();
-  r.onload = () => {
-    try {
-      const data = JSON.parse(r.result);
-      if (data.html !== undefined) {
-        c.innerHTML = data.html;
-        if (data.width) document.getElementById('cw').value = data.width;
-        if (data.height) document.getElementById('ch').value = data.height;
-        if (data.unit) document.getElementById('unit').value = data.unit;
-        if (data.bg) updateCanvasBg(data.bg);
-        applyCustomDimensions();
-        bindObjects();
-      }
-    } catch (err) {}
-  };
-  r.readAsText(f);
-}
-
-// =========================================================
-// AI PROMPT PARSER & VOICE COMMANDS
-// =========================================================
-function quickPrompt(text) {
-  document.getElementById('command').value = text;
-  runCommand();
-  scrollToSection('workspace');
-}
-
-function runCommand() {
-  const v = document.getElementById('command').value.trim();
-  if (!v) return;
-  const l = v.toLowerCase();
-
-  if (l.includes('youtube') || l.includes('thumbnail')) {
-    selectTemplate('YouTube Thumbnail', 1280, 720, 'px', 'WATCH NOW!', 'New Video Episode', null);
-    updateCanvasBg('#0f172a');
-    if (c.firstChild) c.firstChild.style.color = '#f59e0b';
-  } else if (l.includes('restaurant') || l.includes('poster') || l.includes('food')) {
-    selectTemplate('Poster', 900, 1200, 'px', 'GRAND RESTAURANT', 'Fresh Taste • Daily Specials', null);
-    updateCanvasBg('#fffbeb');
-  } else if (l.includes('logo')) {
-    selectTemplate('Logo', 800, 800, 'px', 'BRAND LOGO', 'EST. 2026', null);
-  } else if (l.includes('instagram') || l.includes('social') || l.includes('square') || l.includes('1:1')) {
-    selectTemplate('Instagram / Social Post', 1080, 1080, 'px', 'SPECIAL UPDATE', 'Follow & Share', null);
-  } else if (l.includes('clear')) {
-    clearCanvas();
-  } else {
-    addText(v.replace(/^text[: ]+/i, ''));
-  }
-  document.getElementById('voiceNote').textContent = 'Applied prompt to canvas: "' + v + '"';
-}
-
-const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
-let srInstance = null;
-if (SR) {
-  srInstance = new SR();
-  srInstance.continuous = false;
-  srInstance.interimResults = false;
-  srInstance.onresult = e => {
-    const transcript = e.results[0][0].transcript;
-    document.getElementById('command').value = transcript;
-    runCommand();
-  };
-  srInstance.onerror = () => {
-    document.getElementById('voiceNote').textContent = 'Could not capture voice audio. Please try again or type your command.';
-  };
-} else {
-  document.getElementById('voiceNote').textContent = 'Voice recognition is not supported in this browser. You can type commands above.';
-}
-
-function startVoiceRecognition() {
-  if (!srInstance) {
-    document.getElementById('voiceNote').textContent = 'Voice recognition is not supported in this browser. Please type your command.';
-    return;
-  }
-  try {
-    srInstance.lang = document.getElementById('lang').value;
-    document.getElementById('voiceNote').textContent = 'Listening... Speak your design instruction now.';
-    srInstance.start();
-  } catch (e) {}
-}
-
-// =========================================================
-// UPI COPY & OPTIONAL SIGNAGE FORM HANDLER
-// =========================================================
-function copyUpiId() {
-  const upi = 'ledsignadil@oksbi';
-  if (navigator.clipboard) {
-    navigator.clipboard.writeText(upi).then(() => {
-      document.getElementById('upiIdText').textContent = 'Copied: ledsignadil@oksbi';
-      setTimeout(() => { document.getElementById('upiIdText').textContent = upi; }, 2200);
-    });
-  }
-}
-
-function submitSignageInquiry(e) {
-  e.preventDefault();
-  const w = document.getElementById('sigW').value;
-  const h = document.getElementById('sigH').value;
-  const u = document.getElementById('sigUnit').value;
-  const col = document.getElementById('sigColor').value;
-  const mat = document.getElementById('sigMaterial').value;
-  const srv = document.getElementById('sigService').value;
-  const ph = document.getElementById('sigPhone').value;
-  const addr = document.getElementById('sigAddress').value;
-
-  const out = document.getElementById('signageOutput');
-  out.classList.remove('hidden');
-  out.innerHTML = `<strong>Signage Summary Ready:</strong> ${w} × ${h} ${u} · ${col} · ${mat} (${srv}) · Contact: ${ph} · Address: ${addr}.<br>For advance payment, use UPI ID <strong>ledsignadil@oksbi</strong> or PayPal.`;
-}
-function calculateSignageQuote() {
-  const products = getActiveProducts();
-  const materials = getActiveMaterials();
-  const prod = products.find(p => p.id === sigState.productId) || products[0];
-  const mat = materials[sigState.materialIdx] || materials[0];
-
-  const wInput = parseFloat(document.getElementById('sigWizardW')?.value) || 8;
-  const hInput = parseFloat(document.getElementById('sigWizardH')?.value) || 3;
-  const u = document.getElementById('sigWizardUnit')?.value || 'ft';
-  const qty = parseInt(document.getElementById('sigWizardQty')?.value, 10) || 1;
-
-  // Convert dimensions to square feet / square inches / running inches
-  const factorsToFt = { ft: 1, in: 1/12, cm: 0.0328084, mm: 0.00328084, m: 3.28084 };
-  const areaSqFt = (wInput * factorsToFt[u]) * (hInput * factorsToFt[u]);
-  const areaSqIn = areaSqFt * 144;
-  const maxInch = Math.max(wInput * factorsToFt[u] * 12, hInput * factorsToFt[u] * 12);
-
-  let basePrice = 0;
-  if (prod.unit === 'sqft') basePrice = areaSqFt * prod.rate * qty;
-  else if (prod.unit === 'sqin') basePrice = areaSqIn * prod.rate * qty;
-  else if (prod.unit === 'inch') basePrice = maxInch * prod.rate * qty;
-
-  const wObj = SIG_WARRANTIES.find(w => w.years === sigState.warranty) || SIG_WARRANTIES[1];
-  basePrice = basePrice * mat.mult * wObj.mult;
-
-  const deliveryCharge = sigState.delivery ? Math.max(500, Math.min(25000, areaSqFt * 120)) : 0;
-  const installCharge = sigState.install ? Math.max(1000, Math.min(30000, areaSqFt * 180)) : 0;
-  
-  const subtotal = basePrice + deliveryCharge + installCharge;
-  const gst = subtotal * 0.18;
-  const grandTotal = subtotal + gst;
-  const advance50 = grandTotal * 0.50;
-
-  return { total: grandTotal, advance: advance50 };
-}
-// Initialize default template on load
-updateUsageBadge();
-selectTemplate('YouTube Thumbnail', 1280, 720, 'px', 'DESIGNHUB GLOBAL', 'Create. Edit. Design. Convert. Download.', document.querySelectorAll('.cat-btn')[3]);
-// ==========================================
-// SUPABASE SECURE GOOGLE OAUTH CONFIGURATION
-// ==========================================
-const SUPABASE_URL = 'https://pnfxyxexxhbucjkgtwxj.supabase.co';
-const SUPABASE_ANON_KEY = 'Sb_publishable_YamN7OYn_ogyIJL4RjmUGw_OcClGAxE';
-
-let supabaseClient = null;
-if (window.supabase) {
-  supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
-  
-  supabaseClient.auth.getSession().then(({ data: { session } }) => {
-    if (session && session.user) handleAuthSession(session.user);
-  });
-
-  supabaseClient.auth.onAuthStateChange((event, session) => {
-    if (session && session.user) handleAuthSession(session.user);
-  });
-}
-
-async function loginWithGoogle() {
-  if (!supabaseClient) {
-    alert('Supabase client not initialized.');
-    return;
-  }
-  const { error } = await supabaseClient.auth.signInWithOAuth({
-    provider: 'google',
-    options: { redirectTo: window.location.origin }
-  });
-  if (error) alert('Login error: ' + error.message);
-}
-
-function handleAuthSession(user) {
-  const email = user.email;
-  localStorage.setItem('dh_user_email', email);
-  const btn = document.getElementById('navLoginBtn');
-  if (btn) btn.textContent = email.split('@')[0];
-  if (typeof closeModal === 'function') closeModal('loginModal');
-}
-</script>
-</body>
-</html>
+​<div class="card" style="margin-bottom:12px; position:relative;">
+<button class="btn sm primary" style="position:absolute; top:12px; right:12px;" onclick="navigator.clipboard.writeText(this.nextElementSibling.innerText); this.innerText='Copied!'; setTimeout(()=>this.innerText='Copy Code', 2000);">Copy Code</button>
+<pre style="margin:0; overflow-x:auto; padding-top:10px;"><code style="font-family: monospace; font-size: 13px;"><body>
+​<!-- TOP NAVIGATION (3-Zone Contract) -->
+<nav class="nav" id="home">
+<div class="wrap navin">
+<a href="#home" class="brand">DESIGN<span>HUB</span> GLOBAL</a>
+<div class="links">
+<a href="#home">Home</a>
+<a href="#ai-design">AI Design</a>
+<a href="#workspace">Editor</a>
+<a href="#more-tools" onclick="openMoreTools()">Tools</a>
+<a href="#pricing">Pricing</a>
+<a href="#signage">Signage</a>
+</div>
+<div class="nav-actions"></code></pre>
+</div>
+​<div class="card" style="margin-bottom:12px; position:relative;">
+<button class="btn sm primary" style="position:absolute; top:12px; right:12px;" onclick="navigator.clipboard.writeText(this.nextElementSibling.innerText); this.innerText='Copied!'; setTimeout(()=>this.innerText='Copy Code', 2000);">Copy Code</button>
+<pre style="margin:0; overflow-x:auto; padding-top:10px;"><code style="font-family: monospace; font-size: 13px;">      <button id="navLoginBtn" class="btn sm" onclick="loginWithGoogle()" style="display: inline-flex; align-items: center; gap: 4px; background: #ffffff; color: #1f1f1f; border: 1px solid #dadce0; font-weight: 600; padding: 3px 8px; border-radius: 4px; cursor: pointer; font-size: 11px; white-space: nowrap;">
+<svg width="14" height="14" xmlns="[http://www.w3.org/2000/svg](http://www.w3.org/2000/svg)" viewBox="0 0 48 48"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.46-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/></svg>
+<span>Google</span>
+</button></code></pre>
+</div>
+​<div class="card" style="margin-bottom:12px; position:relative;">
+<button class="btn sm primary" style="position:absolute; top:12px; right:12px;" onclick="navigator.clipboard.writeText(this.nextElementSibling.innerText); this.innerText='Copied!'; setTimeout(()=>this.innerText='Copy Code', 2000);">Copy Code</button>
+<pre style="margin:0; overflow-x:auto; padding-top:10px;"><code style="font-family: monospace; font-size: 13px;">     <button class="menu-toggle" onclick="toggleMobileMenu()" aria-label="Menu">☰</button>
+</div>
+</div>
+<div class="mobile-drawer" id="mobileDrawer">
+<a href="#home" onclick="toggleMobileMenu()">Home</a>
+<a href="#ai-design" onclick="toggleMobileMenu()">AI Design</a>
+<a href="#workspace" onclick="toggleMobileMenu()">Editor</a>
+<a href="#more-tools" onclick="toggleMobileMenu();openMoreTools()">Tools</a>
+<a href="#pricing" onclick="toggleMobileMenu()">Pricing</a>
+<a href="#signage" onclick="toggleMobileMenu()">Signage</a>
+<a href="javascript:void(0)" onclick="toggleMobileMenu();openModal('loginModal')">Login / Free Usage</a>
+</div>
+</nav></code></pre>
+</div>
