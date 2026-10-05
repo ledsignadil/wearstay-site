@@ -1794,6 +1794,44 @@ function calculateSignageQuote() {
 // Initialize default template on load
 updateUsageBadge();
 selectTemplate('YouTube Thumbnail', 1280, 720, 'px', 'DESIGNHUB GLOBAL', 'Create. Edit. Design. Convert. Download.', document.querySelectorAll('.cat-btn')[3]);
+// ==========================================
+// SUPABASE SECURE GOOGLE OAUTH CONFIGURATION
+// ==========================================
+const SUPABASE_URL = 'https://pnfxyxexxhbucjkgtwxj.supabase.co';
+const SUPABASE_ANON_KEY = 'Sb_publishable_YamN7OYn_ogyIJL4RjmUGw_OcClGAxE';
+
+let supabaseClient = null;
+if (window.supabase) {
+  supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+  
+  supabaseClient.auth.getSession().then(({ data: { session } }) => {
+    if (session && session.user) handleAuthSession(session.user);
+  });
+
+  supabaseClient.auth.onAuthStateChange((event, session) => {
+    if (session && session.user) handleAuthSession(session.user);
+  });
+}
+
+async function loginWithGoogle() {
+  if (!supabaseClient) {
+    alert('Supabase client not initialized.');
+    return;
+  }
+  const { error } = await supabaseClient.auth.signInWithOAuth({
+    provider: 'google',
+    options: { redirectTo: window.location.origin }
+  });
+  if (error) alert('Login error: ' + error.message);
+}
+
+function handleAuthSession(user) {
+  const email = user.email;
+  localStorage.setItem('dh_user_email', email);
+  const btn = document.getElementById('navLoginBtn');
+  if (btn) btn.textContent = email.split('@')[0];
+  if (typeof closeModal === 'function') closeModal('loginModal');
+}
 </script>
 </body>
 </html>
