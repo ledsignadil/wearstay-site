@@ -58,7 +58,39 @@
     window.open(url, '_blank', 'noopener,noreferrer');
   }
 </script>
+// Automatically connects to your backend or Supabase project
+let supabaseClient = null;
 
+async function initSupabase() {
+  try {
+    const res = await fetch('/api/config');
+    const config = await res.json();
+    if (config.supabaseUrl && config.supabaseAnonKey && window.supabase) {
+      supabaseClient = window.supabase.createClient(config.supabaseUrl, config.supabaseAnonKey);
+      
+      // Listen for auth state changes (Google login / sign-out)
+      supabaseClient.auth.onAuthStateChange((event, session) => {
+        handleAuthChange(session);
+      });
+    }
+  } catch (err) {
+    console.warn('Running in standalone mode without active Supabase backend.');
+  }
+}
+
+// Google OAuth Trigger
+async function loginWithGoogle() {
+  if (!supabaseClient) {
+    alert('Please configure SUPABASE_URL and SUPABASE_ANON_KEY in your .env file.');
+    return;
+  }
+  await supabaseClient.auth.signInWithOAuth({
+    provider: 'google',
+    options: {
+      redirectTo: window.location.origin
+    }
+  });
+}
 <style>
 :root {
   --bg: #080b11;
@@ -1754,7 +1786,41 @@ function submitSignageInquiry(e) {
   out.classList.remove('hidden');
   out.innerHTML = `<strong>Signage Summary Ready:</strong> ${w} × ${h} ${u} · ${col} · ${mat} (${srv}) · Contact: ${ph} · Address: ${addr}.<br>For advance payment, use UPI ID <strong>ledsignadil@oksbi</strong> or PayPal.`;
 }
+function calculateSignageQuote() {
+  const products = getActiveProducts();
+  const materials = getActiveMaterials();
+  const prod = products.find(p => p.id === sigState.productId) || products[0];
+  const mat = materials[sigState.materialIdx] || materials[0];
 
+  const wInput = parseFloat(document.getElementById('sigWizardW')?.value) || 8;
+  const hInput = parseFloat(document.getElementById('sigWizardH')?.value) || 3;
+  const u = document.getElementById('sigWizardUnit')?.value || 'ft';
+  const qty = parseInt(document.getElementById('sigWizardQty')?.value, 10) || 1;
+
+  // Convert dimensions to square feet / square inches / running inches
+  const factorsToFt = { ft: 1, in: 1/12, cm: 0.0328084, mm: 0.00328084, m: 3.28084 };
+  const areaSqFt = (wInput * factorsToFt[u]) * (hInput * factorsToFt[u]);
+  const areaSqIn = areaSqFt * 144;
+  const maxInch = Math.max(wInput * factorsToFt[u] * 12, hInput * factorsToFt[u] * 12);
+
+  let basePrice = 0;
+  if (prod.unit === 'sqft') basePrice = areaSqFt * prod.rate * qty;
+  else if (prod.unit === 'sqin') basePrice = areaSqIn * prod.rate * qty;
+  else if (prod.unit === 'inch') basePrice = maxInch * prod.rate * qty;
+
+  const wObj = SIG_WARRANTIES.find(w => w.years === sigState.warranty) || SIG_WARRANTIES[1];
+  basePrice = basePrice * mat.mult * wObj.mult;
+
+  const deliveryCharge = sigState.delivery ? Math.max(500, Math.min(25000, areaSqFt * 120)) : 0;
+  const installCharge = sigState.install ? Math.max(1000, Math.min(30000, areaSqFt * 180)) : 0;
+  
+  const subtotal = basePrice + deliveryCharge + installCharge;
+  const gst = subtotal * 0.18;
+  const grandTotal = subtotal + gst;
+  const advance50 = grandTotal * 0.50;
+
+  return { total: grandTotal, advance: advance50 };
+}
 // Initialize default template on load
 updateUsageBadge();
 selectTemplate('YouTube Thumbnail', 1280, 720, 'px', 'DESIGNHUB GLOBAL', 'Create. Edit. Design. Convert. Download.', document.querySelectorAll('.cat-btn')[3]);
