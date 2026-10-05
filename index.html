@@ -523,6 +523,31 @@ button { cursor: pointer; }
 
   .canvasbox { padding: 8px; min-height: 280px; }
 }
+  /* --- GLOBAL MOBILE LAYOUT FIX --- */
+  @media (max-width: 768px) {
+    html, body {
+      overflow-x: hidden !important;
+      width: 100% !important;
+      margin: 0 !important;
+      padding: 0 !important;
+    }
+    .wrap {
+      padding-left: 12px !important;
+      padding-right: 12px !important;
+      box-sizing: border-box !important;
+      max-width: 100% !important;
+    }
+    .wrap.navin {
+      padding-left: 8px !important;
+      padding-right: 8px !important;
+      display: flex !important;
+      justify-content: space-between !important;
+      align-items: center !important;
+      width: 100% !important;
+      box-sizing: border-box !important;
+    }
+  }
+
 </style>
 </head>
 <body>
