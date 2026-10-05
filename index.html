@@ -58,39 +58,7 @@
     window.open(url, '_blank', 'noopener,noreferrer');
   }
 </script>
-// Automatically connects to your backend or Supabase project
-let supabaseClient = null;
 
-async function initSupabase() {
-  try {
-    const res = await fetch('/api/config');
-    const config = await res.json();
-    if (config.supabaseUrl && config.supabaseAnonKey && window.supabase) {
-      supabaseClient = window.supabase.createClient(config.supabaseUrl, config.supabaseAnonKey);
-      
-      // Listen for auth state changes (Google login / sign-out)
-      supabaseClient.auth.onAuthStateChange((event, session) => {
-        handleAuthChange(session);
-      });
-    }
-  } catch (err) {
-    console.warn('Running in standalone mode without active Supabase backend.');
-  }
-}
-
-// Google OAuth Trigger
-async function loginWithGoogle() {
-  if (!supabaseClient) {
-    alert('Please configure SUPABASE_URL and SUPABASE_ANON_KEY in your .env file.');
-    return;
-  }
-  await supabaseClient.auth.signInWithOAuth({
-    provider: 'google',
-    options: {
-      redirectTo: window.location.origin
-    }
-  });
-}
 <style>
 :root {
   --bg: #080b11;
