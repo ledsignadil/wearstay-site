@@ -208,19 +208,40 @@ footer{background:#06111c;color:#c8d7e3;padding:45px 0 22px}
   .strip{grid-template-columns:repeat(3,1fr)}
   .footerGrid{grid-template-columns:1fr 1fr}
 }
-@media(max-width:600px){
-  .container{width:min(100% - 20px,1240px)}
-  .nav{height:62px}
-  .hero h1{font-size:36px}
-  .services{grid-template-columns:repeat(2,1fr)}
-  .strip{grid-template-columns:repeat(2,1fr)}
-  .footerGrid{grid-template-columns:1fr}
-  .two{grid-template-columns:1fr}
-}
+    /* Aapka bacha hua CSS code yahan khatam ho raha hoga... */
+    .copyright { text-align: center; }
+
+    /* --- FINAL MOBILE RESPONSIVE FIX (Isko yahan paste karein) --- */
+    @media(max-width:980px){
+      .navlinks{display:none}
+      .hamb{display:block; padding: 0 4px;}
+      .heroGrid,.studioGrid,.orderGrid{grid-template-columns:1fr}
+      .services{grid-template-columns:repeat(3,1fr)}
+      .trust{grid-template-columns:repeat(2,1fr)}
+      .steps{grid-template-columns:repeat(2,1fr)}
+      .strip{grid-template-columns:repeat(3,1fr)}
+      .footerGrid{grid-template-columns:1fr 1fr}
+    }
+    @media(max-width:600px){
+      .container{width:min(100% - 20px,1240px)}
+      .nav{height:62px; justify-content: space-between;}
+      .brandText {display: none;} 
+      .topPill {display: none;}
+      .navBtns {gap: 6px;}
+      .navBtns .btn {font-size: 11px; padding: 6px 10px;}
+      .hero h1{font-size:36px}
+      .services{grid-template-columns:repeat(2,1fr)}
+      .strip{grid-template-columns:repeat(2,1fr)}
+      .footerGrid{grid-template-columns:1fr}
+      .two{grid-template-columns:1fr}
+    }
+
+</style> <!-- Yahan apka style tag close ho jayega -->
+
 </style>
 </head>
 <body>
- <!-- HEADER -->
+<!-- HEADER -->
 <header>
 <div class="container nav">
   <a href="#home" class="brand">
@@ -597,8 +618,8 @@ footer{background:#06111c;color:#c8d7e3;padding:45px 0 22px}
     </div>
   </div>
 </div>
-</section>
-<!-- ORDER & LIVE QUOTE -->
+ </section>
+ <!-- ORDER & LIVE QUOTE -->
 <section id="order">
 <div class="container">
   <div class="sectionHead">
@@ -1024,7 +1045,7 @@ function selectServiceForQuote(val){
     if(sel.options[i].text.toLowerCase().includes(val.replace(/_/g,' ').toLowerCase())){ sel.selectedIndex = i; break; }
   }
   calculate();
- document.querySelector('#order').scrollIntoView({behavior:'smooth'});
+  document.querySelector('#order').scrollIntoView({behavior:'smooth'});
   toast('Updated quote for ' + sel.options[sel.selectedIndex].text);
 }
 
@@ -1116,7 +1137,7 @@ function draw(){
 }
 
 function drawStar(ctx, cx, cy, spikes, outerRadius, innerRadius){
- let rot = Math.PI / 2 * 3, x = cx, y = cy, step = Math.PI / spikes;
+  let rot = Math.PI / 2 * 3, x = cx, y = cy, step = Math.PI / spikes;
   ctx.beginPath(); ctx.moveTo(cx, cy - outerRadius);
   for(let i=0; i<spikes; i++){
     x = cx + Math.cos(rot) * outerRadius; y = cy + Math.sin(rot) * outerRadius; ctx.lineTo(x, y); rot += step;
@@ -1330,7 +1351,7 @@ async function parseDesignCommand(cmd, lang){
     const data = await res.json();
     if(data.actions && data.actions.length){
       for(const act of data.actions){ executeAiAction(act); }
-     speakResponse('Design updated successfully', lang);
+      speakResponse('Design updated successfully', lang);
     }
   } catch(e){
     const lower = cmd.toLowerCase();
