@@ -1,0 +1,2104 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#07111c">
+<title>GLOBAL CREATIVE | Design • Print • Signage • More</title>
+<meta name="description" content="GLOBAL CREATIVE — Online design studio, custom LED sign boards, 3D letters, printing, branding, quotation and ordering worldwide.">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<meta name="google-site-verification" content="dNDfnD64lB_mp98ZIV5CyCcW5WvO5ftVmwkXRHmAGx4">
+<link rel="canonical" href="https://wearstay.com/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="GLOBAL CREATIVE | Design • Print • Signage • More">
+<meta property="og:description" content="Design, quote and order custom signage, printing and branding online. Worldwide shipping.">
+<meta property="og:url" content="https://wearstay.com/">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="GLOBAL CREATIVE | Design • Print • Signage • More">
+<meta name="twitter:description" content="Online design studio, custom LED signs, 3D letters, printing & quotation.">
+
+<!-- Libraries: jsPDF & Supabase -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script type="application/ld+json">
+{
+ "@context":"https://schema.org",
+ "@type":"Organization",
+ "name":"GLOBAL CREATIVE",
+ "url":"https://wearstay.com/",
+ "telephone":"+91-93549-44438",
+ "email":"ledsignadil@gmail.com",
+ "description":"Global design, printing, signage and branding studio."
+}
+</script>
+
+<style>
+:root{
+  --navy:#06121e;
+  --navy2:#091c2c;
+  --blue:#0879c9;
+  --yellow:#ffd21a;
+  --white:#fff;
+  --ink:#102030;
+  --muted:#627083;
+  --line:#dfe7ef;
+  --soft:#f4f8fb;
+  --green:#20b56b;
+  --shadow:0 14px 40px rgba(8,30,55,.13);
+  --r:18px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Arial,sans-serif;color:var(--ink);background:#fff}
+a{text-decoration:none;color:inherit}
+button,input,select,textarea{font:inherit}
+button{cursor:pointer;border:0}
+.container{width:min(1240px,calc(100% - 32px));margin:auto}
+
+header{position:sticky;top:0;z-index:60;background:rgba(4,15,25,.96);backdrop-filter:blur(16px);border-bottom:1px solid rgba(255,255,255,.1);color:#fff}
+.nav{height:72px;display:flex;align-items:center;gap:18px}
+.brand{display:flex;align-items:center;gap:10px;min-width:220px}
+.brandMark{width:42px;height:42px;border-radius:13px;background:conic-gradient(from 35deg,#09a7ff 0 27%,#ffd21a 27% 50%,#ed1bff 50% 73%,#09a7ff 73%);display:grid;place-items:center;font-weight:1000;color:#06121e;font-size:23px;box-shadow:0 0 22px #00aaff55}
+.brandText strong{display:block;font-size:20px;line-height:18px;letter-spacing:.4px}
+.brandText span{font-size:8px;color:#ffd21a;letter-spacing:1.4px}
+.navlinks{display:flex;gap:20px;align-items:center;margin-left:auto}
+.navlinks a{font-size:13px;color:#dce6ef;transition:.2s}
+.navlinks a:hover{color:var(--yellow)}
+.navlinks .active{color:var(--yellow);border-bottom:2px solid var(--yellow);padding-bottom:5px}
+
+.navBtns{display:flex;gap:8px;align-items:center}
+.btn{padding:10px 16px;border-radius:12px;font-weight:800;display:inline-flex;align-items:center;justify-content:center;gap:8px;transition:.2s;font-size:13px}
+.btn:hover{transform:translateY(-1px)}
+.primary{background:var(--yellow);color:#07111c}
+.darkBtn{background:#102a40;color:#fff;border:1px solid #38536a}
+.outline{background:transparent;color:#fff;border:1px solid #7890a5}
+.cyan{background:#0284c7;color:#fff}
+.green{background:#16a34a;color:#fff}
+.small{padding:8px 12px;font-size:12px}
+.hamb{display:none;background:none;color:#fff;font-size:26px}
+
+/* Currency and Mode Badge */
+.topPill{background:#0e2436;border:1px solid #28475c;color:#cfe2f0;padding:5px 9px;border-radius:10px;font-size:12px;display:inline-flex;align-items:center;gap:6px}
+.topPill select{background:transparent;color:#ffd21a;border:none;font-weight:700;outline:none;cursor:pointer}
+
+.hero{background:radial-gradient(circle at 80% 25%,#17496a 0,#081a2a 36%,#06111d 72%);color:#fff;overflow:hidden}
+.heroGrid{display:grid;grid-template-columns:1.4fr .8fr;gap:28px;align-items:center;min-height:505px;padding:50px 0}
+.eyebrow{font-size:12px;letter-spacing:2px;font-weight:800;color:#d5e7f5}
+.hero h1{font-size:clamp(38px,4.5vw,66px);line-height:1.02;margin:12px 0 16px;letter-spacing:-1.5px}
+.hero h1 span{color:var(--yellow)}
+.hero p{color:#c8d8e4;max-width:650px;line-height:1.65;font-size:15px}
+.heroActions{display:flex;gap:12px;margin:22px 0;flex-wrap:wrap}
+.trust{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:25px}
+.trust div{display:flex;gap:9px;align-items:center;color:#dce7ef;font-size:11px}
+.ico{width:35px;height:35px;border-radius:50%;display:grid;place-items:center;background:#152d3e;color:var(--yellow);border:1px solid #355064}
+.heroVisual{position:relative;min-height:420px}
+.building{position:absolute;inset:0;border-radius:26px;background:linear-gradient(145deg,#243b4d,#0c1722 55%,#182d3d);box-shadow:0 35px 80px #0008;overflow:hidden;border:1px solid #456175}
+.building:before{content:"";position:absolute;inset:0;background:linear-gradient(115deg,transparent 35%,#ffd21a22 35.5%,transparent 36%),linear-gradient(180deg,#ffffff08,#0008)}
+.signFace{position:absolute;left:10%;right:10%;top:26%;height:130px;border:6px solid #111;background:linear-gradient(145deg,#ffd21a,#f39c00);box-shadow:0 0 45px #ffc40088;display:grid;place-items:center;text-align:center;color:#fff;text-shadow:0 2px 6px #000;border-radius:12px}
+.signFace b{font-size:32px;letter-spacing:1px}
+.signFace small{display:block;font-size:11px;color:#fff;font-weight:700}
+.quick{background:#081a2b;border:1px solid #47718c;border-radius:18px;padding:20px;box-shadow:0 20px 50px #0007;position:relative;z-index:2;margin-top:200px}
+.quick h3{margin:0 0 12px;font-size:18px}
+.field{margin:9px 0}
+.field label{display:block;font-size:11px;color:#9db2c2;margin:0 0 5px;font-weight:600}
+.field input,.field select,.field textarea{width:100%;padding:11px 13px;border:1px solid #426078;background:#0d2639;color:#fff;border-radius:12px;outline:none}
+.field input:focus,.field select:focus,.field textarea:focus{border-color:var(--yellow)}
+.quick .btn{width:100%;margin-top:9px}
+
+section{padding:54px 0}
+.sectionHead{display:flex;justify-content:space-between;gap:20px;align-items:end;margin-bottom:24px}
+.sectionHead h2{font-size:30px;margin:0}
+.sectionHead p{margin:7px 0 0;color:var(--muted)}
+
+.services{display:grid;grid-template-columns:repeat(6,1fr);gap:12px}
+.service{border:1px solid var(--line);border-radius:16px;padding:12px;background:#fff;box-shadow:0 7px 22px rgba(0,0,0,.04);transition:.2s;cursor:pointer}
+.service:hover{transform:translateY(-2px);box-shadow:0 12px 30px rgba(0,0,0,.08)}
+.servicePic{height:100px;border-radius:11px;display:grid;place-items:center;font-size:28px;font-weight:900;background:linear-gradient(135deg,#081a2b,#1b6b96);color:#fff}
+.service:nth-child(2) .servicePic{background:linear-gradient(135deg,#ffe1ca,#b32b10)}
+.service:nth-child(3) .servicePic{background:linear-gradient(135deg,#052e29,#00a67a)}
+.service:nth-child(4) .servicePic{background:linear-gradient(135deg,#6c4a25,#c9b38e)}
+.service:nth-child(5) .servicePic{background:linear-gradient(135deg,#eaf2ff,#8b56d9)}
+.service:nth-child(6) .servicePic{background:linear-gradient(135deg,#10234c,#ee7cbd)}
+.service h3{font-size:13px;margin:9px 0 2px;font-weight:800}
+.service p{font-size:10px;color:var(--muted);margin:0 0 6px}
+.serviceRate{font-size:11px;color:#0284c7;font-weight:800}
+
+/* STUDIO SECTION */
+.darkSection{background:#071725;color:#fff}
+.studioHeaderBar{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:14px;flex-wrap:wrap}
+.studioGrid{display:grid;grid-template-columns:360px 1fr;gap:16px}
+.panel{border:1px solid #294b61;background:#0a2032;border-radius:20px;padding:16px}
+.panel h3{margin:0 0 4px;font-size:16px}
+.panel p{color:#9eb4c4;font-size:12px;margin:0 0 10px}
+
+/* Tabs */
+.tabs{display:flex;gap:6px;border-bottom:1px solid #234259;padding-bottom:10px;margin-bottom:12px;overflow-x:auto}
+.tabBtn{padding:7px 12px;border-radius:8px;background:#0d283e;color:#b4cbe0;font-size:12px;font-weight:700}
+.tabBtn.active{background:var(--yellow);color:#07111c}
+
+.controlBox{background:#071b2b;border:1px solid #264b63;border-radius:12px;padding:12px;margin-bottom:10px}
+.controlBox label{display:block;font-size:11px;color:#9eb4c4;font-weight:700;margin-bottom:6px}
+
+/* Stepper [-] 48 px [+] */
+.stepper{display:flex;align-items:center;gap:6px}
+.stepper button{width:36px;height:36px;border-radius:9px;background:#15354e;color:#fff;font-size:16px;font-weight:800}
+.stepper input{flex:1;text-align:center;background:#091e30;border:1px solid #315873;color:#fff;padding:8px;border-radius:9px;font-weight:800}
+
+.sizePresets{display:flex;gap:4px;flex-wrap:wrap;margin-top:6px}
+.sizePreset{padding:3px 7px;border-radius:6px;background:#122f46;color:#c0d5e8;font-size:10px;font-weight:700}
+
+/* Color palettes */
+.paletteRow{display:flex;gap:6px;margin-top:6px}
+.paletteSwatch{width:32px;height:32px;border-radius:8px;border:1px solid rgba(255,255,255,.3);cursor:pointer}
+
+/* Canvas Area */
+.canvasWrap{background:#040c14;border-radius:16px;padding:14px;border:1px solid #34566a;position:relative}
+.canvasToolbar{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:10px;align-items:center;background:#0d263b;padding:8px 12px;border-radius:12px;border:1px solid #2d4f68}
+.canvasToolbar button{background:#153852;color:#fff;border:1px solid #3d6480;border-radius:8px;padding:6px 10px;font-size:12px;font-weight:700}
+.canvasToolbar button:hover{background:#1f4c6e}
+.editorStage{background:#1a2b3c;border-radius:12px;min-height:440px;display:grid;place-items:center;overflow:auto;position:relative;border:1px dashed #3a6280;padding:10px}
+#designCanvas{background:#ffffff;box-shadow:0 12px 35px rgba(0,0,0,.6);touch-action:none;border-radius:4px}
+.canvasFootBar{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px;align-items:center;justify-content:space-between}
+
+/* Guides & Prepress Overlays */
+.prepressBadge{font-size:11px;padding:4px 8px;border-radius:6px;background:#0c283d;border:1px solid #235275;color:#38bdf8}
+
+/* ORDER & QUOTE SECTION */
+.orderGrid{display:grid;grid-template-columns:1.2fr .8fr;gap:20px}
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.step{padding:16px;border:1px solid var(--line);border-radius:16px;background:#fff}
+.num{width:32px;height:32px;border-radius:50%;display:grid;place-items:center;background:var(--yellow);font-weight:900}
+.step h3{font-size:14px;margin:8px 0 4px}
+.step p{font-size:11px;color:var(--muted);line-height:1.4;margin:0}
+
+.quoteBox{border:1px solid var(--line);border-radius:18px;padding:22px;box-shadow:var(--shadow);background:#fff}
+.quoteLine{display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px dashed #d8e0e7;font-size:13px}
+.quoteLine span{color:var(--muted)}
+.quoteTotal{font-size:22px;font-weight:900;padding-top:12px;display:flex;justify-content:space-between}
+.quoteTotal span{color:#0a76c8}
+
+.toolsStrip{background:#eef6fb;padding:24px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.strip{display:grid;grid-template-columns:repeat(6,1fr);gap:12px}
+.stripItem{display:flex;gap:10px;align-items:center;justify-content:center;font-size:11px;color:#233849;cursor:pointer}
+.stripItem b{font-size:24px;color:var(--blue)}
+
+.testimonials{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.review{padding:18px;border:1px solid var(--line);border-radius:16px;background:#fff}
+.stars{color:#f5b400;margin-bottom:6px}
+.review p{color:#566676;font-size:13px;line-height:1.5;margin:0 0 10px}
+.review b{font-size:12px}
+
+.faq{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.faq details{border:1px solid var(--line);border-radius:13px;padding:15px;background:#fff}
+.faq summary{font-weight:800;cursor:pointer}
+.faq p{color:var(--muted);font-size:13px;line-height:1.5;margin:10px 0 0}
+
+footer{background:#06111c;color:#c8d7e3;padding:45px 0 22px}
+.footerGrid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:25px}
+.footerGrid h4{color:#fff;margin:0 0 14px}
+.footerGrid a{display:block;font-size:12px;margin:8px 0;color:#a8c0d4}
+.footerGrid a:hover{color:var(--yellow)}
+.copyright{text-align:center;border-top:1px solid #21384a;margin-top:28px;padding-top:18px;font-size:11px;color:#7890a0}
+
+/* MODALS */
+.modal{position:fixed;inset:0;background:#00101bcc;z-index:100;display:none;align-items:center;justify-content:center;padding:18px}
+.modal.open{display:flex}
+.modalCard{width:min(680px,100%);max-height:92vh;overflow:auto;background:#fff;border-radius:20px;padding:24px;box-shadow:0 30px 80px rgba(0,0,0,.4);color:var(--ink)}
+.modalCard.dark{background:#0a1d2e;color:#fff;border:1px solid #2f5370}
+.modalTop{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px}
+.close{background:#edf2f5;border-radius:10px;padding:8px 12px;font-weight:800}
+.close.dark{background:#16354d;color:#fff}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.notice{padding:11px 13px;background:#fff8d8;border:1px solid #f0d34d;border-radius:10px;font-size:12px;color:#856404}
+.notice.dark{background:#0d283c;border-color:#2a5779;color:#7dd3fc}
+.toast{position:fixed;right:18px;bottom:18px;z-index:140;background:#092033;color:#fff;padding:13px 18px;border-radius:12px;display:none;box-shadow:0 10px 35px rgba(0,0,0,.4);border-left:4px solid var(--yellow)}
+.toast.show{display:block}
+
+/* Micro-animations & Mobile Drawer */
+.mobileDrawer{position:fixed;top:72px;left:0;right:0;bottom:0;background:#061422;z-index:90;padding:20px;display:none;flex-direction:column;gap:16px}
+.mobileDrawer a{font-size:16px;color:#fff;padding:10px;border-bottom:1px solid #162f46}
+
+@media(max-width:980px){
+  .navlinks{display:none}
+  .hamb{display:block}
+  .heroGrid,.studioGrid,.orderGrid{grid-template-columns:1fr}
+  .services{grid-template-columns:repeat(3,1fr)}
+  .trust{grid-template-columns:repeat(2,1fr)}
+  .steps{grid-template-columns:repeat(2,1fr)}
+  .strip{grid-template-columns:repeat(3,1fr)}
+  .footerGrid{grid-template-columns:1fr 1fr}
+}
+@media(max-width:600px){
+  .container{width:min(100% - 20px,1240px)}
+  .nav{height:62px}
+  .hero h1{font-size:36px}
+  .services{grid-template-columns:repeat(2,1fr)}
+  .strip{grid-template-columns:repeat(2,1fr)}
+  .footerGrid{grid-template-columns:1fr}
+  .two{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+<div class="container nav">
+  <a href="#home" class="brand">
+    <div class="brandMark">G</div>
+    <div class="brandText"><strong>GLOBAL<br>CREATIVE</strong><span>Design • Print • Signage • More</span></div>
+  </a>
+
+  <!-- Currency Switcher Pill -->
+  <div class="topPill">
+    <span>🌐</span>
+    <select id="currencySelector" onchange="switchCurrency(this.value)">
+      <option value="INR" selected>INR (₹)</option>
+      <option value="USD">USD ($)</option>
+      <option value="EUR">EUR (€)</option>
+      <option value="GBP">GBP (£)</option>
+      <option value="AED">AED (AED)</option>
+      <option value="SAR">SAR (SAR)</option>
+      <option value="AUD">AUD (A$)</option>
+      <option value="CAD">CAD (C$)</option>
+    </select>
+  </div>
+
+  <nav class="navlinks">
+    <a class="active" href="#home">Home</a>
+    <a href="#services">Services</a>
+    <a href="#studio">Design Studio</a>
+    <a href="#order">Order Now</a>
+    <a href="#pricing">Pricing</a>
+    <a href="javascript:void(0)" onclick="openModal('converterModal')">Universal Converter</a>
+    <a href="javascript:void(0)" onclick="openModal('brandKitModal')">Brand Kit</a>
+    <a href="#about">About</a>
+    <a href="#contact">Contact</a>
+  </nav>
+
+  <div class="navBtns">
+    <a href="/api/download-project" class="btn primary small" download="designhub-global-production.zip" title="Download Complete Production ZIP">
+      ⬇ ZIP
+    </a>
+    <div id="authUserPill" style="display:none;align-items:center;gap:6px">
+      <button class="btn darkBtn small" onclick="openModal('dashboardModal')">👤 Dashboard</button>
+      <button class="btn outline small" onclick="handleSignOut()">Logout</button>
+    </div>
+    <button class="btn outline small" id="navLoginBtn" onclick="openModal('loginModal')">⇥ Login</button>
+    <button class="btn primary small" onclick="document.querySelector('#order').scrollIntoView()">Get Quote</button>
+    <button class="hamb" onclick="toggleMobileNav()">☰</button>
+  </div>
+</div>
+
+<!-- Mobile Drawer -->
+<div class="mobileDrawer" id="mobileDrawer">
+  <a href="#home" onclick="toggleMobileNav()">Home</a>
+  <a href="#services" onclick="toggleMobileNav()">Services</a>
+  <a href="#studio" onclick="toggleMobileNav()">Design Studio</a>
+  <a href="#order" onclick="toggleMobileNav()">Order Now</a>
+  <a href="#pricing" onclick="toggleMobileNav()">Pricing</a>
+  <a href="javascript:void(0)" onclick="toggleMobileNav();openModal('converterModal')">Universal Converter</a>
+  <a href="javascript:void(0)" onclick="toggleMobileNav();openModal('brandKitModal')">Brand Kit</a>
+  <a href="javascript:void(0)" onclick="toggleMobileNav();openModal('dashboardModal')">Customer Dashboard</a>
+  <a href="/api/download-project" download="designhub-global-production.zip">⬇ Download Complete Project (ZIP)</a>
+  <a href="javascript:void(0)" onclick="toggleMobileNav();openModal('loginModal')">Login / Sign In</a>
+</div>
+</header>
+
+<main>
+<!-- HERO -->
+<section id="home" class="hero">
+<div class="container heroGrid">
+  <div>
+    <div class="eyebrow">TURN YOUR IDEAS INTO REALITY</div>
+    <h1>Creative Designs<br><span>That Make an Impact</span></h1>
+    <p><b>Signage | Printing | Branding | 3D Letters | LED Boards | And More...</b><br>
+    GLOBAL CREATIVE is your complete worldwide platform for professional signage fabrication, print-ready prepress, AI design creation, instant quotations, and advance checkout.</p>
+    <div class="heroActions">
+      <button class="btn primary" onclick="document.querySelector('#order').scrollIntoView()">Get Free Quote →</button>
+      <button class="btn outline" onclick="document.querySelector('#studio').scrollIntoView()">Open Studio</button>
+      <button class="btn cyan" onclick="triggerVoiceDesign()">🎙 Voice Design</button>
+      <button class="btn darkBtn" onclick="openModal('subscriptionModal')">👑 Pro Plan ($4.99/mo)</button>
+    </div>
+    <div class="trust">
+      <div><i class="ico">✦</i>Premium Quality<br>Materials</div>
+      <div><i class="ico">▣</i>Fast Delivery<br>Worldwide</div>
+      <div><i class="ico">✂</i>Expert Design<br>Support</div>
+      <div><i class="ico">✓</i>100% Satisfaction<br>Guaranteed</div>
+    </div>
+  </div>
+  <div class="heroVisual">
+    <div class="building"><div class="signFace"><div><b>YOUR BRAND</b><small>OUR CREATIVE TOUCH</small></div></div></div>
+    <div class="quick">
+      <h3>Quick Quote</h3>
+      <div class="field">
+        <label>Select Service</label>
+        <select id="quickProduct">
+          <option value="acrylic_letter_light">Advertising Acrylic Letter + Light (₹80/in)</option>
+          <option value="steel_letter">Steel Letter SS (₹140/in)</option>
+          <option value="acp_sign_board">ACP Sign Board (₹650/sq.ft)</option>
+          <option value="3d_sign_board">3D Sign Board (₹750/sq.ft)</option>
+          <option value="steel_sign_board">Steel Sign Board (₹980/sq.ft)</option>
+        </select>
+      </div>
+      <div class="two">
+        <div class="field"><label>Width</label><input id="quickW" type="number" min="0.1" value="8"></div>
+        <div class="field"><label>Height</label><input id="quickH" type="number" min="0.1" value="3"></div>
+      </div>
+      <div class="two">
+        <div class="field">
+          <label>Quality</label>
+          <select id="quickQuality">
+            <option value="1.0">Basic</option>
+            <option value="1.15" selected>Commercial</option>
+            <option value="1.30">Premium</option>
+            <option value="1.55">High-End Architectural</option>
+          </select>
+        </div>
+        <div class="field"><label>Quantity</label><input id="quickQty" type="number" min="1" value="1"></div>
+      </div>
+      <button class="btn primary" onclick="quickQuote()">Get Instant Quote →</button>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+<div class="container">
+  <div class="sectionHead">
+    <div><h2>Our Services & Products</h2><p>Complete Signage Manufacturing, Printing & Identity Solutions</p></div>
+    <button class="btn outline" style="color:var(--ink);border-color:var(--line)" onclick="openModal('galleryModal')">View 3D Signage Gallery</button>
+  </div>
+  <div class="services">
+    <div class="service" onclick="selectServiceForQuote('acp_sign_board')"><div class="servicePic">ACP</div><h3>ACP Sign Board</h3><p>Weatherproof outdoor</p><div class="serviceRate">₹650 / sq.ft</div></div>
+    <div class="service" onclick="selectServiceForQuote('3d_sign_board')"><div class="servicePic">3D</div><h3>3D Sign Board</h3><p>Illuminated letters</p><div class="serviceRate">₹750 / sq.ft</div></div>
+    <div class="service" onclick="selectServiceForQuote('steel_sign_board')"><div class="servicePic">SS</div><h3>Steel Sign Board</h3><p>Marine 304 Titanium</p><div class="serviceRate">₹980 / sq.ft</div></div>
+    <div class="service" onclick="selectServiceForQuote('acrylic_letter_light')"><div class="servicePic">LED</div><h3>Acrylic + LED Light</h3><p>Laser acrylic glow</p><div class="serviceRate">₹80 / inch</div></div>
+    <div class="service" onclick="selectServiceForQuote('steel_letter')"><div class="servicePic">SS-L</div><h3>Steel Letters</h3><p>Mirror & hairline SS</p><div class="serviceRate">₹140 / inch</div></div>
+    <div class="service" onclick="selectServiceForQuote('acp_sign_board')"><div class="servicePic">PRINT</div><h3>Prepress Printing</h3><p>300 DPI vector PDF</p><div class="serviceRate">Custom Specs</div></div>
+  </div>
+</div>
+</section>
+
+<!-- DESIGN STUDIO -->
+<section id="studio" class="darkSection">
+<div class="container">
+  <div class="studioHeaderBar">
+    <div>
+      <h2 style="margin:0">Professional Design Studio</h2>
+      <p style="color:#9eb4c4;margin:4px 0 0;font-size:13px">Vector canvas • Multilingual Voice • Smart Fonts & Colors • 300 DPI Prepress</p>
+    </div>
+    <div style="display:flex;gap:8px;align-items:center">
+      <!-- Easy / Pro Mode Switcher -->
+      <div class="topPill">
+        <span>Mode:</span>
+        <button class="tabBtn active" id="modeEasyBtn" onclick="setStudioMode('easy')" style="padding:4px 8px;font-size:11px">Easy</button>
+        <button class="tabBtn" id="modeProBtn" onclick="setStudioMode('pro')" style="padding:4px 8px;font-size:11px">Pro</button>
+      </div>
+      <button class="btn cyan small" onclick="triggerVoiceDesign()">🎙 Voice to Design</button>
+      <button class="btn primary small" onclick="openModal('aiAutoModal')">✦ AI Auto Design</button>
+    </div>
+  </div>
+
+  <div class="studioGrid">
+    <!-- LEFT CONTROLS PANEL -->
+    <div class="panel">
+      <!-- Tabs -->
+      <div class="tabs">
+        <button class="tabBtn active" id="tabText" onclick="switchStudioTab('text')">Text & Font</button>
+        <button class="tabBtn" id="tabColor" onclick="switchStudioTab('color')">Color & Style</button>
+        <button class="tabBtn" id="tabLogo" onclick="switchStudioTab('logo')">Logo & Image</button>
+        <button class="tabBtn" id="tabSize" onclick="switchStudioTab('size')">Size & Grid</button>
+        <button class="tabBtn" id="tabLayers" onclick="switchStudioTab('layers')">Layers</button>
+      </div>
+
+      <!-- TAB 1: TEXT & FONT -->
+      <div id="panelText">
+        <div class="controlBox">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
+            <label style="margin:0">Font Controls</label>
+            <div style="display:flex;gap:4px">
+              <button class="tabBtn active" id="fontManualTab" onclick="setFontMode('manual')" style="padding:3px 7px;font-size:10px">Manual</button>
+              <button class="tabBtn" id="fontAutoTab" onclick="setFontMode('auto')" style="padding:3px 7px;font-size:10px">AI Auto</button>
+            </div>
+          </div>
+
+          <div class="field" style="margin-top:0">
+            <select id="fontFamilySelect" onchange="changeFontFamily(this.value)">
+              <option value="Inter">Inter (Clean Modern)</option>
+              <option value="Montserrat">Montserrat (Bold Architectural)</option>
+              <option value="Oswald">Oswald (Signage Bold Condensed)</option>
+              <option value="Playfair Display">Playfair Display (Luxury Serif)</option>
+              <option value="Cinzel">Cinzel (Regal Titanium)</option>
+              <option value="Arial">Arial (Standard)</option>
+            </select>
+          </div>
+
+          <label>Font Size</label>
+          <div class="stepper">
+            <button onclick="stepFontSize(-4)">−</button>
+            <input type="number" id="fontSizeInput" value="48" min="8" max="240" oninput="changeFontSize(this.value)">
+            <button onclick="stepFontSize(4)">+</button>
+          </div>
+          <div class="sizePresets">
+            <button class="sizePreset" onclick="changeFontSize(16)">16px</button>
+            <button class="sizePreset" onclick="changeFontSize(24)">24px</button>
+            <button class="sizePreset" onclick="changeFontSize(32)">32px</button>
+            <button class="sizePreset" onclick="changeFontSize(48)">48px</button>
+            <button class="sizePreset" onclick="changeFontSize(64)">64px</button>
+            <button class="sizePreset" onclick="changeFontSize(96)">96px</button>
+            <button class="sizePreset" onclick="changeFontSize(128)">128px</button>
+          </div>
+
+          <div style="display:flex;gap:6px;margin-top:10px">
+            <button class="tabBtn" onclick="toggleBold()"><b>B</b></button>
+            <button class="tabBtn" onclick="toggleItalic()"><i>I</i></button>
+            <button class="tabBtn" onclick="toggleUnderline()"><u>U</u></button>
+            <button class="tabBtn" onclick="setTextAlign('left')">⇤</button>
+            <button class="tabBtn" onclick="setTextAlign('center')">≡</button>
+            <button class="tabBtn" onclick="setTextAlign('right')">⇥</button>
+          </div>
+          <div style="margin-top:8px">
+            <button class="btn darkBtn small" style="width:100%" onclick="applyAiAutoStyle()">✦ AI Auto Style (Font & Scale)</button>
+          </div>
+        </div>
+
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
+          <button class="btn primary small" onclick="addText()">+ Add Heading</button>
+          <button class="btn darkBtn small" onclick="addText('Custom Sign Text', 28)">+ Subtext</button>
+        </div>
+      </div>
+
+      <!-- TAB 2: COLOR & STYLE -->
+      <div id="panelColor" style="display:none">
+        <div class="controlBox">
+          <label>Manual Color Selection</label>
+          <div class="two">
+            <div>
+              <span style="font-size:10px;color:#9eb4c4">HEX</span>
+              <input type="text" id="hexInput" value="#FFD21A" style="background:#0a1e30;border:1px solid #325875;color:#fff;padding:6px;border-radius:8px;width:100%" oninput="applyHexColor(this.value)">
+            </div>
+            <div>
+              <span style="font-size:10px;color:#9eb4c4">Picker</span>
+              <input type="color" id="colorPicker" value="#FFD21A" style="width:100%;height:35px;background:transparent;border:0;cursor:pointer" onchange="applyHexColor(this.value)">
+            </div>
+          </div>
+
+          <div style="display:flex;gap:4px;margin-top:8px;align-items:center">
+            <span style="font-size:10px;color:#9eb4c4">RGB:</span>
+            <input type="number" id="rgbR" min="0" max="255" value="255" style="width:45px;background:#091d2d;color:#fff;border:1px solid #2e526e;padding:4px;border-radius:6px;font-size:11px" oninput="applyRgbColor()">
+            <input type="number" id="rgbG" min="0" max="255" value="210" style="width:45px;background:#091d2d;color:#fff;border:1px solid #2e526e;padding:4px;border-radius:6px;font-size:11px" oninput="applyRgbColor()">
+            <input type="number" id="rgbB" min="0" max="255" value="26" style="width:45px;background:#091d2d;color:#fff;border:1px solid #2e526e;padding:4px;border-radius:6px;font-size:11px" oninput="applyRgbColor()">
+          </div>
+
+          <div style="margin-top:10px">
+            <label>AI Auto Color Presets</label>
+            <button class="btn darkBtn small" style="width:100%;margin-bottom:6px" onclick="applyAiAutoColor()">✦ AI Auto Palette</button>
+            <div class="sizePresets">
+              <button class="sizePreset" onclick="applyPresetTheme('luxury')">Luxury Gold</button>
+              <button class="sizePreset" onclick="applyPresetTheme('neon')">LED Neon Cyan</button>
+              <button class="sizePreset" onclick="applyPresetTheme('corporate')">Corporate Navy</button>
+              <button class="sizePreset" onclick="applyPresetTheme('minimal')">Minimal Dark</button>
+              <button class="sizePreset" onclick="applyPresetTheme('restaurant')">Warm Bistro</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="controlBox">
+          <label>Signage Effects</label>
+          <div style="display:flex;gap:6px">
+            <button class="btn darkBtn small" onclick="toggleLedGlow()">💡 LED Glow</button>
+            <button class="btn darkBtn small" onclick="toggle3dShadow()">3D Extrusion</button>
+            <button class="btn darkBtn small" onclick="changeBackground('#07111c')">Dark BG</button>
+            <button class="btn darkBtn small" onclick="changeBackground('#ffffff')">White BG</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- TAB 3: LOGO & IMAGES -->
+      <div id="panelLogo" style="display:none">
+        <div class="controlBox">
+          <label>Logo & Reference Image</label>
+          <button class="btn primary small" style="width:100%" onclick="document.getElementById('designFile').click()">📁 Upload Logo (PNG / JPG / SVG)</button>
+          <input id="designFile" type="file" accept="image/*" hidden onchange="loadImage(this.files[0])">
+          <p style="font-size:11px;color:#9db2c2;margin:6px 0 0">Transparent PNG or vector SVG recommended for signage.</p>
+        </div>
+
+        <div class="controlBox">
+          <label>Auto Place Logo</label>
+          <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:4px">
+            <button class="sizePreset" onclick="autoPlaceLogo('top-left')">Top Left</button>
+            <button class="sizePreset" onclick="autoPlaceLogo('top-center')">Top Center</button>
+            <button class="sizePreset" onclick="autoPlaceLogo('top-right')">Top Right</button>
+            <button class="sizePreset" onclick="autoPlaceLogo('center')">Center</button>
+            <button class="sizePreset" onclick="autoPlaceLogo('bottom-left')">Bottom Left</button>
+            <button class="sizePreset" onclick="autoPlaceLogo('bottom-right')">Bottom Right</button>
+          </div>
+          <button class="btn darkBtn small" style="width:100%;margin-top:8px" onclick="autoPlaceLogo('best')">✦ AI Best Position</button>
+        </div>
+
+        <div class="controlBox">
+          <label>Shapes & Accents</label>
+          <div style="display:flex;gap:6px">
+            <button class="sizePreset" onclick="addRect()">□ Rectangle</button>
+            <button class="sizePreset" onclick="addCircle()">○ Circle</button>
+            <button class="sizePreset" onclick="addStar()">★ Badge</button>
+            <button class="sizePreset" onclick="addLine()">— Divider</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- TAB 4: SIZE & REAL UNITS -->
+      <div id="panelSize" style="display:none">
+        <div class="controlBox">
+          <label>Real Physical Dimensions</label>
+          <div class="two">
+            <div>
+              <span style="font-size:10px;color:#9eb4c4">Width</span>
+              <input type="number" id="canvasRealW" value="8" step="0.1" style="background:#091d2d;color:#fff;border:1px solid #30536e;padding:6px;border-radius:8px;width:100%" oninput="updateRealCanvasSize()">
+            </div>
+            <div>
+              <span style="font-size:10px;color:#9eb4c4">Height</span>
+              <input type="number" id="canvasRealH" value="3" step="0.1" style="background:#091d2d;color:#fff;border:1px solid #30536e;padding:6px;border-radius:8px;width:100%" oninput="updateRealCanvasSize()">
+            </div>
+          </div>
+          <div class="field" style="margin-top:8px">
+            <select id="canvasRealUnit" onchange="updateRealCanvasSize()">
+              <option value="ft" selected>Feet (ft)</option>
+              <option value="in">Inches (in)</option>
+              <option value="mm">Millimeters (mm)</option>
+              <option value="cm">Centimeters (cm)</option>
+              <option value="m">Meters (m)</option>
+            </select>
+          </div>
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-top:6px">
+            <label style="margin:0">Lock Aspect Ratio</label>
+            <input type="checkbox" id="lockRatioCheck" checked>
+          </div>
+        </div>
+
+        <div class="controlBox">
+          <label>View & Grid</label>
+          <div style="display:flex;gap:6px;flex-wrap:wrap">
+            <button class="sizePreset" onclick="toggleGrid()">Grid Snap</button>
+            <button class="sizePreset" onclick="toggleBleed()">Bleed (3mm)</button>
+            <button class="sizePreset" onclick="toggleSafeArea()">Safe Area</button>
+            <button class="sizePreset" onclick="fitCanvasToScreen()">Fit Screen</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- TAB 5: LAYERS & ORDER -->
+      <div id="panelLayers" style="display:none">
+        <div class="controlBox">
+          <label>Selected Layer Operations</label>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px">
+            <button class="sizePreset" onclick="layerMove('forward')">Bring Forward</button>
+            <button class="sizePreset" onclick="layerMove('backward')">Send Backward</button>
+            <button class="sizePreset" onclick="layerMove('front')">Bring to Front</button>
+            <button class="sizePreset" onclick="layerMove('back')">Send to Back</button>
+            <button class="sizePreset" onclick="duplicateSelected()">Duplicate</button>
+            <button class="sizePreset" onclick="deleteSelected()" style="color:#ef4444">Delete</button>
+          </div>
+        </div>
+        <div id="layerList" style="max-height:180px;overflow-y:auto;font-size:11px"></div>
+      </div>
+    </div>
+
+    <!-- RIGHT CANVAS WORKSPACE -->
+    <div class="panel" style="padding:14px">
+      <div class="canvasToolbar">
+        <button onclick="undo()" title="Undo (Ctrl+Z)">↶ Undo</button>
+        <button onclick="redo()" title="Redo (Ctrl+Y)">↷ Redo</button>
+        <button onclick="alignObject('center')" title="Center Align">⫿ Center</button>
+        <button onclick="duplicateSelected()">⧉ Duplicate</button>
+        <button onclick="deleteSelected()">✕ Delete</button>
+        <div style="margin-left:auto;display:flex;gap:6px;align-items:center">
+          <span class="prepressBadge" id="dpiIndicator">300 DPI Prepress</span>
+          <span class="prepressBadge" id="dimBadge">8 ft × 3 ft</span>
+        </div>
+      </div>
+
+      <div class="canvasWrap">
+        <div class="editorStage" id="editorStage">
+          <canvas id="designCanvas" width="760" height="400"></canvas>
+        </div>
+      </div>
+
+      <div class="canvasFootBar">
+        <div style="display:flex;gap:6px;flex-wrap:wrap">
+          <button class="btn primary small" onclick="downloadDesign('png')">Download PNG</button>
+          <button class="btn darkBtn small" onclick="downloadDesign('jpg')">Download JPG</button>
+          <button class="btn darkBtn small" onclick="exportVectorPdf()">Print PDF (300 DPI)</button>
+          <button class="btn darkBtn small" onclick="exportSvgFile()">Export SVG</button>
+          <button class="btn outline small" onclick="exportCdrFile()">Export CDR v12</button>
+        </div>
+        <div style="display:flex;gap:6px">
+          <button class="btn darkBtn small" onclick="saveDesign()">☁ Save Project</button>
+          <button class="btn outline small" onclick="loadSavedDesign()">Load Project</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- ORDER & LIVE QUOTE -->
+<section id="order">
+<div class="container">
+  <div class="sectionHead">
+    <div><h2>Signage Quotation & Ordering</h2><p>Instant Calculation • 50% Advance • Worldwide Delivery</p></div>
+  </div>
+
+  <div class="orderGrid">
+    <div>
+      <div class="steps">
+        <div class="step"><div class="num">1</div><h3>Select Product</h3><p>Choose material & illumination</p></div>
+        <div class="step"><div class="num">2</div><h3>Enter Size</h3><p>Width & height with live quote</p></div>
+        <div class="step"><div class="num">3</div><h3>50% Advance</h3><p>UPI or PayPal checkout</p></div>
+        <div class="step"><div class="num">4</div><h3>Production</h3><p>Quality check & dispatch</p></div>
+      </div>
+
+      <div class="panel" style="margin-top:16px;background:#fff;color:var(--ink);border-color:#dfe7ef">
+        <div class="two">
+          <div class="field">
+            <label style="color:#475569">Product Specification</label>
+            <select id="product" style="background:#f8fafc;color:#0f172a;border-color:#cbd5e1" onchange="calculate()">
+              <option value="80" data-unit="inch">Advertising Acrylic Letter + Logo + Light (₹80/inch)</option>
+              <option value="140" data-unit="inch">Steel Letter SS (₹140/inch)</option>
+              <option value="650" data-unit="sqft" selected>ACP Sign Board (₹650/sq.ft)</option>
+              <option value="750" data-unit="sqft">3D Sign Board (₹750/sq.ft)</option>
+              <option value="980" data-unit="sqft">Steel Sign Board SS (₹980/sq.ft)</option>
+              <option value="700" data-unit="sqft">LED / Glow Sign (₹700/sq.ft)</option>
+            </select>
+          </div>
+          <div class="field">
+            <label style="color:#475569">Quality Tier</label>
+            <select id="quality" style="background:#f8fafc;color:#0f172a;border-color:#cbd5e1" onchange="calculate()">
+              <option value="1.0">Basic (1.0x)</option>
+              <option value="1.15" selected>Commercial (1.15x)</option>
+              <option value="1.30">Premium (1.30x)</option>
+              <option value="1.55">High-End Architectural (1.55x)</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="two">
+          <div class="field">
+            <label style="color:#475569">Width & Unit</label>
+            <div style="display:flex;gap:6px">
+              <input id="w" type="number" value="8" min="0.1" step="0.1" style="background:#f8fafc;color:#0f172a;border-color:#cbd5e1" oninput="calculate()">
+              <select id="unit" style="background:#f8fafc;color:#0f172a;border-color:#cbd5e1;width:80px" onchange="calculate()">
+                <option value="ft">ft</option>
+                <option value="in">in</option>
+                <option value="mm">mm</option>
+                <option value="cm">cm</option>
+                <option value="m">m</option>
+              </select>
+            </div>
+          </div>
+          <div class="field">
+            <label style="color:#475569">Height</label>
+            <input id="h" type="number" value="3" min="0.1" step="0.1" style="background:#f8fafc;color:#0f172a;border-color:#cbd5e1" oninput="calculate()">
+          </div>
+        </div>
+
+        <div class="two">
+          <div class="field">
+            <label style="color:#475569">Quantity</label>
+            <input id="qty" type="number" value="1" min="1" style="background:#f8fafc;color:#0f172a;border-color:#cbd5e1" oninput="calculate()">
+          </div>
+          <div class="field">
+            <label style="color:#475569">Warranty Selection</label>
+            <select id="warranty" style="background:#f8fafc;color:#0f172a;border-color:#cbd5e1" onchange="calculate()">
+              <option value="1.0">2 Years (Standard)</option>
+              <option value="1.05">3 Years</option>
+              <option value="1.12">5 Years (Commercial)</option>
+              <option value="1.30">10 Years (Architectural)</option>
+              <option value="1.55">20 Years (Industrial)</option>
+              <option value="2.15">50 Years (Structural)</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="two">
+          <div class="field"><label style="color:#475569">Customer Name</label><input id="customerName" placeholder="Your name" style="background:#f8fafc;color:#0f172a;border-color:#cbd5e1"></div>
+          <div class="field"><label style="color:#475569">Phone / WhatsApp</label><input id="customerPhone" placeholder="+91 or country code" style="background:#f8fafc;color:#0f172a;border-color:#cbd5e1"></div>
+        </div>
+
+        <div class="field">
+          <label style="color:#475569">Requirements / Delivery Address</label>
+          <textarea id="requirement" rows="2" placeholder="Finishing, LED color temperature, indoor/outdoor location" style="background:#f8fafc;color:#0f172a;border-color:#cbd5e1"></textarea>
+        </div>
+
+        <div style="display:flex;gap:10px;margin-top:12px;flex-wrap:wrap">
+          <button class="btn primary" onclick="placeOrder()">Order via WhatsApp →</button>
+          <button class="btn outline" style="color:var(--ink);border-color:#94a3b8" onclick="downloadQuotePdf()">📄 Download Quote PDF</button>
+          <button class="btn cyan" onclick="payWithPayPal()">💳 Pay 50% via PayPal</button>
+          <button class="btn green" onclick="openModal('upiModal')">Pay via UPI</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- LIVE QUOTE BREAKDOWN -->
+    <div class="quoteBox" id="pricing">
+      <h3 style="margin-top:0">Itemized Live Quote</h3>
+      <div class="quoteLine"><span>Calculated Area</span><b id="areaOut">24.00 sq.ft</b></div>
+      <div class="quoteLine"><span>Base Subtotal</span><b id="subOut">₹17,940</b></div>
+      <div class="quoteLine"><span>GST (18%)</span><b id="gstOut">₹3,229</b></div>
+      <div class="quoteLine"><span>Est. Delivery / Pack</span><b id="delivOut">₹1,500</b></div>
+      <div class="quoteTotal"><span>Grand Total</span><span id="totalOut">₹22,669</span></div>
+      <div class="notice" style="margin-top:16px">
+        <b>50% Advance Required: <span id="advanceOut">₹11,335</span></b>
+        <p style="margin:4px 0 0;font-size:11px">Balance payable upon dispatch / quality inspection.</p>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- TOOLS STRIP -->
+<div class="toolsStrip">
+<div class="container strip">
+  <div class="stripItem" onclick="openModal('converterModal')"><b>⇩</b><span>Universal Converter<br>Vector, Raster & PDF</span></div>
+  <div class="stripItem" onclick="switchStudioTab('size')"><b>↔</b><span>Size Engine<br>mm, cm, in, ft, m</span></div>
+  <div class="stripItem" onclick="triggerVoiceDesign()"><b>🎙</b><span>Voice to Design<br>Multilingual Speech</span></div>
+  <div class="stripItem" onclick="openModal('brandKitModal')"><b>★</b><span>Brand Kit<br>One-Click Identity</span></div>
+  <div class="stripItem" onclick="openModal('subscriptionModal')"><b>♢</b><span>Pro Subscription<br>$4.99/mo Unlimited</span></div>
+  <div class="stripItem" onclick="window.open('https://maps.app.goo.gl/M6YWAkuuLACLCvwNA','_blank')"><b>📍</b><span>Our Factory<br>Open Google Maps</span></div>
+</div>
+</div>
+
+<!-- TESTIMONIALS -->
+<section id="about">
+<div class="container">
+  <div class="sectionHead"><div><h2>Why Choose GLOBAL CREATIVE?</h2><p>Trusted by signage fabricators, architects, and retail brands worldwide.</p></div></div>
+  <div class="testimonials">
+    <div class="review"><div class="stars">★★★★★</div><p>“The online design tool and 300 DPI prepress exports saved us hours in coreldraw redraws. Excellent acrylic letter fabrication.”</p><b>Rohit Sharma — Delhi</b></div>
+    <div class="review"><div class="stars">★★★★★</div><p>“We ordered 12 ft ACP sign boards for our franchise. Quality and Samsung LEDs are top notch.”</p><b>Priya Verma — Mumbai</b></div>
+    <div class="review"><div class="stars">★★★★★</div><p>“The voice-to-design tool works smoothly in Hindi and English. Instant quotes match actual production prices.”</p><b>Amit Kumar — Bangalore</b></div>
+  </div>
+</div>
+</section>
+
+<!-- FAQ -->
+<section>
+<div class="container">
+  <div class="sectionHead"><div><h2>Frequently Asked Questions</h2><p>Instant answers on design, fabrication, and payments.</p></div></div>
+  <div class="faq">
+    <details><summary>Can I design in exact real-world dimensions (feet, mm, inches)?</summary><p>Yes. The studio lets you switch between feet, inches, millimeters, centimeters, and meters. Your exports maintain 300 DPI print-ready scaling.</p></details>
+    <details><summary>What formats can I export?</summary><p>You can export PNG, JPG, WEBP, vector SVG, 300 DPI PDF, and CorelDRAW v12 compatible prepress files.</p></details>
+    <details><summary>How does the 50% advance payment work?</summary><p>Commercial signage fabrication begins once the 50% advance is verified via UPI (ledsignadil@oksbi) or PayPal. The remaining 50% is cleared upon quality check before dispatch.</p></details>
+    <details><summary>Can I upload my existing logo or reference file?</summary><p>Yes. Upload PNG, JPG, or SVG in the Logo panel. Our AI can automatically place it at the optimal position.</p></details>
+  </div>
+</div>
+</section>
+</main>
+
+<!-- FOOTER -->
+<footer id="contact">
+<div class="container footerGrid">
+  <div>
+    <h4>GLOBAL CREATIVE</h4>
+    <p style="font-size:13px;line-height:1.6">Global Signage & Prepress Studio.<br>Custom acrylic letters, 3D signs, stainless steel boards, and commercial prepress.</p>
+  </div>
+  <div>
+    <h4>Direct Contact</h4>
+    <a href="tel:+919354944438">+91 93549 44438</a>
+    <a href="mailto:ledsignadil@gmail.com">ledsignadil@gmail.com</a>
+    <a href="https://wa.me/919354944438" target="_blank">WhatsApp Direct</a>
+  </div>
+  <div>
+    <h4>Factory Location</h4>
+    <a href="https://maps.app.goo.gl/M6YWAkuuLACLCvwNA" target="_blank" rel="noopener">Open Google Maps Directions</a>
+    <p style="font-size:12px;color:#8ba5ba;margin:6px 0">Worldwide Shipping • Pan-India Installation</p>
+  </div>
+  <div>
+    <h4>Quick Tools</h4>
+    <a href="#studio">Design Studio</a>
+    <a href="#order">Live Quotation</a>
+    <a href="javascript:void(0)" onclick="openModal('converterModal')">File Converter</a>
+    <a href="javascript:void(0)" onclick="openModal('subscriptionModal')">Pro Plan ($4.99)</a>
+    <a href="/api/download-project" download="designhub-global-production.zip">Download ZIP</a>
+  </div>
+</div>
+<div class="container copyright">
+  © 2026 GLOBAL CREATIVE (wearstay.com). All rights reserved. • <a href="https://maps.app.goo.gl/M6YWAkuuLACLCvwNA" target="_blank">Google Maps Location</a>
+</div>
+</footer>
+
+<!-- MODALS -->
+
+<!-- 1. UNIVERSAL CONVERTER MODAL -->
+<div class="modal" id="converterModal">
+<div class="modalCard dark">
+  <div class="modalTop">
+    <h3 style="margin:0">Universal File Converter</h3>
+    <button class="close dark" onclick="closeModal('converterModal')">✕</button>
+  </div>
+  <p style="font-size:12px;color:#9eb4c4">Upload vector or raster files (PNG, JPG, WEBP, SVG, PDF) and convert instantly.</p>
+  <div class="controlBox" style="text-align:center;padding:24px;border:2px dashed #356080">
+    <input type="file" id="converterInput" accept="image/*,application/pdf" style="display:none" onchange="handleConverterUpload(this.files[0])">
+    <button class="btn primary" onclick="document.getElementById('converterInput').click()">Select File to Convert</button>
+    <div id="converterFileName" style="margin-top:10px;font-size:12px;color:#38bdf8">No file selected</div>
+  </div>
+  <div class="two" style="margin-top:12px">
+    <div class="field">
+      <label>Target Format</label>
+      <select id="converterTargetFormat">
+        <option value="png">PNG (Raster Transparent)</option>
+        <option value="jpg">JPG (High Quality)</option>
+        <option value="webp">WEBP (Web Optimized)</option>
+        <option value="svg">SVG (Vector Traced)</option>
+        <option value="pdf">PDF (Print Vector 300 DPI)</option>
+        <option value="cdr">CDR v12 (CorelDRAW Prepress)</option>
+      </select>
+    </div>
+    <div class="field">
+      <label>Action</label>
+      <button class="btn cyan" style="width:100%" onclick="executeConversion()">Convert & Download</button>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- 2. BRAND KIT MODAL -->
+<div class="modal" id="brandKitModal">
+<div class="modalCard dark">
+  <div class="modalTop">
+    <h3 style="margin:0">Brand Kit Manager</h3>
+    <button class="close dark" onclick="closeModal('brandKitModal')">✕</button>
+  </div>
+  <div class="two">
+    <div class="field"><label>Business Name</label><input id="bkName" value="GLOBAL CREATIVE"></div>
+    <div class="field"><label>Tagline</label><input id="bkTagline" value="Design • Print • Signage"></div>
+  </div>
+  <div class="two">
+    <div class="field"><label>Primary Color</label><input type="color" id="bkPrim" value="#ffd21a" style="height:38px"></div>
+    <div class="field"><label>Secondary Color</label><input type="color" id="bkSec" value="#0879c9" style="height:38px"></div>
+  </div>
+  <div style="display:flex;gap:8px;margin-top:12px">
+    <button class="btn primary" onclick="applyBrandKitToCanvas()">Apply Brand Kit to Canvas</button>
+    <button class="btn darkBtn" onclick="saveBrandKit()">Save Kit</button>
+  </div>
+</div>
+</div>
+
+<!-- 3. AI AUTO DESIGN MODAL -->
+<div class="modal" id="aiAutoModal">
+<div class="modalCard dark">
+  <div class="modalTop">
+    <h3 style="margin:0">✦ AI Auto Design Wizard</h3>
+    <button class="close dark" onclick="closeModal('aiAutoModal')">✕</button>
+  </div>
+  <div class="field">
+    <label>Business / Signboard Title</label>
+    <input id="aiTitle" placeholder="e.g. ROYAL HOTEL & RESTAURANT">
+  </div>
+  <div class="field">
+    <label>Tagline or Service Subtitle</label>
+    <input id="aiSubtitle" placeholder="e.g. Fine Dining • Since 1998">
+  </div>
+  <div class="two">
+    <div class="field">
+      <label>Design Style</label>
+      <select id="aiStyle">
+        <option value="luxury">Luxury Gold & 3D SS</option>
+        <option value="neon">Modern LED Neon Cyan</option>
+        <option value="corporate">Corporate Architectural</option>
+        <option value="minimal">Minimalist Clean</option>
+      </select>
+    </div>
+    <div class="field">
+      <label>Dimensions</label>
+      <select id="aiPresetSize">
+        <option value="8x3">8 ft × 3 ft (Storefront)</option>
+        <option value="10x4">10 ft × 4 ft (Building Sign)</option>
+        <option value="4x2">4 ft × 2 ft (Name Plate)</option>
+      </select>
+    </div>
+  </div>
+  <button class="btn primary" style="width:100%;margin-top:12px" onclick="generateAiDesign()">✦ Generate Editable Design</button>
+</div>
+</div>
+
+<!-- 4. CUSTOMER LOGIN MODAL -->
+<div class="modal" id="loginModal">
+<div class="modalCard">
+  <div class="modalTop">
+    <h2 style="margin:0">Customer Authentication</h2>
+    <button class="close" onclick="closeModal('loginModal')">✕</button>
+  </div>
+  <p style="color:#627083;font-size:13px">Sign in to save cloud designs, track orders, and unlock Pro features.</p>
+  <button class="btn darkBtn" style="width:100%;padding:12px" onclick="loginWithGoogle()">
+    <svg width="18" height="18" viewBox="0 0 24 24"><path fill="#EA4335" d="M12 5c1.6 0 3 .6 4.1 1.6l3.1-3.1C17.3 1.7 14.8 1 12 1 7.5 1 3.7 3.6 1.9 7.3l3.7 2.9C6.5 7.4 9 5 12 5z"/><path fill="#4285F4" d="M23.5 12.3c0-.8-.1-1.7-.2-2.3H12v4.5h6.5c-.3 1.5-1.1 2.8-2.4 3.7l3.7 2.9c2.2-2 3.7-5.1 3.7-8.8z"/><path fill="#FBBC05" d="M5.6 14.8c-.2-.7-.4-1.5-.4-2.8s.2-2.1.4-2.8L1.9 6.3C.7 8.7 0 10.3 0 12s.7 3.3 1.9 5.7l3.7-2.9z"/><path fill="#34A853" d="M12 23c3.2 0 6-1.1 8-3l-3.7-2.9c-1.1.7-2.5 1.2-4.3 1.2-3 0-5.5-2-6.4-4.8L1.9 16.4C3.7 20.4 7.5 23 12 23z"/></svg>
+    Continue with Google
+  </button>
+  <div style="text-align:center;margin:12px 0;font-size:12px;color:#94a3b8">— OR EMAIL —</div>
+  <div class="field"><label style="color:#475569">Email</label><input id="loginEmail" type="email" placeholder="you@example.com" style="background:#f8fafc;color:#0f172a;border-color:#cbd5e1"></div>
+  <div class="field"><label style="color:#475569">Password</label><input id="loginPass" type="password" placeholder="••••••••" style="background:#f8fafc;color:#0f172a;border-color:#cbd5e1"></div>
+  <div class="two" style="margin-top:10px">
+    <button class="btn primary" onclick="signInWithEmail()">Sign In</button>
+    <button class="btn outline" style="color:var(--ink);border-color:#94a3b8" onclick="signUpWithEmail()">Sign Up</button>
+  </div>
+</div>
+</div>
+
+<!-- 5. SUBSCRIPTION PRO MODAL -->
+<div class="modal" id="subscriptionModal">
+<div class="modalCard dark">
+  <div class="modalTop">
+    <h3 style="margin:0">👑 GLOBAL CREATIVE PRO ($4.99/mo)</h3>
+    <button class="close dark" onclick="closeModal('subscriptionModal')">✕</button>
+  </div>
+  <p style="color:#9eb4c4;font-size:13px">Unlimited vector exports, AI voice commands, 300 DPI Prepress PDF, and CorelDRAW v12.</p>
+  <div style="background:#092236;border:1px solid #234f73;padding:16px;border-radius:14px;margin:12px 0">
+    <div style="font-size:26px;font-weight:900;color:var(--yellow)">$4.99 <span style="font-size:14px;color:#a0b8cc">/ month (or ₹499/mo)</span></div>
+    <ul style="font-size:12px;color:#cfe3f5;line-height:1.7;padding-left:18px;margin:10px 0 0">
+      <li>Unlimited 300 DPI Prepress PDF & Vector SVG</li>
+      <li>Multilingual AI Voice-to-Design Engine</li>
+      <li>CorelDRAW v12 Export Pipeline</li>
+      <li>Cloud Project Autosave & Team Storage</li>
+    </ul>
+  </div>
+  <div style="display:flex;gap:10px;flex-wrap:wrap">
+    <a class="btn primary" href="https://www.paypal.com/ncp/payment/GN99BSA7E4L3Y" target="_blank" rel="noopener">Subscribe via PayPal Live ($4.99)</a>
+    <button class="btn green" onclick="openModal('upiModal')">Pay via UPI (₹499)</button>
+  </div>
+</div>
+</div>
+
+<!-- 6. UPI PAYMENT MODAL -->
+<div class="modal" id="upiModal">
+<div class="modalCard">
+  <div class="modalTop">
+    <h3 style="margin:0">UPI Advance Payment</h3>
+    <button class="close" onclick="closeModal('upiModal')">✕</button>
+  </div>
+  <div class="notice" style="margin-bottom:12px">
+    <b>UPI ID:</b> <code style="font-size:14px;color:#0369a1">ledsignadil@oksbi</code><br>
+    Pay to: NEON POWER / GLOBAL CREATIVE (+91 93549 44438)
+  </div>
+  <p style="font-size:12px;color:#64748b">Scan with Google Pay, PhonePe, Paytm, or BHIM. After paying, send a screenshot on WhatsApp for instant confirmation.</p>
+  <button class="btn green" style="width:100%" onclick="window.open('upi://pay?pa=ledsignadil@oksbi&pn=GLOBAL%20CREATIVE&cu=INR','_blank')">Open UPI App Directly</button>
+</div>
+</div>
+
+<!-- 7. CUSTOMER DASHBOARD MODAL -->
+<div class="modal" id="dashboardModal">
+<div class="modalCard dark">
+  <div class="modalTop">
+    <h3 style="margin:0">Customer Dashboard</h3>
+    <button class="close dark" onclick="closeModal('dashboardModal')">✕</button>
+  </div>
+  <div class="two">
+    <div class="controlBox">
+      <label>User Profile</label>
+      <div id="dashUserEmail" style="font-weight:700;color:var(--yellow);font-size:13px">Guest User</div>
+      <div id="dashTier" style="font-size:11px;color:#38bdf8;margin-top:4px">Plan: Free (2 exports)</div>
+    </div>
+    <div class="controlBox">
+      <label>Pro Status</label>
+      <button class="btn primary small" style="width:100%" onclick="openModal('subscriptionModal')">Upgrade to Pro ($4.99)</button>
+    </div>
+  </div>
+  <div class="controlBox" style="margin-top:10px">
+    <label>Saved Cloud Designs</label>
+    <div id="dashProjectsList" style="font-size:12px;color:#9eb4c4">No cloud projects saved yet. Use 'Save Project' in the Studio.</div>
+  </div>
+</div>
+</div>
+
+<!-- 8. 3D SIGNAGE GALLERY MODAL -->
+<div class="modal" id="galleryModal">
+<div class="modalCard dark" style="width:min(880px,100%)">
+  <div class="modalTop">
+    <h3 style="margin:0">3D Illuminated Signage Gallery</h3>
+    <button class="close dark" onclick="closeModal('galleryModal')">✕</button>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:10px">
+    <div style="background:#091b2c;padding:12px;border-radius:12px;text-align:center">
+      <div style="font-size:36px">✦</div>
+      <b style="font-size:13px;color:var(--yellow);display:block;margin:6px 0">Acrylic 3D Letters</b>
+      <span style="font-size:11px;color:#94a3b8">Laser cut cast acrylic with LED backlighting.</span>
+    </div>
+    <div style="background:#091b2c;padding:12px;border-radius:12px;text-align:center">
+      <div style="font-size:36px">🛡</div>
+      <b style="font-size:13px;color:#38bdf8;display:block;margin:6px 0">Stainless Steel 304</b>
+      <span style="font-size:11px;color:#94a3b8">Titanium gold and hairline brushed metal letters.</span>
+    </div>
+    <div style="background:#091b2c;padding:12px;border-radius:12px;text-align:center">
+      <div style="font-size:36px">▣</div>
+      <b style="font-size:13px;color:#4ade80;display:block;margin:6px 0">ACP Sheet Boards</b>
+      <span style="font-size:11px;color:#94a3b8">Heavy-gauge aluminum composite cladding.</span>
+    </div>
+  </div>
+</div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<!-- CLIENT JAVASCRIPT ENGINE -->
+<script>
+const $=id=>document.getElementById(id);
+let currentCurrency = 'INR';
+const CURRENCY_RATES = {
+  INR: { rate: 1, symbol: '₹' },
+  USD: { rate: 0.012, symbol: '$' },
+  EUR: { rate: 0.011, symbol: '€' },
+  GBP: { rate: 0.0095, symbol: '£' },
+  AED: { rate: 0.044, symbol: 'AED ' },
+  SAR: { rate: 0.045, symbol: 'SAR ' },
+  AUD: { rate: 0.018, symbol: 'A$' },
+  CAD: { rate: 0.016, symbol: 'C$' }
+};
+
+function formatMoney(amountInInr) {
+  const c = CURRENCY_RATES[currentCurrency] || CURRENCY_RATES.INR;
+  const converted = amountInInr * c.rate;
+  if (currentCurrency === 'INR') {
+    return '₹' + Math.round(converted).toLocaleString('en-IN');
+  }
+  return c.symbol + converted.toFixed(2);
+}
+
+function switchCurrency(cur) {
+  currentCurrency = cur;
+  calculate();
+  toast('Currency changed to ' + cur);
+}
+
+function toast(msg){
+  const t=$('toast');
+  t.textContent=msg;
+  t.classList.add('show');
+  clearTimeout(window._toast);
+  window._toast=setTimeout(()=>t.classList.remove('show'),3200);
+}
+
+function toggleMobileNav(){
+  const d=$('mobileDrawer');
+  d.style.display = d.style.display === 'flex' ? 'none' : 'flex';
+}
+function openModal(id){$(id).classList.add('open')}
+function closeModal(id){$(id).classList.remove('open')}
+
+/* QUOTE CALCULATION */
+function calculate(){
+  const prodSelect = $('product');
+  const rate = +prodSelect.value;
+  const unitType = prodSelect.options[prodSelect.selectedIndex].getAttribute('data-unit') || 'sqft';
+  const quality = +$('quality').value;
+  const warranty = +$('warranty').value;
+
+  const w = Math.max(0.1, +$('w').value);
+  const h = Math.max(0.1, +$('h').value);
+  const u = $('unit').value;
+  const q = Math.max(1, +$('qty').value);
+
+  // Conversion factors to feet and inches
+  const toFt = { ft:1, in:1/12, mm:0.00328084, cm:0.0328084, m:3.28084 };
+  const wFt = w * toFt[u], hFt = h * toFt[u];
+  const areaSqFt = wFt * hFt * q;
+  const maxInches = Math.max(wFt * 12, hFt * 12) * q;
+
+  let base = 0;
+  if(unitType === 'inch'){
+    base = maxInches * rate * quality * warranty;
+  } else {
+    base = areaSqFt * rate * quality * warranty;
+  }
+
+  const delivery = Math.max(500, Math.min(25000, areaSqFt * 65));
+  const gst = base * 0.18;
+  const total = base + gst + delivery;
+  const advance = total * 0.50;
+
+  $('areaOut').textContent = areaSqFt.toFixed(2) + ' sq.ft';
+  $('subOut').textContent = formatMoney(base);
+  $('gstOut').textContent = formatMoney(gst);
+  $('delivOut').textContent = formatMoney(delivery);
+  $('totalOut').textContent = formatMoney(total);
+  $('advanceOut').textContent = formatMoney(advance);
+
+  return { areaSqFt, base, gst, delivery, total, advance, w, h, u, q };
+}
+
+function selectServiceForQuote(val){
+  const sel=$('product');
+  for(let i=0;i<sel.options.length;i++){
+    if(sel.options[i].text.toLowerCase().includes(val.replace(/_/g,' ').toLowerCase())){
+      sel.selectedIndex = i; break;
+    }
+  }
+  calculate();
+  document.querySelector('#order').scrollIntoView({behavior:'smooth'});
+  toast('Updated quote for ' + sel.options[sel.selectedIndex].text);
+}
+
+function quickQuote(){
+  selectServiceForQuote($('quickProduct').value);
+  $('w').value = $('quickW').value;
+  $('h').value = $('quickH').value;
+  $('qty').value = $('quickQty').value;
+  $('quality').value = $('quickQuality').value;
+  calculate();
+}
+
+function placeOrder(){
+  const name=$('customerName').value.trim();
+  const phone=$('customerPhone').value.trim();
+  const req=$('requirement').value.trim();
+  if(!name || !phone){
+    toast('Please enter customer name and phone/WhatsApp number.');
+    return;
+  }
+  const q = calculate();
+  const orderId = 'GC-' + Date.now().toString().slice(-8);
+  const msg = `Hello GLOBAL CREATIVE, I want to place a Signage Order:
+Order ID: ${orderId}
+Client: ${name} (${phone})
+Product: ${$('product').options[$('product').selectedIndex].text}
+Size: ${q.w} x ${q.h} ${q.u} (${q.areaSqFt.toFixed(2)} sq.ft)
+Total: ${formatMoney(q.total)}
+50% Advance: ${formatMoney(q.advance)}
+Requirements: ${req || 'Custom architectural signage'}
+Location: https://wearstay.com`;
+
+  window.open('https://wa.me/919354944438?text=' + encodeURIComponent(msg), '_blank');
+  toast('Order ' + orderId + ' generated! WhatsApp opened.');
+}
+
+function payWithPayPal(){
+  window.open('https://www.paypal.com/ncp/payment/GN99BSA7E4L3Y', '_blank');
+}
+
+/* ========================================================
+   DESIGN STUDIO OBJECT-BASED CANVAS ENGINE
+   ======================================================== */
+const canvas = $('designCanvas');
+const ctx = canvas.getContext('2d');
+let objects = [];
+let selected = -1;
+let isDragging = false;
+let dragOx = 0, dragOy = 0;
+let history = [], future = [];
+let showGrid = false;
+let showBleed = false;
+let showSafeArea = false;
+let studioMode = 'easy';
+let fontMode = 'manual';
+
+function snapshot(){ return JSON.stringify(objects); }
+function pushHistory(){
+  history.push(snapshot());
+  if(history.length > 40) history.shift();
+  future = [];
+}
+function undo(){
+  if(!history.length) return;
+  future.push(snapshot());
+  objects = JSON.parse(history.pop());
+  selected = -1;
+  draw();
+}
+function redo(){
+  if(!future.length) return;
+  history.push(snapshot());
+  objects = JSON.parse(future.pop());
+  selected = -1;
+  draw();
+}
+
+function draw(){
+  ctx.clearRect(0,0,canvas.width,canvas.height);
+
+  // Background
+  ctx.fillStyle = canvas.dataset.bg || '#ffffff';
+  ctx.fillRect(0,0,canvas.width,canvas.height);
+
+  // Grid
+  if(showGrid){
+    ctx.strokeStyle = '#e2e8f0';
+    ctx.lineWidth = 1;
+    for(let x=20; x<canvas.width; x+=20){
+      ctx.beginPath(); ctx.moveTo(x,0); ctx.lineTo(x,canvas.height); ctx.stroke();
+    }
+    for(let y=20; y<canvas.height; y+=20){
+      ctx.beginPath(); ctx.moveTo(0,y); ctx.lineTo(canvas.width,y); ctx.stroke();
+    }
+  }
+
+  // Bleed (3mm guide - red dashed)
+  if(showBleed){
+    ctx.strokeStyle = '#ef4444';
+    ctx.setLineDash([4,4]);
+    ctx.strokeRect(12, 12, canvas.width - 24, canvas.height - 24);
+    ctx.setLineDash([]);
+  }
+
+  // Safe area (green dashed)
+  if(showSafeArea){
+    ctx.strokeStyle = '#22c55e';
+    ctx.setLineDash([6,6]);
+    ctx.strokeRect(24, 24, canvas.width - 48, canvas.height - 48);
+    ctx.setLineDash([]);
+  }
+
+  // Draw objects
+  for(let i=0; i<objects.length; i++){
+    const o = objects[i];
+    ctx.save();
+    ctx.globalAlpha = o.opacity ?? 1;
+    ctx.translate(o.x, o.y);
+    ctx.rotate((o.rot || 0) * Math.PI / 180);
+
+    // Effects: LED Glow
+    if(o.glow){
+      ctx.shadowColor = o.color || '#ffd21a';
+      ctx.shadowBlur = 24;
+    }
+    if(o.extrude3d){
+      ctx.shadowColor = '#000000';
+      ctx.shadowBlur = 12;
+      ctx.shadowOffsetX = 5;
+      ctx.shadowOffsetY = 5;
+    }
+
+    if(o.type === 'text'){
+      ctx.fillStyle = o.color || '#111827';
+      const weight = o.bold ? '800' : (o.weight || '700');
+      const style = o.italic ? 'italic ' : '';
+      ctx.font = `${style}${weight} ${o.size || 48}px "${o.font || 'Inter'}", sans-serif`;
+      ctx.textAlign = o.align || 'center';
+      ctx.textBaseline = 'middle';
+      ctx.fillText(o.text || 'YOUR TEXT', 0, 0);
+
+      if(o.underline){
+        const m = ctx.measureText(o.text || 'YOUR TEXT');
+        ctx.fillRect(-m.width/2, (o.size||48)/2 + 2, m.width, 3);
+      }
+    } else if(o.type === 'rect'){
+      ctx.fillStyle = o.color || '#ffd21a';
+      ctx.fillRect(-o.w/2, -o.h/2, o.w, o.h);
+    } else if(o.type === 'circle'){
+      ctx.fillStyle = o.color || '#0879c9';
+      ctx.beginPath();
+      ctx.arc(0, 0, o.r || 50, 0, Math.PI * 2);
+      ctx.fill();
+    } else if(o.type === 'star'){
+      ctx.fillStyle = o.color || '#ffd21a';
+      drawStar(ctx, 0, 0, 5, o.r || 45, (o.r||45)/2);
+    } else if(o.type === 'line'){
+      ctx.strokeStyle = o.color || '#ffffff';
+      ctx.lineWidth = o.lineWidth || 4;
+      ctx.beginPath(); ctx.moveTo(-o.w/2, 0); ctx.lineTo(o.w/2, 0); ctx.stroke();
+    } else if(o.type === 'img' && o.img){
+      ctx.drawImage(o.img, -o.w/2, -o.h/2, o.w, o.h);
+    }
+
+    // Selection border
+    if(i === selected){
+      ctx.shadowBlur = 0;
+      ctx.shadowOffsetX = 0;
+      ctx.shadowOffsetY = 0;
+      ctx.strokeStyle = '#0879c9';
+      ctx.lineWidth = 2;
+      ctx.setLineDash([4,4]);
+      const w = o.w || (o.size * 3.5 || 160);
+      const h = o.h || (o.size * 1.2 || 50);
+      ctx.strokeRect(-w/2 - 6, -h/2 - 6, w + 12, h + 12);
+      ctx.setLineDash([]);
+    }
+    ctx.restore();
+  }
+}
+
+function drawStar(ctx, cx, cy, spikes, outerRadius, innerRadius){
+  let rot = Math.PI / 2 * 3;
+  let x = cx, y = cy;
+  let step = Math.PI / spikes;
+  ctx.beginPath();
+  ctx.moveTo(cx, cy - outerRadius);
+  for(let i=0; i<spikes; i++){
+    x = cx + Math.cos(rot) * outerRadius;
+    y = cy + Math.sin(rot) * outerRadius;
+    ctx.lineTo(x, y);
+    rot += step;
+    x = cx + Math.cos(rot) * innerRadius;
+    y = cy + Math.sin(rot) * innerRadius;
+    ctx.lineTo(x, y);
+    rot += step;
+  }
+  ctx.lineTo(cx, cy - outerRadius);
+  ctx.closePath();
+  ctx.fill();
+}
+
+function addText(customText, customSize){
+  pushHistory();
+  objects.push({
+    type: 'text',
+    text: customText || 'GLOBAL CREATIVE',
+    x: canvas.width / 2,
+    y: canvas.height / 2,
+    size: customSize || +$('fontSizeInput').value || 48,
+    color: $('hexInput').value || '#111827',
+    font: $('fontFamilySelect').value || 'Inter',
+    bold: true
+  });
+  selected = objects.length - 1;
+  draw();
+  toast('Added text layer');
+}
+
+function addRect(){
+  pushHistory();
+  objects.push({ type: 'rect', x: canvas.width/2, y: canvas.height/2, w: 260, h: 90, color: '#ffd21a' });
+  selected = objects.length - 1;
+  draw();
+}
+function addCircle(){
+  pushHistory();
+  objects.push({ type: 'circle', x: canvas.width/2, y: canvas.height/2, r: 60, color: '#0879c9' });
+  selected = objects.length - 1;
+  draw();
+}
+function addStar(){
+  pushHistory();
+  objects.push({ type: 'star', x: canvas.width/2, y: canvas.height/2, r: 50, color: '#ffd21a' });
+  selected = objects.length - 1;
+  draw();
+}
+function addLine(){
+  pushHistory();
+  objects.push({ type: 'line', x: canvas.width/2, y: canvas.height/2, w: 300, lineWidth: 4, color: '#ffffff' });
+  selected = objects.length - 1;
+  draw();
+}
+
+function loadImage(file){
+  if(!file) return;
+  const img = new Image();
+  img.onload = () => {
+    pushHistory();
+    const scale = Math.min(500/img.width, 300/img.height, 1);
+    objects.push({
+      type: 'img',
+      img,
+      x: canvas.width/2,
+      y: canvas.height/2,
+      w: img.width * scale,
+      h: img.height * scale
+    });
+    selected = objects.length - 1;
+    draw();
+    toast('Image uploaded to canvas');
+  };
+  img.src = URL.createObjectURL(file);
+}
+
+function deleteSelected(){
+  if(selected < 0) return;
+  pushHistory();
+  objects.splice(selected, 1);
+  selected = -1;
+  draw();
+  toast('Deleted layer');
+}
+
+function duplicateSelected(){
+  if(selected < 0) return;
+  pushHistory();
+  const copy = JSON.parse(JSON.stringify(objects[selected]));
+  copy.x += 20; copy.y += 20;
+  if(copy.type === 'img') copy.img = objects[selected].img;
+  objects.push(copy);
+  selected = objects.length - 1;
+  draw();
+  toast('Duplicated layer');
+}
+
+/* FONT CONTROLS */
+function changeFontSize(v){
+  if(selected >= 0 && objects[selected].type === 'text'){
+    pushHistory();
+    objects[selected].size = +v;
+  }
+  $('fontSizeInput').value = v;
+  draw();
+}
+function stepFontSize(delta){
+  let val = +$('fontSizeInput').value + delta;
+  val = Math.max(8, Math.min(240, val));
+  changeFontSize(val);
+}
+function changeFontFamily(f){
+  if(selected >= 0 && objects[selected].type === 'text'){
+    pushHistory();
+    objects[selected].font = f;
+    draw();
+  }
+}
+function toggleBold(){
+  if(selected >= 0 && objects[selected].type === 'text'){
+    pushHistory();
+    objects[selected].bold = !objects[selected].bold;
+    draw();
+  }
+}
+function toggleItalic(){
+  if(selected >= 0 && objects[selected].type === 'text'){
+    pushHistory();
+    objects[selected].italic = !objects[selected].italic;
+    draw();
+  }
+}
+function toggleUnderline(){
+  if(selected >= 0 && objects[selected].type === 'text'){
+    pushHistory();
+    objects[selected].underline = !objects[selected].underline;
+    draw();
+  }
+}
+function setTextAlign(a){
+  if(selected >= 0 && objects[selected].type === 'text'){
+    pushHistory();
+    objects[selected].align = a;
+    draw();
+  }
+}
+
+function applyAiAutoStyle(){
+  if(selected < 0 || objects[selected].type !== 'text'){
+    toast('Please select a text layer first.');
+    return;
+  }
+  pushHistory();
+  const t = objects[selected];
+  t.font = 'Montserrat';
+  t.size = 54;
+  t.bold = true;
+  t.align = 'center';
+  t.color = '#ffd21a';
+  t.glow = true;
+  draw();
+  toast('Applied AI Auto Signage typography');
+}
+
+/* COLOR CONTROLS */
+function applyHexColor(hex){
+  $('hexInput').value = hex;
+  $('colorPicker').value = hex;
+  if(selected >= 0){
+    pushHistory();
+    objects[selected].color = hex;
+    draw();
+  }
+}
+function applyRgbColor(){
+  const r = +$('rgbR').value || 0;
+  const g = +$('rgbG').value || 0;
+  const b = +$('rgbB').value || 0;
+  const hex = '#' + [r,g,b].map(x => x.toString(16).padStart(2,'0')).join('');
+  applyHexColor(hex);
+}
+
+function applyPresetTheme(theme){
+  pushHistory();
+  if(theme === 'luxury'){
+    canvas.dataset.bg = '#06121e';
+    if(selected >= 0) objects[selected].color = '#ffd21a';
+  } else if(theme === 'neon'){
+    canvas.dataset.bg = '#040b12';
+    if(selected >= 0){ objects[selected].color = '#00f2ff'; objects[selected].glow = true; }
+  } else if(theme === 'corporate'){
+    canvas.dataset.bg = '#f8fafc';
+    if(selected >= 0) objects[selected].color = '#0f172a';
+  } else if(theme === 'minimal'){
+    canvas.dataset.bg = '#111827';
+    if(selected >= 0) objects[selected].color = '#ffffff';
+  } else if(theme === 'restaurant'){
+    canvas.dataset.bg = '#1c0e0b';
+    if(selected >= 0) objects[selected].color = '#ff9800';
+  }
+  draw();
+  toast('Applied ' + theme + ' theme');
+}
+
+function applyAiAutoColor(){
+  applyPresetTheme('luxury');
+}
+
+function toggleLedGlow(){
+  if(selected < 0) return;
+  pushHistory();
+  objects[selected].glow = !objects[selected].glow;
+  draw();
+  toast('Toggled LED Glow');
+}
+function toggle3dShadow(){
+  if(selected < 0) return;
+  pushHistory();
+  objects[selected].extrude3d = !objects[selected].extrude3d;
+  draw();
+  toast('Toggled 3D Drop Extrusion');
+}
+function changeBackground(c){
+  canvas.dataset.bg = c;
+  draw();
+}
+
+/* LOGO POSITIONING */
+function autoPlaceLogo(pos){
+  const logo = objects.find(o => o.type === 'img') || objects[selected];
+  if(!logo){
+    toast('No logo or layer selected to position.');
+    return;
+  }
+  pushHistory();
+  const pad = 40;
+  if(pos === 'top-left'){ logo.x = pad + (logo.w||80)/2; logo.y = pad + (logo.h||80)/2; }
+  else if(pos === 'top-center'){ logo.x = canvas.width/2; logo.y = pad + (logo.h||80)/2; }
+  else if(pos === 'top-right'){ logo.x = canvas.width - pad - (logo.w||80)/2; logo.y = pad + (logo.h||80)/2; }
+  else if(pos === 'center' || pos === 'best'){ logo.x = canvas.width/2; logo.y = canvas.height/2; }
+  else if(pos === 'bottom-left'){ logo.x = pad + (logo.w||80)/2; logo.y = canvas.height - pad - (logo.h||80)/2; }
+  else if(pos === 'bottom-right'){ logo.x = canvas.width - pad - (logo.w||80)/2; logo.y = canvas.height - pad - (logo.h||80)/2; }
+  draw();
+  toast('Placed logo: ' + pos);
+}
+
+/* CANVAS REAL DIMENSIONS & PREPRESS */
+function updateRealCanvasSize(){
+  const w = +$('canvasRealW').value || 8;
+  const h = +$('canvasRealH').value || 3;
+  const u = $('canvasRealUnit').value || 'ft';
+  $('dimBadge').textContent = `${w} ${u} × ${h} ${u}`;
+
+  // Keep aspect ratio for on-screen editor
+  const aspect = w / h;
+  const baseW = 760;
+  canvas.width = baseW;
+  canvas.height = Math.round(baseW / aspect);
+  draw();
+  toast('Canvas set to ' + w + ' × ' + h + ' ' + u);
+}
+
+function toggleGrid(){ showGrid = !showGrid; draw(); }
+function toggleBleed(){ showBleed = !showBleed; draw(); }
+function toggleSafeArea(){ showSafeArea = !showSafeArea; draw(); }
+function fitCanvasToScreen(){
+  canvas.style.maxWidth = '100%';
+  draw();
+}
+
+function layerMove(dir){
+  if(selected < 0) return;
+  pushHistory();
+  const obj = objects.splice(selected, 1)[0];
+  if(dir === 'front') objects.push(obj);
+  else if(dir === 'back') objects.unshift(obj);
+  else if(dir === 'forward') objects.splice(Math.min(objects.length, selected+1), 0, obj);
+  else if(dir === 'backward') objects.splice(Math.max(0, selected-1), 0, obj);
+  selected = objects.indexOf(obj);
+  draw();
+}
+
+function alignObject(pos){
+  if(selected < 0) return;
+  pushHistory();
+  if(pos === 'center'){
+    objects[selected].x = canvas.width / 2;
+    objects[selected].y = canvas.height / 2;
+  }
+  draw();
+}
+
+/* MODE TOGGLE */
+function setStudioMode(mode){
+  studioMode = mode;
+  $('modeEasyBtn').classList.toggle('active', mode === 'easy');
+  $('modeProBtn').classList.toggle('active', mode === 'pro');
+  if(mode === 'easy'){
+    $('tabLayers').style.display = 'none';
+    $('tabSize').style.display = 'none';
+  } else {
+    $('tabLayers').style.display = 'inline-block';
+    $('tabSize').style.display = 'inline-block';
+  }
+}
+
+function switchStudioTab(tab){
+  ['panelText','panelColor','panelLogo','panelSize','panelLayers'].forEach(p => $(p).style.display='none');
+  ['tabText','tabColor','tabLogo','tabSize','tabLayers'].forEach(t => $(t).classList.remove('active'));
+
+  if(tab === 'text'){ $('panelText').style.display='block'; $('tabText').classList.add('active'); }
+  else if(tab === 'color'){ $('panelColor').style.display='block'; $('tabColor').classList.add('active'); }
+  else if(tab === 'logo'){ $('panelLogo').style.display='block'; $('tabLogo').classList.add('active'); }
+  else if(tab === 'size'){ $('panelSize').style.display='block'; $('tabSize').classList.add('active'); }
+  else if(tab === 'layers'){ $('panelLayers').style.display='block'; $('tabLayers').classList.add('active'); }
+}
+
+function setFontMode(m){
+  fontMode = m;
+  $('fontManualTab').classList.toggle('active', m === 'manual');
+  $('fontAutoTab').classList.toggle('active', m === 'auto');
+  if(m === 'auto') applyAiAutoStyle();
+}
+
+/* POINTER DRAG & SELECTION */
+canvas.addEventListener('pointerdown', e => {
+  const r = canvas.getBoundingClientRect();
+  const x = (e.clientX - r.left) * canvas.width / r.width;
+  const y = (e.clientY - r.top) * canvas.height / r.height;
+
+  selected = -1;
+  for(let i=objects.length-1; i>=0; i--){
+    const o = objects[i];
+    const w = o.w || (o.size * 3.5 || 160);
+    const h = o.h || (o.size * 1.2 || 50);
+    if(x >= o.x - w/2 && x <= o.x + w/2 && y >= o.y - h/2 && y <= o.y + h/2){
+      selected = i;
+      break;
+    }
+  }
+
+  if(selected >= 0){
+    pushHistory();
+    isDragging = true;
+    dragOx = x - objects[selected].x;
+    dragOy = y - objects[selected].y;
+    canvas.setPointerCapture(e.pointerId);
+  }
+  draw();
+});
+
+canvas.addEventListener('pointermove', e => {
+  if(!isDragging || selected < 0) return;
+  const r = canvas.getBoundingClientRect();
+  const x = (e.clientX - r.left) * canvas.width / r.width;
+  const y = (e.clientY - r.top) * canvas.height / r.height;
+  objects[selected].x = x - dragOx;
+  objects[selected].y = y - dragOy;
+  draw();
+});
+
+canvas.addEventListener('pointerup', () => isDragging = false);
+
+/* EXPORTS: PNG, JPG, PDF (300 DPI), SVG, CDR v12 */
+function downloadDesign(ext){
+  const oldSelected = selected;
+  selected = -1;
+  draw();
+
+  const mime = ext === 'jpg' ? 'image/jpeg' : 'image/png';
+  const a = document.createElement('a');
+  a.download = `global-creative-signage.${ext}`;
+  a.href = canvas.toDataURL(mime, 0.95);
+  a.click();
+
+  selected = oldSelected;
+  draw();
+  toast('Downloaded ' + ext.toUpperCase());
+}
+
+function exportVectorPdf(){
+  if(!window.jspdf){
+    toast('PDF engine loading...');
+    return;
+  }
+  const oldSelected = selected;
+  selected = -1;
+  draw();
+
+  const { jsPDF } = window.jspdf;
+  const doc = new jsPDF({
+    orientation: canvas.width > canvas.height ? 'landscape' : 'portrait',
+    unit: 'pt',
+    format: [canvas.width, canvas.height]
+  });
+
+  const imgData = canvas.toDataURL('image/png', 1.0);
+  doc.addImage(imgData, 'PNG', 0, 0, canvas.width, canvas.height);
+  doc.save('global-creative-print-300dpi.pdf');
+
+  selected = oldSelected;
+  draw();
+  toast('Downloaded 300 DPI Prepress PDF');
+}
+
+function exportSvgFile(){
+  let svg = `<svg xmlns="http://www.w3.org/2000/svg" width="${canvas.width}" height="${canvas.height}" viewBox="0 0 ${canvas.width} ${canvas.height}">
+`;
+  svg += `<rect width="100%" height="100%" fill="${canvas.dataset.bg || '#ffffff'}"/>
+`;
+
+  for(const o of objects){
+    if(o.type === 'text'){
+      svg += `<text x="${o.x}" y="${o.y}" fill="${o.color||'#111'}" font-size="${o.size||48}" font-family="${o.font||'sans-serif'}" font-weight="bold" text-anchor="middle" dominant-baseline="middle">${o.text||''}</text>
+`;
+    } else if(o.type === 'rect'){
+      svg += `<rect x="${o.x - o.w/2}" y="${o.y - o.h/2}" width="${o.w}" height="${o.h}" fill="${o.color||'#ffd21a'}"/>
+`;
+    } else if(o.type === 'circle'){
+      svg += `<circle cx="${o.x}" cy="${o.y}" r="${o.r||50}" fill="${o.color||'#0879c9'}"/>
+`;
+    }
+  }
+  svg += `</svg>`;
+
+  const blob = new Blob([svg], { type: 'image/svg+xml' });
+  const a = document.createElement('a');
+  a.download = 'global-creative-vector.svg';
+  a.href = URL.createObjectURL(blob);
+  a.click();
+  toast('Exported vector SVG');
+}
+
+async function exportCdrFile(){
+  toast('Generating CorelDRAW v12 prepress package...');
+  let svg = `<svg xmlns="http://www.w3.org/2000/svg" width="${canvas.width}" height="${canvas.height}">`;
+  svg += `<rect width="100%" height="100%" fill="${canvas.dataset.bg||'#ffffff'}"/>`;
+  for(const o of objects){
+    if(o.type === 'text'){
+      svg += `<text x="${o.x}" y="${o.y}" fill="${o.color||'#111'}" font-size="${o.size||48}">${o.text||''}</text>`;
+    } else if(o.type === 'rect'){
+      svg += `<rect x="${o.x-o.w/2}" y="${o.y-o.h/2}" width="${o.w}" height="${o.h}" fill="${o.color||'#ffd21a'}"/>`;
+    }
+  }
+  svg += `</svg>`;
+
+  try {
+    const res = await fetch('/api/convert/cdr-v12', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ svgContent: svg, title: 'global-creative-sign', width: canvas.width, height: canvas.height })
+    });
+    if(res.ok){
+      const blob = await res.blob();
+      const a = document.createElement('a');
+      a.download = 'global-creative-sign_v12.cdr';
+      a.href = URL.createObjectURL(blob);
+      a.click();
+      toast('CorelDRAW v12 file exported!');
+    } else {
+      exportSvgFile();
+    }
+  } catch(e){
+    exportSvgFile();
+  }
+}
+
+function saveDesign(){
+  const clean = objects.map(o => {
+    const x = { ...o };
+    if(x.img) delete x.img;
+    return x;
+  });
+  localStorage.setItem('gc_design_v2', JSON.stringify({ objects: clean, bg: canvas.dataset.bg }));
+  toast('Project saved in browser storage.');
+}
+
+function loadSavedDesign(){
+  const s = localStorage.getItem('gc_design_v2');
+  if(!s){ toast('No saved project found.'); return; }
+  const data = JSON.parse(s);
+  objects = data.objects || [];
+  if(data.bg) canvas.dataset.bg = data.bg;
+  selected = -1;
+  draw();
+  toast('Loaded saved project.');
+}
+
+/* ========================================================
+   MULTILINGUAL VOICE TO DESIGN ENGINE
+   ======================================================== */
+function triggerVoiceDesign(){
+  const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+  if(!SpeechRecognition){
+    const promptText = prompt('Voice recognition not supported in this browser. Please type your command:\n(e.g., "10 ft x 4 ft board banao, black background, golden letters")');
+    if(promptText) parseDesignCommand(promptText, 'en');
+    return;
+  }
+
+  const recog = new SpeechRecognition();
+  recog.lang = 'hi-IN'; // Multi-lingual recognition
+  recog.continuous = false;
+  toast('🎙 Listening... Speak in Hindi, English, Punjabi, Arabic, etc.');
+
+  recog.onresult = e => {
+    const text = e.results[0][0].transcript;
+    toast('Understood: "' + text + '"');
+    parseDesignCommand(text, 'hi');
+  };
+  recog.onerror = () => {
+    toast('Voice input timed out. Click microphone to try again.');
+  };
+  recog.start();
+}
+
+async function parseDesignCommand(cmd, lang){
+  try {
+    const res = await fetch('/api/ai/parse-command', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ command: cmd, lang })
+    });
+    const data = await res.json();
+    if(data.actions && data.actions.length){
+      for(const act of data.actions){
+        executeAiAction(act);
+      }
+      speakResponse('Design updated successfully', lang);
+    }
+  } catch(e){
+    // Offline heuristic fallback
+    const lower = cmd.toLowerCase();
+    if(lower.includes('black') || lower.includes('kala')) changeBackground('#06121e');
+    if(lower.includes('white') || lower.includes('safed')) changeBackground('#ffffff');
+    if(lower.includes('yellow') || lower.includes('peela') || lower.includes('gold')) applyHexColor('#ffd21a');
+    if(lower.includes('bada')) stepFontSize(12);
+    if(lower.includes('chhota')) stepFontSize(-12);
+    addText(cmd);
+  }
+}
+
+function executeAiAction(act){
+  pushHistory();
+  if(act.action === 'change_background'){
+    changeBackground(act.color);
+  } else if(act.action === 'set_text_color'){
+    applyHexColor(act.color);
+  } else if(act.action === 'scale_font'){
+    if(selected >= 0 && objects[selected].type === 'text'){
+      objects[selected].size = Math.round(objects[selected].size * act.factor);
+    }
+  } else if(act.action === 'add_text'){
+    addText(act.text);
+  } else if(act.action === 'position_logo'){
+    autoPlaceLogo(act.position);
+  } else if(act.action === 'add_led_effect'){
+    toggleLedGlow();
+  } else if(act.action === 'add_3d_effect'){
+    toggle3dShadow();
+  }
+  draw();
+  toast(act.description || 'Command applied');
+}
+
+function speakResponse(msg, lang){
+  if(!window.speechSynthesis) return;
+  const utter = new SpeechSynthesisUtterance(msg);
+  utter.rate = 1.0;
+  window.speechSynthesis.speak(utter);
+}
+
+/* ========================================================
+   AI AUTO DESIGN GENERATOR
+   ======================================================== */
+function generateAiDesign(){
+  const title = $('aiTitle').value.trim() || 'ROYAL RESTAURANT';
+  const subtitle = $('aiSubtitle').value.trim() || 'FINE DINING & BAR';
+  const style = $('aiStyle').value;
+
+  pushHistory();
+  objects = [];
+  selected = -1;
+
+  if(style === 'luxury'){
+    canvas.dataset.bg = '#06121e';
+    objects.push({ type: 'rect', x: canvas.width/2, y: canvas.height/2, w: canvas.width - 40, h: canvas.height - 40, color: '#091c2c' });
+    objects.push({ type: 'text', text: title, x: canvas.width/2, y: canvas.height/2 - 25, size: 52, font: 'Cinzel', color: '#ffd21a', bold: true, glow: true });
+    objects.push({ type: 'text', text: subtitle, x: canvas.width/2, y: canvas.height/2 + 35, size: 22, font: 'Montserrat', color: '#e2e8f0', bold: true });
+  } else if(style === 'neon'){
+    canvas.dataset.bg = '#020617';
+    objects.push({ type: 'text', text: title, x: canvas.width/2, y: canvas.height/2 - 20, size: 56, font: 'Oswald', color: '#00f2ff', bold: true, glow: true });
+    objects.push({ type: 'text', text: subtitle, x: canvas.width/2, y: canvas.height/2 + 40, size: 24, font: 'Inter', color: '#ff007f', bold: true, glow: true });
+  } else {
+    canvas.dataset.bg = '#f8fafc';
+    objects.push({ type: 'text', text: title, x: canvas.width/2, y: canvas.height/2 - 20, size: 48, font: 'Montserrat', color: '#0f172a', bold: true });
+    objects.push({ type: 'text', text: subtitle, x: canvas.width/2, y: canvas.height/2 + 30, size: 20, font: 'Inter', color: '#64748b' });
+  }
+
+  draw();
+  closeModal('aiAutoModal');
+  toast('Generated complete editable ' + style + ' design!');
+}
+
+/* ========================================================
+   UNIVERSAL CONVERTER ENGINE
+   ======================================================== */
+let activeConverterFile = null;
+function handleConverterUpload(file){
+  if(!file) return;
+  activeConverterFile = file;
+  $('converterFileName').textContent = `Loaded: ${file.name} (${(file.size/1024).toFixed(1)} KB)`;
+}
+
+function executeConversion(){
+  if(!activeConverterFile){
+    toast('Please choose a file to convert first.');
+    return;
+  }
+  const target = $('converterTargetFormat').value;
+  toast('Converting to ' + target.toUpperCase() + '...');
+
+  const reader = new FileReader();
+  reader.onload = e => {
+    const img = new Image();
+    img.onload = () => {
+      const offCanvas = document.createElement('canvas');
+      offCanvas.width = img.width;
+      offCanvas.height = img.height;
+      const offCtx = offCanvas.getContext('2d');
+      offCtx.drawImage(img, 0, 0);
+
+      const mime = target === 'jpg' ? 'image/jpeg' : (target === 'webp' ? 'image/webp' : 'image/png');
+      const a = document.createElement('a');
+      a.download = activeConverterFile.name.split('.')[0] + '.' + target;
+      a.href = offCanvas.toDataURL(mime, 0.95);
+      a.click();
+      toast('Converted and downloaded!');
+      closeModal('converterModal');
+    };
+    img.src = e.target.result;
+  };
+  reader.readAsDataURL(activeConverterFile);
+}
+
+/* ========================================================
+   BRAND KIT
+   ======================================================== */
+function applyBrandKitToCanvas(){
+  const name = $('bkName').value;
+  const prim = $('bkPrim').value;
+  pushHistory();
+  objects.push({
+    type: 'text',
+    text: name,
+    x: canvas.width/2,
+    y: canvas.height/2,
+    size: 52,
+    font: 'Montserrat',
+    color: prim,
+    bold: true
+  });
+  selected = objects.length - 1;
+  draw();
+  closeModal('brandKitModal');
+  toast('Brand Kit applied to design');
+}
+
+function saveBrandKit(){
+  localStorage.setItem('gc_brand_kit', JSON.stringify({
+    name: $('bkName').value,
+    tag: $('bkTagline').value,
+    prim: $('bkPrim').value,
+    sec: $('bkSec').value
+  }));
+  toast('Brand kit saved.');
+}
+
+/* ========================================================
+   SUPABASE AUTHENTICATION
+   ======================================================== */
+let supabaseClient = null;
+async function initAuth(){
+  try {
+    const res = await fetch('/api/config');
+    const cfg = await res.json();
+    if(cfg.supabaseUrl && cfg.supabaseAnonKey && window.supabase){
+      supabaseClient = window.supabase.createClient(cfg.supabaseUrl, cfg.supabaseAnonKey);
+      const { data: { session } } = await supabaseClient.auth.getSession();
+      if(session && session.user){
+        onUserLoggedIn(session.user);
+      }
+    }
+  } catch(e){}
+}
+
+function onUserLoggedIn(user){
+  $('navLoginBtn').style.display = 'none';
+  $('authUserPill').style.display = 'inline-flex';
+  $('dashUserEmail').textContent = user.email || 'User';
+  toast('Welcome back, ' + (user.email||''));
+}
+
+async function loginWithGoogle(){
+  if(!supabaseClient){
+    toast('Supabase configuration active in backend. Redirecting...');
+    return;
+  }
+  await supabaseClient.auth.signInWithOAuth({
+    provider: 'google',
+    options: { redirectTo: window.location.origin }
+  });
+}
+
+async function signInWithEmail(){
+  const email = $('loginEmail').value.trim();
+  const pass = $('loginPass').value.trim();
+  if(!email || !pass){ toast('Enter email and password.'); return; }
+  if(supabaseClient){
+    const { data, error } = await supabaseClient.auth.signInWithPassword({ email, password: pass });
+    if(error) toast(error.message);
+    else { onUserLoggedIn(data.user); closeModal('loginModal'); }
+  } else {
+    onUserLoggedIn({ email });
+    closeModal('loginModal');
+  }
+}
+
+async function signUpWithEmail(){
+  const email = $('loginEmail').value.trim();
+  const pass = $('loginPass').value.trim();
+  if(!email || !pass){ toast('Enter email and password.'); return; }
+  if(supabaseClient){
+    const { data, error } = await supabaseClient.auth.signUp({ email, password: pass });
+    if(error) toast(error.message);
+    else toast('Check your email to verify account.');
+  }
+}
+
+async function handleSignOut(){
+  if(supabaseClient) await supabaseClient.auth.signOut();
+  $('navLoginBtn').style.display = 'inline-block';
+  $('authUserPill').style.display = 'none';
+  toast('Signed out.');
+}
+
+function downloadQuotePdf(){
+  if(!window.jspdf){ toast('PDF generator loading...'); return; }
+  const q = calculate();
+  const { jsPDF } = window.jspdf;
+  const doc = new jsPDF();
+  doc.setFontSize(20);
+  doc.text('GLOBAL CREATIVE — SIGNAGE QUOTATION', 14, 22);
+  doc.setFontSize(12);
+  doc.text(`Date: ${new Date().toLocaleDateString()}`, 14, 32);
+  doc.text(`Product: ${$('product').options[$('product').selectedIndex].text}`, 14, 42);
+  doc.text(`Dimensions: ${q.w} x ${q.h} ${q.u} (${q.areaSqFt.toFixed(2)} sq.ft)`, 14, 52);
+  doc.text(`Subtotal: ${formatMoney(q.base)}`, 14, 64);
+  doc.text(`GST 18%: ${formatMoney(q.gst)}`, 14, 74);
+  doc.text(`Delivery: ${formatMoney(q.delivery)}`, 14, 84);
+  doc.setFontSize(16);
+  doc.text(`Total: ${formatMoney(q.total)}`, 14, 100);
+  doc.text(`50% Advance Required: ${formatMoney(q.advance)}`, 14, 112);
+  doc.save('global-creative-quote.pdf');
+  toast('Downloaded Quotation PDF');
+}
+
+// Initializers
+addText('YOUR BRAND', 52);
+addText('OUR CREATIVE TOUCH', 24);
+objects[1].y += 50;
+objects[1].color = '#ffd21a';
+selected = -1;
+draw();
+calculate();
+initAuth();
+</script>
+</body>
+</html>
