@@ -283,4 +283,27 @@
             dragBox.style.width = (startW + (currentX - startX)) + 'px';
             dragBox.style.height = (startH + (currentY - startY)) + 'px';
         }
-        function stopResize() { isResizing = false; document.removeEventListener('mousemove', resize); document.removeEve
+        function stopResize() { isResizing = false; document.removeEventListener('mousemove', resize); document.removeEventListener('mousemove', resize); document.removeEventListener('touchmove', resize); }
+
+        // Box Drag
+        dragBox.addEventListener('mousedown', initDrag);
+        dragBox.addEventListener('touchstart', initDrag, {passive: false});
+
+        function initDrag(e) {
+            if(e.target === bindiNode) return;
+            e.preventDefault(); isDragging = true;
+            startX = e.clientX || e.touches[0].clientX; startY = e.clientY || e.touches[0].clientY;
+            startLeft = dragBox.offsetLeft; startTop = dragBox.offsetTop;
+            document.addEventListener('mousemove', drag); document.addEventListener('touchmove', drag, {passive: false});
+            document.addEventListener('mouseup', stopDrag); document.addEventListener('touchend', stopDrag);
+        }
+        function drag(e) {
+            if(!isDragging) return;
+            const currentX = e.clientX || e.touches[0].clientX; const currentY = e.clientY || e.touches[0].clientY;
+            dragBox.style.left = (startLeft + (currentX - startX)) + 'px';
+            dragBox.style.top = (startTop + (currentY - startY)) + 'px';
+        }
+        function stopDrag() { isDragging = false; document.removeEventListener('mousemove', drag); document.removeEventListener('touchmove', drag); }
+    </script>
+</body>
+</html>
