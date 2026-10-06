@@ -278,9 +278,13 @@ footer{background:#06111c;color:#c8d7e3;padding:45px 0 22px}
   </nav>
 
   <div class="navBtns">
-    <a href="/api/download-project" class="btn primary small" download="designhub-global-production.zip" title="Download Complete Production ZIP">
-      ⬇ ZIP
-    </a>
+      <button class="google-login-btn" onclick="openModal('loginModal')" style="background-color: #252836; color: #ffd21a; border: 1px solid #ffd21a; padding: 6px 12px; border-radius: 6px; display: inline-flex; align-items: center; gap: 6px; cursor: pointer; font-weight: bold; font-size: 13px;">
+     <svg style="width:16px; height:16px; fill:#ffd21a;" viewBox="0 0 24 24">
+            <path d="M12.24 10.285V14h6.806c-.275 1.765-2.056 5.174-6.806 5.174-4.095 0-7.439-3.389-7.439-7.574s3.344-7.574 7.439-7.574c2.33 0 3.891.989 4.785 1.849l3.254-3.138C18.189 1.186 15.479 0 12.24 0 5.48 0 0 5.48 0 12.24s5.48 12.24 12.24 12.24c7.058 0 11.722-4.96 11.722-11.967 0-.808-.087-1.424-.192-2.028H12.24z"/>
+        </svg>
+        Login
+        </button>
+   
     <div id="authUserPill" style="display:none;align-items:center;gap:6px">
       <button class="btn darkBtn small" onclick="openModal('dashboardModal')">👤 Dashboard</button>
       <button class="btn outline small" onclick="handleSignOut()">Logout</button>
