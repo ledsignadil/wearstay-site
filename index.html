@@ -1,0 +1,605 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#07111f">
+<meta name="description" content="DESIGNHUB GLOBAL — Create, edit, design, convert, download and order professional signage online.">
+<link rel="canonical" href="https://www.wearstay.com/">
+<title>DESIGNHUB GLOBAL — Creative Design, Printing & Signage</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+<style>
+:root{
+  --bg:#07111f;--bg2:#0b1830;--panel:#101d31;--panel2:#14243b;--line:#2b4260;
+  --text:#fff;--muted:#aabbd0;--yellow:#ffd21a;--cyan:#22d3ee;--green:#25d78a;
+  --pink:#ff4fd8;--blue:#3187ff;--shadow:0 24px 70px rgba(0,0,0,.34);--r:20px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;color:var(--text);font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+background:linear-gradient(180deg,#06101d 0%,#09182a 42%,#f4f7fb 42.1%,#f4f7fb 100%)}
+a{color:inherit;text-decoration:none}button,input,select,textarea{font:inherit}button{cursor:pointer}
+.container{width:min(1220px,calc(100% - 28px));margin:auto}
+.nav{position:sticky;top:0;z-index:80;background:rgba(5,14,26,.93);backdrop-filter:blur(18px);border-bottom:1px solid #28405e}
+.navin{min-height:72px;display:flex;align-items:center;gap:20px}
+.brand{font-weight:1000;font-size:22px;letter-spacing:.4px;line-height:.9;display:flex;align-items:center;gap:10px}
+.brandMark{width:42px;height:42px;border-radius:50%;display:grid;place-items:center;background:conic-gradient(from 220deg,var(--pink),var(--blue),var(--cyan),var(--yellow),var(--pink));color:#07111f;font-weight:1000;font-size:22px;box-shadow:0 8px 24px rgba(34,211,238,.2)}
+.brandText span{color:var(--yellow)}.tag{font-size:9px;color:#91a5bd;display:block;font-weight:700;margin-top:4px}
+.navlinks{display:flex;gap:4px;margin-left:auto;flex-wrap:wrap}.navlinks a{padding:10px 12px;color:#e7eef8;font-size:13px;border-radius:10px}.navlinks a:hover{background:#172941}
+.btn{border:0;border-radius:13px;padding:13px 18px;font-weight:900;transition:.2s;display:inline-flex;align-items:center;justify-content:center;gap:7px}
+.btn:hover{transform:translateY(-2px)}.primary{background:linear-gradient(135deg,#ffe34b,#ffc400);color:#121820;box-shadow:0 9px 25px rgba(255,196,0,.18)}
+.blue{background:linear-gradient(135deg,#39a0ff,#2168ff);color:#fff}.ghost{background:#14253b;color:#fff;border:1px solid #35506f}.green{background:#25d78a;color:#042017}.small{padding:9px 13px;font-size:13px}
+
+.hero{padding:45px 0 34px;background:radial-gradient(circle at 80% 15%,rgba(255,210,26,.14),transparent 28%),radial-gradient(circle at 20% 10%,rgba(34,211,238,.11),transparent 25%);overflow:hidden}
+.heroGrid{display:grid;grid-template-columns:1.03fr .97fr;gap:28px;align-items:center}
+.eyebrow{color:var(--yellow);font-weight:1000;text-transform:uppercase;letter-spacing:1.8px;font-size:11px}
+h1{font-size:clamp(40px,6vw,72px);line-height:.96;margin:12px 0 18px;letter-spacing:-2.7px;font-weight:1000}
+h1 span{color:var(--yellow)}.lead{font-size:17px;line-height:1.65;color:#c8d4e4;max-width:700px}
+.heroBtns{display:flex;gap:10px;flex-wrap:wrap;margin-top:24px}
+.heroPhoto{min-height:430px;border-radius:28px;border:1px solid #3a5575;background:
+linear-gradient(90deg,rgba(4,10,18,.08),rgba(4,10,18,.48)),
+url('https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&w=1400&q=85') center/cover;box-shadow:var(--shadow);position:relative;overflow:hidden}
+.heroPhoto:after{content:"";position:absolute;inset:auto 0 0;height:45%;background:linear-gradient(transparent,rgba(0,0,0,.78))}
+.heroBadge{position:absolute;left:18px;bottom:18px;z-index:2;background:rgba(4,11,20,.82);backdrop-filter:blur(12px);border:1px solid #46617f;border-radius:16px;padding:15px 17px;max-width:85%}
+.heroBadge b{font-size:20px}.heroBadge span{display:block;color:#c3d0df;font-size:12px;margin-top:4px}
+.metrics{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:24px}.metric{background:#0c192b;border:1px solid #2c4563;border-radius:15px;padding:14px}.metric b{display:block;font-size:17px}.metric span{font-size:10px;color:#9fb0c5}
+
+.light{color:#0a1422;background:#f4f7fb}.section{padding:46px 0}.sectionTitle{display:flex;justify-content:space-between;align-items:end;gap:20px;margin-bottom:20px}.sectionTitle h2{font-size:31px;margin:0;font-weight:1000;letter-spacing:-1px}.sectionTitle p{margin:5px 0 0;color:#66758a}
+.cards{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}.card{background:#fff;border:1px solid #dfe7f0;border-radius:var(--r);padding:18px;box-shadow:0 10px 30px rgba(25,45,70,.07)}.card h3{margin:8px 0;font-weight:1000}.card p{color:#637187;font-size:13px;line-height:1.55}.icon{font-size:27px}
+.photoCard{padding:0;overflow:hidden}.photoCard .photo{height:155px;background-size:cover;background-position:center}.photoCard .cardBody{padding:16px}
+.service1{background-image:url('https://images.unsplash.com/photo-1513506003901-1e6a229e2d15?auto=format&fit=crop&w=900&q=85')}
+.service2{background-image:url('https://images.unsplash.com/photo-1561070791-2526d30994b5?auto=format&fit=crop&w=900&q=85')}
+.service3{background-image:url('https://images.unsplash.com/photo-1581092160562-40aa08e78837?auto=format&fit=crop&w=900&q=85')}
+.service4{background-image:url('https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=900&q=85')}
+.service5{background-image:url('https://images.unsplash.com/photo-1586953208448-b95a79798f07?auto=format&fit=crop&w=900&q=85')}
+.service6{background-image:url('https://images.unsplash.com/photo-1559028012-481c04fa702d?auto=format&fit=crop&w=900&q=85')}
+.service7{background-image:url('https://images.unsplash.com/photo-1561070791-2526d30994b5?auto=format&fit=crop&w=900&q=85')}
+.service8{background-image:url('https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&w=900&q=85')}
+
+.featureBand{background:#081426;color:#fff;border-radius:28px;padding:28px;box-shadow:var(--shadow);display:grid;grid-template-columns:1fr 1fr;gap:22px;align-items:center}
+.featurePhoto{min-height:310px;border-radius:22px;background:url('https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=1200&q=85') center/cover}
+.checklist{display:grid;grid-template-columns:1fr 1fr;gap:9px}.check{padding:10px;background:#0d1b2d;border:1px solid #29415e;border-radius:10px;font-size:12px}.check:before{content:"✓";color:#54e5a0;font-weight:1000;margin-right:7px}
+
+.wizard{background:#0d1929;border:1px solid #29415e;border-radius:25px;overflow:hidden;box-shadow:var(--shadow)}.steps{display:flex;overflow:auto;border-bottom:1px solid #263d58;background:#101f33}.step{min-width:105px;padding:13px 10px;color:#91a5bd;font-size:11px;text-align:center;border-right:1px solid #21364f}.step.active{color:var(--yellow);font-weight:1000}.step i{display:block;margin:auto auto 5px;width:24px;height:24px;border-radius:50%;border:1px solid #526b87;line-height:22px;font-style:normal}.step.active i{border-color:var(--yellow);background:var(--yellow);color:#111}
+.wbody{padding:20px}.panel{display:none}.panel.active{display:block}.panelGrid{display:grid;grid-template-columns:1fr 1fr;gap:18px}.field{margin-bottom:13px}.field label{display:block;font-size:12px;font-weight:900;color:#dce6f2;margin-bottom:7px}.field small{display:block;color:#8fa2ba;font-size:11px;margin-top:5px}
+input,select,textarea{width:100%;background:#081321;border:1px solid #304966;color:#fff;border-radius:11px;padding:12px;outline:none}input:focus,select:focus,textarea:focus{border-color:#45a0ff}textarea{min-height:95px;resize:vertical}
+.typeGrid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}.type{border:1px solid #2c4662;background:#102138;color:#fff;border-radius:14px;padding:17px 8px;text-align:center;min-height:100px}.type strong{display:block;margin-top:8px;font-size:12px}.type.selected{border-color:var(--yellow);box-shadow:0 0 0 1px var(--yellow) inset;background:#1b2734}
+.optionGrid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.option{border:1px solid #2c4662;background:#102138;color:#fff;border-radius:14px;padding:15px;text-align:left}.option.selected{border-color:var(--blue);background:#102d4e}.option b{display:block}.option span{font-size:12px;color:#9aacc0}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:10px}.three{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px}.upload{border:1px dashed #48617e;border-radius:14px;padding:20px;text-align:center;background:#091523}.upload input{border:0;padding:8px}.voice{display:flex;gap:10px;align-items:center}.voice textarea{min-height:52px}
+.quote{position:sticky;top:88px;background:#112137;border:1px solid #38526e;border-radius:18px;padding:18px}.quote h3{margin-top:0}.qrow{display:flex;justify-content:space-between;gap:10px;padding:7px 0;border-bottom:1px solid #263b54;font-size:13px}.qrow span:first-child{color:#9aacc0}.qtotal{font-size:21px;font-weight:1000;padding-top:12px}.advance{margin-top:12px;padding:13px;border-radius:12px;background:#122b22;border:1px solid #317455}.advance b{display:block;color:#70e6a9}.balance{color:#ffcf55;font-weight:900}
+.wizardGrid{display:grid;grid-template-columns:minmax(0,1fr) 310px;gap:18px}.actions{display:flex;justify-content:space-between;gap:10px;margin-top:20px;padding-top:15px;border-top:1px solid #253b54}
+.preview{border:1px solid #304966;border-radius:15px;background:#060b12;min-height:190px;display:flex;align-items:center;justify-content:center;overflow:hidden}.signMock{width:78%;min-height:90px;border-radius:8px;background:linear-gradient(145deg,#111,#282828);border:5px solid #20252c;box-shadow:0 0 35px rgba(255,208,26,.2);display:flex;align-items:center;justify-content:center;text-align:center;padding:15px}.signMock b{font-size:clamp(18px,4vw,30px);color:#ffd75a;text-shadow:0 0 14px #ffb000}.signMock small{display:block;color:#fff;margin-top:5px}.notice{padding:12px;border-radius:11px;background:#152338;color:#b9c8da;font-size:12px;border:1px solid #2b425d;line-height:1.5}
+.editorStage{position:relative;background:#05080e;border:1px solid #293f59;border-radius:16px;overflow:hidden;min-height:300px;display:flex;align-items:center;justify-content:center;background-image:radial-gradient(circle at 20% 20%,rgba(35,135,255,.08),transparent 30%),radial-gradient(circle at 80% 70%,rgba(245,180,0,.06),transparent 28%)}
+#designCanvas{max-width:100%;height:auto;display:block;touch-action:none}.stageHint{position:absolute;pointer-events:none;color:#65748b;font-size:13px;background:rgba(8,11,17,.7);padding:8px 12px;border-radius:9px}.editorControls{margin-top:12px}.editorControls .three{margin-top:4px}.drop-active{border-color:#2387ff!important;box-shadow:0 0 0 2px rgba(35,135,255,.2)}
+
+.priceGrid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}.priceCard{background:#fff;border:1px solid #dce5ef;border-radius:20px;padding:22px;box-shadow:0 10px 28px rgba(25,45,70,.06)}.priceCard strong{font-size:28px}.priceCard h3{margin:0 0 7px}.priceCard p{color:#66758a;font-size:13px;line-height:1.55}
+footer{background:#06101d;color:#9fb0c4;border-top:1px solid #20364f;padding:35px 0}.footerGrid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:25px}.footerGrid h4{color:#fff;margin:0 0 10px}.footerGrid a{display:block;margin:7px 0;font-size:13px}
+.modal{position:fixed;inset:0;background:rgba(0,0,0,.7);backdrop-filter:blur(7px);display:none;align-items:center;justify-content:center;padding:18px;z-index:100}.modal.show{display:flex}.modalBox{width:min(650px,100%);max-height:90vh;overflow:auto;background:#111925;border:1px solid #2b425d;border-radius:20px;padding:22px}.orderId{font-size:25px;color:var(--yellow);font-weight:1000}.success{text-align:center}
+.floating{position:fixed;right:18px;bottom:18px;z-index:70;width:54px;height:54px;border-radius:50%;display:grid;place-items:center;background:#25d78a;color:#042017;font-size:24px;font-weight:1000;box-shadow:0 12px 28px rgba(0,0,0,.3)}
+
+@media(max-width:900px){
+  body{background:linear-gradient(180deg,#06101d 0%,#09182a 34%,#f4f7fb 34.1%,#f4f7fb 100%)}
+  .heroGrid,.wizardGrid,.featureBand{grid-template-columns:1fr}.quote{position:static}.cards{grid-template-columns:repeat(2,1fr)}.priceGrid{grid-template-columns:repeat(2,1fr)}.footerGrid{grid-template-columns:1fr 1fr}.navlinks{display:none}.heroPhoto{min-height:340px}
+}
+@media(max-width:640px){
+  .container{width:min(100% - 18px,1220px)}.hero{padding:34px 0 25px}h1{letter-spacing:-1.5px}.lead{font-size:15px}.cards,.typeGrid,.optionGrid,.panelGrid,.two,.three,.priceGrid{grid-template-columns:1fr}.metrics{grid-template-columns:1fr 1fr}.metric:last-child{grid-column:1/-1}.steps{margin:0 -20px}.wbody{padding:15px}.actions{position:sticky;bottom:0;background:#0d1929;margin:15px -15px -15px;padding:12px;z-index:5}.btn{width:100%}.actions .btn{width:auto;flex:1}.heroBtns .btn{width:auto}.section{padding:30px 0}.heroPhoto{min-height:300px}.featurePhoto{min-height:240px}.sectionTitle{align-items:flex-start;flex-direction:column}
+}
+</style>
+</head>
+
+<body>
+<header class="nav">
+  <div class="container navin">
+    <a class="brand" href="#home">
+      <span class="brandMark">G</span>
+      <span class="brandText">GLOBAL <span>CREATIVE</span><small class="tag">Design • Print • Signage • More</small></span>
+    </a>
+    <nav class="navlinks">
+      <a href="#home">Home</a><a href="#services">Services</a><a href="#business">Factory & About</a><a href="#editor">Design Studio</a><a href="#signage">Order Now</a><a href="#pricing">Pricing</a><a href="#about">About</a><a href="#contact">Contact</a>
+    </nav>
+    <a class="btn primary small" href="#signage">Get Free Quote</a>
+  </div>
+</header>
+
+<main>
+<section id="home" class="hero">
+  <div class="container heroGrid">
+    <div>
+      <div class="eyebrow">TURN YOUR IDEAS INTO REALITY</div>
+      <h1>Creative Designs<br><span>That Make an Impact</span></h1>
+      <p class="lead"><b>Signage</b> &nbsp;|&nbsp; <b>Printing</b> &nbsp;|&nbsp; <b>Branding</b> &nbsp;|&nbsp; <b>3D Letters</b> &nbsp;|&nbsp; <b>LED Boards</b> &nbsp;|&nbsp; <b>And More...</b><br>Global Creative is your one-stop solution for design, printing and signage needs. Create, customize and order from phone, tablet or computer.</p>
+      <div class="heroBtns"><a class="btn primary" href="#signage">Get Free Quote →</a><a class="btn ghost" href="#services">Explore Services</a></div>
+      <div class="metrics">
+        <div class="metric"><b>Premium Quality</b><span>Materials & finish options</span></div>
+        <div class="metric"><b>Fast Delivery</b><span>Across India / project based</span></div>
+        <div class="metric"><b>Expert Support</b><span>Design + production guidance</span></div>
+      </div>
+    </div>
+    <div class="heroPhoto">
+      <div class="heroBadge"><b>YOUR BRAND. OUR CREATIVE TOUCH.</b><span>Professional signage • printing • branding • custom design</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="services" class="section light">
+  <div class="container">
+    <div class="sectionTitle"><div><h2>Our Services</h2><p>Complete Design, Printing & Signage Solutions</p></div></div>
+    <div class="cards">
+      <article class="card photoCard"><div class="photo service1"></div><div class="cardBody"><h3>Sign Board</h3><p>Indoor & outdoor custom signage.</p></div></article>
+      <article class="card photoCard"><div class="photo service2"></div><div class="cardBody"><h3>3D Letters</h3><p>Acrylic / metal / LED illuminated letters.</p></div></article>
+      <article class="card photoCard"><div class="photo service3"></div><div class="cardBody"><h3>LED Advertising Board</h3><p>Bright LED advertising, glow and backlit solutions.</p></div></article>
+      <article class="card photoCard"><div class="photo service4"></div><div class="cardBody"><h3>Name Plate</h3><p>Acrylic, steel, mirror and custom name plates.</p></div></article>
+      <article class="card photoCard"><div class="photo service5"></div><div class="cardBody"><h3>Printing</h3><p>Banners, stickers, flex and more.</p></div></article>
+      <article class="card photoCard"><div class="photo service6"></div><div class="cardBody"><h3>Branding</h3><p>Logo & identity design solutions.</p></div></article>
+      <article class="card photoCard"><div class="photo service7"></div><div class="cardBody"><h3>Neon Sign</h3><p>LED neon-look signs, logos, words and custom shapes.</p></div></article>
+      <article class="card photoCard"><div class="photo service8"></div><div class="cardBody"><h3>Order Support</h3><p>Easy quote, order and payment workflow.</p></div></article>
+    </div>
+  </div>
+</section>
+
+<section id="about" class="section light">
+  <div class="container">
+    <div class="featureBand">
+      <div>
+        <div class="eyebrow">SIMPLE FOR BEGINNERS. POWERFUL FOR PROFESSIONALS.</div>
+        <h2 style="font-size:34px;margin:10px 0">Design Studio + Easy Ordering</h2>
+        <p style="color:#c4d0df;line-height:1.65">Upload your artwork, add text, speak a design instruction, edit it manually, preview the result and then send the signage requirement for quotation.</p>
+        <div class="checklist">
+          <div class="check">Drag & Drop Editor</div><div class="check">Text Customization</div>
+          <div class="check">AI / Voice Input</div><div class="check">PNG / JPG / PDF Export</div>
+          <div class="check">Mobile + Desktop</div><div class="check">Custom Size & Colour</div>
+        </div>
+        <div class="heroBtns"><a class="btn primary" href="#editor">Start Designing →</a><a class="btn ghost" href="#signage">Order Now →</a></div>
+      </div>
+      <div class="featurePhoto"></div>
+    </div>
+  </div>
+</section>
+
+<section id="editor" class="section" style="background:#f4f7fb;color:#0a1422">
+  <div class="container">
+    <div class="sectionTitle">
+      <div><h2>All-in-One AI Creative Studio</h2><p>Edit images, speak commands, drag & drop files, and download your work.</p></div>
+      <div class="notice">AI + Manual • Mobile + Desktop</div>
+    </div>
+
+    <div class="wizard" id="creativeStudio">
+      <div class="wbody">
+        <div class="panelGrid">
+          <div>
+            <div class="card" style="background:#101d31;color:#fff;border-color:#29415e">
+              <h3>1. Add your file</h3>
+              <div class="upload" id="dropZone">
+                <div style="font-size:34px">↥</div><b>Drag & Drop</b><p>or choose an image/design file</p>
+                <input id="editorFile" type="file" accept="image/*,.svg,.pdf,.cdr,.ai,.eps">
+                <small>JPG • PNG • WEBP • SVG • PDF • CDR/AI/EPS upload collection.</small>
+              </div>
+              <div class="heroBtns">
+                <button class="btn ghost small" onclick="addTextElement()">＋ Add Text</button>
+                <button class="btn ghost small" onclick="removeSelected()">Delete Selected</button>
+                <button class="btn ghost small" onclick="clearEditor()">Clear</button>
+              </div>
+            </div>
+
+            <div class="card" style="margin-top:12px;background:#101d31;color:#fff;border-color:#29415e">
+              <h3>2. Speak to Design</h3>
+              <div class="two">
+                <div class="field"><label>Voice Language</label>
+                  <select id="voiceLang"><option value="auto">Auto Detect / Device Language</option><option value="en-US">English</option><option value="hi-IN">Hindi</option><option value="ur-PK">Urdu</option><option value="bn-IN">Bengali</option><option value="ar-SA">Arabic</option><option value="es-ES">Spanish</option><option value="fr-FR">French</option><option value="de-DE">German</option><option value="pt-BR">Portuguese</option><option value="tr-TR">Turkish</option><option value="id-ID">Indonesian</option><option value="ms-MY">Malay</option></select>
+                </div>
+                <div class="field"><label>Command</label><input id="aiCommand" placeholder="e.g. make background blue and add my logo"></div>
+              </div>
+              <div class="heroBtns"><button class="btn blue" onclick="startStudioVoice()">🎙 Speak Command</button><button class="btn primary" onclick="applyAICommand()">✦ Apply Command</button></div>
+              <div class="notice" style="margin-top:10px">Browser voice provides the local input layer. Advanced multilingual AI actions require the connected API/backend.</div>
+            </div>
+          </div>
+
+          <div>
+            <div class="card" style="background:#101d31;color:#fff;border-color:#29415e">
+              <h3>Live Editor</h3>
+              <div class="editorStage" id="editorStage"><canvas id="designCanvas" width="900" height="550"></canvas><div class="stageHint" id="stageHint">Drop an image here or add text</div></div>
+              <div class="editorControls">
+                <div class="two"><div class="field"><label>Text</label><input id="editText" placeholder="Select text or add new"></div><div class="field"><label>Text Colour</label><input id="editColor" type="color" value="#ffffff"></div></div>
+                <div class="three"><button class="btn ghost small" onclick="applyTextEdit()">Apply Text</button><button class="btn ghost small" onclick="removeBackground()">Remove Background</button><button class="btn ghost small" onclick="addBackground()">Add Background</button></div>
+              </div>
+            </div>
+
+            <div class="card" style="margin-top:12px;background:#101d31;color:#fff;border-color:#29415e">
+              <h3>Download / Export</h3>
+              <div class="optionGrid">
+                <button class="option" onclick="exportCanvas('png')"><b>PNG</b><span>Download image</span></button>
+                <button class="option" onclick="exportCanvas('jpg')"><b>JPG</b><span>Download image</span></button>
+                <button class="option" onclick="exportCanvas('pdf')"><b>PDF</b><span>Download document</span></button>
+                <button class="option" onclick="exportCanvas('svg')"><b>SVG</b><span>Vector-compatible export</span></button>
+                <button class="option" onclick="openConverter()"><b>Converter</b><span>Convert supported files</span></button>
+                <button class="option" onclick="alert('CDR conversion requires the final backend conversion API. CDR upload can be collected now; conversion is not falsely claimed here.')"><b>CDR</b><span>Backend/API required</span></button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="converter" class="section" style="background:#f4f7fb;color:#0a1422">
+  <div class="container">
+    <div class="sectionTitle"><div><h2>Universal File Converter</h2><p>Upload a file, choose a supported output format, convert and download.</p></div></div>
+    <div class="card">
+      <div class="panelGrid">
+        <div>
+          <div class="upload" id="convertDrop"><div style="font-size:32px">⇄</div><b>Drag & Drop File</b><p>or choose a file</p><input id="convertFile" type="file" accept="image/*,.svg,.pdf,.cdr,.ai,.eps,.webp"></div>
+          <div class="field" style="margin-top:12px"><label style="color:#17243a">Output Format</label><select id="convertFormat" style="background:#fff;color:#111"><option>JPG</option><option>PNG</option><option>PDF</option><option>SVG</option><option>WEBP</option><option>CDR (API)</option></select></div>
+          <button class="btn primary" onclick="convertFileNow()">Convert & Download</button>
+        </div>
+        <div><h3>Supported workflow</h3><div class="checklist" style="grid-template-columns:1fr 1fr"><div class="check" style="background:#f6f9fc;border:1px solid #dbe4ee">Upload design/image</div><div class="check" style="background:#f6f9fc;border:1px solid #dbe4ee">Choose output</div><div class="check" style="background:#f6f9fc;border:1px solid #dbe4ee">Preview when supported</div><div class="check" style="background:#f6f9fc;border:1px solid #dbe4ee">Download result</div><div class="check" style="background:#f6f9fc;border:1px solid #dbe4ee">Drag & drop</div><div class="check" style="background:#f6f9fc;border:1px solid #dbe4ee">Mobile friendly</div></div><div class="notice" style="margin-top:12px"><b>Important:</b> CDR/AI/EPS true conversion needs the final server-side conversion API.</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="tools" class="section" style="background:#f4f7fb;color:#0a1422">
+  <div class="container">
+    <div class="sectionTitle"><div><h2>File & Design Tools</h2><p>Simple controls for beginners and useful tools for professionals.</p></div></div>
+    <div class="cards">
+      <div class="card"><div class="icon">📐</div><h3>Custom Size</h3><p>mm, cm, inch, ft and m. Enter the dimensions you know.</p></div>
+      <div class="card"><div class="icon">🎨</div><h3>Colour & Font</h3><p>Easy controls for colour, text and basic layout.</p></div>
+      <div class="card"><div class="icon">⇄</div><h3>Converter</h3><p>Convert formats supported by the connected browser/backend.</p></div>
+      <div class="card"><div class="icon">◇</div><h3>3D Preview</h3><p>Visual mockup before sending a signage requirement for quotation.</p></div>
+    </div>
+  </div>
+</section>
+
+
+<section id="business" class="section" style="background:#f4f7fb;color:#0a1422">
+  <div class="container">
+    <div class="sectionTitle"><div><h2>Our Signage & Manufacturing</h2><p>Design • Production • Custom Branding • Delivery</p></div></div>
+    <div class="featureBand">
+      <div>
+        <div class="eyebrow">NEON POWER • PAHARGANJ, DELHI</div>
+        <h2 style="font-size:31px;margin:10px 0">45+ Years of Family Manufacturing Heritage</h2>
+        <p style="color:#c4d0df;line-height:1.65">
+          Family signage and neon/mirror-sign work dates back to <b>1980</b>. The online workflow combines professional computer-file preparation, custom design and factory production.
+          We handle projects from simple name plates to complete indoor/outdoor branding.
+        </p>
+        <div class="checklist">
+          <div class="check">LED Advertising Boards</div>
+          <div class="check">3D Acrylic / Metal Letters</div>
+          <div class="check">LED Neon-Look Signs</div>
+          <div class="check">Glow & Fabric Backlit Boards</div>
+          <div class="check">Acrylic 2mm–25mm</div>
+          <div class="check">Steel / SS / Aluminium / MS</div>
+          <div class="check">Vinyl Print & Cutting</div>
+          <div class="check">UV Paint / Mirror Work</div>
+          <div class="check">Hospital & Indoor Branding</div>
+          <div class="check">Mall / Outdoor Projects</div>
+          <div class="check">Stickers & Custom Printing</div>
+          <div class="check">Pickup / Delivery / Installation</div>
+        </div>
+      </div>
+      <div>
+        <div class="card" style="background:#0d1929;color:#fff;border-color:#29415e">
+          <h3>Quick Contact</h3>
+          <p style="color:#b9c8da">Call for quotation, production discussion or order support.</p>
+          <div class="heroBtns">
+            <a class="btn primary" href="tel:+919354944438">☎ +91 93549 44438</a>
+            <a class="btn green" href="https://wa.me/919354944438?text=Hello%20NEON%20POWER%2C%20I%20need%20a%20signage%20quotation." target="_blank" rel="noopener">WhatsApp</a>
+          </div>
+          <div class="notice" style="margin-top:12px">
+            <b>Warranty:</b> product/specification/price dependent, with options from 2 years up to 50 years where applicable.<br>
+            <b>Payment:</b> 50% advance workflow. GST 18% extra. Delivery/installation as quoted.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="signage" class="section" style="background:#f4f7fb;color:#0a1422">
+  <div class="container">
+    <div class="sectionTitle"><div><h2>Place Your Order</h2><p>Custom Quote • Secure Payment • Fast Delivery</p></div><div class="notice">50% advance • GST 18% extra • Delivery/Installation extra</div></div>
+    <div class="wizard">
+      <div class="steps" id="steps"></div>
+      <div class="wizardGrid">
+        <div class="wbody">
+          <div class="panel active" data-panel="1"><h3>1. What do you want?</h3><p class="notice">Select the closest option. You can explain anything extra later.</p><div class="typeGrid" id="typeGrid"></div>
+<div class="optionGrid" style="margin-top:14px">
+  <button class="option" type="button" onclick="quickProduct('LED Advertising Board')"><b>💡 LED Advertising</b><span>Lighted advertising board</span></button>
+  <button class="option" type="button" onclick="quickProduct('3D Sign / Letters')"><b>🔤 3D Sign / Letters</b><span>Acrylic / metal / LED</span></button>
+  <button class="option" type="button" onclick="quickProduct('Neon Sign')"><b>✨ Neon Sign</b><span>LED neon-look custom sign</span></button>
+  <button class="option" type="button" onclick="quickProduct('Name Plate')"><b>🏷 Name Plate</b><span>Acrylic / steel / mirror</span></button>
+  <button class="option" type="button" onclick="quickProduct('Glow / Backlit Board')"><b>🌟 Backlit Board</b><span>Glow / fabric / acrylic</span></button>
+  <button class="option" type="button" onclick="quickProduct('Printing / Sticker')"><b>🖨 Printing</b><span>Banner / sticker / vinyl</span></button>
+</div></div>
+
+          <div class="panel" data-panel="2"><h3>2. Design</h3><p class="notice">Create online, type it, speak it, or upload your existing work.</p>
+            <div class="optionGrid">
+              <button class="option" type="button" data-method="online"><b>✦ Design Online</b><span>Create/customize here</span></button><button class="option" type="button" data-method="upload"><b>↥ Upload Design</b><span>PDF, image or artwork</span></button><button class="option" type="button" data-method="logo"><b>◎ Logo / Photo</b><span>Upload brand assets</span></button><button class="option" type="button" data-method="reference"><b>▣ Reference</b><span>Sample/inspiration</span></button><button class="option" type="button" data-method="manual"><b>⌨ Type Manually</b><span>Simple text entry</span></button><button class="option" type="button" data-method="voice"><b>🎙 Speak</b><span>Voice command</span></button>
+            </div>
+            <div class="panelGrid" style="margin-top:15px"><div><div class="field"><label>Design Text / Brand Name</label><input id="designText" value="YOUR BRAND" oninput="updateMock()"></div><div class="field"><label>Font</label><select id="font" onchange="updateMock()"><option>Inter</option><option>Montserrat</option><option>Arial</option><option>Georgia</option><option>Impact</option></select></div><div class="field"><label>Colour</label><input id="colour" type="color" value="#ffd04a" oninput="updateMock()"></div></div><div><div class="upload"><b>Upload files</b><p style="color:#9aacc0;font-size:12px">Design / logo / photo / reference</p><input type="file" id="designFiles" multiple accept="image/*,.pdf,.svg,.cdr,.ai,.eps"></div><div class="voice" style="margin-top:12px"><button class="btn blue small" type="button" onclick="startVoice()">🎙 Speak</button><textarea id="voiceText" placeholder="Example: make my logo gold with white letters"></textarea></div></div></div>
+          </div>
+
+          <div class="panel" data-panel="3"><h3>3. Size & Quantity</h3><div class="three"><div class="field"><label>Width</label><input id="sigW" type="number" min="0.01" value="8" oninput="calculate()"></div><div class="field"><label>Height</label><input id="sigH" type="number" min="0.01" value="3" oninput="calculate()"></div><div class="field"><label>Unit</label><select id="sigUnit" onchange="calculate()"><option value="ft">ft</option><option value="in">inch</option><option value="cm">cm</option><option value="mm">mm</option><option value="m">m</option></select></div></div><div class="field"><label>Quantity</label><input id="qty" type="number" min="1" value="1" oninput="calculate()"></div><div class="notice">Enter your size in any supported unit. The calculator converts it internally.</div></div>
+
+          <div class="panel" data-panel="4"><h3>4. Material & Quality</h3><div class="optionGrid" id="materialGrid"></div><div class="field" style="margin-top:15px"><label>Finish / Colour / Thickness / Special requirement</label><textarea id="special" placeholder="Example: black finish, warm white LED, 10 mm acrylic..."></textarea></div></div>
+
+          <div class="panel" data-panel="5"><h3>5. Colour & Customization</h3><div class="two"><div class="field"><label>Colour</label><input id="finishColour" placeholder="Gold / White / Black / RGB / custom"></div><div class="field"><label>Finish</label><select id="finish"><option>Glossy</option><option>Matte</option><option>Brushed</option><option>Mirror</option><option>Custom</option></select></div></div><div class="field"><label>Additional design instructions</label><textarea id="designNotes" placeholder="Tell us exactly what you want. You can write in your own language; final production specification will be confirmed in the quotation."></textarea></div></div>
+
+          <div class="panel" data-panel="6"><h3>6. Warranty / Quality</h3><p class="notice">Higher selected quality/warranty can increase the estimated price. Final warranty depends on product, material, specification, workmanship and final quotation.</p><div class="optionGrid" id="warrantyGrid"></div></div>
+
+          <div class="panel" data-panel="7"><h3>7. Delivery & Installation</h3><div class="two"><div class="card" style="background:#101d31;color:#fff;border-color:#29415e"><h3>Delivery</h3><div class="two"><button class="btn ghost" type="button" onclick="setDelivery(false)">No / Pickup</button><button class="btn blue" type="button" onclick="setDelivery(true)">Yes</button></div><div class="field" style="margin-top:10px"><label>Delivery address</label><textarea id="deliveryAddress" placeholder="Full delivery address"></textarea></div></div><div class="card" style="background:#101d31;color:#fff;border-color:#29415e"><h3>Installation</h3><div class="two"><button class="btn ghost" type="button" onclick="setInstall(false)">No</button><button class="btn blue" type="button" onclick="setInstall(true)">Yes</button></div><div class="field" style="margin-top:10px"><label>Installation/site address</label><textarea id="installAddress" placeholder="Site address"></textarea></div></div></div></div>
+
+          <div class="panel" data-panel="8"><h3>8. Contact Details</h3><div class="two"><div class="field"><label>Full Name *</label><input id="name" required></div><div class="field"><label>Business / Company</label><input id="company"></div></div><div class="three"><div class="field"><label>Country *</label><input id="country" value="India"></div><div class="field"><label>Phone / WhatsApp *</label><input id="phone" type="tel" placeholder="+91..."></div><div class="field"><label>Email *</label><input id="email" type="email"></div></div><div class="notice">Your details are used to prepare the quotation/order request. Automatic database storage and payment verification require backend/API integration.</div></div>
+
+          <div class="panel" data-panel="9"><h3>9. Review Quote</h3><div class="checklist" id="checklist"></div><div class="notice" style="margin-top:15px">Estimated quotation. Delivery/installation charges can vary by location and site conditions. GST is calculated at 18%. Final quotation is confirmed before production.</div><div class="actions"><button class="btn ghost" type="button" onclick="go(8)">Edit Details</button><button class="btn primary" type="button" onclick="placeOrder()">CONFIRM ORDER & PAY 50% ADVANCE</button></div></div>
+
+          <div class="panel" data-panel="10"><div class="success"><div style="font-size:55px">✓</div><h2>Order Request Created</h2><p>Your order summary is ready.</p><div class="orderId" id="orderId">DH-SIG-000000</div><p class="notice">For a real production order, payment verification, database storage and automatic notifications must be connected through the final backend/API integration.</p><div class="heroBtns" style="justify-content:center"><a class="btn primary" target="_blank" href="https://www.paypal.com/ncp/payment/GN99BSA7E4L3Y">Pay 50% via PayPal</a><a class="btn ghost" href="tel:+919354944438">Call NEON POWER</a></div></div></div>
+
+          <div class="actions" id="wizardActions"><button class="btn ghost" type="button" id="prevBtn" onclick="prev()">Back</button><button class="btn primary" type="button" id="nextBtn" onclick="next()">Next</button></div>
+        </div>
+
+        <aside class="quote">
+          <h3>Live Quote</h3><div class="preview"><div class="signMock"><div><b id="mockText">YOUR BRAND</b><small>DESIGN • PRINT • SIGNAGE</small></div></div></div>
+          <div class="qrow"><span>Product</span><b id="qProduct">Sign Board</b></div><div class="qrow"><span>Size</span><b id="qSize">8 × 3 ft</b></div><div class="qrow"><span>Material</span><b id="qMaterial">Standard</b></div><div class="qrow"><span>Warranty</span><b id="qWarranty">2 Years</b></div><div class="qrow"><span>Manufacturing</span><b id="qBase">₹0</b></div><div class="qrow"><span>Delivery</span><b id="qDelivery">₹0</b></div><div class="qrow"><span>Installation</span><b id="qInstall">₹0</b></div><div class="qrow"><span>GST (18%)</span><b id="qGst">₹0</b></div><div class="qrow qtotal"><span>Total</span><b id="qTotal">₹0</b></div><div class="advance"><b id="qAdvance">50% Advance: ₹0</b><span class="balance" id="qBalance">Balance: ₹0</span></div>
+        </aside>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="pricing" class="section light">
+  <div class="container">
+    <div class="sectionTitle"><div><h2>Simple & Transparent</h2><p>Design tools and signage quotation in one place.</p></div></div>
+    <div class="priceGrid">
+      <div class="priceCard"><h3>Free Design</h3><strong>₹0</strong><p>Start creating and testing the workflow. Download/save limits can be enforced after Google login is connected.</p></div>
+      <div class="priceCard"><h3>DESIGNHUB</h3><strong>$4.99<span style="font-size:14px">/month</span></strong><p>Planned subscription. Payment entitlement must be verified by backend/webhook before treated as active.</p></div>
+      <div class="priceCard"><h3>Signage</h3><strong>Custom</strong><p>Quote based on product, size, material, quality, warranty, delivery and installation.</p></div>
+      <div class="priceCard"><h3>Advance</h3><strong>50%</strong><p>Production workflow can start after confirmed design/specification and advance payment.</p></div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer id="contact">
+  <div class="container footerGrid">
+    <div><h4>GLOBAL CREATIVE / DESIGNHUB GLOBAL</h4><p>Create • Edit • Design • Convert • Download.</p><p>Professional creative and signage workflow for phone and desktop.</p></div>
+    <div><h4>NEON POWER</h4><a href="#signage">Signage Orders</a><a href="tel:+919354944438">Call: +91 93549 44438</a><a href="https://www.wearstay.com/" target="_blank">wearstay.com</a></div>
+    <div><h4>Payment & Links</h4>
+<a href="https://www.paypal.com/ncp/payment/GN99BSA7E4L3Y" target="_blank" rel="noopener">PayPal — 50% Advance</a>
+<a href="https://wa.me/919354944438?text=Hello%20NEON%20POWER%2C%20I%20need%20a%20quotation." target="_blank" rel="noopener">WhatsApp Quote</a>
+<a href="https://www.google.com/search?q=NEON+POWER+Paharganj+Delhi" target="_blank" rel="noopener">Google Search / Maps</a>
+<span style="display:block;font-size:13px;margin-top:7px">UPI: ledsignadil@oksbi</span></div>
+    <div><h4>Quick Links</h4><a href="#services">Services</a><a href="#business">Factory & About</a><a href="#editor">Design Studio</a><a href="#tools">Tools</a><a href="#signage">Order System</a></div>
+  </div>
+</footer>
+
+<a class="floating" href="tel:+919354944438" aria-label="Call">☎</a>
+
+<div class="modal" id="modal"><div class="modalBox"><div id="modalContent"></div><button class="btn ghost" style="width:100%;margin-top:12px" onclick="closeModal()">Close</button></div></div>
+
+<script>
+
+
+
+const products=[
+ {id:"sign",icon:"▤",name:"Sign Board",rate:700,unit:"sqft"},
+ {id:"letters3d",icon:"3D",name:"3D Letters",rate:700,unit:"sqft"},
+ {id:"led",icon:"💡",name:"LED / Glow Sign",rate:700,unit:"sqft"},
+ {id:"backlit",icon:"☼",name:"Backlit",rate:700,unit:"sqft"},
+ {id:"acp",icon:"▣",name:"ACP",rate:700,unit:"sqft"},
+ {id:"nameplate",icon:"A",name:"Name Plate",rate:7,unit:"sqin"},
+ {id:"logo",icon:"A",name:"Logo / Letter",rate:50,unit:"inch"},
+ {id:"custom",icon:"⚙",name:"Custom",rate:700,unit:"sqft"}
+];
+const materials=[
+ {name:"Standard",mult:1,desc:"Budget / standard specification"},
+ {name:"Acrylic",mult:1.15,desc:"Acrylic finish"},
+ {name:"Metal SS",mult:1.3,desc:"Stainless steel"},
+ {name:"Premium",mult:1.55,desc:"Higher specification"}
+];
+const warranties=[1,2,5,10,20,50];
+let state={step:1,product:products[0],material:materials[0],warranty:2,delivery:false,install:false,designMethod:"online"};
+const $=id=>document.getElementById(id);
+function money(n){return "₹"+Math.round(n).toLocaleString("en-IN")}
+function render(){
+ $("typeGrid").innerHTML=products.map(p=>`<button class="type ${state.product.id===p.id?"selected":""}" type="button" onclick="chooseProduct('${p.id}')"><div style="font-size:25px">${p.icon}</div><strong>${p.name}</strong></button>`).join("");
+ $("materialGrid").innerHTML=materials.map((m,i)=>`<button class="option ${state.material.name===m.name?"selected":""}" type="button" onclick="chooseMaterial(${i})"><b>${m.name}</b><span>${m.desc}</span></button>`).join("");
+ $("warrantyGrid").innerHTML=warranties.map(w=>`<button class="option ${state.warranty===w?"selected":""}" type="button" onclick="chooseWarranty(${w})"><b>${w} Year${w>1?"s":""}</b><span>${w===1?"Entry":"Higher quality tier"}</span></button>`).join("");
+ $("steps").innerHTML=["Product","Design","Size","Material","Colour","Warranty","Delivery","Contact","Review","Done"].map((x,i)=>`<div class="step ${state.step===i+1?"active":""}"><i>${i+1}</i>${x}</div>`).join("");
+ document.querySelectorAll(".panel").forEach(p=>p.classList.toggle("active",+p.dataset.panel===state.step));
+ $("wizardActions").style.display=state.step>=9?"none":"flex";
+ $("prevBtn").style.visibility=state.step===1?"hidden":"visible";
+ $("nextBtn").textContent=state.step===8?"Review Quote":"Next";
+ if(state.step===9) buildChecklist();
+ calculate(); updateMock();
+}
+function chooseProduct(id){state.product=products.find(p=>p.id===id)||products[0];render()}
+function chooseMaterial(i){state.material=materials[i];render()}
+function chooseWarranty(w){state.warranty=w;calculate();render()}
+function setDelivery(v){state.delivery=v;calculate()}
+function setInstall(v){state.install=v;calculate()}
+function go(n){state.step=n;render();window.scrollTo({top:$("signage").offsetTop-70,behavior:"smooth"})}
+function next(){if(state.step<9){if(!validateStep())return;state.step++;render()}}
+function prev(){if(state.step>1){state.step--;render()}}
+function validateStep(){
+ if(state.step===3 && (+$("sigW").value<=0||+$("sigH").value<=0||+$("qty").value<1)){alert("Please enter a valid size and quantity.");return false}
+ if(state.step===7 && ((state.delivery&&!$("deliveryAddress").value.trim())||(state.install&&!$("installAddress").value.trim()))){alert("Please enter the required delivery/installation address.");return false}
+ if(state.step===8 && (!$("name").value.trim()||!$("phone").value.trim()||!$("email").value.trim()||!$("country").value.trim())){alert("Please complete the required contact details.");return false}
+ return true
+}
+function areaSqFt(){
+ const w=+$("sigW").value||0,h=+$("sigH").value||0,u=$("sigUnit").value;
+ const factors={ft:1,in:1/12,cm:0.032808399,mm:0.00328084,m:3.28084};
+ return w*factors[u]*h*factors[u];
+}
+function areaSqIn(){return areaSqFt()*144}
+function calculate(){
+ let a=areaSqFt(),q=Math.max(1,+$("qty").value||1),m=state.material.mult;
+ let base=0;
+ if(state.product.unit==="sqft") base=a*state.product.rate*q;
+ else if(state.product.unit==="sqin") base=areaSqIn()*state.product.rate*q;
+ else base=Math.max(+$("sigW").value||0,+$("sigH").value||0)*state.product.rate*q;
+ const warrantyMult={1:.95,2:1,5:1.12,10:1.3,20:1.55,50:1.9}[state.warranty]||1;
+ base*=m*warrantyMult;
+ let delivery=state.delivery?Math.max(500,Math.min(25000,a*120)):0;
+ let install=state.install?Math.max(1000,Math.min(30000,a*180)):0;
+ let subtotal=base+delivery+install,gst=subtotal*.18,total=subtotal+gst,adv=total*.5;
+ $("qProduct").textContent=state.product.name;$("qSize").textContent=`${$("sigW").value} × ${$("sigH").value} ${$("sigUnit").value}`;$("qMaterial").textContent=state.material.name;
+ $("qWarranty").textContent=state.warranty+" Years";$("qBase").textContent=money(base);$("qDelivery").textContent=money(delivery);$("qInstall").textContent=money(install);$("qGst").textContent=money(gst);$("qTotal").textContent=money(total);$("qAdvance").textContent="50% Advance: "+money(adv);$("qBalance").textContent="Balance: "+money(total-adv);
+}
+function updateMock(){if($("mockText")){$("mockText").textContent=$("designText")?.value||"YOUR BRAND";$("mockText").style.color=$("colour")?.value||"#ffd04a";$("mockText").style.fontFamily=$("font")?.value||"Inter"}}
+function buildChecklist(){
+ const rows=[["Design", $("designText").value||"Uploaded / Custom"],["Size",`${$("sigW").value} × ${$("sigH").value} ${$("sigUnit").value}`],["Colour", $("finishColour").value||$("colour").value],["Material",state.material.name],["Quantity",$("qty").value],["Warranty",state.warranty+" years"],["Delivery",state.delivery?"Yes":"No / Pickup"],["Installation",state.install?"Yes":"No"],["GST","18%"],["Advance","50%"]];
+ $("checklist").innerHTML=rows.map(r=>`<div class="check"><b>${r[0]}:</b> ${r[1]}</div>`).join("");
+}
+function placeOrder(){
+ if(!validateStep())return;
+ const id="DH-SIG-"+Date.now().toString().slice(-8);
+ $("orderId").textContent=id;localStorage.setItem("designhub_last_order",JSON.stringify({id,created:new Date().toISOString(),product:state.product.name,total:$("qTotal").textContent,advance:$("qAdvance").textContent}));
+ state.step=10;render();
+}
+function closeModal(){$("modal").classList.remove("show")}
+function startVoice(){
+ const SR=window.SpeechRecognition||window.webkitSpeechRecognition;
+ if(!SR){alert("Voice recognition is not supported in this browser. You can type manually.");return}
+ const r=new SR();r.lang=navigator.language||"en-US";r.interimResults=false;r.maxAlternatives=1;
+ r.onresult=e=>{$("voiceText").value=e.results[0][0].transcript;$("designNotes").value=e.results[0][0].transcript};
+ r.onerror=()=>alert("Voice recognition could not start. Please type manually.");
+ r.start();
+}
+render();
+
+
+
+const editor = {
+ canvas: null, ctx: null, objects: [], selected: null, drag: false, dx: 0, dy: 0
+};
+
+function initEditor(){
+ editor.canvas=document.getElementById("designCanvas");
+ editor.ctx=editor.canvas.getContext("2d");
+ drawEditor();
+ const dz=document.getElementById("dropZone");
+ const stage=document.getElementById("editorStage");
+ ["dragenter","dragover"].forEach(ev=>dz.addEventListener(ev,e=>{e.preventDefault();dz.classList.add("drop-active")}));
+ ["dragleave","drop"].forEach(ev=>dz.addEventListener(ev,e=>{e.preventDefault();dz.classList.remove("drop-active")}));
+ dz.addEventListener("drop",e=>{const f=e.dataTransfer.files[0];if(f) loadEditorFile(f)});
+ stage.addEventListener("dragover",e=>e.preventDefault());
+ stage.addEventListener("drop",e=>{e.preventDefault();const f=e.dataTransfer.files[0];if(f)loadEditorFile(f)});
+ document.getElementById("editorFile").addEventListener("change",e=>{if(e.target.files[0])loadEditorFile(e.target.files[0])});
+ editor.canvas.addEventListener("pointerdown",canvasPointerDown);
+ window.addEventListener("pointermove",canvasPointerMove);
+ window.addEventListener("pointerup",canvasPointerUp);
+}
+function drawEditor(){
+ const c=editor.canvas,x=editor.ctx;
+ x.clearRect(0,0,c.width,c.height);
+ const bg=x.createLinearGradient(0,0,c.width,c.height);bg.addColorStop(0,"#101a2a");bg.addColorStop(1,"#05070b");x.fillStyle=bg;x.fillRect(0,0,c.width,c.height);
+ editor.objects.forEach(o=>{
+  x.save();
+  if(o.type==="image"&&o.img){x.globalAlpha=o.alpha||1;x.drawImage(o.img,o.x,o.y,o.w,o.h)}
+  if(o.type==="text"){x.font=`${o.weight||700} ${o.size||54}px ${o.font||"Inter"}`;x.fillStyle=o.color||"#fff";x.textAlign="center";x.textBaseline="middle";x.fillText(o.text,o.x,o.y)}
+  if(o===editor.selected){x.strokeStyle="#2387ff";x.lineWidth=2;if(o.type==="image")x.strokeRect(o.x,o.y,o.w,o.h);else{x.strokeRect(o.x-160,o.y-(o.size||54)/2-8,320,(o.size||54)+16)}}
+  x.restore();
+ });
+ document.getElementById("stageHint").style.display=editor.objects.length?"none":"block";
+}
+function loadEditorFile(file){
+ if(file.type.startsWith("image/")||/\.(png|jpe?g|webp|gif|svg)$/i.test(file.name)){
+  const url=URL.createObjectURL(file),img=new Image();
+  img.onload=()=>{const maxW=760,maxH=420,s=Math.min(maxW/img.width,maxH/img.height,1),w=img.width*s,h=img.height*s;
+   editor.objects.push({type:"image",img,x:(900-w)/2,y:(550-h)/2,w,h,name:file.name});editor.selected=editor.objects.at(-1);drawEditor();URL.revokeObjectURL(url)}
+  img.src=url;
+ }else{
+  document.getElementById("aiCommand").value=`I uploaded ${file.name}. Prepare this file for editing/conversion.`;
+  alert("This file type has been received. Browser preview is limited for PDF/CDR/AI/EPS; the final backend will process these formats.");
+ }
+}
+function addTextElement(){
+ const text=document.getElementById("editText").value||"YOUR TEXT";
+ const o={type:"text",text,x:450,y:275,size:54,color:document.getElementById("editColor").value||"#fff",font:"Inter",weight:800};
+ editor.objects.push(o);editor.selected=o;drawEditor()
+}
+function removeSelected(){if(!editor.selected)return;editor.objects=editor.objects.filter(o=>o!==editor.selected);editor.selected=null;drawEditor()}
+function clearEditor(){editor.objects=[];editor.selected=null;drawEditor()}
+function canvasPointerDown(e){
+ const r=editor.canvas.getBoundingClientRect(),sx=editor.canvas.width/r.width,sy=editor.canvas.height/r.height;
+ const x=(e.clientX-r.left)*sx,y=(e.clientY-r.top)*sy;
+ for(let i=editor.objects.length-1;i>=0;i--){const o=editor.objects[i];
+  let hit=o.type==="image"?(x>=o.x&&x<=o.x+o.w&&y>=o.y&&y<=o.y+o.h):(Math.abs(x-o.x)<180&&Math.abs(y-o.y)<(o.size||54));
+  if(hit){editor.selected=o;editor.drag=true;editor.dx=x-o.x;editor.dy=y-o.y;drawEditor();return}
+ }
+ editor.selected=null;drawEditor()
+}
+function canvasPointerMove(e){
+ if(!editor.drag||!editor.selected)return;const r=editor.canvas.getBoundingClientRect(),sx=editor.canvas.width/r.width,sy=editor.canvas.height/r.height;
+ const x=(e.clientX-r.left)*sx,y=(e.clientY-r.top)*sy,o=editor.selected;o.x=x-editor.dx;o.y=y-editor.dy;drawEditor()
+}
+function canvasPointerUp(){editor.drag=false}
+function applyTextEdit(){if(editor.selected?.type==="text"){editor.selected.text=document.getElementById("editText").value||editor.selected.text;editor.selected.color=document.getElementById("editColor").value;drawEditor()}else addTextElement()}
+function removeBackground(){
+ if(editor.selected?.type==="image"){editor.selected.alpha=.35;drawEditor();alert("Basic local background effect applied. True AI background removal will be connected through the image-processing API.")}
+}
+function addBackground(){
+ const color=prompt("Enter background colour (example: #0b1220)","#0b1220");if(!color)return;
+ editor.canvas.style.background=color;drawEditor()
+}
+function startStudioVoice(){
+ const SR=window.SpeechRecognition||window.webkitSpeechRecognition;if(!SR){alert("Voice input is not supported in this browser. Use typing or connect the multilingual voice API.");return}
+ const r=new SR();const lang=document.getElementById("voiceLang").value;r.lang=lang==="auto"?(navigator.language||"en-US"):lang;r.interimResults=false;r.maxAlternatives=1;
+ r.onresult=e=>document.getElementById("aiCommand").value=e.results[0][0].transcript;r.onerror=()=>alert("Voice input failed. Please type your command.");r.start()
+}
+function applyAICommand(){
+ const cmd=(document.getElementById("aiCommand").value||"").toLowerCase();if(!cmd){alert("Speak or type a command first.");return}
+ if(cmd.includes("blue"))editor.canvas.style.background="#081a38";
+ if(cmd.includes("black"))editor.canvas.style.background="#05070b";
+ if(cmd.includes("white"))editor.canvas.style.background="#f3f6fa";
+ if(cmd.includes("gold")||cmd.includes("yellow"))document.getElementById("editColor").value="#ffd04a";
+ if(cmd.includes("red"))document.getElementById("editColor").value="#ff3b4e";
+ if(cmd.includes("green"))document.getElementById("editColor").value="#24d38a";
+ if(cmd.includes("remove background"))removeBackground();
+ if(cmd.includes("add text")||cmd.includes("write"))addTextElement();
+ if(editor.selected?.type==="text"){editor.selected.color=document.getElementById("editColor").value;editor.selected.text=document.getElementById("editText").value||editor.selected.text}
+ drawEditor();
+ alert("Command applied to the local editor where supported. Advanced natural-language AI actions will be connected through the final API.");
+}
+function exportCanvas(type){
+ const c=editor.canvas;
+ if(type==="pdf"){
+  if(!window.jspdf){alert("PDF library is not loaded.");return}
+  const {jsPDF}=window.jspdf;const pdf=new jsPDF({orientation:c.width>=c.height?"landscape":"portrait",unit:"px",format:[c.width,c.height]});
+  pdf.addImage(c.toDataURL("image/jpeg",.95),"JPEG",0,0,c.width,c.height);pdf.save("designhub-design.pdf");return
+ }
+ if(type==="svg"){
+  const svg=`<svg xmlns="http://www.w3.org/2000/svg" width="${c.width}" height="${c.height}"><image href="${c.toDataURL("image/png")}" width="${c.width}" height="${c.height}"/></svg>`;
+  const a=document.createElement("a");a.href=URL.createObjectURL(new Blob([svg],{type:"image/svg+xml"}));a.download="designhub-design.svg";a.click();return
+ }
+ const mime=type==="jpg"?"image/jpeg":"image/png",a=document.createElement("a");a.href=c.toDataURL(mime,.94);a.download=`designhub-design.${type==="jpg"?"jpg":"png"}`;a.click()
+}
+function openConverter(){document.getElementById("converter").scrollIntoView({behavior:"smooth"})}
+function convertFileNow(){
+ const f=document.getElementById("convertFile").files[0],fmt=document.getElementById("convertFormat").value;
+ if(!f){alert("Choose a file first.");return}
+ if(fmt==="CDR (API)"||/\.(cdr|ai|eps)$/i.test(f.name)){alert("CDR/AI/EPS conversion needs the final backend conversion API. This site will connect it in the next API phase.");return}
+ if(f.type.startsWith("image/")){const url=URL.createObjectURL(f),img=new Image();img.onload=()=>{const c=document.createElement("canvas");c.width=img.width;c.height=img.height;c.getContext("2d").drawImage(img,0,0);if(fmt==="PDF"){const {jsPDF}=window.jspdf;const pdf=new jsPDF({unit:"px",format:[c.width,c.height]});pdf.addImage(c.toDataURL("image/jpeg",.95),"JPEG",0,0,c.width,c.height);pdf.save("converted.pdf")}else{const ext=fmt.toLowerCase();const mime=fmt==="JPG"?"image/jpeg":fmt==="WEBP"?"image/webp":"image/png";const a=document.createElement("a");a.href=c.toDataURL(mime,.94);a.download=`converted.${ext==="jpg"?"jpg":ext}`;a.click()}URL.revokeObjectURL(url)};img.src=url}
+ else alert("This browser cannot directly convert that file type. The final converter API will handle it.")
+}
+initEditor();
+
+</script>
+
+<script>
+function quickProduct(name){
+  const grid=document.getElementById('typeGrid');
+  if(grid){
+    const items=[...grid.querySelectorAll('button,.type')];
+    items.forEach(x=>x.classList.remove('selected'));
+    const target=items.find(x=>x.textContent.toLowerCase().includes(name.toLowerCase().split(' ')[0]));
+    if(target) target.classList.add('selected');
+  }
+  window.scrollTo({top:document.getElementById('signage').offsetTop-75,behavior:'smooth'});
+}
+</script>
+</body>
+</html>
