@@ -1,0 +1,239 @@
+    <!-- DESIGN STUDIO & PLACE YOUR ORDER SECTION (DARK CONTAINER) -->
+    <section id="studio" class="studio-order-section">
+      <div class="studio-order-grid">
+        <!-- LEFT CARD: DESIGN STUDIO -->
+        <div class="dark-card">
+          <div class="dark-card-header">
+            <div class="dark-card-title">
+              <h3>Design Studio</h3>
+              <p>Create Your Own Design • Multilingual Voice AI • 300 DPI Prepress</p>
+            </div>
+            <div style="display: flex; gap: 8px;">
+              <button class="btn btn-outline-dark" style="font-size: 11px; padding: 6px 14px;" onclick="document.getElementById('designFileInput').click()">
+                📁 Upload My Design
+              </button>
+              <button class="btn btn-gold" style="font-size: 11px; padding: 6px 14px;" onclick="scrollToStudio()">
+                ✨ Create New Design
+              </button>
+              <input type="file" id="designFileInput" style="display:none;" accept="image/*,.svg,.pdf,.dxf" onchange="handleDesignUpload(this.files[0])">
+            </div>
+          </div>
+
+          <!-- STUDIO WORKBENCH WITH FABRIC.JS -->
+          <div class="studio-workbench">
+            <!-- Left Side Action Tools -->
+            <div class="studio-left-tools">
+              <button class="tool-pill-btn active" id="toolSelect" onclick="setDraftTool('select')">
+                👆 Select / Move
+              </button>
+              <button class="tool-pill-btn" id="toolPen" onclick="setDraftTool('pen')">
+                ✏️ Draw Logo / Pen
+              </button>
+              <button class="tool-pill-btn" onclick="addEditableText()">
+                🔤 Add Text
+              </button>
+              <button class="tool-pill-btn" onclick="addStraightLine()">
+                📏 Straight Line
+              </button>
+              <button class="tool-pill-btn" onclick="addShape('rect')">
+                🔲 Box / Frame
+              </button>
+              <button class="tool-pill-btn" onclick="addLogo('cycle')">
+                🚲 Cycle Logo
+              </button>
+              <button class="tool-pill-btn" onclick="addLogo('crown')">
+                👑 Crown Logo
+              </button>
+              <button class="tool-pill-btn" style="color: var(--cyan);" onclick="startVoiceRecognition()">
+                🎙️ Voice Design
+              </button>
+              <button class="tool-pill-btn" style="color: #FF4D4D;" onclick="applyCorelRedHairline()">
+                🔴 Red Hairline
+              </button>
+              <button class="tool-pill-btn" style="color: #10B981;" onclick="applyLaserGreenCutPath()">
+                🟢 Green Cut Path
+              </button>
+            </div>
+
+            <!-- Center Interactive Canvas Viewport -->
+            <div class="studio-canvas-preview">
+              <div class="canvas-bar">
+                <span id="activeToolBadge" style="color:var(--gold); font-weight:700;">Tool: 👆 Select / Move</span>
+                <span id="activeScaleBadge">96.0 in × 36.0 in (8.0 ft × 3.0 ft)</span>
+                <div style="display:flex; gap:6px;">
+                  <button class="btn btn-outline-dark" style="padding:2px 8px; font-size:10px;" onclick="centerActiveObject()">Center</button>
+                  <button class="btn btn-outline-dark" style="padding:2px 8px; font-size:10px; color:#EF4444;" onclick="deleteActiveObject()">Delete</button>
+                </div>
+              </div>
+              <div class="canvas-viewport" id="draftingStageWrap">
+                <canvas id="draftingBoard" width="460" height="230"></canvas>
+              </div>
+              <div style="background:var(--navy-900); padding:8px 12px; display:flex; justify-content:space-between; align-items:center; border-top:1px solid var(--border-dark); font-size:11px;">
+                <div style="display:flex; gap:8px; align-items:center;">
+                  <span style="color:#94A3B8;">Size:</span>
+                  <input type="number" id="dimW" value="96" min="1" step="0.5" class="input-field" style="width:60px; padding:3px 6px;" oninput="updateCanvasDimensions()">
+                  <span>×</span>
+                  <input type="number" id="dimH" value="36" min="1" step="0.5" class="input-field" style="width:60px; padding:3px 6px;" oninput="updateCanvasDimensions()">
+                  <select id="dimUnit" class="select-field" style="width:65px; padding:3px 6px;" onchange="updateCanvasDimensions()">
+                    <option value="in" selected>in</option>
+                    <option value="ft">ft</option>
+                    <option value="mm">mm</option>
+                  </select>
+                </div>
+                <div style="display:flex; gap:6px;">
+                  <select id="converterFormatSelect" class="select-field" style="width:auto; padding:3px 8px; font-size:10px;">
+                    <option value="cdr">.CDR</option>
+                    <option value="dxf">.DXF</option>
+                    <option value="svg" selected>.SVG</option>
+                    <option value="pdf">.PDF</option>
+                    <option value="jpg">.JPG</option>
+                  </select>
+                  <button class="btn btn-gold" style="padding:4px 10px; font-size:10px;" onclick="executeUniversalFormatConverter()">Export</button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Right Side Feature Checklist -->
+            <div class="studio-checklist">
+              <div class="check-item"><div class="check-icon">✓</div>Drag & Drop Editor</div>
+              <div class="check-item"><div class="check-icon">✓</div>Text Customization</div>
+              <div class="check-item"><div class="check-icon">✓</div>Layer Management</div>
+              <div class="check-item"><div class="check-icon">✓</div>Export (PNG/JPG/PDF)</div>
+              <div class="check-item"><div class="check-icon">✓</div>Mobile & Desktop Friendly</div>
+              <div style="margin-top: 12px;">
+                <button class="btn btn-gold" style="width:100%; border-radius:var(--radius-sm); font-size:11px; padding:8px;" onclick="scrollToQuote()">
+                  Start Designing →
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Bottom Studio Bar -->
+          <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px; font-size:12px; color:var(--text-light-muted);">
+            <div style="display:flex; gap:12px; align-items:center;">
+              <span>Active Color:</span>
+              <input type="color" id="colorPicker" value="#ffd21a" onchange="setDraftColor(this.value)" style="width:28px; height:24px; border:0; background:transparent; cursor:pointer;">
+              <button class="btn btn-outline-dark" style="padding:4px 10px; font-size:10px;" onclick="toggleBoardBackground()">🌗 Toggle Light/Dark</button>
+            </div>
+            <div style="display:flex; gap:8px;">
+              <button class="btn btn-outline-dark" style="padding:5px 12px; font-size:11px;" onclick="saveDraftCloud()">☁ Save Project</button>
+              <button class="btn btn-outline-dark" style="padding:5px 12px; font-size:11px;" onclick="loadDraftCloud()">📂 Load Project</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- RIGHT CARD: PLACE YOUR ORDER (ID="ORDER") -->
+        <div class="dark-card" id="order">
+          <div class="dark-card-header">
+            <div class="dark-card-title">
+              <h3>Place Your Order</h3>
+              <p>Custom Quote • Secure Payment • Fast Delivery</p>
+            </div>
+            <span class="service-rate-badge" style="background:rgba(255,210,31,0.15); color:var(--gold);">
+              Live Calculation
+            </span>
+          </div>
+
+          <!-- 4-STEP TIMELINE -->
+          <div class="order-steps-list">
+            <div class="step-item">
+              <div class="step-num">1</div>
+              <div class="step-info">
+                <h4>Design & Customize</h4>
+                <p>Upload your artwork or create vector design on the canvas</p>
+              </div>
+            </div>
+            <div class="step-item">
+              <div class="step-num">2</div>
+              <div class="step-info">
+                <h4>Get Quote</h4>
+                <p>Instant price calculation with dimensions, material & GST</p>
+              </div>
+            </div>
+            <div class="step-item">
+              <div class="step-num">3</div>
+              <div class="step-info">
+                <h4>Make Payment</h4>
+                <p>50% production advance via UPI / PayPal / Card</p>
+              </div>
+            </div>
+            <div class="step-item">
+              <div class="step-num">4</div>
+              <div class="step-info">
+                <h4>Track Order</h4>
+                <p>Real-time manufacturing updates & express dispatch</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- 3D ORDER PHONE VISUAL MOCKUP -->
+          <div class="order-visual-wrap">
+            <svg viewBox="0 0 320 85" xmlns="http://www.w3.org/2000/svg">
+              <!-- Smartphone Frame -->
+              <rect x="60" y="8" width="200" height="70" rx="12" fill="#06121E" stroke="#163250" stroke-width="2" />
+              <!-- Green Check Icon -->
+              <circle cx="100" cy="43" r="16" fill="#10B981" />
+              <path d="M 93 43 L 98 48 L 108 38" fill="none" stroke="#FFFFFF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
+              <!-- Status Text -->
+              <text x="126" y="38" font-family="'Plus Jakarta Sans', sans-serif" font-weight="800" font-size="12" fill="#FFFFFF">Order Placed!</text>
+              <text x="126" y="52" font-family="'Plus Jakarta Sans', sans-serif" font-size="10" fill="#94A3B8">In Production Queue</text>
+            </svg>
+          </div>
+
+          <!-- LIVE QUOTATION BOX (ID="PRICING") -->
+          <div id="pricing" style="background:#061424; border:1px solid var(--border-dark); border-radius:var(--radius-md); padding:16px; margin-bottom:16px;">
+            <div style="display:flex; justify-content:space-between; font-size:12px; margin-bottom:6px; color:#CBD5E1;">
+              <span>Dimensions:</span>
+              <b id="qDimLabel" style="color:#FFFFFF;">8.0 ft × 3.0 ft (24.0 sq.ft)</b>
+            </div>
+            <div style="display:flex; justify-content:space-between; font-size:12px; margin-bottom:6px; color:#CBD5E1;">
+              <span>Base Fabrication:</span>
+              <span id="qBasePrice" style="color:#FFFFFF;">₹4,320</span>
+            </div>
+            <div style="display:flex; justify-content:space-between; font-size:12px; margin-bottom:6px; color:#CBD5E1;">
+              <span>GST (18%):</span>
+              <span id="qGstPrice" style="color:#FFFFFF;">₹777</span>
+            </div>
+            <div style="display:flex; justify-content:space-between; font-size:12px; margin-bottom:8px; color:#CBD5E1;">
+              <span>Delivery & Packaging:</span>
+              <span id="qDeliveryPrice" style="color:#FFFFFF;">₹450</span>
+            </div>
+            <div style="display:flex; justify-content:space-between; align-items:baseline; border-top:1px solid #162E47; padding-top:8px; margin-bottom:10px;">
+              <span style="font-size:13px; font-weight:800; color:#FFFFFF;">Grand Total:</span>
+              <span id="qTotalPrice" style="font-size:20px; font-weight:900; color:var(--gold);">₹5,547</span>
+            </div>
+            <div style="background:rgba(255,210,31,0.1); border:1px dashed var(--gold); border-radius:8px; padding:8px 12px; display:flex; justify-content:space-between; align-items:center;">
+              <span style="font-size:11px; color:#E2E8F0;">50% Advance Required:</span>
+              <b id="qAdvancePrice" style="font-size:16px; color:var(--gold);">₹2,774</b>
+            </div>
+          </div>
+
+          <!-- CUSTOMER CONTACT INPUTS -->
+          <div class="form-row" style="margin-bottom:10px;">
+            <input type="text" id="custName" placeholder="Your Name" class="input-field">
+            <input type="tel" id="custPhone" placeholder="WhatsApp / Phone Number" class="input-field">
+          </div>
+          <div style="margin-bottom:14px;">
+            <input type="text" id="custCity" placeholder="Delivery Address / City" class="input-field">
+          </div>
+
+          <!-- ACTION BUTTONS -->
+          <div style="display:flex; flex-direction:column; gap:8px;">
+            <button class="btn btn-gold" style="width:100%; border-radius:var(--radius-sm); font-size:14px; padding:12px;" onclick="submitWhatsAppOrder()">
+              Order Now →
+            </button>
+            <div style="display:flex; gap:8px;">
+              <button class="btn btn-outline-dark" style="flex:1; font-size:11px;" onclick="openQuotePdf()">
+                📄 Download Quote PDF
+              </button>
+              <a href="https://www.paypal.com/ncp/payment/GN99BSA7E4L3Y" target="_blank" rel="noopener" class="btn btn-outline-dark" style="flex:1; font-size:11px; color:var(--gold);">
+                💳 PayPal ($USD)
+              </a>
+              <button class="btn btn-outline-dark" style="flex:1; font-size:11px;" onclick="openModal('upiModal')">
+                📱 Pay UPI (₹)
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>

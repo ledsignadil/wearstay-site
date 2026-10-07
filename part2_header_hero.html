@@ -1,0 +1,236 @@
+  <!-- TOP HEADER -->
+  <header>
+    <a href="#home" class="brand-wrap">
+      <div class="brand-logo-mark">G</div>
+      <div class="brand-text">
+        <h1>GLOBAL <span>CREATIVE</span></h1>
+        <small>Design • Print • Signage • More</small>
+      </div>
+    </a>
+
+    <!-- DESKTOP NAV LINKS -->
+    <nav class="nav-links">
+      <a href="#home" class="nav-link active">Home</a>
+      <a href="#services" class="nav-link">Services</a>
+      <a href="#studio" class="nav-link">Design Studio</a>
+      <a href="#order" class="nav-link">Order Now</a>
+      <a href="#pricing" class="nav-link">Pricing</a>
+      <a href="#about" class="nav-link">About</a>
+      <a href="#contact" class="nav-link">Contact</a>
+    </nav>
+
+    <!-- HEADER RIGHT CONTROLS -->
+    <div class="header-actions">
+      <!-- Search Icon -->
+      <button class="icon-btn" onclick="openSearchPrompt()" title="Search Products & Tools">🔍</button>
+
+      <!-- Currency Switcher -->
+      <select id="currencySelector" onchange="switchCurrency(this.value)" class="select-field" style="width: auto; padding: 6px 10px; font-size: 11px; background: var(--navy-900); border-radius: 9999px;">
+        <option value="INR" selected>₹ INR</option>
+        <option value="USD">$ USD</option>
+        <option value="EUR">€ EUR</option>
+        <option value="AED">AED</option>
+      </select>
+
+      <!-- Auth Buttons -->
+      <div id="authUserPill" style="display:none; align-items:center; gap:8px;">
+        <button class="btn btn-outline-dark" style="padding: 7px 14px; font-size: 11px;" onclick="openModal('dashboardModal')">👤 Dashboard</button>
+        <button class="btn btn-outline-dark" style="padding: 7px 12px; font-size: 11px;" onclick="handleSignOut()">Logout</button>
+      </div>
+      <button class="btn btn-outline-dark" id="navLoginBtn" style="padding: 7px 16px; font-size: 12px;" onclick="openModal('loginModal')">
+        👤 Login
+      </button>
+
+      <!-- Download ZIP Button -->
+      <a href="/api/download-project" class="btn btn-outline-dark" style="padding: 7px 12px; font-size: 11px; text-decoration:none; display:inline-flex; align-items:center; gap:4px;" title="Download complete source code ZIP for GitHub & Vercel">
+        ⬇ ZIP
+      </a>
+
+      <!-- Primary Get Quote CTA -->
+      <button class="btn btn-gold" onclick="scrollToQuote()" style="padding: 9px 20px; font-size: 13px;">
+        Get Quote
+      </button>
+
+      <!-- Mobile Hamburger -->
+      <button class="hamburger-btn" onclick="toggleMobileNav()" aria-label="Toggle navigation">☰</button>
+    </div>
+  </header>
+
+  <!-- MOBILE DRAWER -->
+  <div id="mobileDrawer" style="display:none; position:fixed; top:65px; left:0; right:0; background:var(--navy-950); border-bottom:1px solid var(--border-dark); padding:20px; z-index:99; flex-direction:column; gap:14px; box-shadow:var(--shadow-lg);">
+    <a href="#home" class="nav-link" onclick="toggleMobileNav()">Home</a>
+    <a href="#services" class="nav-link" onclick="toggleMobileNav()">Services</a>
+    <a href="#studio" class="nav-link" onclick="toggleMobileNav()">Design Studio</a>
+    <a href="#order" class="nav-link" onclick="toggleMobileNav()">Order Now</a>
+    <a href="#pricing" class="nav-link" onclick="toggleMobileNav()">Pricing</a>
+    <a href="#about" class="nav-link" onclick="toggleMobileNav()">About</a>
+    <a href="#contact" class="nav-link" onclick="toggleMobileNav()">Contact</a>
+    <div style="display:flex; gap:10px; margin-top:8px;">
+      <button class="btn btn-gold" style="flex:1;" onclick="toggleMobileNav(); scrollToQuote();">Get Free Quote</button>
+      <button class="btn btn-outline-dark" style="flex:1;" onclick="toggleMobileNav(); openModal('loginModal');">Login</button>
+    </div>
+  </div>
+
+  <main>
+    <!-- HERO SECTION -->
+    <section id="home" class="hero-section">
+      <div class="hero-container">
+        <!-- LEFT HERO COLUMN -->
+        <div>
+          <div class="hero-eyebrow">TURN YOUR IDEAS INTO REALITY</div>
+          <h1 class="hero-heading">
+            Creative Designs<br>
+            <span class="text-gold">That Make an Impact</span>
+          </h1>
+          <div class="hero-tags">
+            Signage | Printing | Branding | 3D Letters | LED Boards | And More...
+          </div>
+          <p class="hero-description">
+            Global Creative is your one-stop solution for all design, printing and signage needs. We create powerful visuals that help your business grow.
+          </p>
+
+          <div class="hero-btns">
+            <button class="btn btn-gold" onclick="scrollToQuote()">
+              Get Free Quote →
+            </button>
+            <button class="btn btn-outline-dark" onclick="document.querySelector('#services').scrollIntoView({behavior:'smooth'})">
+              Explore Services
+            </button>
+          </div>
+
+          <!-- TRUST BADGES STRIP -->
+          <div class="trust-strip">
+            <div class="trust-item">
+              <div class="trust-icon">🛡️</div>
+              <div class="trust-text"><b>Premium Quality</b>Materials</div>
+            </div>
+            <div class="trust-item">
+              <div class="trust-icon">🚚</div>
+              <div class="trust-text"><b>Fast Delivery</b>Across India & Global</div>
+            </div>
+            <div class="trust-item">
+              <div class="trust-icon">✂️</div>
+              <div class="trust-text"><b>Expert Design</b>Support</div>
+            </div>
+            <div class="trust-item">
+              <div class="trust-icon">🎖️</div>
+              <div class="trust-text"><b>100% Customer</b>Satisfaction</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- RIGHT HERO COLUMN: 3D ARCHITECTURAL FACADE + QUICK QUOTE -->
+        <div class="hero-visual-col">
+          <!-- 3D STOREFRONT ARCHITECTURAL SIGNAGE MOCKUP -->
+          <div class="storefront-card">
+            <div class="storefront-art-wrap">
+              <svg viewBox="0 0 540 230" xmlns="http://www.w3.org/2000/svg" style="background: #040A12;">
+                <defs>
+                  <radialGradient id="facadeSpotlight" cx="50%" cy="30%" r="65%">
+                    <stop offset="0%" stop-color="#FFD21F" stop-opacity="0.3" />
+                    <stop offset="50%" stop-color="#0284C7" stop-opacity="0.1" />
+                    <stop offset="100%" stop-color="#040A12" stop-opacity="0" />
+                  </radialGradient>
+                  <linearGradient id="goldChannelGlow" x1="0%" y1="0%" x2="100%" y2="0%">
+                    <stop offset="0%" stop-color="#FFF085" />
+                    <stop offset="50%" stop-color="#FFD21F" />
+                    <stop offset="100%" stop-color="#D97706" />
+                  </linearGradient>
+                  <filter id="neonBlur" x="-20%" y="-20%" width="140%" height="140%">
+                    <feGaussianBlur stdDeviation="6" result="blur" />
+                    <feMerge>
+                      <feMergeNode in="blur" />
+                      <feMergeNode in="SourceGraphic" />
+                    </feMerge>
+                  </filter>
+                </defs>
+
+                <!-- Facade Background Texture & Spotlights -->
+                <rect x="0" y="0" width="540" height="230" fill="#06121E" />
+                <rect x="0" y="0" width="540" height="150" fill="url(#facadeSpotlight)" />
+
+                <!-- Architectural Modern Dark Stone Facade Wall -->
+                <rect x="25" y="20" width="490" height="190" rx="10" fill="#0A1828" stroke="#163250" stroke-width="2" />
+                <line x1="25" y1="120" x2="515" y2="120" stroke="#10253C" stroke-width="1.5" />
+                <line x1="180" y1="20" x2="180" y2="120" stroke="#10253C" stroke-width="1" />
+                <line x1="360" y1="20" x2="360" y2="120" stroke="#10253C" stroke-width="1" />
+
+                <!-- 3D Architectural Letters Backing Plate -->
+                <rect x="90" y="38" width="360" height="70" rx="8" fill="#040B14" stroke="#FFD21F" stroke-width="1.2" stroke-opacity="0.4" />
+
+                <!-- Logo Icon on Facade -->
+                <circle cx="130" cy="73" r="18" fill="url(#goldChannelGlow)" filter="url(#neonBlur)" opacity="0.9" />
+                <text x="130" y="80" font-family="'Montserrat', sans-serif" font-weight="900" font-size="18" fill="#040B14" text-anchor="middle">G</text>
+
+                <!-- 3D Channel Letters (YOUR BRAND - OUR CREATIVE TOUCH) -->
+                <text x="285" y="68" font-family="'Montserrat', sans-serif" font-weight="900" font-size="24" fill="url(#goldChannelGlow)" filter="url(#neonBlur)" text-anchor="middle" letter-spacing="1">
+                  YOUR BRAND
+                </text>
+                <text x="285" y="92" font-family="'Plus Jakarta Sans', sans-serif" font-weight="800" font-size="10" fill="#00F2FF" text-anchor="middle" letter-spacing="3">
+                  OUR CREATIVE TOUCH
+                </text>
+
+                <!-- Glass Showroom Windows on Lower Level -->
+                <rect x="50" y="130" width="130" height="80" rx="4" fill="#071E36" stroke="#1C3D63" stroke-width="1.5" />
+                <rect x="205" y="130" width="130" height="80" rx="4" fill="#0B2B4C" stroke="#1C3D63" stroke-width="1.5" opacity="0.9" />
+                <rect x="360" y="130" width="130" height="80" rx="4" fill="#071E36" stroke="#1C3D63" stroke-width="1.5" />
+
+                <!-- Interior Showroom Warm Light Rays -->
+                <line x1="270" y1="130" x2="270" y2="210" stroke="#FFD21F" stroke-width="2" stroke-opacity="0.5" />
+                <circle cx="270" cy="165" r="22" fill="#FFD21F" opacity="0.15" filter="url(#neonBlur)" />
+                <text x="270" y="170" font-size="9" font-family="sans-serif" font-weight="700" fill="#E2E8F0" text-anchor="middle">DESIGN STUDIO</text>
+              </svg>
+            </div>
+          </div>
+
+          <!-- QUICK QUOTE CARD -->
+          <div class="quick-quote-card">
+            <h3>Quick Quote</h3>
+            <p>Get instant price for your signage & printing.</p>
+
+            <div class="form-group">
+              <label>Select Service</label>
+              <select id="quickProduct" class="select-field">
+                <option value="acp_sign_board" selected>ACP Sign Board (₹650/sq.ft)</option>
+                <option value="3d_sign_board">3D Sign Board (₹750/sq.ft)</option>
+                <option value="steel_sign_board">Steel Sign Board SS (₹980/sq.ft)</option>
+                <option value="acrylic_letter_light">Acrylic Letter + Light (₹80/inch)</option>
+                <option value="steel_letter">Steel Letters SS (₹140/inch)</option>
+                <option value="neon_flex">Neon Flex Signage (₹160/sq.ft)</option>
+              </select>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label>Width</label>
+                <input type="number" id="quickW" value="8" min="0.1" step="0.5" class="input-field">
+              </div>
+              <div class="form-group">
+                <label>Height</label>
+                <input type="number" id="quickH" value="3" min="0.1" step="0.5" class="input-field">
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label>Material</label>
+                <select id="quickMaterial" class="select-field">
+                  <option value="1.0" selected>Cast Virgin Acrylic</option>
+                  <option value="1.25">SS 304 Titanium Gold</option>
+                  <option value="1.15">Heavy-Duty ACP Sheet</option>
+                  <option value="1.1">Silicon Neon Flex</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label>Quantity</label>
+                <input type="number" id="quickQty" value="1" min="1" class="input-field">
+              </div>
+            </div>
+
+            <button class="btn btn-gold" style="width: 100%; border-radius: var(--radius-sm); margin-top: 4px;" onclick="quickQuote()">
+              Get Instant Quote →
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>

@@ -1,0 +1,198 @@
+  <!-- 1. LOGIN / AUTH MODAL -->
+  <div class="modal-overlay" id="loginModal">
+    <div class="modal-card">
+      <div class="modal-head">
+        <h3>Account Sign In</h3>
+        <button class="close-btn" onclick="closeModal('loginModal')">✕</button>
+      </div>
+      <div style="display:flex; flex-direction:column; gap:12px;">
+        <button class="btn btn-outline-dark" style="width:100%; justify-content:center; padding:10px;" onclick="signInWithGoogle()">
+          <span style="font-weight:900; color:#4285F4;">G</span> Continue with Google
+        </button>
+        <div style="text-align:center; font-size:11px; color:var(--text-light-muted); margin:4px 0;">— OR WITH EMAIL —</div>
+        <div>
+          <label style="font-size:11px; color:#94A3B8;">Email Address</label>
+          <input type="email" id="loginEmail" placeholder="you@company.com" class="input-field" style="margin-top:4px;">
+        </div>
+        <div>
+          <label style="font-size:11px; color:#94A3B8;">Password</label>
+          <input type="password" id="loginPass" placeholder="••••••••" class="input-field" style="margin-top:4px;">
+        </div>
+        <div style="display:flex; gap:8px; margin-top:8px;">
+          <button class="btn btn-gold" style="flex:1; border-radius:var(--radius-sm);" onclick="signInWithEmail()">Sign In</button>
+          <button class="btn btn-outline-dark" style="flex:1; border-radius:var(--radius-sm);" onclick="signUpWithEmail()">Create Account</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 2. CUSTOMER DASHBOARD MODAL -->
+  <div class="modal-overlay" id="dashboardModal">
+    <div class="modal-card">
+      <div class="modal-head">
+        <h3>Customer Dashboard</h3>
+        <button class="close-btn" onclick="closeModal('dashboardModal')">✕</button>
+      </div>
+      <div style="display:flex; flex-direction:column; gap:14px;">
+        <div style="background:var(--navy-950); padding:12px; border-radius:var(--radius-sm); border:1px solid var(--border-dark);">
+          <div style="font-size:11px; color:#94A3B8;">Account Profile:</div>
+          <b id="dashUserEmail" style="color:var(--gold); font-size:13px;">Guest User</b>
+          <div id="dashTier" style="font-size:11px; color:var(--cyan); margin-top:2px;">Plan: Free (2 prepress exports)</div>
+        </div>
+        <div style="background:var(--navy-950); padding:12px; border-radius:var(--radius-sm); border:1px solid var(--border-dark);">
+          <div style="font-size:11px; color:#94A3B8; margin-bottom:6px;">Saved Cloud Projects:</div>
+          <div id="dashProjectsList" style="font-size:11px; color:#CBD5E1;">Use 'Save Project' in Design Studio to sync your vector artwork to Supabase.</div>
+        </div>
+        <div style="display:flex; gap:8px;">
+          <a href="https://www.paypal.com/ncp/payment/GN99BSA7E4L3Y" target="_blank" rel="noopener" class="btn btn-gold" style="flex:1; font-size:11px;">👑 Upgrade to Pro ($4.99/mo)</a>
+          <button class="btn btn-outline-dark" style="flex:1; font-size:11px;" onclick="handleSignOut()">Sign Out</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3. UNIVERSAL CONVERTER MODAL -->
+  <div class="modal-overlay" id="converterModal">
+    <div class="modal-card">
+      <div class="modal-head">
+        <h3>Universal File Converter</h3>
+        <button class="close-btn" onclick="closeModal('converterModal')">✕</button>
+      </div>
+      <div style="display:flex; flex-direction:column; gap:14px;">
+        <p style="font-size:12px; color:var(--text-light-muted); margin:0;">
+          Convert any raster graphic, vector SVG, or laser artwork into print-ready .CDR, .DXF, .SVG, .PDF, or WebP.
+        </p>
+        <div style="border:2px dashed var(--border-dark-light); border-radius:var(--radius-md); padding:20px; text-align:center; cursor:pointer;" onclick="document.getElementById('convFileInput').click()">
+          <span style="font-size:28px;">📤</span>
+          <div style="font-size:12px; font-weight:700; color:#FFFFFF; margin-top:6px;" id="converterFileName">Click to select file to convert</div>
+          <small style="color:#94A3B8;">Supports PNG, JPG, SVG, DXF, PDF (Up to 50MB)</small>
+          <input type="file" id="convFileInput" style="display:none;" onchange="handleConverterUpload(this.files[0])">
+        </div>
+        <div>
+          <label style="font-size:11px; color:#94A3B8;">Target Format:</label>
+          <select id="converterTargetFormat" class="select-field" style="margin-top:4px;">
+            <option value="png">PNG (Transparent High-Res)</option>
+            <option value="jpg">JPG (High-Quality Raster)</option>
+            <option value="webp">WebP (Optimized Next-Gen)</option>
+            <option value="svg">SVG (Vector Scalable Graphic)</option>
+            <option value="pdf">PDF (Print-Ready Document)</option>
+          </select>
+        </div>
+        <button class="btn btn-gold" style="width:100%; border-radius:var(--radius-sm);" onclick="executeConversion()">
+          Convert & Download Now ⚡
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 4. BRAND KIT MODAL -->
+  <div class="modal-overlay" id="brandKitModal">
+    <div class="modal-card">
+      <div class="modal-head">
+        <h3>Brand Kit Studio</h3>
+        <button class="close-btn" onclick="closeModal('brandKitModal')">✕</button>
+      </div>
+      <div style="display:flex; flex-direction:column; gap:12px;">
+        <div>
+          <label style="font-size:11px; color:#94A3B8;">Brand Name</label>
+          <input type="text" id="bkName" value="GLOBAL CREATIVE" class="input-field" style="margin-top:4px;">
+        </div>
+        <div>
+          <label style="font-size:11px; color:#94A3B8;">Brand Tagline</label>
+          <input type="text" id="bkTagline" value="ARCHITECTURAL SIGNAGE" class="input-field" style="margin-top:4px;">
+        </div>
+        <div class="form-row">
+          <div>
+            <label style="font-size:11px; color:#94A3B8;">Primary Color</label>
+            <input type="color" id="bkPrim" value="#ffd21a" class="input-field" style="margin-top:4px; height:38px; padding:2px;">
+          </div>
+          <div>
+            <label style="font-size:11px; color:#94A3B8;">Secondary Accent</label>
+            <input type="color" id="bkSec" value="#00f2ff" class="input-field" style="margin-top:4px; height:38px; padding:2px;">
+          </div>
+        </div>
+        <div style="display:flex; gap:8px; margin-top:8px;">
+          <button class="btn btn-gold" style="flex:1; border-radius:var(--radius-sm);" onclick="applyBrandKitToCanvas()">Apply to Canvas</button>
+          <button class="btn btn-outline-dark" style="flex:1; border-radius:var(--radius-sm);" onclick="saveBrandKit()">Save Kit</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 5. UPI PAYMENT MODAL -->
+  <div class="modal-overlay" id="upiModal">
+    <div class="modal-card">
+      <div class="modal-head">
+        <h3>📱 UPI Instant Advance Payment</h3>
+        <button class="close-btn" onclick="closeModal('upiModal')">✕</button>
+      </div>
+      <div style="display:flex; flex-direction:column; gap:14px; text-align:center;">
+        <div style="background:#061424; border:1px dashed var(--gold); border-radius:var(--radius-md); padding:16px;">
+          <div style="font-size:11px; color:#94A3B8; margin-bottom:4px;">Official UPI ID for GLOBAL CREATIVE:</div>
+          <div style="font-size:18px; font-weight:900; color:var(--cyan); letter-spacing:0.5px;">ledsignadil@oksbi</div>
+          <div style="font-size:11px; color:#E2E8F0; margin-top:4px;">Recipient: NEON POWER / GLOBAL CREATIVE (+91 93549 44438)</div>
+        </div>
+        <p style="font-size:12px; color:var(--text-light-muted); line-height:1.5; margin:0;">
+          Scan with Google Pay, PhonePe, Paytm, or BHIM. Send payment screenshot on WhatsApp for instant confirmation.
+        </p>
+        <div style="display:flex; gap:8px;">
+          <button class="btn btn-gold" style="flex:1; border-radius:var(--radius-sm);" onclick="copyUpiId()">📋 Copy UPI ID</button>
+          <button class="btn btn-green" style="flex:1; border-radius:var(--radius-sm);" onclick="openUpiIntent()">⚡ Open UPI App</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 6. PRO SUBSCRIPTION MODAL -->
+  <div class="modal-overlay" id="subscriptionModal">
+    <div class="modal-card">
+      <div class="modal-head">
+        <h3>👑 Pro Plan ($4.99 / mo)</h3>
+        <button class="close-btn" onclick="closeModal('subscriptionModal')">✕</button>
+      </div>
+      <div style="display:flex; flex-direction:column; gap:14px;">
+        <div style="font-size:26px; font-weight:900; color:var(--gold);">$4.99 <span style="font-size:13px; color:#94A3B8;">/ month (or ₹499/mo)</span></div>
+        <ul style="font-size:12px; color:#CBD5E1; line-height:1.7; padding-left:18px; margin:0;">
+          <li>Unlimited 300 DPI Prepress PDF & Vector SVG</li>
+          <li>Multilingual AI Voice-to-Design Engine</li>
+          <li>CorelDRAW v12 Export Pipeline (.CDR)</li>
+          <li>Cloud Project Autosave & Team Storage</li>
+        </ul>
+        <div style="display:flex; gap:8px; margin-top:8px;">
+          <a class="btn btn-gold" href="https://www.paypal.com/ncp/payment/GN99BSA7E4L3Y" target="_blank" rel="noopener" style="flex:1; text-align:center;">Subscribe via PayPal ($4.99)</a>
+          <button class="btn btn-green" onclick="closeModal('subscriptionModal'); openModal('upiModal');" style="flex:1;">Pay via UPI (₹499)</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 7. INTEGRATION STATUS MODAL -->
+  <div class="modal-overlay" id="integrationModal">
+    <div class="modal-card">
+      <div class="modal-head">
+        <h3>⚡ Integration & Backend Status</h3>
+        <button class="close-btn" onclick="closeModal('integrationModal')">✕</button>
+      </div>
+      <div id="integrationStatusBody" style="font-size:12px; color:#CBD5E1; line-height:1.6; display:flex; flex-direction:column; gap:10px;">
+        Loading live diagnostics from server...
+      </div>
+    </div>
+  </div>
+
+  <!-- 8. 3D GALLERY MODAL -->
+  <div class="modal-overlay" id="galleryModal">
+    <div class="modal-card" style="max-width:680px;">
+      <div class="modal-head">
+        <h3>3D Signage Showcase Gallery</h3>
+        <button class="close-btn" onclick="closeModal('galleryModal')">✕</button>
+      </div>
+      <div style="display:grid; grid-template-columns:repeat(3, 1fr); gap:12px;">
+        <div class="service-box" onclick="selectServiceForQuote('3d_sign_board'); closeModal('galleryModal');"><div class="service-thumb"><b style="color:#FFD21F;">3D Channel Letters</b></div><div class="service-content"><small>Titanium Finish</small></div></div>
+        <div class="service-box" onclick="selectServiceForQuote('acp_sign_board'); closeModal('galleryModal');"><div class="service-thumb"><b style="color:#00F2FF;">ACP Cladding</b></div><div class="service-content"><small>Laser Routed</small></div></div>
+        <div class="service-box" onclick="selectServiceForQuote('neon_flex'); closeModal('galleryModal');"><div class="service-thumb"><b style="color:#FF1E8A;">Silicon Neon</b></div><div class="service-content"><small>IP67 Waterproof</small></div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TOAST ALERT -->
+  <div id="toast"></div>

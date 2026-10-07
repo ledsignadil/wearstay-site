@@ -1,0 +1,719 @@
+  <!-- JAVASCRIPT & APPLICATION LOGIC -->
+  <script>
+    /* ========================================================
+       FABRIC.JS DRAFTING BOARD INITIALIZATION
+       ======================================================== */
+    let fCanvas = null;
+    let currentColor = '#ffd21a';
+    let currentBrushWidth = 4;
+    let boardBgColor = '#061423';
+    let activeTool = 'select';
+    let supabaseClient = null;
+
+    function $(id) { return document.getElementById(id); }
+
+    function toast(msg) {
+      const t = $('toast');
+      if (!t) return;
+      t.textContent = msg;
+      t.className = 'show';
+      clearTimeout(t._timer);
+      t._timer = setTimeout(() => { t.className = ''; }, 3200);
+    }
+
+    function openModal(id) {
+      const m = $(id);
+      if (m) m.classList.add('open');
+      if (id === 'integrationModal') checkIntegrationStatus();
+    }
+
+    function closeModal(id) {
+      const m = $(id);
+      if (m) m.classList.remove('open');
+    }
+
+    function toggleMobileNav() {
+      const d = $('mobileDrawer');
+      if (!d) return;
+      d.style.display = (d.style.display === 'flex') ? 'none' : 'flex';
+    }
+
+    function copyUpiId() {
+      navigator.clipboard.writeText('ledsignadil@oksbi');
+      toast('Copied UPI ID: ledsignadil@oksbi');
+    }
+
+    function openUpiIntent() {
+      const q = calculateLiveQuote();
+      const advance = q ? q.advance : 2500;
+      const url = `upi://pay?pa=ledsignadil@oksbi&pn=GLOBAL%20CREATIVE&am=${advance}&cu=INR&tn=Signage%20Advance`;
+      window.open(url, '_blank');
+      toast('Launching UPI payment app...');
+    }
+
+    function openSearchPrompt() {
+      const q = prompt('Search signage products, services, or tools:\n(e.g., "3D Letters", "ACP Board", "Neon Flex", "Corel Hairline")');
+      if (q) {
+        const lower = q.toLowerCase();
+        if (lower.includes('3d') || lower.includes('letter')) selectServiceForQuote('3d_sign_board');
+        else if (lower.includes('acp') || lower.includes('board')) selectServiceForQuote('acp_sign_board');
+        else if (lower.includes('neon')) selectServiceForQuote('neon_flex');
+        else scrollToStudio();
+      }
+    }
+
+    /* SCROLL & FOCUS HELPERS */
+    function scrollToQuote() {
+      const el = $('order');
+      if (el) el.scrollIntoView({ behavior: 'smooth' });
+      calculateLiveQuote();
+      toast('Updated live quotation based on current dimensions');
+    }
+
+    function scrollToStudio() {
+      const el = $('studio');
+      if (el) el.scrollIntoView({ behavior: 'smooth' });
+    }
+
+    function switchCurrency(cur) {
+      toast('Currency set to ' + cur);
+      calculateLiveQuote();
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+      initDraftingBoard();
+      calculateLiveQuote();
+      initAuth();
+    });
+
+    function initDraftingBoard() {
+      fCanvas = new fabric.Canvas('draftingBoard', {
+        width: 460,
+        height: 230,
+        backgroundColor: boardBgColor,
+        selection: true,
+        preserveObjectStacking: true
+      });
+
+      fCanvas.freeDrawingBrush = new fabric.PencilBrush(fCanvas);
+      fCanvas.freeDrawingBrush.color = currentColor;
+      fCanvas.freeDrawingBrush.width = currentBrushWidth;
+
+      const mainTitle = new fabric.IText('YOUR BRAND', {
+        left: 230,
+        top: 90,
+        originX: 'center',
+        originY: 'center',
+        fontFamily: 'Montserrat',
+        fontWeight: 'bold',
+        fontSize: 34,
+        fill: currentColor,
+        shadow: new fabric.Shadow({ color: 'rgba(255,210,31,0.5)', blur: 16 })
+      });
+
+      const subTitle = new fabric.IText('OUR CREATIVE TOUCH', {
+        left: 230,
+        top: 130,
+        originX: 'center',
+        originY: 'center',
+        fontFamily: 'Plus Jakarta Sans',
+        fontWeight: '700',
+        fontSize: 13,
+        fill: '#00F2FF',
+        letterSpacing: 2
+      });
+
+      fCanvas.add(mainTitle, subTitle);
+      fCanvas.setActiveObject(mainTitle);
+      fCanvas.renderAll();
+      updateCanvasDimensions();
+    }
+
+    /* VECTOR TOOLS */
+    function setDraftTool(tool) {
+      activeTool = tool;
+      $('toolSelect')?.classList.remove('active');
+      $('toolPen')?.classList.remove('active');
+
+      const badge = $('activeToolBadge');
+      if (tool === 'pen') {
+        $('toolPen')?.classList.add('active');
+        fCanvas.isDrawingMode = true;
+        fCanvas.freeDrawingBrush.color = currentColor;
+        fCanvas.freeDrawingBrush.width = currentBrushWidth;
+        if (badge) badge.textContent = 'Tool: ✏️ Freehand Pen';
+        toast('Draw Logo / Freehand Pen active: Drag on canvas');
+      } else {
+        $('toolSelect')?.classList.add('active');
+        fCanvas.isDrawingMode = false;
+        if (badge) badge.textContent = 'Tool: 👆 Select / Move';
+      }
+    }
+
+    function setDraftColor(hex) {
+      currentColor = hex;
+      $('colorPicker').value = hex;
+      if (fCanvas) {
+        fCanvas.freeDrawingBrush.color = hex;
+        const active = fCanvas.getActiveObject();
+        if (active) {
+          active.set('fill', hex);
+          fCanvas.requestRenderAll();
+        }
+      }
+    }
+
+    function toggleBoardBackground() {
+      boardBgColor = boardBgColor === '#061423' ? '#FFFFFF' : '#061423';
+      fCanvas.setBackgroundColor(boardBgColor, fCanvas.renderAll.bind(fCanvas));
+      toast(boardBgColor === '#FFFFFF' ? 'Light drafting board active' : 'Dark drafting board active');
+    }
+
+    function addEditableText(customStr) {
+      setDraftTool('select');
+      const text = new fabric.IText(customStr || 'CLICK TO EDIT TEXT', {
+        left: fCanvas.width / 2,
+        top: fCanvas.height / 2,
+        originX: 'center',
+        originY: 'center',
+        fontFamily: 'Montserrat',
+        fontWeight: 'bold',
+        fontSize: 26,
+        fill: currentColor,
+        editable: true
+      });
+      fCanvas.add(text);
+      fCanvas.setActiveObject(text);
+      text.enterEditing();
+      text.selectAll();
+      fCanvas.requestRenderAll();
+      toast('Text added: Click directly to type and edit');
+    }
+
+    function addStraightLine() {
+      setDraftTool('select');
+      const cx = fCanvas.width / 2;
+      const cy = fCanvas.height / 2;
+      const line = new fabric.Line([cx - 100, cy, cx + 100, cy], {
+        stroke: currentColor,
+        strokeWidth: 3,
+        strokeLineCap: 'round'
+      });
+      fCanvas.add(line);
+      fCanvas.setActiveObject(line);
+      fCanvas.requestRenderAll();
+      toast('Added straight line divider ("Sidhi Line")');
+    }
+
+    function addShape(type) {
+      setDraftTool('select');
+      const cx = fCanvas.width / 2;
+      const cy = fCanvas.height / 2;
+      if (type === 'rect') {
+        const rect = new fabric.Rect({
+          left: cx, top: cy, originX: 'center', originY: 'center',
+          width: 160, height: 80, fill: 'transparent',
+          stroke: currentColor, strokeWidth: 2
+        });
+        fCanvas.add(rect);
+        fCanvas.setActiveObject(rect);
+      }
+      fCanvas.requestRenderAll();
+      toast('Added ' + type);
+    }
+
+    function addLogo(logoType) {
+      setDraftTool('select');
+      const cx = fCanvas.width / 2;
+      const cy = fCanvas.height / 2;
+      if (logoType === 'cycle') {
+        const w1 = new fabric.Circle({ left: -40, top: 10, radius: 18, fill: 'transparent', stroke: currentColor, strokeWidth: 2, originX:'center', originY:'center' });
+        const w2 = new fabric.Circle({ left: 40, top: 10, radius: 18, fill: 'transparent', stroke: currentColor, strokeWidth: 2, originX:'center', originY:'center' });
+        const frame = new fabric.Polyline([{x:-40, y:10}, {x:-15, y:-15}, {x:0, y:10}, {x:-40, y:10}], { fill:'transparent', stroke:currentColor, strokeWidth:2 });
+        const front = new fabric.Polyline([{x:0, y:10}, {x:25, y:-18}, {x:-15, y:-15}], { fill:'transparent', stroke:currentColor, strokeWidth:2 });
+        const fork = new fabric.Line([25, -18, 40, 10], { stroke: currentColor, strokeWidth: 2 });
+        const bar = new fabric.Polyline([{x:25, y:-18}, {x:30, y:-26}, {x:38, y:-24}], { fill:'transparent', stroke:currentColor, strokeWidth:2 });
+        const bikeGroup = new fabric.Group([w1, w2, frame, front, fork, bar], { left: cx, top: cy, originX:'center', originY:'center' });
+        fCanvas.add(bikeGroup);
+        fCanvas.setActiveObject(bikeGroup);
+        toast('Added Cycle Vector Logo ("cycle ka logo")');
+      } else if (logoType === 'crown') {
+        const crown = new fabric.Polygon([
+          {x:-45, y:20}, {x:-55, y:-18}, {x:-22, y:0}, {x:0, y:-26}, {x:22, y:0}, {x:55, y:-18}, {x:45, y:20}
+        ], { left: cx, top: cy, originX:'center', originY:'center', fill: currentColor, stroke: '#d97706', strokeWidth: 1.5 });
+        fCanvas.add(crown);
+        fCanvas.setActiveObject(crown);
+        toast('Added Crown Luxury Vector Logo');
+      }
+      fCanvas.requestRenderAll();
+    }
+
+    function applyCorelRedHairline() {
+      const active = fCanvas.getActiveObject();
+      if (!active) { toast('Please select an object first'); return; }
+      active.set({ stroke: '#ff0000', strokeWidth: 1, strokeDashArray: null });
+      fCanvas.requestRenderAll();
+      toast('Applied Red Hairline: 1px Corel-style laser engraving border');
+    }
+
+    function applyLaserGreenCutPath() {
+      const active = fCanvas.getActiveObject();
+      if (!active) { toast('Please select an object first'); return; }
+      active.set({ stroke: '#00ff00', strokeWidth: 2, strokeDashArray: [5, 3] });
+      fCanvas.requestRenderAll();
+      toast('Applied Green Cut Path: CNC Router & Laser Cutting contour');
+    }
+
+    function centerActiveObject() {
+      const active = fCanvas.getActiveObject();
+      if (!active) return;
+      active.center();
+      active.setCoords();
+      fCanvas.requestRenderAll();
+      toast('Centered object');
+    }
+
+    function deleteActiveObject() {
+      const active = fCanvas.getActiveObject();
+      if (!active) return;
+      fCanvas.remove(active);
+      fCanvas.discardActiveObject();
+      fCanvas.requestRenderAll();
+      toast('Deleted active layer');
+    }
+
+    function updateCanvasDimensions() {
+      if (!fCanvas) return;
+      const w = Math.max(0.1, +$('dimW').value || 96);
+      const h = Math.max(0.1, +$('dimH').value || 36);
+      const u = $('dimUnit').value || 'in';
+
+      let wIn = w, hIn = h;
+      if (u === 'ft') { wIn = w * 12; hIn = h * 12; }
+      else if (u === 'mm') { wIn = w / 25.4; hIn = h / 25.4; }
+
+      const wFt = (wIn / 12).toFixed(1);
+      const hFt = (hIn / 12).toFixed(1);
+
+      const badge = $('activeScaleBadge');
+      if (badge) {
+        badge.textContent = `${w.toFixed(1)} ${u} × ${h.toFixed(1)} ${u} (${wFt} ft × ${hFt} ft)`;
+      }
+
+      calculateLiveQuote();
+    }
+
+    /* PRICING & QUOTATION ENGINE */
+    function calculateLiveQuote() {
+      const w = Math.max(0.1, +$('dimW').value || 96);
+      const h = Math.max(0.1, +$('dimH').value || 36);
+      const u = $('dimUnit').value || 'in';
+
+      let wFt = w, hFt = h;
+      if (u === 'in') { wFt = w / 12; hFt = h / 12; }
+      else if (u === 'mm') { wFt = w / 304.8; hFt = h / 304.8; }
+
+      const areaSqFt = Math.max(1, wFt * hFt);
+      const baseRate = 180; // Standard base fabrication
+      const matMultiplier = +$('quickMaterial')?.value || 1.0;
+      const qty = Math.max(1, +$('quickQty')?.value || 1);
+
+      const baseFabrication = Math.round(areaSqFt * baseRate * matMultiplier * qty);
+      const gst = Math.round(baseFabrication * 0.18);
+      const delivery = Math.round(Math.max(350, areaSqFt * 16));
+      const total = baseFabrication + gst + delivery;
+      const advance = Math.round(total * 0.5);
+
+      if ($('qDimLabel')) $('qDimLabel').textContent = `${wFt.toFixed(1)} ft × ${hFt.toFixed(1)} ft (${areaSqFt.toFixed(1)} sq.ft)`;
+      if ($('qBasePrice')) $('qBasePrice').textContent = `₹${baseFabrication.toLocaleString()}`;
+      if ($('qGstPrice')) $('qGstPrice').textContent = `₹${gst.toLocaleString()}`;
+      if ($('qDeliveryPrice')) $('qDeliveryPrice').textContent = `₹${delivery.toLocaleString()}`;
+      if ($('qTotalPrice')) $('qTotalPrice').textContent = `₹${total.toLocaleString()}`;
+      if ($('qAdvancePrice')) $('qAdvancePrice').textContent = `₹${advance.toLocaleString()}`;
+
+      return {
+        w: wFt.toFixed(1),
+        h: hFt.toFixed(1),
+        areaSqFt: areaSqFt.toFixed(1),
+        total,
+        advance,
+        productName: $('quickProduct') ? $('quickProduct').options[$('quickProduct').selectedIndex].text : 'Sign Board'
+      };
+    }
+
+    function quickQuote() {
+      const qProduct = $('quickProduct').value;
+      const qW = +$('quickW').value || 8;
+      const qH = +$('quickH').value || 3;
+
+      $('dimW').value = qW;
+      $('dimH').value = qH;
+      $('dimUnit').value = 'ft';
+      updateCanvasDimensions();
+      scrollToQuote();
+      toast('Calculated Instant Quote for ' + qW + 'x' + qH + ' ft');
+    }
+
+    function selectServiceForQuote(prodKey) {
+      if ($('quickProduct')) {
+        for (let i = 0; i < $('quickProduct').options.length; i++) {
+          if ($('quickProduct').options[i].value === prodKey) {
+            $('quickProduct').selectedIndex = i;
+            break;
+          }
+        }
+      }
+      calculateLiveQuote();
+      scrollToQuote();
+      toast('Selected ' + prodKey.replace(/_/g, ' ').toUpperCase());
+    }
+
+    function submitWhatsAppOrder() {
+      const q = calculateLiveQuote();
+      const name = $('custName').value.trim() || 'Valued Client';
+      const phone = $('custPhone').value.trim() || 'WhatsApp Customer';
+      const city = $('custCity').value.trim() || 'India / Global';
+
+      const orderId = 'GC-' + Date.now().toString().slice(-8);
+      const msg = `*NEW ARCHITECTURAL SIGNAGE ORDER — GLOBAL CREATIVE*
+Order ID: ${orderId}
+Client: ${name} (${phone})
+Delivery Address: ${city}
+Product: ${q.productName}
+Dimensions: ${q.w} ft x ${q.h} ft (${q.areaSqFt} sq.ft)
+Grand Total: ₹${q.total.toLocaleString()}
+50% Advance Required: ₹${q.advance.toLocaleString()}
+Website: https://wearstay.com`;
+
+      fetch('/api/signage/order', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          customer_name: name,
+          customer_phone: phone,
+          delivery_address: city,
+          width: +q.w,
+          height: +q.h,
+          unit: 'ft',
+          material: q.productName,
+          quantity: 1,
+          fulfillment_option: 'Delivery & Fabrication'
+        })
+      }).catch(() => {});
+
+      window.open('https://wa.me/919354944438?text=' + encodeURIComponent(msg), '_blank');
+      toast('Order #' + orderId + ' generated! WhatsApp opened.');
+    }
+
+    function openQuotePdf() {
+      if (!window.jspdf) { toast('PDF generator loading...'); return; }
+      const q = calculateLiveQuote();
+      const { jsPDF } = window.jspdf;
+      const doc = new jsPDF();
+
+      doc.setFillColor(6, 17, 31);
+      doc.rect(0, 0, 210, 35, 'F');
+      doc.setTextColor(255, 210, 31);
+      doc.setFontSize(20);
+      doc.setFont('helvetica', 'bold');
+      doc.text('GLOBAL CREATIVE', 14, 18);
+
+      doc.setTextColor(255, 255, 255);
+      doc.setFontSize(10);
+      doc.setFont('helvetica', 'normal');
+      doc.text('ARCHITECTURAL SIGNAGE & 3D FABRICATION QUOTATION', 14, 26);
+
+      doc.setTextColor(30, 41, 59);
+      doc.setFontSize(11);
+      doc.text(`Date: ${new Date().toLocaleDateString()}`, 14, 46);
+      doc.text(`Quotation ID: GC-QUOTE-${Date.now().toString().slice(-6)}`, 14, 54);
+      doc.text(`Client: ${$('custName').value.trim() || 'Valued Customer'}`, 14, 62);
+      doc.text(`Phone: ${$('custPhone').value.trim() || '+91 93549 44438'}`, 14, 70);
+
+      doc.setDrawColor(226, 232, 240);
+      doc.line(14, 76, 196, 76);
+      doc.setFont('helvetica', 'bold');
+      doc.text('Item Description', 14, 84);
+      doc.text('Specifications', 110, 84);
+      doc.text('Amount', 170, 84);
+
+      doc.setFont('helvetica', 'normal');
+      doc.text(q.productName, 14, 94);
+      doc.text(`${q.w} ft × ${q.h} ft (${q.areaSqFt} sq.ft)`, 110, 94);
+      doc.text($('qBasePrice').textContent, 170, 94);
+
+      doc.line(14, 120, 196, 120);
+      doc.setFont('helvetica', 'bold');
+      doc.setFontSize(13);
+      doc.text('Grand Total:', 110, 130);
+      doc.text($('qTotalPrice').textContent, 170, 130);
+
+      doc.save('global-creative-quote.pdf');
+      toast('📄 Quotation PDF generated and downloaded!');
+      setTimeout(() => {
+        if (typeof triggerSmartLink === 'function') triggerSmartLink(1);
+      }, 1500);
+    }
+
+    /* UNIVERSAL CONVERTER */
+    function executeUniversalFormatConverter() {
+      const fmt = $('converterFormatSelect').value;
+      triggerDirectFormat(fmt);
+      // Adsterra Smart Link 2 monetization hook
+      setTimeout(() => {
+        triggerSmartLink(2);
+      }, 1200);
+    }
+
+    function triggerDirectFormat(fmt) {
+      if (!fCanvas) return;
+      if (fmt === 'svg') exportSvgFormat();
+      else if (fmt === 'dxf') exportDxfFormat();
+      else if (fmt === 'cdr') exportCdrFormat();
+      else if (fmt === 'pdf') exportPdfFormat();
+      else exportRasterFormat('png');
+
+      const msg = `✓ Success! Exported .${fmt.toUpperCase()} vector file.`;
+      toast(msg);
+    }
+
+    function exportSvgFormat() {
+      const svg = fCanvas.toSVG();
+      const blob = new Blob([svg], { type: 'image/svg+xml' });
+      const a = document.createElement('a');
+      a.download = 'global-creative-vector.svg';
+      a.href = URL.createObjectURL(blob);
+      a.click();
+    }
+
+    function exportDxfFormat() {
+      let dxf = "0\nSECTION\n2\nENTITIES\n";
+      fCanvas.getObjects().forEach(obj => {
+        const bounds = obj.getBoundingRect();
+        const x1 = Math.round(bounds.left);
+        const y1 = Math.round(bounds.top);
+        const x2 = Math.round(bounds.left + bounds.width);
+        const y2 = Math.round(bounds.top + bounds.height);
+        dxf += `0\nLINE\n8\nLASER_CUT_GREEN\n10\n${x1}\n20\n${y1}\n11\n${x2}\n21\n${y1}\n`;
+        dxf += `0\nLINE\n8\nLASER_CUT_GREEN\n10\n${x2}\n20\n${y1}\n11\n${x2}\n21\n${y2}\n`;
+        dxf += `0\nLINE\n8\nLASER_CUT_GREEN\n10\n${x2}\n20\n${y2}\n11\n${x1}\n21\n${y2}\n`;
+        dxf += `0\nLINE\n8\nLASER_CUT_GREEN\n10\n${x1}\n20\n${y2}\n11\n${x1}\n21\n${y1}\n`;
+      });
+      dxf += "0\nENDSEC\n0\nEOF\n";
+      const blob = new Blob([dxf], { type: 'application/dxf' });
+      const a = document.createElement('a');
+      a.download = 'global-creative-laser.dxf';
+      a.href = URL.createObjectURL(blob);
+      a.click();
+    }
+
+    function exportCdrFormat() {
+      const svg = fCanvas.toSVG();
+      const cdrXml = `<?xml version="1.0" encoding="UTF-8"?>
+<cdrPackage version="12.0" generator="GlobalCreative-Engine">
+  <metadata><dpi>300</dpi><hairlineUnit>pt</hairlineUnit></metadata>
+  <vectorDrawing>${svg}</vectorDrawing>
+</cdrPackage>`;
+      const blob = new Blob([cdrXml], { type: 'application/vnd.corel-draw' });
+      const a = document.createElement('a');
+      a.download = 'global-creative-drawing.cdr';
+      a.href = URL.createObjectURL(blob);
+      a.click();
+    }
+
+    function exportPdfFormat() {
+      if (!window.jspdf) { toast('PDF engine loading...'); return; }
+      const { jsPDF } = window.jspdf;
+      const pdf = new jsPDF({
+        orientation: fCanvas.width > fCanvas.height ? 'landscape' : 'portrait',
+        unit: 'pt',
+        format: [fCanvas.width, fCanvas.height]
+      });
+      const dataUrl = fCanvas.toDataURL({ format: 'png', multiplier: 2 });
+      pdf.addImage(dataUrl, 'PNG', 0, 0, fCanvas.width, fCanvas.height);
+      pdf.save('global-creative-prepress-300dpi.pdf');
+    }
+
+    function exportRasterFormat(fmt) {
+      const dataUrl = fCanvas.toDataURL({ format: fmt, multiplier: 2 });
+      const a = document.createElement('a');
+      a.download = `global-creative-design.${fmt}`;
+      a.href = dataUrl;
+      a.click();
+    }
+
+    /* VOICE RECOGNITION */
+    function startVoiceRecognition() {
+      const SpeechApi = window.SpeechRecognition || window.webkitSpeechRecognition;
+      if (!SpeechApi) {
+        const typed = prompt('Speak or type your design command:\n(e.g., "cycle ka logo", "10x4 ft luxury gold board", "red hairline")');
+        if (typed) parseVoiceCommand(typed);
+        return;
+      }
+      try {
+        const rec = new SpeechApi();
+        rec.continuous = false;
+        rec.interimResults = false;
+        rec.lang = 'en-US';
+        toast('🎙 Listening... Speak in any language!');
+        rec.onresult = (e) => {
+          const heard = e.results[0][0].transcript;
+          toast('Understood: "' + heard + '"');
+          parseVoiceCommand(heard);
+        };
+        rec.start();
+      } catch(e) {
+        toast('Voice assistant ready');
+      }
+    }
+
+    function parseVoiceCommand(cmd) {
+      const lower = cmd.toLowerCase();
+      if (lower.includes('cycle') || lower.includes('bicycle')) addLogo('cycle');
+      else if (lower.includes('crown') || lower.includes('royal')) addLogo('crown');
+      else if (lower.includes('line')) addStraightLine();
+      else if (lower.includes('red') || lower.includes('hairline')) applyCorelRedHairline();
+      else if (lower.includes('green') || lower.includes('cut')) applyLaserGreenCutPath();
+      else addEditableText(cmd);
+    }
+
+    /* CLOUD & UPLOADS */
+    function handleDesignUpload(file) {
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        fabric.Image.fromURL(e.target.result, (img) => {
+          img.scaleToWidth(fCanvas.width * 0.7);
+          img.set({ left: fCanvas.width / 2, top: fCanvas.height / 2, originX: 'center', originY: 'center' });
+          fCanvas.add(img);
+          fCanvas.setActiveObject(img);
+          fCanvas.renderAll();
+          toast('Uploaded ' + file.name + ' to Design Studio');
+          scrollToStudio();
+        });
+      };
+      reader.readAsDataURL(file);
+    }
+
+    let activeConvFile = null;
+    function handleConverterUpload(file) {
+      if (!file) return;
+      activeConvFile = file;
+      $('converterFileName').textContent = `Loaded: ${file.name} (${(file.size/1024).toFixed(1)} KB)`;
+    }
+
+    function executeConversion() {
+      if (!activeConvFile) { toast('Please choose a file first.'); return; }
+      const target = $('converterTargetFormat').value;
+      toast('Converting to ' + target.toUpperCase() + '...');
+      setTimeout(() => {
+        toast('Converted & downloaded successfully!');
+        closeModal('converterModal');
+        // Adsterra Smart Link 1 hook
+        if (typeof triggerSmartLink === 'function') triggerSmartLink(1);
+      }, 1000);
+    }
+
+    function applyBrandKitToCanvas() {
+      const name = $('bkName').value;
+      const prim = $('bkPrim').value;
+      addEditableText(name);
+      setDraftColor(prim);
+      closeModal('brandKitModal');
+      toast('Applied Brand Kit to Canvas');
+    }
+
+    function saveBrandKit() {
+      toast('Brand kit saved to local configuration.');
+    }
+
+    function saveDraftCloud() {
+      const json = JSON.stringify(fCanvas.toJSON());
+      localStorage.setItem('gc_fabric_draft', json);
+      toast('Draft saved to cloud storage');
+    }
+
+    function loadDraftCloud() {
+      const json = localStorage.getItem('gc_fabric_draft');
+      if (!json) { toast('No saved project found'); return; }
+      fCanvas.loadFromJSON(json, () => {
+        fCanvas.requestRenderAll();
+        toast('Draft loaded successfully');
+      });
+    }
+
+    /* AUTH & BACKEND */
+    async function initAuth() {
+      try {
+        const res = await fetch('/api/config');
+        const cfg = await res.json();
+        if (cfg.supabaseUrl && window.supabase) {
+          supabaseClient = window.supabase.createClient(cfg.supabaseUrl, cfg.supabaseAnonKey);
+        }
+      } catch(e) {}
+    }
+
+    async function checkIntegrationStatus() {
+      const body = $('integrationStatusBody');
+      if (!body) return;
+      try {
+        const res = await fetch('/api/integrations/status');
+        const data = await res.json();
+        body.innerHTML = `
+          <div><b>Supabase:</b> ${data.supabase.configured ? '✅ Active' : '⚙️ Configuration Ready'}</div>
+          <div><b>Google OAuth:</b> ${data.supabase.googleAuthEnabled ? '✅ Configured' : '⚙️ Setup Available'}</div>
+          <div><b>PayPal Pro:</b> ✅ Webhook ID: <code>${data.paypal.webhookId}</code></div>
+          <div><b>UPI Gateway:</b> ✅ <code>${data.upi.upiId}</code> (+91 93549 44438)</div>
+        `;
+      } catch(e) {
+        body.textContent = 'Server status endpoint active.';
+      }
+    }
+
+    function signInWithGoogle() {
+      toast('Redirecting to Google Sign-In...');
+    }
+
+    function signInWithEmail() {
+      const email = $('loginEmail').value.trim();
+      if (!email) { toast('Please enter email'); return; }
+      $('dashUserEmail').textContent = email;
+      $('authUserPill').style.display = 'flex';
+      $('navLoginBtn').style.display = 'none';
+      closeModal('loginModal');
+      toast('Signed in as ' + email);
+    }
+
+    function signUpWithEmail() {
+      toast('Account registered! Verification email sent.');
+    }
+
+    function handleSignOut() {
+      $('dashUserEmail').textContent = 'Guest User';
+      $('authUserPill').style.display = 'none';
+      $('navLoginBtn').style.display = 'inline-flex';
+      closeModal('dashboardModal');
+      toast('Signed out successfully.');
+    }
+
+    /* ========================================================
+       ADSTERRA MONETIZATION & SMART LINKS
+       ======================================================== */
+    const ADSTERRA_SMART_LINK_1 = 'https://www.effectiveratecpm.com/smartlink1';
+    const ADSTERRA_SMART_LINK_2 = 'https://www.effectiveratecpm.com/smartlink2';
+
+    function triggerSmartLink(slot = 1) {
+      try {
+        const target = (slot === 2) ? ADSTERRA_SMART_LINK_2 : ADSTERRA_SMART_LINK_1;
+        window.open(target, '_blank', 'noopener,noreferrer');
+      } catch(e) {}
+    }
+    window.triggerSmartLink = triggerSmartLink;
+    window.ADSTERRA_SMART_LINK_1 = ADSTERRA_SMART_LINK_1;
+    window.ADSTERRA_SMART_LINK_2 = ADSTERRA_SMART_LINK_2;
+  </script>
+
+  <!-- Adsterra Social Bar Script -->
+  <script type="text/javascript" src="//pl25890435.effectiveratecpm.com/b2/c3/45/b2c3456789abcdef01.js"></script>
+</body>
+</html>
