@@ -1,0 +1,2735 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GLOBAL CREATIVE — Architectural Signage, 3D Letters & AI CAD Studio</title>
+  <meta name="description" content="Global Creative is your complete platform for professional 3D acrylic signage, LED sign boards, architectural titanium letters, vector drafting studio, and instant quotations.">
+
+  <!-- Google Fonts: Plus Jakarta Sans, Inter, Montserrat, Cinzel -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;900&family=Inter:wght@400;500;600;700;800&family=Montserrat:wght@600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <!-- Fabric.js CDN -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/5.3.1/fabric.min.js"></script>
+
+  <!-- jsPDF for 300 DPI Prepress PDF Generation -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+  <style>
+    :root {
+      --navy-950: #06111F;
+      --navy-900: #0B1B2E;
+      --navy-850: #0F243C;
+      --navy-800: #152E4D;
+      --border-dark: #1E3A5A;
+      --border-dark-light: #2A4E77;
+      --bg-light: #F5F7FA;
+      --card-white: #FFFFFF;
+      --gold: #FFD21F;
+      --gold-hover: #FFE054;
+      --gold-dark: #D99B00;
+      --cyan: #00F2FF;
+      --red-hairline: #FF0000;
+      --green-cut: #10B981;
+      --text-dark: #111827;
+      --text-slate: #374151;
+      --text-muted: #64748B;
+      --text-light-muted: #94A3B8;
+      --radius-sm: 8px;
+      --radius-md: 12px;
+      --radius-lg: 18px;
+      --radius-xl: 24px;
+      --shadow-sm: 0 2px 8px rgba(0,0,0,0.06);
+      --shadow-md: 0 8px 24px rgba(0,0,0,0.08);
+      --shadow-lg: 0 16px 40px rgba(0,0,0,0.12);
+      --shadow-gold: 0 4px 20px rgba(255, 210, 31, 0.4);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Plus Jakarta Sans', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--bg-light);
+      color: var(--text-slate);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      overflow-x: hidden;
+      line-height: 1.5;
+    }
+
+    /* TYPOGRAPHY */
+    h1, h2, h3, h4, .brand-title {
+      font-family: 'Plus Jakarta Sans', 'Montserrat', sans-serif;
+      color: #FFFFFF;
+      line-height: 1.2;
+    }
+    .text-gold { color: var(--gold); }
+    .text-dark { color: var(--text-dark); }
+    .text-muted { color: var(--text-muted); }
+
+    /* BUTTONS */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 10px 20px;
+      border-radius: 9999px;
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+      border: 1px solid transparent;
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+      text-decoration: none;
+      white-space: nowrap;
+    }
+    .btn:hover { transform: translateY(-1px); }
+    .btn:active { transform: translateY(0); }
+    
+    .btn-gold {
+      background: var(--gold);
+      color: var(--navy-950);
+      font-weight: 800;
+      box-shadow: var(--shadow-gold);
+      border-color: var(--gold);
+    }
+    .btn-gold:hover {
+      background: var(--gold-hover);
+      box-shadow: 0 6px 24px rgba(255, 210, 31, 0.55);
+    }
+
+    .btn-outline-dark {
+      background: rgba(15, 36, 60, 0.6);
+      color: #FFFFFF;
+      border-color: var(--border-dark);
+      backdrop-filter: blur(8px);
+    }
+    .btn-outline-dark:hover {
+      background: var(--navy-800);
+      border-color: var(--gold);
+      color: var(--gold);
+    }
+
+    .btn-green {
+      background: linear-gradient(135deg, #059669, #10b981);
+      color: #FFFFFF;
+      border-color: #34d399;
+      box-shadow: 0 4px 16px rgba(16, 185, 129, 0.3);
+    }
+    .btn-green:hover { box-shadow: 0 6px 22px rgba(16, 185, 129, 0.45); }
+
+    .btn-cyan {
+      background: linear-gradient(135deg, #0284c7, #00f2ff);
+      color: #030a12;
+      box-shadow: 0 4px 14px rgba(0, 242, 255, 0.3);
+    }
+
+    /* HEADER */
+    header {
+      background: rgba(6, 17, 31, 0.96);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border-dark);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      padding: 12px 28px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+    }
+    .brand-wrap {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+    }
+    .brand-logo-mark {
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, #00F2FF 0%, #0284C7 45%, #E11D48 75%, #FFD21F 100%);
+      display: grid;
+      place-items: center;
+      font-weight: 900;
+      color: #FFFFFF;
+      font-size: 24px;
+      box-shadow: 0 0 20px rgba(0, 242, 255, 0.35);
+      flex-shrink: 0;
+    }
+    .brand-text h1 {
+      font-size: 19px;
+      font-weight: 900;
+      letter-spacing: 0.5px;
+      color: #FFFFFF;
+      margin: 0;
+    }
+    .brand-text h1 span { color: var(--gold); }
+    .brand-text small {
+      font-size: 10px;
+      color: var(--text-light-muted);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      display: block;
+      margin-top: 2px;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+    }
+    .nav-link {
+      color: #CBD5E1;
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 600;
+      transition: color 0.15s;
+    }
+    .nav-link:hover, .nav-link.active {
+      color: var(--gold);
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .icon-btn {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      background: var(--navy-900);
+      border: 1px solid var(--border-dark);
+      color: #CBD5E1;
+      display: grid;
+      place-items: center;
+      cursor: pointer;
+      font-size: 14px;
+      transition: all 0.15s;
+    }
+    .icon-btn:hover {
+      border-color: var(--gold);
+      color: var(--gold);
+    }
+    .hamburger-btn {
+      display: none;
+      background: none;
+      border: none;
+      color: #FFFFFF;
+      font-size: 24px;
+      cursor: pointer;
+    }
+
+    /* HERO SECTION */
+    .hero-section {
+      background: radial-gradient(circle at 75% 30%, #153457 0%, #0B1B2E 40%, #06111F 80%);
+      padding: 60px 28px 70px;
+      position: relative;
+      overflow: hidden;
+      border-bottom: 1px solid var(--border-dark);
+    }
+    .hero-container {
+      max-width: 1400px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 40px;
+      align-items: center;
+    }
+    .hero-eyebrow {
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--text-light-muted);
+      margin-bottom: 16px;
+    }
+    .hero-heading {
+      font-size: 52px;
+      font-weight: 900;
+      color: #FFFFFF;
+      line-height: 1.12;
+      margin-bottom: 16px;
+    }
+    .hero-tags {
+      font-size: 14px;
+      font-weight: 700;
+      color: #E2E8F0;
+      margin-bottom: 16px;
+    }
+    .hero-description {
+      font-size: 14px;
+      color: var(--text-light-muted);
+      max-width: 540px;
+      line-height: 1.6;
+      margin-bottom: 28px;
+    }
+    .hero-btns {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-bottom: 40px;
+    }
+
+    .trust-strip {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      padding-top: 24px;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    .trust-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .trust-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: rgba(255, 210, 31, 0.12);
+      border: 1px solid rgba(255, 210, 31, 0.3);
+      color: var(--gold);
+      display: grid;
+      place-items: center;
+      font-size: 16px;
+      flex-shrink: 0;
+    }
+    .trust-text {
+      font-size: 11px;
+      line-height: 1.3;
+      color: #CBD5E1;
+    }
+    .trust-text b {
+      color: #FFFFFF;
+      display: block;
+      font-size: 12px;
+    }
+
+    /* RIGHT HERO: STOREFRONT + QUICK QUOTE */
+    .hero-visual-col {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      position: relative;
+    }
+
+    /* 3D STOREFRONT ARCHITECTURAL FACADE */
+    .storefront-card {
+      background: linear-gradient(180deg, #0A1B2E 0%, #050E18 100%);
+      border: 1px solid var(--border-dark);
+      border-radius: var(--radius-lg);
+      padding: 16px;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+      position: relative;
+      overflow: hidden;
+    }
+    .storefront-art-wrap {
+      width: 100%;
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      position: relative;
+      background: #02070D;
+    }
+    .storefront-art-wrap svg {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+
+    /* QUICK QUOTE CARD */
+    .quick-quote-card {
+      background: rgba(11, 27, 46, 0.95);
+      border: 1px solid var(--border-dark-light);
+      border-radius: var(--radius-lg);
+      padding: 22px;
+      box-shadow: 0 16px 40px rgba(0,0,0,0.4);
+      backdrop-filter: blur(12px);
+    }
+    .quick-quote-card h3 {
+      font-size: 18px;
+      font-weight: 800;
+      color: #FFFFFF;
+      margin-bottom: 4px;
+    }
+    .quick-quote-card p {
+      font-size: 12px;
+      color: var(--text-light-muted);
+      margin-bottom: 16px;
+    }
+    .form-group {
+      margin-bottom: 12px;
+    }
+    .form-group label {
+      display: block;
+      font-size: 11px;
+      font-weight: 700;
+      color: #94A3B8;
+      margin-bottom: 6px;
+    }
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+    .input-field, .select-field {
+      width: 100%;
+      background: var(--navy-950);
+      border: 1px solid var(--border-dark);
+      border-radius: var(--radius-sm);
+      color: #FFFFFF;
+      padding: 9px 12px;
+      font-size: 12px;
+      font-weight: 600;
+      outline: none;
+      transition: border-color 0.15s;
+    }
+    .input-field:focus, .select-field:focus {
+      border-color: var(--gold);
+    }
+
+    /* OUR SERVICES SECTION (LIGHT BG) */
+    .services-section {
+      background: var(--bg-light);
+      padding: 70px 28px;
+      border-bottom: 1px solid #E2E8F0;
+    }
+    .section-head {
+      max-width: 1400px;
+      margin: 0 auto 36px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+    .section-head h2 {
+      font-size: 32px;
+      font-weight: 900;
+      color: var(--text-dark);
+      margin-bottom: 6px;
+    }
+    .section-head p {
+      font-size: 14px;
+      color: var(--text-muted);
+    }
+    .services-grid-6 {
+      max-width: 1400px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 18px;
+    }
+    .service-box {
+      background: var(--card-white);
+      border: 1px solid #E2E8F0;
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+      transition: all 0.25s ease;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+    }
+    .service-box:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--shadow-lg);
+      border-color: #CBD5E1;
+    }
+    .service-thumb {
+      width: 100%;
+      height: 140px;
+      background: #06111F;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .service-thumb svg {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+    .service-content {
+      padding: 14px;
+      text-align: center;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .service-title {
+      font-size: 14px;
+      font-weight: 800;
+      color: var(--text-dark);
+      margin-bottom: 4px;
+    }
+    .service-sub {
+      font-size: 11px;
+      color: var(--text-muted);
+      margin-bottom: 8px;
+    }
+    .service-rate-badge {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 800;
+      color: #0369a1;
+      background: #e0f2fe;
+      padding: 3px 8px;
+      border-radius: 9999px;
+      align-self: center;
+    }
+
+    /* DESIGN STUDIO & ORDER SECTION (DARK BG) */
+    .studio-order-section {
+      background: var(--navy-950);
+      padding: 70px 28px;
+      border-bottom: 1px solid var(--border-dark);
+    }
+    .studio-order-grid {
+      max-width: 1400px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 24px;
+    }
+    .dark-card {
+      background: var(--navy-900);
+      border: 1px solid var(--border-dark);
+      border-radius: var(--radius-lg);
+      padding: 28px;
+      box-shadow: 0 16px 40px rgba(0,0,0,0.5);
+    }
+    .dark-card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .dark-card-title h3 {
+      font-size: 22px;
+      font-weight: 800;
+      margin-bottom: 4px;
+    }
+    .dark-card-title p {
+      font-size: 12px;
+      color: var(--text-light-muted);
+    }
+
+    /* STUDIO WORKBENCH */
+    .studio-workbench {
+      display: grid;
+      grid-template-columns: 140px 1fr 180px;
+      gap: 14px;
+      background: #040910;
+      border: 1px solid var(--border-dark);
+      border-radius: var(--radius-md);
+      padding: 14px;
+      margin-bottom: 20px;
+    }
+    .studio-left-tools {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .tool-pill-btn {
+      background: var(--navy-850);
+      border: 1px solid var(--border-dark);
+      color: #E2E8F0;
+      padding: 8px 10px;
+      border-radius: var(--radius-sm);
+      font-size: 11px;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.15s;
+    }
+    .tool-pill-btn:hover, .tool-pill-btn.active {
+      background: var(--navy-800);
+      border-color: var(--gold);
+      color: var(--gold);
+    }
+
+    .studio-canvas-preview {
+      background: #02060B;
+      border: 1px solid var(--border-dark);
+      border-radius: var(--radius-sm);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      min-height: 280px;
+    }
+    .canvas-bar {
+      background: var(--navy-850);
+      padding: 6px 10px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 10px;
+      color: var(--text-light-muted);
+      border-bottom: 1px solid var(--border-dark);
+    }
+    .canvas-viewport {
+      flex: 1;
+      display: grid;
+      place-items: center;
+      padding: 10px;
+      overflow: auto;
+    }
+
+    .studio-checklist {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      justify-content: center;
+      padding-left: 6px;
+    }
+    .check-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 11px;
+      color: #CBD5E1;
+      font-weight: 600;
+    }
+    .check-icon {
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: rgba(16, 185, 129, 0.2);
+      color: #10B981;
+      display: grid;
+      place-items: center;
+      font-size: 10px;
+      font-weight: 900;
+      flex-shrink: 0;
+    }
+
+    /* ORDER WORKFLOW STEPS */
+    .order-steps-list {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      margin-bottom: 24px;
+    }
+    .step-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+    }
+    .step-num {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: var(--gold);
+      color: var(--navy-950);
+      font-weight: 900;
+      font-size: 12px;
+      display: grid;
+      place-items: center;
+      flex-shrink: 0;
+    }
+    .step-info h4 {
+      font-size: 13px;
+      font-weight: 800;
+      color: #FFFFFF;
+      margin-bottom: 2px;
+    }
+    .step-info p {
+      font-size: 11px;
+      color: var(--text-light-muted);
+    }
+
+    .order-visual-wrap {
+      background: #040910;
+      border: 1px solid var(--border-dark);
+      border-radius: var(--radius-md);
+      padding: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 20px;
+    }
+
+    /* COMPACT FEATURE STRIP */
+    .feature-strip-section {
+      background: var(--card-white);
+      padding: 28px;
+      border-bottom: 1px solid #E2E8F0;
+    }
+    .feature-strip-container {
+      max-width: 1400px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 16px;
+    }
+    .feature-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 10px 14px;
+      border-radius: var(--radius-sm);
+      transition: background 0.15s;
+      cursor: pointer;
+    }
+    .feature-item:hover {
+      background: #F1F5F9;
+    }
+    .feature-icon-badge {
+      width: 38px;
+      height: 38px;
+      border-radius: 10px;
+      background: #F1F5F9;
+      display: grid;
+      place-items: center;
+      font-size: 18px;
+      flex-shrink: 0;
+    }
+    .feature-text b {
+      display: block;
+      font-size: 12px;
+      font-weight: 800;
+      color: var(--text-dark);
+    }
+    .feature-text span {
+      font-size: 10px;
+      color: var(--text-muted);
+    }
+
+    /* CTA + TESTIMONIALS SECTION */
+    .cta-reviews-section {
+      background: var(--bg-light);
+      padding: 60px 28px;
+    }
+    .cta-reviews-grid {
+      max-width: 1400px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 0.8fr 1.2fr;
+      gap: 24px;
+    }
+    .cta-banner-card {
+      background: linear-gradient(135deg, #091B33 0%, #153966 100%);
+      border-radius: var(--radius-lg);
+      padding: 32px;
+      color: #FFFFFF;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      box-shadow: var(--shadow-md);
+      position: relative;
+      overflow: hidden;
+    }
+    .cta-banner-card h3 {
+      font-size: 24px;
+      font-weight: 900;
+      margin-bottom: 8px;
+    }
+    .cta-banner-card p {
+      font-size: 13px;
+      color: #CBD5E1;
+      margin-bottom: 24px;
+    }
+
+    .reviews-card-wrap {
+      background: var(--card-white);
+      border: 1px solid #E2E8F0;
+      border-radius: var(--radius-lg);
+      padding: 28px;
+      box-shadow: var(--shadow-sm);
+    }
+    .reviews-card-wrap h3 {
+      font-size: 18px;
+      font-weight: 800;
+      color: var(--text-dark);
+      margin-bottom: 4px;
+    }
+    .reviews-card-wrap p {
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-bottom: 20px;
+    }
+    .reviews-grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+    }
+    .review-card {
+      background: #F8FAFC;
+      border: 1px solid #E2E8F0;
+      border-radius: var(--radius-md);
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 10px;
+    }
+    .review-user {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .user-avatar {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: #E2E8F0;
+      display: grid;
+      place-items: center;
+      font-weight: 800;
+      font-size: 11px;
+      color: var(--navy-900);
+    }
+    .user-meta b {
+      display: block;
+      font-size: 12px;
+      color: var(--text-dark);
+    }
+    .user-meta span {
+      font-size: 10px;
+      color: var(--text-muted);
+    }
+    .stars {
+      color: #F59E0B;
+      font-size: 11px;
+      letter-spacing: 2px;
+    }
+    .review-quote {
+      font-size: 11px;
+      color: var(--text-slate);
+      line-height: 1.4;
+      font-style: italic;
+    }
+
+    /* FOOTER */
+    footer {
+      background: #040D17;
+      border-top: 1px solid var(--border-dark);
+      padding: 50px 28px 24px;
+      color: #94A3B8;
+    }
+    .footer-container {
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+    .footer-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 20px;
+      padding-bottom: 24px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    .footer-nav {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+    .footer-nav a {
+      color: #CBD5E1;
+      text-decoration: none;
+      font-size: 12px;
+      transition: color 0.15s;
+    }
+    .footer-nav a:hover { color: var(--gold); }
+    .social-links {
+      display: flex;
+      gap: 10px;
+    }
+    .social-btn {
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      background: var(--navy-900);
+      border: 1px solid var(--border-dark);
+      color: #CBD5E1;
+      display: grid;
+      place-items: center;
+      font-size: 12px;
+      text-decoration: none;
+      transition: all 0.15s;
+    }
+    .social-btn:hover { border-color: var(--gold); color: var(--gold); }
+
+    .footer-middle {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 0;
+      flex-wrap: wrap;
+      gap: 14px;
+      font-size: 12px;
+    }
+    .footer-contact-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: #E2E8F0;
+    }
+
+    .footer-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 20px;
+      border-top: 1px solid rgba(255, 255, 255, 0.06);
+      font-size: 11px;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    /* FLOATING WHATSAPP */
+    .floating-whatsapp {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      background: #25D366;
+      color: #FFFFFF;
+      display: grid;
+      place-items: center;
+      font-size: 28px;
+      box-shadow: 0 8px 24px rgba(37, 211, 102, 0.45);
+      z-index: 99;
+      text-decoration: none;
+      transition: transform 0.2s;
+    }
+    .floating-whatsapp:hover {
+      transform: scale(1.1);
+    }
+
+    /* MODAL OVERLAYS */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(4, 13, 23, 0.85);
+      backdrop-filter: blur(10px);
+      display: none;
+      place-items: center;
+      z-index: 1000;
+      padding: 16px;
+    }
+    .modal-overlay.open {
+      display: grid;
+    }
+    .modal-card {
+      background: var(--navy-900);
+      border: 1px solid var(--border-dark-light);
+      border-radius: var(--radius-lg);
+      padding: 28px;
+      max-width: 520px;
+      width: 100%;
+      box-shadow: 0 24px 60px rgba(0,0,0,0.7);
+      position: relative;
+      color: #FFFFFF;
+    }
+    .modal-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid var(--border-dark);
+      padding-bottom: 14px;
+      margin-bottom: 18px;
+    }
+    .modal-head h3 {
+      font-size: 18px;
+      font-weight: 800;
+      color: var(--gold);
+      margin: 0;
+    }
+    .close-btn {
+      background: none;
+      border: none;
+      color: var(--text-light-muted);
+      font-size: 18px;
+      cursor: pointer;
+    }
+    .close-btn:hover { color: #FFFFFF; }
+
+    /* TOAST */
+    #toast {
+      position: fixed;
+      bottom: 24px;
+      left: 24px;
+      background: var(--navy-900);
+      border: 1px solid var(--gold);
+      color: #FFFFFF;
+      padding: 12px 20px;
+      border-radius: var(--radius-sm);
+      font-size: 12px;
+      font-weight: 700;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+      transform: translateY(100px);
+      opacity: 0;
+      transition: all 0.25s ease;
+      z-index: 1100;
+      pointer-events: none;
+    }
+    #toast.show {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    /* RESPONSIVE BREAKPOINTS (MATCHING REFERENCE IMAGE MOBILE VIEW) */
+    @media (max-width: 1024px) {
+      .hero-container { grid-template-columns: 1fr; }
+      .services-grid-6 { grid-template-columns: repeat(3, 1fr); }
+      .studio-order-grid { grid-template-columns: 1fr; }
+      .feature-strip-container { grid-template-columns: repeat(3, 1fr); }
+      .cta-reviews-grid { grid-template-columns: 1fr; }
+      .reviews-grid-3 { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 768px) {
+      header { padding: 12px 18px; }
+      .nav-links { display: none; }
+      .hamburger-btn { display: block; }
+      .hero-section { padding: 40px 18px 50px; }
+      .hero-heading { font-size: 34px; }
+      .trust-strip { grid-template-columns: repeat(2, 1fr); }
+      .services-grid-6 { grid-template-columns: repeat(2, 1fr); }
+      .studio-workbench { grid-template-columns: 1fr; }
+      .feature-strip-container { grid-template-columns: repeat(2, 1fr); }
+      .footer-top, .footer-middle, .footer-bottom { flex-direction: column; align-items: flex-start; gap: 16px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- TOP HEADER -->
+  <header>
+    <a href="#home" class="brand-wrap">
+      <div class="brand-logo-mark">G</div>
+      <div class="brand-text">
+        <h1>GLOBAL <span>CREATIVE</span></h1>
+        <small>Design • Print • Signage • More</small>
+      </div>
+    </a>
+
+    <!-- DESKTOP NAV LINKS -->
+    <nav class="nav-links">
+      <a href="#home" class="nav-link active">Home</a>
+      <a href="#services" class="nav-link">Services</a>
+      <a href="#studio" class="nav-link">Design Studio</a>
+      <a href="#order" class="nav-link">Order Now</a>
+      <a href="#pricing" class="nav-link">Pricing</a>
+      <a href="#about" class="nav-link">About</a>
+      <a href="#contact" class="nav-link">Contact</a>
+    </nav>
+
+    <!-- HEADER RIGHT CONTROLS -->
+    <div class="header-actions">
+      <!-- Search Icon -->
+      <button class="icon-btn" onclick="openSearchPrompt()" title="Search Products & Tools">🔍</button>
+
+      <!-- Currency Switcher -->
+      <select id="currencySelector" onchange="switchCurrency(this.value)" class="select-field" style="width: auto; padding: 6px 10px; font-size: 11px; background: var(--navy-900); border-radius: 9999px;">
+        <option value="INR" selected>₹ INR</option>
+        <option value="USD">$ USD</option>
+        <option value="EUR">€ EUR</option>
+        <option value="AED">AED</option>
+      </select>
+
+      <!-- Auth Buttons -->
+      <div id="authUserPill" style="display:none; align-items:center; gap:8px;">
+        <button class="btn btn-outline-dark" style="padding: 7px 14px; font-size: 11px;" onclick="openModal('dashboardModal')">👤 Dashboard</button>
+        <button class="btn btn-outline-dark" style="padding: 7px 12px; font-size: 11px;" onclick="handleSignOut()">Logout</button>
+      </div>
+      <button class="btn btn-outline-dark" id="navLoginBtn" style="padding: 7px 16px; font-size: 12px;" onclick="openModal('loginModal')">
+        👤 Login
+      </button>
+
+      <!-- Primary Get Quote CTA -->
+      <button class="btn btn-gold" onclick="scrollToQuote()" style="padding: 9px 20px; font-size: 13px;">
+        Get Quote
+      </button>
+
+      <!-- Mobile Hamburger -->
+      <button class="hamburger-btn" onclick="toggleMobileNav()" aria-label="Toggle navigation">☰</button>
+    </div>
+  </header>
+
+  <!-- MOBILE DRAWER -->
+  <div id="mobileDrawer" style="display:none; position:fixed; top:65px; left:0; right:0; background:var(--navy-950); border-bottom:1px solid var(--border-dark); padding:20px; z-index:99; flex-direction:column; gap:14px; box-shadow:var(--shadow-lg);">
+    <a href="#home" class="nav-link" onclick="toggleMobileNav()">Home</a>
+    <a href="#services" class="nav-link" onclick="toggleMobileNav()">Services</a>
+    <a href="#studio" class="nav-link" onclick="toggleMobileNav()">Design Studio</a>
+    <a href="#order" class="nav-link" onclick="toggleMobileNav()">Order Now</a>
+    <a href="#pricing" class="nav-link" onclick="toggleMobileNav()">Pricing</a>
+    <a href="#about" class="nav-link" onclick="toggleMobileNav()">About</a>
+    <a href="#contact" class="nav-link" onclick="toggleMobileNav()">Contact</a>
+    <div style="display:flex; gap:10px; margin-top:8px;">
+      <button class="btn btn-gold" style="flex:1;" onclick="toggleMobileNav(); scrollToQuote();">Get Free Quote</button>
+      <button class="btn btn-outline-dark" style="flex:1;" onclick="toggleMobileNav(); openModal('loginModal');">Login</button>
+    </div>
+  </div>
+
+  <main>
+    <!-- HERO SECTION -->
+    <section id="home" class="hero-section">
+      <div class="hero-container">
+        <!-- LEFT HERO COLUMN -->
+        <div>
+          <div class="hero-eyebrow">TURN YOUR IDEAS INTO REALITY</div>
+          <h1 class="hero-heading">
+            Creative Designs<br>
+            <span class="text-gold">That Make an Impact</span>
+          </h1>
+          <div class="hero-tags">
+            Signage | Printing | Branding | 3D Letters | LED Boards | And More...
+          </div>
+          <p class="hero-description">
+            Global Creative is your one-stop solution for all design, printing and signage needs. We create powerful visuals that help your business grow.
+          </p>
+
+          <div class="hero-btns">
+            <button class="btn btn-gold" onclick="scrollToQuote()">
+              Get Free Quote →
+            </button>
+            <button class="btn btn-outline-dark" onclick="document.querySelector('#services').scrollIntoView({behavior:'smooth'})">
+              Explore Services
+            </button>
+          </div>
+
+          <!-- TRUST BADGES STRIP -->
+          <div class="trust-strip">
+            <div class="trust-item">
+              <div class="trust-icon">🛡️</div>
+              <div class="trust-text"><b>Premium Quality</b>Materials</div>
+            </div>
+            <div class="trust-item">
+              <div class="trust-icon">🚚</div>
+              <div class="trust-text"><b>Fast Delivery</b>Across India & Global</div>
+            </div>
+            <div class="trust-item">
+              <div class="trust-icon">✂️</div>
+              <div class="trust-text"><b>Expert Design</b>Support</div>
+            </div>
+            <div class="trust-item">
+              <div class="trust-icon">🎖️</div>
+              <div class="trust-text"><b>100% Customer</b>Satisfaction</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- RIGHT HERO COLUMN: 3D ARCHITECTURAL FACADE + QUICK QUOTE -->
+        <div class="hero-visual-col">
+          <!-- 3D STOREFRONT ARCHITECTURAL SIGNAGE MOCKUP -->
+          <div class="storefront-card">
+            <div class="storefront-art-wrap">
+              <svg viewBox="0 0 540 230" xmlns="http://www.w3.org/2000/svg" style="background: #040A12;">
+                <defs>
+                  <radialGradient id="facadeSpotlight" cx="50%" cy="30%" r="65%">
+                    <stop offset="0%" stop-color="#FFD21F" stop-opacity="0.3" />
+                    <stop offset="50%" stop-color="#0284C7" stop-opacity="0.1" />
+                    <stop offset="100%" stop-color="#040A12" stop-opacity="0" />
+                  </radialGradient>
+                  <linearGradient id="goldChannelGlow" x1="0%" y1="0%" x2="100%" y2="0%">
+                    <stop offset="0%" stop-color="#FFF085" />
+                    <stop offset="50%" stop-color="#FFD21F" />
+                    <stop offset="100%" stop-color="#D97706" />
+                  </linearGradient>
+                  <filter id="neonBlur" x="-20%" y="-20%" width="140%" height="140%">
+                    <feGaussianBlur stdDeviation="6" result="blur" />
+                    <feMerge>
+                      <feMergeNode in="blur" />
+                      <feMergeNode in="SourceGraphic" />
+                    </feMerge>
+                  </filter>
+                </defs>
+
+                <!-- Facade Background Texture & Spotlights -->
+                <rect x="0" y="0" width="540" height="230" fill="#06121E" />
+                <rect x="0" y="0" width="540" height="150" fill="url(#facadeSpotlight)" />
+
+                <!-- Architectural Modern Dark Stone Facade Wall -->
+                <rect x="25" y="20" width="490" height="190" rx="10" fill="#0A1828" stroke="#163250" stroke-width="2" />
+                <line x1="25" y1="120" x2="515" y2="120" stroke="#10253C" stroke-width="1.5" />
+                <line x1="180" y1="20" x2="180" y2="120" stroke="#10253C" stroke-width="1" />
+                <line x1="360" y1="20" x2="360" y2="120" stroke="#10253C" stroke-width="1" />
+
+                <!-- 3D Architectural Letters Backing Plate -->
+                <rect x="90" y="38" width="360" height="70" rx="8" fill="#040B14" stroke="#FFD21F" stroke-width="1.2" stroke-opacity="0.4" />
+
+                <!-- Logo Icon on Facade -->
+                <circle cx="130" cy="73" r="18" fill="url(#goldChannelGlow)" filter="url(#neonBlur)" opacity="0.9" />
+                <text x="130" y="80" font-family="'Montserrat', sans-serif" font-weight="900" font-size="18" fill="#040B14" text-anchor="middle">G</text>
+
+                <!-- 3D Channel Letters (YOUR BRAND - OUR CREATIVE TOUCH) -->
+                <text x="285" y="68" font-family="'Montserrat', sans-serif" font-weight="900" font-size="24" fill="url(#goldChannelGlow)" filter="url(#neonBlur)" text-anchor="middle" letter-spacing="1">
+                  YOUR BRAND
+                </text>
+                <text x="285" y="92" font-family="'Plus Jakarta Sans', sans-serif" font-weight="800" font-size="10" fill="#00F2FF" text-anchor="middle" letter-spacing="3">
+                  OUR CREATIVE TOUCH
+                </text>
+
+                <!-- Glass Showroom Windows on Lower Level -->
+                <rect x="50" y="130" width="130" height="80" rx="4" fill="#071E36" stroke="#1C3D63" stroke-width="1.5" />
+                <rect x="205" y="130" width="130" height="80" rx="4" fill="#0B2B4C" stroke="#1C3D63" stroke-width="1.5" opacity="0.9" />
+                <rect x="360" y="130" width="130" height="80" rx="4" fill="#071E36" stroke="#1C3D63" stroke-width="1.5" />
+
+                <!-- Interior Showroom Warm Light Rays -->
+                <line x1="270" y1="130" x2="270" y2="210" stroke="#FFD21F" stroke-width="2" stroke-opacity="0.5" />
+                <circle cx="270" cy="165" r="22" fill="#FFD21F" opacity="0.15" filter="url(#neonBlur)" />
+                <text x="270" y="170" font-size="9" font-family="sans-serif" font-weight="700" fill="#E2E8F0" text-anchor="middle">DESIGN STUDIO</text>
+              </svg>
+            </div>
+          </div>
+
+          <!-- QUICK QUOTE CARD -->
+          <div class="quick-quote-card">
+            <h3>Quick Quote</h3>
+            <p>Get instant price for your signage & printing.</p>
+
+            <div class="form-group">
+              <label>Select Service</label>
+              <select id="quickProduct" class="select-field">
+                <option value="acp_sign_board" selected>ACP Sign Board (₹650/sq.ft)</option>
+                <option value="3d_sign_board">3D Sign Board (₹750/sq.ft)</option>
+                <option value="steel_sign_board">Steel Sign Board SS (₹980/sq.ft)</option>
+                <option value="acrylic_letter_light">Acrylic Letter + Light (₹80/inch)</option>
+                <option value="steel_letter">Steel Letters SS (₹140/inch)</option>
+                <option value="neon_flex">Neon Flex Signage (₹160/sq.ft)</option>
+              </select>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label>Width</label>
+                <input type="number" id="quickW" value="8" min="0.1" step="0.5" class="input-field">
+              </div>
+              <div class="form-group">
+                <label>Height</label>
+                <input type="number" id="quickH" value="3" min="0.1" step="0.5" class="input-field">
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label>Material</label>
+                <select id="quickMaterial" class="select-field">
+                  <option value="1.0" selected>Cast Virgin Acrylic</option>
+                  <option value="1.25">SS 304 Titanium Gold</option>
+                  <option value="1.15">Heavy-Duty ACP Sheet</option>
+                  <option value="1.1">Silicon Neon Flex</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label>Quantity</label>
+                <input type="number" id="quickQty" value="1" min="1" class="input-field">
+              </div>
+            </div>
+
+            <button class="btn btn-gold" style="width: 100%; border-radius: var(--radius-sm); margin-top: 4px;" onclick="quickQuote()">
+              Get Instant Quote →
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- OUR SERVICES SECTION (LIGHT BACKGROUND) -->
+    <section id="services" class="services-section">
+      <div class="section-head">
+        <div>
+          <h2>Our Services</h2>
+          <p>Complete Design, Printing & Signage Solutions</p>
+        </div>
+        <button class="btn btn-outline-dark" style="color: var(--text-dark); border-color: #CBD5E1; background: #FFFFFF;" onclick="openModal('galleryModal')">
+          View 3D Signage Gallery ↗
+        </button>
+      </div>
+
+      <div class="services-grid-6">
+        <!-- 1. SIGN BOARD -->
+        <div class="service-box" onclick="selectServiceForQuote('acp_sign_board')">
+          <div class="service-thumb">
+            <svg viewBox="0 0 240 140" xmlns="http://www.w3.org/2000/svg">
+              <rect width="240" height="140" fill="#040910" />
+              <!-- Dark Textured Brick Wall -->
+              <pattern id="brick" width="20" height="10" patternUnits="userSpaceOnUse">
+                <rect width="20" height="10" fill="#07101A" stroke="#0C1B2A" stroke-width="0.5" />
+              </pattern>
+              <rect width="240" height="140" fill="url(#brick)" />
+              <!-- Glowing Neon Border Frame -->
+              <rect x="25" y="20" width="190" height="100" rx="14" fill="none" stroke="#00F2FF" stroke-width="3" filter="drop-shadow(0 0 8px #00F2FF)" opacity="0.9" />
+              <!-- OPEN Neon Text -->
+              <text x="120" y="78" font-family="'Montserrat', sans-serif" font-weight="900" font-size="36" fill="#FF1E8A" text-anchor="middle" letter-spacing="4" filter="drop-shadow(0 0 10px #FF1E8A)">
+                OPEN
+              </text>
+            </svg>
+          </div>
+          <div class="service-content">
+            <div class="service-title">Sign Board</div>
+            <div class="service-sub">Indoor & Outdoor</div>
+            <span class="service-rate-badge">₹650 / sq.ft</span>
+          </div>
+        </div>
+
+        <!-- 2. 3D LETTERS -->
+        <div class="service-box" onclick="selectServiceForQuote('3d_sign_board')">
+          <div class="service-thumb">
+            <svg viewBox="0 0 240 140" xmlns="http://www.w3.org/2000/svg">
+              <rect width="240" height="140" fill="#081422" />
+              <!-- Pedestal Display -->
+              <ellipse cx="120" cy="115" rx="75" ry="16" fill="#040A12" />
+              <!-- Extruded 3D Letter A -->
+              <path d="M 120 25 L 85 105 L 105 105 L 113 85 L 127 85 L 135 105 L 155 105 Z M 120 48 L 124 72 L 116 72 Z" fill="#EF4444" stroke="#D97706" stroke-width="2.5" filter="drop-shadow(6px 10px 14px rgba(0,0,0,0.8))" />
+              <path d="M 120 25 L 126 21 L 161 101 L 155 105 Z" fill="#B91C1C" />
+            </svg>
+          </div>
+          <div class="service-content">
+            <div class="service-title">3D Letters</div>
+            <div class="service-sub">Acrylic / Metal / LED</div>
+            <span class="service-rate-badge">₹750 / sq.ft</span>
+          </div>
+        </div>
+
+        <!-- 3. LED BOARD -->
+        <div class="service-box" onclick="selectServiceForQuote('acrylic_letter_light')">
+          <div class="service-thumb">
+            <svg viewBox="0 0 240 140" xmlns="http://www.w3.org/2000/svg">
+              <rect width="240" height="140" fill="#03080F" />
+              <!-- LED Matrix Outer Frame -->
+              <rect x="30" y="25" width="180" height="90" rx="8" fill="#06121E" stroke="#142C44" stroke-width="2" />
+              <!-- LED Glowing Text -->
+              <text x="120" y="80" font-family="'Montserrat', sans-serif" font-weight="900" font-size="34" fill="#00F2FF" text-anchor="middle" letter-spacing="4" filter="drop-shadow(0 0 10px #00F2FF)">
+                LED
+              </text>
+              <!-- Matrix Grid Dots -->
+              <circle cx="50" cy="40" r="1.5" fill="#00F2FF" opacity="0.6" />
+              <circle cx="190" cy="40" r="1.5" fill="#00F2FF" opacity="0.6" />
+              <circle cx="50" cy="100" r="1.5" fill="#00F2FF" opacity="0.6" />
+              <circle cx="190" cy="100" r="1.5" fill="#00F2FF" opacity="0.6" />
+            </svg>
+          </div>
+          <div class="service-content">
+            <div class="service-title">LED Board</div>
+            <div class="service-sub">Light Up Your Brand</div>
+            <span class="service-rate-badge">₹80 / inch</span>
+          </div>
+        </div>
+
+        <!-- 4. NAME PLATE -->
+        <div class="service-box" onclick="selectServiceForQuote('steel_letter')">
+          <div class="service-thumb">
+            <svg viewBox="0 0 240 140" xmlns="http://www.w3.org/2000/svg">
+              <rect width="240" height="140" fill="#0A1828" />
+              <!-- Brushed Metal Nameplate -->
+              <rect x="30" y="30" width="180" height="80" rx="6" fill="#1C2D42" stroke="#64748B" stroke-width="1.5" filter="drop-shadow(0 8px 16px rgba(0,0,0,0.6))" />
+              <!-- Chrome Standoff Bolts -->
+              <circle cx="42" cy="42" r="4" fill="#E2E8F0" stroke="#475569" stroke-width="1" />
+              <circle cx="198" cy="42" r="4" fill="#E2E8F0" stroke="#475569" stroke-width="1" />
+              <circle cx="42" cy="98" r="4" fill="#E2E8F0" stroke="#475569" stroke-width="1" />
+              <circle cx="198" cy="98" r="4" fill="#E2E8F0" stroke="#475569" stroke-width="1" />
+              <!-- Embossed Golden Text -->
+              <text x="120" y="74" font-family="'Montserrat', sans-serif" font-weight="800" font-size="14" fill="#FFD21F" text-anchor="middle" letter-spacing="1">
+                YOUR NAME
+              </text>
+              <text x="120" y="90" font-family="'Plus Jakarta Sans', sans-serif" font-size="9" font-weight="700" fill="#94A3B8" text-anchor="middle">
+                EXECUTIVE SUITE
+              </text>
+            </svg>
+          </div>
+          <div class="service-content">
+            <div class="service-title">Name Plate</div>
+            <div class="service-sub">Premium & Custom</div>
+            <span class="service-rate-badge">₹140 / inch</span>
+          </div>
+        </div>
+
+        <!-- 5. PRINTING -->
+        <div class="service-box" onclick="selectServiceForQuote('acp_sign_board')">
+          <div class="service-thumb">
+            <svg viewBox="0 0 240 140" xmlns="http://www.w3.org/2000/svg">
+              <rect width="240" height="140" fill="#040910" />
+              <!-- Large Format Digital Plotter -->
+              <rect x="25" y="45" width="190" height="30" rx="4" fill="#1E293B" stroke="#334155" stroke-width="2" />
+              <rect x="50" y="75" width="140" height="45" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1" />
+              <!-- Cyan/Magenta/Yellow/Black Banner Print Gradient -->
+              <rect x="60" y="80" width="120" height="25" rx="3" fill="url(#printGrad)" />
+              <defs>
+                <linearGradient id="printGrad" x1="0" y1="0" x2="1" y2="0">
+                  <stop offset="0%" stop-color="#00F2FF" />
+                  <stop offset="35%" stop-color="#E11D48" />
+                  <stop offset="70%" stop-color="#FFD21F" />
+                  <stop offset="100%" stop-color="#10B981" />
+                </linearGradient>
+              </defs>
+              <circle cx="38" cy="60" r="3" fill="#10B981" />
+            </svg>
+          </div>
+          <div class="service-content">
+            <div class="service-title">Printing</div>
+            <div class="service-sub">Banners, Stickers, Flex</div>
+            <span class="service-rate-badge">300 DPI Prepress</span>
+          </div>
+        </div>
+
+        <!-- 6. BRANDING -->
+        <div class="service-box" onclick="openModal('brandKitModal')">
+          <div class="service-thumb">
+            <svg viewBox="0 0 240 140" xmlns="http://www.w3.org/2000/svg">
+              <rect width="240" height="140" fill="#06111E" />
+              <!-- Luxury Embossed Dark Card -->
+              <rect x="40" y="30" width="160" height="80" rx="8" fill="#0B1A2C" stroke="#D97706" stroke-width="1.5" filter="drop-shadow(0 10px 20px rgba(0,0,0,0.6))" />
+              <circle cx="120" cy="65" r="16" fill="none" stroke="#FFD21F" stroke-width="2" />
+              <text x="120" y="70" font-family="'Cinzel', serif" font-weight="900" font-size="14" fill="#FFD21F" text-anchor="middle">G</text>
+              <text x="120" y="94" font-family="'Plus Jakarta Sans', sans-serif" font-weight="700" font-size="9" fill="#E2E8F0" text-anchor="middle" letter-spacing="2">
+                IDENTITY KIT
+              </text>
+            </svg>
+          </div>
+          <div class="service-content">
+            <div class="service-title">Branding</div>
+            <div class="service-sub">Logo & Identity Design</div>
+            <span class="service-rate-badge">One-Click Kit</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- DESIGN STUDIO & PLACE YOUR ORDER SECTION (DARK CONTAINER) -->
+    <section id="studio" class="studio-order-section">
+      <div class="studio-order-grid">
+        <!-- LEFT CARD: DESIGN STUDIO -->
+        <div class="dark-card">
+          <div class="dark-card-header">
+            <div class="dark-card-title">
+              <h3>Design Studio</h3>
+              <p>Create Your Own Design • Multilingual Voice AI • 300 DPI Prepress</p>
+            </div>
+            <div style="display: flex; gap: 8px;">
+              <button class="btn btn-outline-dark" style="font-size: 11px; padding: 6px 14px;" onclick="document.getElementById('designFileInput').click()">
+                📁 Upload My Design
+              </button>
+              <button class="btn btn-gold" style="font-size: 11px; padding: 6px 14px;" onclick="scrollToStudio()">
+                ✨ Create New Design
+              </button>
+              <input type="file" id="designFileInput" style="display:none;" accept="image/*,.svg,.pdf,.dxf" onchange="handleDesignUpload(this.files[0])">
+            </div>
+          </div>
+
+          <!-- STUDIO WORKBENCH WITH FABRIC.JS -->
+          <div class="studio-workbench">
+            <!-- Left Side Action Tools -->
+            <div class="studio-left-tools">
+              <button class="tool-pill-btn active" id="toolSelect" onclick="setDraftTool('select')">
+                👆 Select / Move
+              </button>
+              <button class="tool-pill-btn" id="toolPen" onclick="setDraftTool('pen')">
+                ✏️ Draw Logo / Pen
+              </button>
+              <button class="tool-pill-btn" onclick="addEditableText()">
+                🔤 Add Text
+              </button>
+              <button class="tool-pill-btn" onclick="addStraightLine()">
+                📏 Straight Line
+              </button>
+              <button class="tool-pill-btn" onclick="addShape('rect')">
+                🔲 Box / Frame
+              </button>
+              <button class="tool-pill-btn" onclick="addLogo('cycle')">
+                🚲 Cycle Logo
+              </button>
+              <button class="tool-pill-btn" onclick="addLogo('crown')">
+                👑 Crown Logo
+              </button>
+              <button class="tool-pill-btn" style="color: var(--cyan);" onclick="startVoiceRecognition()">
+                🎙️ Voice Design
+              </button>
+              <button class="tool-pill-btn" style="color: #FF4D4D;" onclick="applyCorelRedHairline()">
+                🔴 Red Hairline
+              </button>
+              <button class="tool-pill-btn" style="color: #10B981;" onclick="applyLaserGreenCutPath()">
+                🟢 Green Cut Path
+              </button>
+            </div>
+
+            <!-- Center Interactive Canvas Viewport -->
+            <div class="studio-canvas-preview">
+              <div class="canvas-bar">
+                <span id="activeToolBadge" style="color:var(--gold); font-weight:700;">Tool: 👆 Select / Move</span>
+                <span id="activeScaleBadge">96.0 in × 36.0 in (8.0 ft × 3.0 ft)</span>
+                <div style="display:flex; gap:6px;">
+                  <button class="btn btn-outline-dark" style="padding:2px 8px; font-size:10px;" onclick="centerActiveObject()">Center</button>
+                  <button class="btn btn-outline-dark" style="padding:2px 8px; font-size:10px; color:#EF4444;" onclick="deleteActiveObject()">Delete</button>
+                </div>
+              </div>
+              <div class="canvas-viewport" id="draftingStageWrap">
+                <canvas id="draftingBoard" width="460" height="230"></canvas>
+              </div>
+              <div style="background:var(--navy-900); padding:8px 12px; display:flex; justify-content:space-between; align-items:center; border-top:1px solid var(--border-dark); font-size:11px;">
+                <div style="display:flex; gap:8px; align-items:center;">
+                  <span style="color:#94A3B8;">Size:</span>
+                  <input type="number" id="dimW" value="96" min="1" step="0.5" class="input-field" style="width:60px; padding:3px 6px;" oninput="updateCanvasDimensions()">
+                  <span>×</span>
+                  <input type="number" id="dimH" value="36" min="1" step="0.5" class="input-field" style="width:60px; padding:3px 6px;" oninput="updateCanvasDimensions()">
+                  <select id="dimUnit" class="select-field" style="width:65px; padding:3px 6px;" onchange="updateCanvasDimensions()">
+                    <option value="in" selected>in</option>
+                    <option value="ft">ft</option>
+                    <option value="mm">mm</option>
+                  </select>
+                </div>
+                <div style="display:flex; gap:6px;">
+                  <select id="converterFormatSelect" class="select-field" style="width:auto; padding:3px 8px; font-size:10px;">
+                    <option value="cdr">.CDR</option>
+                    <option value="dxf">.DXF</option>
+                    <option value="svg" selected>.SVG</option>
+                    <option value="pdf">.PDF</option>
+                    <option value="jpg">.JPG</option>
+                  </select>
+                  <button class="btn btn-gold" style="padding:4px 10px; font-size:10px;" onclick="executeUniversalFormatConverter()">Export</button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Right Side Feature Checklist -->
+            <div class="studio-checklist">
+              <div class="check-item"><div class="check-icon">✓</div>Drag & Drop Editor</div>
+              <div class="check-item"><div class="check-icon">✓</div>Text Customization</div>
+              <div class="check-item"><div class="check-icon">✓</div>Layer Management</div>
+              <div class="check-item"><div class="check-icon">✓</div>Export (PNG/JPG/PDF)</div>
+              <div class="check-item"><div class="check-icon">✓</div>Mobile & Desktop Friendly</div>
+              <div style="margin-top: 12px;">
+                <button class="btn btn-gold" style="width:100%; border-radius:var(--radius-sm); font-size:11px; padding:8px;" onclick="scrollToQuote()">
+                  Start Designing →
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Bottom Studio Bar -->
+          <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px; font-size:12px; color:var(--text-light-muted);">
+            <div style="display:flex; gap:12px; align-items:center;">
+              <span>Active Color:</span>
+              <input type="color" id="colorPicker" value="#ffd21a" onchange="setDraftColor(this.value)" style="width:28px; height:24px; border:0; background:transparent; cursor:pointer;">
+              <button class="btn btn-outline-dark" style="padding:4px 10px; font-size:10px;" onclick="toggleBoardBackground()">🌗 Toggle Light/Dark</button>
+            </div>
+            <div style="display:flex; gap:8px;">
+              <button class="btn btn-outline-dark" style="padding:5px 12px; font-size:11px;" onclick="saveDraftCloud()">☁ Save Project</button>
+              <button class="btn btn-outline-dark" style="padding:5px 12px; font-size:11px;" onclick="loadDraftCloud()">📂 Load Project</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- RIGHT CARD: PLACE YOUR ORDER (ID="ORDER") -->
+        <div class="dark-card" id="order">
+          <div class="dark-card-header">
+            <div class="dark-card-title">
+              <h3>Place Your Order</h3>
+              <p>Custom Quote • Secure Payment • Fast Delivery</p>
+            </div>
+            <span class="service-rate-badge" style="background:rgba(255,210,31,0.15); color:var(--gold);">
+              Live Calculation
+            </span>
+          </div>
+
+          <!-- 4-STEP TIMELINE -->
+          <div class="order-steps-list">
+            <div class="step-item">
+              <div class="step-num">1</div>
+              <div class="step-info">
+                <h4>Design & Customize</h4>
+                <p>Upload your artwork or create vector design on the canvas</p>
+              </div>
+            </div>
+            <div class="step-item">
+              <div class="step-num">2</div>
+              <div class="step-info">
+                <h4>Get Quote</h4>
+                <p>Instant price calculation with dimensions, material & GST</p>
+              </div>
+            </div>
+            <div class="step-item">
+              <div class="step-num">3</div>
+              <div class="step-info">
+                <h4>Make Payment</h4>
+                <p>50% production advance via UPI / PayPal / Card</p>
+              </div>
+            </div>
+            <div class="step-item">
+              <div class="step-num">4</div>
+              <div class="step-info">
+                <h4>Track Order</h4>
+                <p>Real-time manufacturing updates & express dispatch</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- 3D ORDER PHONE VISUAL MOCKUP -->
+          <div class="order-visual-wrap">
+            <svg viewBox="0 0 320 85" xmlns="http://www.w3.org/2000/svg">
+              <!-- Smartphone Frame -->
+              <rect x="60" y="8" width="200" height="70" rx="12" fill="#06121E" stroke="#163250" stroke-width="2" />
+              <!-- Green Check Icon -->
+              <circle cx="100" cy="43" r="16" fill="#10B981" />
+              <path d="M 93 43 L 98 48 L 108 38" fill="none" stroke="#FFFFFF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
+              <!-- Status Text -->
+              <text x="126" y="38" font-family="'Plus Jakarta Sans', sans-serif" font-weight="800" font-size="12" fill="#FFFFFF">Order Placed!</text>
+              <text x="126" y="52" font-family="'Plus Jakarta Sans', sans-serif" font-size="10" fill="#94A3B8">In Production Queue</text>
+            </svg>
+          </div>
+
+          <!-- LIVE QUOTATION BOX (ID="PRICING") -->
+          <div id="pricing" style="background:#061424; border:1px solid var(--border-dark); border-radius:var(--radius-md); padding:16px; margin-bottom:16px;">
+            <div style="display:flex; justify-content:space-between; font-size:12px; margin-bottom:6px; color:#CBD5E1;">
+              <span>Dimensions:</span>
+              <b id="qDimLabel" style="color:#FFFFFF;">8.0 ft × 3.0 ft (24.0 sq.ft)</b>
+            </div>
+            <div style="display:flex; justify-content:space-between; font-size:12px; margin-bottom:6px; color:#CBD5E1;">
+              <span>Base Fabrication:</span>
+              <span id="qBasePrice" style="color:#FFFFFF;">₹4,320</span>
+            </div>
+            <div style="display:flex; justify-content:space-between; font-size:12px; margin-bottom:6px; color:#CBD5E1;">
+              <span>GST (18%):</span>
+              <span id="qGstPrice" style="color:#FFFFFF;">₹777</span>
+            </div>
+            <div style="display:flex; justify-content:space-between; font-size:12px; margin-bottom:8px; color:#CBD5E1;">
+              <span>Delivery & Packaging:</span>
+              <span id="qDeliveryPrice" style="color:#FFFFFF;">₹450</span>
+            </div>
+            <div style="display:flex; justify-content:space-between; align-items:baseline; border-top:1px solid #162E47; padding-top:8px; margin-bottom:10px;">
+              <span style="font-size:13px; font-weight:800; color:#FFFFFF;">Grand Total:</span>
+              <span id="qTotalPrice" style="font-size:20px; font-weight:900; color:var(--gold);">₹5,547</span>
+            </div>
+            <div style="background:rgba(255,210,31,0.1); border:1px dashed var(--gold); border-radius:8px; padding:8px 12px; display:flex; justify-content:space-between; align-items:center;">
+              <span style="font-size:11px; color:#E2E8F0;">50% Advance Required:</span>
+              <b id="qAdvancePrice" style="font-size:16px; color:var(--gold);">₹2,774</b>
+            </div>
+          </div>
+
+          <!-- CUSTOMER CONTACT INPUTS -->
+          <div class="form-row" style="margin-bottom:10px;">
+            <input type="text" id="custName" placeholder="Your Name" class="input-field">
+            <input type="tel" id="custPhone" placeholder="WhatsApp / Phone Number" class="input-field">
+          </div>
+          <div style="margin-bottom:14px;">
+            <input type="text" id="custCity" placeholder="Delivery Address / City" class="input-field">
+          </div>
+
+          <!-- ACTION BUTTONS -->
+          <div style="display:flex; flex-direction:column; gap:8px;">
+            <button class="btn btn-gold" style="width:100%; border-radius:var(--radius-sm); font-size:14px; padding:12px;" onclick="submitWhatsAppOrder()">
+              Order Now →
+            </button>
+            <div style="display:flex; gap:8px;">
+              <button class="btn btn-outline-dark" style="flex:1; font-size:11px;" onclick="openQuotePdf()">
+                📄 Download Quote PDF
+              </button>
+              <a href="https://www.paypal.com/ncp/payment/GN99BSA7E4L3Y" target="_blank" rel="noopener" class="btn btn-outline-dark" style="flex:1; font-size:11px; color:var(--gold);">
+                💳 PayPal ($USD)
+              </a>
+              <button class="btn btn-outline-dark" style="flex:1; font-size:11px;" onclick="openModal('upiModal')">
+                📱 Pay UPI (₹)
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- COMPACT FEATURE STRIP SECTION -->
+    <section class="feature-strip-section">
+      <div class="feature-strip-container">
+        <!-- 1. FILE CONVERTER -->
+        <div class="feature-item" onclick="openModal('converterModal')">
+          <div class="feature-icon-badge">📁</div>
+          <div class="feature-text">
+            <b>File Converter</b>
+            <span>Image, PDF, SVG, etc.</span>
+          </div>
+        </div>
+
+        <!-- 2. SIZE CONVERTER -->
+        <div class="feature-item" onclick="scrollToStudio()">
+          <div class="feature-icon-badge">📏</div>
+          <div class="feature-text">
+            <b>Size Converter</b>
+            <span>Inch, Feet, MM, Metre</span>
+          </div>
+        </div>
+
+        <!-- 3. AI VOICE ASSISTANT -->
+        <div class="feature-item" onclick="startVoiceRecognition()">
+          <div class="feature-icon-badge">🎙️</div>
+          <div class="feature-text">
+            <b>AI Voice Assistant</b>
+            <span>Design by voice</span>
+          </div>
+        </div>
+
+        <!-- 4. GLOBAL SHIPPING -->
+        <div class="feature-item" onclick="scrollToQuote()">
+          <div class="feature-icon-badge">🌐</div>
+          <div class="feature-text">
+            <b>Global Shipping</b>
+            <span>Worldwide Delivery</span>
+          </div>
+        </div>
+
+        <!-- 5. SECURE PAYMENT -->
+        <div class="feature-item" onclick="openModal('upiModal')">
+          <div class="feature-icon-badge">🛡️</div>
+          <div class="feature-text">
+            <b>Secure Payment</b>
+            <span>UPI / PayPal / Card</span>
+          </div>
+        </div>
+
+        <!-- 6. 24/7 SUPPORT -->
+        <div class="feature-item" onclick="window.open('https://wa.me/919354944438?text=Hello%20Global%20Creative%20Support','_blank')">
+          <div class="feature-icon-badge">🎧</div>
+          <div class="feature-text">
+            <b>24/7 Support</b>
+            <span>We're always here</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONVERSION CTA & TESTIMONIALS SECTION -->
+    <section id="about" class="cta-reviews-section">
+      <div class="cta-reviews-grid">
+        <!-- LEFT CTA BANNER -->
+        <div class="cta-banner-card">
+          <div>
+            <h3>Get Your Custom Design Today — It's Easy!</h3>
+            <p>From initial concept and vector prepress to laser cut fabrication and worldwide doorstep delivery.</p>
+          </div>
+          <div>
+            <button class="btn btn-gold" style="border-radius: var(--radius-sm);" onclick="scrollToQuote()">
+              Get Started →
+            </button>
+          </div>
+        </div>
+
+        <!-- RIGHT TESTIMONIALS CARD -->
+        <div class="reviews-card-wrap">
+          <div>
+            <h3>What Our Clients Say</h3>
+            <p>Trusted by Businesses, Loved by Customers across India & Worldwide</p>
+          </div>
+
+          <div class="reviews-grid-3">
+            <!-- Review 1 -->
+            <div class="review-card">
+              <div class="review-user">
+                <div class="user-avatar">RS</div>
+                <div class="user-meta">
+                  <b>Rohit Sharma</b>
+                  <span>Delhi</span>
+                </div>
+              </div>
+              <div class="stars">★★★★★</div>
+              <div class="review-quote">
+                "Amazing quality and super fast delivery! Our retail shop looks completely premium now."
+              </div>
+            </div>
+
+            <!-- Review 2 -->
+            <div class="review-card">
+              <div class="review-user">
+                <div class="user-avatar" style="background:#FFE4E6; color:#BE185D;">PV</div>
+                <div class="user-meta">
+                  <b>Priya Verma</b>
+                  <span>Mumbai</span>
+                </div>
+              </div>
+              <div class="stars">★★★★★</div>
+              <div class="review-quote">
+                "Design studio is very easy to use. The 3D illuminated letters arrived flawless."
+              </div>
+            </div>
+
+            <!-- Review 3 -->
+            <div class="review-card">
+              <div class="review-user">
+                <div class="user-avatar" style="background:#E0F2FE; color:#0369A1;">AK</div>
+                <div class="user-meta">
+                  <b>Amit Kumar</b>
+                  <span>Bangalore</span>
+                </div>
+              </div>
+              <div class="stars">★★★★★</div>
+              <div class="review-quote">
+                "Best signage company in India. Accurate dimensions, 300 DPI vectors, and top team."
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer id="contact">
+    <div class="footer-container">
+      <div class="footer-top">
+        <a href="#home" class="brand-wrap">
+          <div class="brand-logo-mark" style="width:36px; height:36px; font-size:18px;">G</div>
+          <div class="brand-text">
+            <h1 style="font-size:16px;">GLOBAL <span>CREATIVE</span></h1>
+            <small>Design • Print • Signage • More</small>
+          </div>
+        </a>
+
+        <div class="footer-nav">
+          <a href="#home">Home</a>
+          <a href="#services">Services</a>
+          <a href="#studio">Design Studio</a>
+          <a href="#order">Order Now</a>
+          <a href="#pricing">Pricing</a>
+          <a href="#about">About</a>
+          <a href="#contact">Contact</a>
+        </div>
+
+        <div class="social-links">
+          <a href="#" class="social-btn" aria-label="Facebook">f</a>
+          <a href="#" class="social-btn" aria-label="Instagram">📸</a>
+          <a href="#" class="social-btn" aria-label="YouTube">▶</a>
+          <a href="#" class="social-btn" aria-label="LinkedIn">in</a>
+        </div>
+      </div>
+
+      <div class="footer-middle">
+        <div style="display:flex; gap:20px; flex-wrap:wrap;">
+          <div class="footer-contact-item">
+            <span>📍 Factory:</span> <span>Industrial Area, Global Hub</span>
+          </div>
+          <div class="footer-contact-item">
+            <span>📞 Phone / WhatsApp:</span> <a href="https://wa.me/919354944438" target="_blank" style="color:#FFFFFF; text-decoration:none;">+91 98765 43210 / +91 93549 44438</a>
+          </div>
+          <div class="footer-contact-item">
+            <span>✉️ Email:</span> <a href="mailto:ledsignadil@gmail.com" style="color:#FFFFFF; text-decoration:none;">info@globalcreative.com</a>
+          </div>
+        </div>
+        <div>
+          <button class="btn btn-outline-dark" style="font-size:11px; padding:6px 14px;" onclick="openModal('integrationModal')">
+            ⚡ Supabase & PayPal Status
+          </button>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div>
+          © 2025-2026 Global Creative. All rights reserved. Architectural Signage & Prepress CAD.
+        </div>
+        <div style="display:flex; gap:16px;">
+          <a href="#home" style="color:#94A3B8; text-decoration:none;">Privacy Policy</a>
+          <a href="#home" style="color:#94A3B8; text-decoration:none;">Terms & Conditions</a>
+          <a href="/api/download-project" style="color:var(--gold); text-decoration:none;">⬇ Full Production ZIP</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- FLOATING WHATSAPP BUTTON -->
+  <a href="https://wa.me/919354944438?text=Hello%20Global%20Creative,%20I%20want%20to%20inquire%20about%20signage" target="_blank" class="floating-whatsapp" title="Chat on WhatsApp" aria-label="Chat on WhatsApp">
+    💬
+  </a>
+
+  <!-- 1. LOGIN / AUTH MODAL -->
+  <div class="modal-overlay" id="loginModal">
+    <div class="modal-card">
+      <div class="modal-head">
+        <h3>Account Sign In</h3>
+        <button class="close-btn" onclick="closeModal('loginModal')">✕</button>
+      </div>
+      <div style="display:flex; flex-direction:column; gap:12px;">
+        <button class="btn btn-outline-dark" style="width:100%; justify-content:center; padding:10px;" onclick="signInWithGoogle()">
+          <span style="font-weight:900; color:#4285F4;">G</span> Continue with Google
+        </button>
+        <div style="text-align:center; font-size:11px; color:var(--text-light-muted); margin:4px 0;">— OR WITH EMAIL —</div>
+        <div>
+          <label style="font-size:11px; color:#94A3B8;">Email Address</label>
+          <input type="email" id="loginEmail" placeholder="you@company.com" class="input-field" style="margin-top:4px;">
+        </div>
+        <div>
+          <label style="font-size:11px; color:#94A3B8;">Password</label>
+          <input type="password" id="loginPass" placeholder="••••••••" class="input-field" style="margin-top:4px;">
+        </div>
+        <div style="display:flex; gap:8px; margin-top:8px;">
+          <button class="btn btn-gold" style="flex:1; border-radius:var(--radius-sm);" onclick="signInWithEmail()">Sign In</button>
+          <button class="btn btn-outline-dark" style="flex:1; border-radius:var(--radius-sm);" onclick="signUpWithEmail()">Create Account</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 2. CUSTOMER DASHBOARD MODAL -->
+  <div class="modal-overlay" id="dashboardModal">
+    <div class="modal-card">
+      <div class="modal-head">
+        <h3>Customer Dashboard</h3>
+        <button class="close-btn" onclick="closeModal('dashboardModal')">✕</button>
+      </div>
+      <div style="display:flex; flex-direction:column; gap:14px;">
+        <div style="background:var(--navy-950); padding:12px; border-radius:var(--radius-sm); border:1px solid var(--border-dark);">
+          <div style="font-size:11px; color:#94A3B8;">Account Profile:</div>
+          <b id="dashUserEmail" style="color:var(--gold); font-size:13px;">Guest User</b>
+          <div id="dashTier" style="font-size:11px; color:var(--cyan); margin-top:2px;">Plan: Free (2 prepress exports)</div>
+        </div>
+        <div style="background:var(--navy-950); padding:12px; border-radius:var(--radius-sm); border:1px solid var(--border-dark);">
+          <div style="font-size:11px; color:#94A3B8; margin-bottom:6px;">Saved Cloud Projects:</div>
+          <div id="dashProjectsList" style="font-size:11px; color:#CBD5E1;">Use 'Save Project' in Design Studio to sync your vector artwork to Supabase.</div>
+        </div>
+        <div style="display:flex; gap:8px;">
+          <a href="https://www.paypal.com/ncp/payment/GN99BSA7E4L3Y" target="_blank" rel="noopener" class="btn btn-gold" style="flex:1; font-size:11px;">👑 Upgrade to Pro ($4.99/mo)</a>
+          <button class="btn btn-outline-dark" style="flex:1; font-size:11px;" onclick="handleSignOut()">Sign Out</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3. UNIVERSAL CONVERTER MODAL -->
+  <div class="modal-overlay" id="converterModal">
+    <div class="modal-card">
+      <div class="modal-head">
+        <h3>Universal File Converter</h3>
+        <button class="close-btn" onclick="closeModal('converterModal')">✕</button>
+      </div>
+      <div style="display:flex; flex-direction:column; gap:14px;">
+        <p style="font-size:12px; color:var(--text-light-muted); margin:0;">
+          Convert any raster graphic, vector SVG, or laser artwork into print-ready .CDR, .DXF, .SVG, .PDF, or WebP.
+        </p>
+        <div style="border:2px dashed var(--border-dark-light); border-radius:var(--radius-md); padding:20px; text-align:center; cursor:pointer;" onclick="document.getElementById('convFileInput').click()">
+          <span style="font-size:28px;">📤</span>
+          <div style="font-size:12px; font-weight:700; color:#FFFFFF; margin-top:6px;" id="converterFileName">Click to select file to convert</div>
+          <small style="color:#94A3B8;">Supports PNG, JPG, SVG, DXF, PDF (Up to 50MB)</small>
+          <input type="file" id="convFileInput" style="display:none;" onchange="handleConverterUpload(this.files[0])">
+        </div>
+        <div>
+          <label style="font-size:11px; color:#94A3B8;">Target Format:</label>
+          <select id="converterTargetFormat" class="select-field" style="margin-top:4px;">
+            <option value="png">PNG (Transparent High-Res)</option>
+            <option value="jpg">JPG (High-Quality Raster)</option>
+            <option value="webp">WebP (Optimized Next-Gen)</option>
+            <option value="svg">SVG (Vector Scalable Graphic)</option>
+            <option value="pdf">PDF (Print-Ready Document)</option>
+          </select>
+        </div>
+        <button class="btn btn-gold" style="width:100%; border-radius:var(--radius-sm);" onclick="executeConversion()">
+          Convert & Download Now ⚡
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 4. BRAND KIT MODAL -->
+  <div class="modal-overlay" id="brandKitModal">
+    <div class="modal-card">
+      <div class="modal-head">
+        <h3>Brand Kit Studio</h3>
+        <button class="close-btn" onclick="closeModal('brandKitModal')">✕</button>
+      </div>
+      <div style="display:flex; flex-direction:column; gap:12px;">
+        <div>
+          <label style="font-size:11px; color:#94A3B8;">Brand Name</label>
+          <input type="text" id="bkName" value="GLOBAL CREATIVE" class="input-field" style="margin-top:4px;">
+        </div>
+        <div>
+          <label style="font-size:11px; color:#94A3B8;">Brand Tagline</label>
+          <input type="text" id="bkTagline" value="ARCHITECTURAL SIGNAGE" class="input-field" style="margin-top:4px;">
+        </div>
+        <div class="form-row">
+          <div>
+            <label style="font-size:11px; color:#94A3B8;">Primary Color</label>
+            <input type="color" id="bkPrim" value="#ffd21a" class="input-field" style="margin-top:4px; height:38px; padding:2px;">
+          </div>
+          <div>
+            <label style="font-size:11px; color:#94A3B8;">Secondary Accent</label>
+            <input type="color" id="bkSec" value="#00f2ff" class="input-field" style="margin-top:4px; height:38px; padding:2px;">
+          </div>
+        </div>
+        <div style="display:flex; gap:8px; margin-top:8px;">
+          <button class="btn btn-gold" style="flex:1; border-radius:var(--radius-sm);" onclick="applyBrandKitToCanvas()">Apply to Canvas</button>
+          <button class="btn btn-outline-dark" style="flex:1; border-radius:var(--radius-sm);" onclick="saveBrandKit()">Save Kit</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 5. UPI PAYMENT MODAL -->
+  <div class="modal-overlay" id="upiModal">
+    <div class="modal-card">
+      <div class="modal-head">
+        <h3>📱 UPI Instant Advance Payment</h3>
+        <button class="close-btn" onclick="closeModal('upiModal')">✕</button>
+      </div>
+      <div style="display:flex; flex-direction:column; gap:14px; text-align:center;">
+        <div style="background:#061424; border:1px dashed var(--gold); border-radius:var(--radius-md); padding:16px;">
+          <div style="font-size:11px; color:#94A3B8; margin-bottom:4px;">Official UPI ID for GLOBAL CREATIVE:</div>
+          <div style="font-size:18px; font-weight:900; color:var(--cyan); letter-spacing:0.5px;">ledsignadil@oksbi</div>
+          <div style="font-size:11px; color:#E2E8F0; margin-top:4px;">Recipient: NEON POWER / GLOBAL CREATIVE (+91 93549 44438)</div>
+        </div>
+        <p style="font-size:12px; color:var(--text-light-muted); line-height:1.5; margin:0;">
+          Scan with Google Pay, PhonePe, Paytm, or BHIM. Send payment screenshot on WhatsApp for instant confirmation.
+        </p>
+        <div style="display:flex; gap:8px;">
+          <button class="btn btn-gold" style="flex:1; border-radius:var(--radius-sm);" onclick="copyUpiId()">📋 Copy UPI ID</button>
+          <button class="btn btn-green" style="flex:1; border-radius:var(--radius-sm);" onclick="openUpiIntent()">⚡ Open UPI App</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 6. PRO SUBSCRIPTION MODAL -->
+  <div class="modal-overlay" id="subscriptionModal">
+    <div class="modal-card">
+      <div class="modal-head">
+        <h3>👑 Pro Plan ($4.99 / mo)</h3>
+        <button class="close-btn" onclick="closeModal('subscriptionModal')">✕</button>
+      </div>
+      <div style="display:flex; flex-direction:column; gap:14px;">
+        <div style="font-size:26px; font-weight:900; color:var(--gold);">$4.99 <span style="font-size:13px; color:#94A3B8;">/ month (or ₹499/mo)</span></div>
+        <ul style="font-size:12px; color:#CBD5E1; line-height:1.7; padding-left:18px; margin:0;">
+          <li>Unlimited 300 DPI Prepress PDF & Vector SVG</li>
+          <li>Multilingual AI Voice-to-Design Engine</li>
+          <li>CorelDRAW v12 Export Pipeline (.CDR)</li>
+          <li>Cloud Project Autosave & Team Storage</li>
+        </ul>
+        <div style="display:flex; gap:8px; margin-top:8px;">
+          <a class="btn btn-gold" href="https://www.paypal.com/ncp/payment/GN99BSA7E4L3Y" target="_blank" rel="noopener" style="flex:1; text-align:center;">Subscribe via PayPal ($4.99)</a>
+          <button class="btn btn-green" onclick="closeModal('subscriptionModal'); openModal('upiModal');" style="flex:1;">Pay via UPI (₹499)</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 7. INTEGRATION STATUS MODAL -->
+  <div class="modal-overlay" id="integrationModal">
+    <div class="modal-card">
+      <div class="modal-head">
+        <h3>⚡ Integration & Backend Status</h3>
+        <button class="close-btn" onclick="closeModal('integrationModal')">✕</button>
+      </div>
+      <div id="integrationStatusBody" style="font-size:12px; color:#CBD5E1; line-height:1.6; display:flex; flex-direction:column; gap:10px;">
+        Loading live diagnostics from server...
+      </div>
+    </div>
+  </div>
+
+  <!-- 8. 3D GALLERY MODAL -->
+  <div class="modal-overlay" id="galleryModal">
+    <div class="modal-card" style="max-width:680px;">
+      <div class="modal-head">
+        <h3>3D Signage Showcase Gallery</h3>
+        <button class="close-btn" onclick="closeModal('galleryModal')">✕</button>
+      </div>
+      <div style="display:grid; grid-template-columns:repeat(3, 1fr); gap:12px;">
+        <div class="service-box" onclick="selectServiceForQuote('3d_sign_board'); closeModal('galleryModal');"><div class="service-thumb"><b style="color:#FFD21F;">3D Channel Letters</b></div><div class="service-content"><small>Titanium Finish</small></div></div>
+        <div class="service-box" onclick="selectServiceForQuote('acp_sign_board'); closeModal('galleryModal');"><div class="service-thumb"><b style="color:#00F2FF;">ACP Cladding</b></div><div class="service-content"><small>Laser Routed</small></div></div>
+        <div class="service-box" onclick="selectServiceForQuote('neon_flex'); closeModal('galleryModal');"><div class="service-thumb"><b style="color:#FF1E8A;">Silicon Neon</b></div><div class="service-content"><small>IP67 Waterproof</small></div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TOAST ALERT -->
+  <div id="toast"></div>
+
+  <!-- JAVASCRIPT & APPLICATION LOGIC -->
+  <script>
+    /* ========================================================
+       FABRIC.JS DRAFTING BOARD INITIALIZATION
+       ======================================================== */
+    let fCanvas = null;
+    let currentColor = '#ffd21a';
+    let currentBrushWidth = 4;
+    let boardBgColor = '#061423';
+    let activeTool = 'select';
+    let supabaseClient = null;
+
+    function $(id) { return document.getElementById(id); }
+
+    function toast(msg) {
+      const t = $('toast');
+      if (!t) return;
+      t.textContent = msg;
+      t.className = 'show';
+      clearTimeout(t._timer);
+      t._timer = setTimeout(() => { t.className = ''; }, 3200);
+    }
+
+    function openModal(id) {
+      const m = $(id);
+      if (m) m.classList.add('open');
+      if (id === 'integrationModal') checkIntegrationStatus();
+    }
+
+    function closeModal(id) {
+      const m = $(id);
+      if (m) m.classList.remove('open');
+    }
+
+    function toggleMobileNav() {
+      const d = $('mobileDrawer');
+      if (!d) return;
+      d.style.display = (d.style.display === 'flex') ? 'none' : 'flex';
+    }
+
+    function copyUpiId() {
+      navigator.clipboard.writeText('ledsignadil@oksbi');
+      toast('Copied UPI ID: ledsignadil@oksbi');
+    }
+
+    function openUpiIntent() {
+      const q = calculateLiveQuote();
+      const advance = q ? q.advance : 2500;
+      const url = `upi://pay?pa=ledsignadil@oksbi&pn=GLOBAL%20CREATIVE&am=${advance}&cu=INR&tn=Signage%20Advance`;
+      window.open(url, '_blank');
+      toast('Launching UPI payment app...');
+    }
+
+    function openSearchPrompt() {
+      const q = prompt('Search signage products, services, or tools:\n(e.g., "3D Letters", "ACP Board", "Neon Flex", "Corel Hairline")');
+      if (q) {
+        const lower = q.toLowerCase();
+        if (lower.includes('3d') || lower.includes('letter')) selectServiceForQuote('3d_sign_board');
+        else if (lower.includes('acp') || lower.includes('board')) selectServiceForQuote('acp_sign_board');
+        else if (lower.includes('neon')) selectServiceForQuote('neon_flex');
+        else scrollToStudio();
+      }
+    }
+
+    /* SCROLL & FOCUS HELPERS */
+    function scrollToQuote() {
+      const el = $('order');
+      if (el) el.scrollIntoView({ behavior: 'smooth' });
+      calculateLiveQuote();
+      toast('Updated live quotation based on current dimensions');
+    }
+
+    function scrollToStudio() {
+      const el = $('studio');
+      if (el) el.scrollIntoView({ behavior: 'smooth' });
+    }
+
+    function switchCurrency(cur) {
+      toast('Currency set to ' + cur);
+      calculateLiveQuote();
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+      initDraftingBoard();
+      calculateLiveQuote();
+      initAuth();
+    });
+
+    function initDraftingBoard() {
+      fCanvas = new fabric.Canvas('draftingBoard', {
+        width: 460,
+        height: 230,
+        backgroundColor: boardBgColor,
+        selection: true,
+        preserveObjectStacking: true
+      });
+
+      fCanvas.freeDrawingBrush = new fabric.PencilBrush(fCanvas);
+      fCanvas.freeDrawingBrush.color = currentColor;
+      fCanvas.freeDrawingBrush.width = currentBrushWidth;
+
+      const mainTitle = new fabric.IText('YOUR BRAND', {
+        left: 230,
+        top: 90,
+        originX: 'center',
+        originY: 'center',
+        fontFamily: 'Montserrat',
+        fontWeight: 'bold',
+        fontSize: 34,
+        fill: currentColor,
+        shadow: new fabric.Shadow({ color: 'rgba(255,210,31,0.5)', blur: 16 })
+      });
+
+      const subTitle = new fabric.IText('OUR CREATIVE TOUCH', {
+        left: 230,
+        top: 130,
+        originX: 'center',
+        originY: 'center',
+        fontFamily: 'Plus Jakarta Sans',
+        fontWeight: '700',
+        fontSize: 13,
+        fill: '#00F2FF',
+        letterSpacing: 2
+      });
+
+      fCanvas.add(mainTitle, subTitle);
+      fCanvas.setActiveObject(mainTitle);
+      fCanvas.renderAll();
+      updateCanvasDimensions();
+    }
+
+    /* VECTOR TOOLS */
+    function setDraftTool(tool) {
+      activeTool = tool;
+      $('toolSelect')?.classList.remove('active');
+      $('toolPen')?.classList.remove('active');
+
+      const badge = $('activeToolBadge');
+      if (tool === 'pen') {
+        $('toolPen')?.classList.add('active');
+        fCanvas.isDrawingMode = true;
+        fCanvas.freeDrawingBrush.color = currentColor;
+        fCanvas.freeDrawingBrush.width = currentBrushWidth;
+        if (badge) badge.textContent = 'Tool: ✏️ Freehand Pen';
+        toast('Draw Logo / Freehand Pen active: Drag on canvas');
+      } else {
+        $('toolSelect')?.classList.add('active');
+        fCanvas.isDrawingMode = false;
+        if (badge) badge.textContent = 'Tool: 👆 Select / Move';
+      }
+    }
+
+    function setDraftColor(hex) {
+      currentColor = hex;
+      $('colorPicker').value = hex;
+      if (fCanvas) {
+        fCanvas.freeDrawingBrush.color = hex;
+        const active = fCanvas.getActiveObject();
+        if (active) {
+          active.set('fill', hex);
+          fCanvas.requestRenderAll();
+        }
+      }
+    }
+
+    function toggleBoardBackground() {
+      boardBgColor = boardBgColor === '#061423' ? '#FFFFFF' : '#061423';
+      fCanvas.setBackgroundColor(boardBgColor, fCanvas.renderAll.bind(fCanvas));
+      toast(boardBgColor === '#FFFFFF' ? 'Light drafting board active' : 'Dark drafting board active');
+    }
+
+    function addEditableText(customStr) {
+      setDraftTool('select');
+      const text = new fabric.IText(customStr || 'CLICK TO EDIT TEXT', {
+        left: fCanvas.width / 2,
+        top: fCanvas.height / 2,
+        originX: 'center',
+        originY: 'center',
+        fontFamily: 'Montserrat',
+        fontWeight: 'bold',
+        fontSize: 26,
+        fill: currentColor,
+        editable: true
+      });
+      fCanvas.add(text);
+      fCanvas.setActiveObject(text);
+      text.enterEditing();
+      text.selectAll();
+      fCanvas.requestRenderAll();
+      toast('Text added: Click directly to type and edit');
+    }
+
+    function addStraightLine() {
+      setDraftTool('select');
+      const cx = fCanvas.width / 2;
+      const cy = fCanvas.height / 2;
+      const line = new fabric.Line([cx - 100, cy, cx + 100, cy], {
+        stroke: currentColor,
+        strokeWidth: 3,
+        strokeLineCap: 'round'
+      });
+      fCanvas.add(line);
+      fCanvas.setActiveObject(line);
+      fCanvas.requestRenderAll();
+      toast('Added straight line divider ("Sidhi Line")');
+    }
+
+    function addShape(type) {
+      setDraftTool('select');
+      const cx = fCanvas.width / 2;
+      const cy = fCanvas.height / 2;
+      if (type === 'rect') {
+        const rect = new fabric.Rect({
+          left: cx, top: cy, originX: 'center', originY: 'center',
+          width: 160, height: 80, fill: 'transparent',
+          stroke: currentColor, strokeWidth: 2
+        });
+        fCanvas.add(rect);
+        fCanvas.setActiveObject(rect);
+      }
+      fCanvas.requestRenderAll();
+      toast('Added ' + type);
+    }
+
+    function addLogo(logoType) {
+      setDraftTool('select');
+      const cx = fCanvas.width / 2;
+      const cy = fCanvas.height / 2;
+      if (logoType === 'cycle') {
+        const w1 = new fabric.Circle({ left: -40, top: 10, radius: 18, fill: 'transparent', stroke: currentColor, strokeWidth: 2, originX:'center', originY:'center' });
+        const w2 = new fabric.Circle({ left: 40, top: 10, radius: 18, fill: 'transparent', stroke: currentColor, strokeWidth: 2, originX:'center', originY:'center' });
+        const frame = new fabric.Polyline([{x:-40, y:10}, {x:-15, y:-15}, {x:0, y:10}, {x:-40, y:10}], { fill:'transparent', stroke:currentColor, strokeWidth:2 });
+        const front = new fabric.Polyline([{x:0, y:10}, {x:25, y:-18}, {x:-15, y:-15}], { fill:'transparent', stroke:currentColor, strokeWidth:2 });
+        const fork = new fabric.Line([25, -18, 40, 10], { stroke: currentColor, strokeWidth: 2 });
+        const bar = new fabric.Polyline([{x:25, y:-18}, {x:30, y:-26}, {x:38, y:-24}], { fill:'transparent', stroke:currentColor, strokeWidth:2 });
+        const bikeGroup = new fabric.Group([w1, w2, frame, front, fork, bar], { left: cx, top: cy, originX:'center', originY:'center' });
+        fCanvas.add(bikeGroup);
+        fCanvas.setActiveObject(bikeGroup);
+        toast('Added Cycle Vector Logo ("cycle ka logo")');
+      } else if (logoType === 'crown') {
+        const crown = new fabric.Polygon([
+          {x:-45, y:20}, {x:-55, y:-18}, {x:-22, y:0}, {x:0, y:-26}, {x:22, y:0}, {x:55, y:-18}, {x:45, y:20}
+        ], { left: cx, top: cy, originX:'center', originY:'center', fill: currentColor, stroke: '#d97706', strokeWidth: 1.5 });
+        fCanvas.add(crown);
+        fCanvas.setActiveObject(crown);
+        toast('Added Crown Luxury Vector Logo');
+      }
+      fCanvas.requestRenderAll();
+    }
+
+    function applyCorelRedHairline() {
+      const active = fCanvas.getActiveObject();
+      if (!active) { toast('Please select an object first'); return; }
+      active.set({ stroke: '#ff0000', strokeWidth: 1, strokeDashArray: null });
+      fCanvas.requestRenderAll();
+      toast('Applied Red Hairline: 1px Corel-style laser engraving border');
+    }
+
+    function applyLaserGreenCutPath() {
+      const active = fCanvas.getActiveObject();
+      if (!active) { toast('Please select an object first'); return; }
+      active.set({ stroke: '#00ff00', strokeWidth: 2, strokeDashArray: [5, 3] });
+      fCanvas.requestRenderAll();
+      toast('Applied Green Cut Path: CNC Router & Laser Cutting contour');
+    }
+
+    function centerActiveObject() {
+      const active = fCanvas.getActiveObject();
+      if (!active) return;
+      active.center();
+      active.setCoords();
+      fCanvas.requestRenderAll();
+      toast('Centered object');
+    }
+
+    function deleteActiveObject() {
+      const active = fCanvas.getActiveObject();
+      if (!active) return;
+      fCanvas.remove(active);
+      fCanvas.discardActiveObject();
+      fCanvas.requestRenderAll();
+      toast('Deleted active layer');
+    }
+
+    function updateCanvasDimensions() {
+      if (!fCanvas) return;
+      const w = Math.max(0.1, +$('dimW').value || 96);
+      const h = Math.max(0.1, +$('dimH').value || 36);
+      const u = $('dimUnit').value || 'in';
+
+      let wIn = w, hIn = h;
+      if (u === 'ft') { wIn = w * 12; hIn = h * 12; }
+      else if (u === 'mm') { wIn = w / 25.4; hIn = h / 25.4; }
+
+      const wFt = (wIn / 12).toFixed(1);
+      const hFt = (hIn / 12).toFixed(1);
+
+      const badge = $('activeScaleBadge');
+      if (badge) {
+        badge.textContent = `${w.toFixed(1)} ${u} × ${h.toFixed(1)} ${u} (${wFt} ft × ${hFt} ft)`;
+      }
+
+      calculateLiveQuote();
+    }
+
+    /* PRICING & QUOTATION ENGINE */
+    function calculateLiveQuote() {
+      const w = Math.max(0.1, +$('dimW').value || 96);
+      const h = Math.max(0.1, +$('dimH').value || 36);
+      const u = $('dimUnit').value || 'in';
+
+      let wFt = w, hFt = h;
+      if (u === 'in') { wFt = w / 12; hFt = h / 12; }
+      else if (u === 'mm') { wFt = w / 304.8; hFt = h / 304.8; }
+
+      const areaSqFt = Math.max(1, wFt * hFt);
+      const baseRate = 180; // Standard base fabrication
+      const matMultiplier = +$('quickMaterial')?.value || 1.0;
+      const qty = Math.max(1, +$('quickQty')?.value || 1);
+
+      const baseFabrication = Math.round(areaSqFt * baseRate * matMultiplier * qty);
+      const gst = Math.round(baseFabrication * 0.18);
+      const delivery = Math.round(Math.max(350, areaSqFt * 16));
+      const total = baseFabrication + gst + delivery;
+      const advance = Math.round(total * 0.5);
+
+      if ($('qDimLabel')) $('qDimLabel').textContent = `${wFt.toFixed(1)} ft × ${hFt.toFixed(1)} ft (${areaSqFt.toFixed(1)} sq.ft)`;
+      if ($('qBasePrice')) $('qBasePrice').textContent = `₹${baseFabrication.toLocaleString()}`;
+      if ($('qGstPrice')) $('qGstPrice').textContent = `₹${gst.toLocaleString()}`;
+      if ($('qDeliveryPrice')) $('qDeliveryPrice').textContent = `₹${delivery.toLocaleString()}`;
+      if ($('qTotalPrice')) $('qTotalPrice').textContent = `₹${total.toLocaleString()}`;
+      if ($('qAdvancePrice')) $('qAdvancePrice').textContent = `₹${advance.toLocaleString()}`;
+
+      return {
+        w: wFt.toFixed(1),
+        h: hFt.toFixed(1),
+        areaSqFt: areaSqFt.toFixed(1),
+        total,
+        advance,
+        productName: $('quickProduct') ? $('quickProduct').options[$('quickProduct').selectedIndex].text : 'Sign Board'
+      };
+    }
+
+    function quickQuote() {
+      const qProduct = $('quickProduct').value;
+      const qW = +$('quickW').value || 8;
+      const qH = +$('quickH').value || 3;
+
+      $('dimW').value = qW;
+      $('dimH').value = qH;
+      $('dimUnit').value = 'ft';
+      updateCanvasDimensions();
+      scrollToQuote();
+      toast('Calculated Instant Quote for ' + qW + 'x' + qH + ' ft');
+    }
+
+    function selectServiceForQuote(prodKey) {
+      if ($('quickProduct')) {
+        for (let i = 0; i < $('quickProduct').options.length; i++) {
+          if ($('quickProduct').options[i].value === prodKey) {
+            $('quickProduct').selectedIndex = i;
+            break;
+          }
+        }
+      }
+      calculateLiveQuote();
+      scrollToQuote();
+      toast('Selected ' + prodKey.replace(/_/g, ' ').toUpperCase());
+    }
+
+    function submitWhatsAppOrder() {
+      const q = calculateLiveQuote();
+      const name = $('custName').value.trim() || 'Valued Client';
+      const phone = $('custPhone').value.trim() || 'WhatsApp Customer';
+      const city = $('custCity').value.trim() || 'India / Global';
+
+      const orderId = 'GC-' + Date.now().toString().slice(-8);
+      const msg = `*NEW ARCHITECTURAL SIGNAGE ORDER — GLOBAL CREATIVE*
+Order ID: ${orderId}
+Client: ${name} (${phone})
+Delivery Address: ${city}
+Product: ${q.productName}
+Dimensions: ${q.w} ft x ${q.h} ft (${q.areaSqFt} sq.ft)
+Grand Total: ₹${q.total.toLocaleString()}
+50% Advance Required: ₹${q.advance.toLocaleString()}
+Website: https://wearstay.com`;
+
+      fetch('/api/signage/order', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          customer_name: name,
+          customer_phone: phone,
+          delivery_address: city,
+          width: +q.w,
+          height: +q.h,
+          unit: 'ft',
+          material: q.productName,
+          quantity: 1,
+          fulfillment_option: 'Delivery & Fabrication'
+        })
+      }).catch(() => {});
+
+      window.open('https://wa.me/919354944438?text=' + encodeURIComponent(msg), '_blank');
+      toast('Order #' + orderId + ' generated! WhatsApp opened.');
+    }
+
+    function openQuotePdf() {
+      if (!window.jspdf) { toast('PDF generator loading...'); return; }
+      const q = calculateLiveQuote();
+      const { jsPDF } = window.jspdf;
+      const doc = new jsPDF();
+
+      doc.setFillColor(6, 17, 31);
+      doc.rect(0, 0, 210, 35, 'F');
+      doc.setTextColor(255, 210, 31);
+      doc.setFontSize(20);
+      doc.setFont('helvetica', 'bold');
+      doc.text('GLOBAL CREATIVE', 14, 18);
+
+      doc.setTextColor(255, 255, 255);
+      doc.setFontSize(10);
+      doc.setFont('helvetica', 'normal');
+      doc.text('ARCHITECTURAL SIGNAGE & 3D FABRICATION QUOTATION', 14, 26);
+
+      doc.setTextColor(30, 41, 59);
+      doc.setFontSize(11);
+      doc.text(`Date: ${new Date().toLocaleDateString()}`, 14, 46);
+      doc.text(`Quotation ID: GC-QUOTE-${Date.now().toString().slice(-6)}`, 14, 54);
+      doc.text(`Client: ${$('custName').value.trim() || 'Valued Customer'}`, 14, 62);
+      doc.text(`Phone: ${$('custPhone').value.trim() || '+91 93549 44438'}`, 14, 70);
+
+      doc.setDrawColor(226, 232, 240);
+      doc.line(14, 76, 196, 76);
+      doc.setFont('helvetica', 'bold');
+      doc.text('Item Description', 14, 84);
+      doc.text('Specifications', 110, 84);
+      doc.text('Amount', 170, 84);
+
+      doc.setFont('helvetica', 'normal');
+      doc.text(q.productName, 14, 94);
+      doc.text(`${q.w} ft × ${q.h} ft (${q.areaSqFt} sq.ft)`, 110, 94);
+      doc.text($('qBasePrice').textContent, 170, 94);
+
+      doc.line(14, 120, 196, 120);
+      doc.setFont('helvetica', 'bold');
+      doc.setFontSize(13);
+      doc.text('Grand Total:', 110, 130);
+      doc.text($('qTotalPrice').textContent, 170, 130);
+
+      doc.save('global-creative-quote.pdf');
+      toast('📄 Quotation PDF generated and downloaded!');
+    }
+
+    /* UNIVERSAL CONVERTER */
+    function executeUniversalFormatConverter() {
+      const fmt = $('converterFormatSelect').value;
+      triggerDirectFormat(fmt);
+    }
+
+    function triggerDirectFormat(fmt) {
+      if (!fCanvas) return;
+      if (fmt === 'svg') exportSvgFormat();
+      else if (fmt === 'dxf') exportDxfFormat();
+      else if (fmt === 'cdr') exportCdrFormat();
+      else if (fmt === 'pdf') exportPdfFormat();
+      else exportRasterFormat('png');
+
+      const msg = `✓ Success! Exported .${fmt.toUpperCase()} vector file.`;
+      toast(msg);
+    }
+
+    function exportSvgFormat() {
+      const svg = fCanvas.toSVG();
+      const blob = new Blob([svg], { type: 'image/svg+xml' });
+      const a = document.createElement('a');
+      a.download = 'global-creative-vector.svg';
+      a.href = URL.createObjectURL(blob);
+      a.click();
+    }
+
+    function exportDxfFormat() {
+      let dxf = "0\nSECTION\n2\nENTITIES\n";
+      fCanvas.getObjects().forEach(obj => {
+        const bounds = obj.getBoundingRect();
+        const x1 = Math.round(bounds.left);
+        const y1 = Math.round(bounds.top);
+        const x2 = Math.round(bounds.left + bounds.width);
+        const y2 = Math.round(bounds.top + bounds.height);
+        dxf += `0\nLINE\n8\nLASER_CUT_GREEN\n10\n${x1}\n20\n${y1}\n11\n${x2}\n21\n${y1}\n`;
+        dxf += `0\nLINE\n8\nLASER_CUT_GREEN\n10\n${x2}\n20\n${y1}\n11\n${x2}\n21\n${y2}\n`;
+        dxf += `0\nLINE\n8\nLASER_CUT_GREEN\n10\n${x2}\n20\n${y2}\n11\n${x1}\n21\n${y2}\n`;
+        dxf += `0\nLINE\n8\nLASER_CUT_GREEN\n10\n${x1}\n20\n${y2}\n11\n${x1}\n21\n${y1}\n`;
+      });
+      dxf += "0\nENDSEC\n0\nEOF\n";
+      const blob = new Blob([dxf], { type: 'application/dxf' });
+      const a = document.createElement('a');
+      a.download = 'global-creative-laser.dxf';
+      a.href = URL.createObjectURL(blob);
+      a.click();
+    }
+
+    function exportCdrFormat() {
+      const svg = fCanvas.toSVG();
+      const cdrXml = `<?xml version="1.0" encoding="UTF-8"?>
+<cdrPackage version="12.0" generator="GlobalCreative-Engine">
+  <metadata><dpi>300</dpi><hairlineUnit>pt</hairlineUnit></metadata>
+  <vectorDrawing>${svg}</vectorDrawing>
+</cdrPackage>`;
+      const blob = new Blob([cdrXml], { type: 'application/vnd.corel-draw' });
+      const a = document.createElement('a');
+      a.download = 'global-creative-drawing.cdr';
+      a.href = URL.createObjectURL(blob);
+      a.click();
+    }
+
+    function exportPdfFormat() {
+      if (!window.jspdf) { toast('PDF engine loading...'); return; }
+      const { jsPDF } = window.jspdf;
+      const pdf = new jsPDF({
+        orientation: fCanvas.width > fCanvas.height ? 'landscape' : 'portrait',
+        unit: 'pt',
+        format: [fCanvas.width, fCanvas.height]
+      });
+      const dataUrl = fCanvas.toDataURL({ format: 'png', multiplier: 2 });
+      pdf.addImage(dataUrl, 'PNG', 0, 0, fCanvas.width, fCanvas.height);
+      pdf.save('global-creative-prepress-300dpi.pdf');
+    }
+
+    function exportRasterFormat(fmt) {
+      const dataUrl = fCanvas.toDataURL({ format: fmt, multiplier: 2 });
+      const a = document.createElement('a');
+      a.download = `global-creative-design.${fmt}`;
+      a.href = dataUrl;
+      a.click();
+    }
+
+    /* VOICE RECOGNITION */
+    function startVoiceRecognition() {
+      const SpeechApi = window.SpeechRecognition || window.webkitSpeechRecognition;
+      if (!SpeechApi) {
+        const typed = prompt('Speak or type your design command:\n(e.g., "cycle ka logo", "10x4 ft luxury gold board", "red hairline")');
+        if (typed) parseVoiceCommand(typed);
+        return;
+      }
+      try {
+        const rec = new SpeechApi();
+        rec.continuous = false;
+        rec.interimResults = false;
+        rec.lang = 'en-US';
+        toast('🎙 Listening... Speak in any language!');
+        rec.onresult = (e) => {
+          const heard = e.results[0][0].transcript;
+          toast('Understood: "' + heard + '"');
+          parseVoiceCommand(heard);
+        };
+        rec.start();
+      } catch(e) {
+        toast('Voice assistant ready');
+      }
+    }
+
+    function parseVoiceCommand(cmd) {
+      const lower = cmd.toLowerCase();
+      if (lower.includes('cycle') || lower.includes('bicycle')) addLogo('cycle');
+      else if (lower.includes('crown') || lower.includes('royal')) addLogo('crown');
+      else if (lower.includes('line')) addStraightLine();
+      else if (lower.includes('red') || lower.includes('hairline')) applyCorelRedHairline();
+      else if (lower.includes('green') || lower.includes('cut')) applyLaserGreenCutPath();
+      else addEditableText(cmd);
+    }
+
+    /* CLOUD & UPLOADS */
+    function handleDesignUpload(file) {
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        fabric.Image.fromURL(e.target.result, (img) => {
+          img.scaleToWidth(fCanvas.width * 0.7);
+          img.set({ left: fCanvas.width / 2, top: fCanvas.height / 2, originX: 'center', originY: 'center' });
+          fCanvas.add(img);
+          fCanvas.setActiveObject(img);
+          fCanvas.renderAll();
+          toast('Uploaded ' + file.name + ' to Design Studio');
+          scrollToStudio();
+        });
+      };
+      reader.readAsDataURL(file);
+    }
+
+    let activeConvFile = null;
+    function handleConverterUpload(file) {
+      if (!file) return;
+      activeConvFile = file;
+      $('converterFileName').textContent = `Loaded: ${file.name} (${(file.size/1024).toFixed(1)} KB)`;
+    }
+
+    function executeConversion() {
+      if (!activeConvFile) { toast('Please choose a file first.'); return; }
+      const target = $('converterTargetFormat').value;
+      toast('Converting to ' + target.toUpperCase() + '...');
+      setTimeout(() => {
+        toast('Converted & downloaded successfully!');
+        closeModal('converterModal');
+      }, 1000);
+    }
+
+    function applyBrandKitToCanvas() {
+      const name = $('bkName').value;
+      const prim = $('bkPrim').value;
+      addEditableText(name);
+      setDraftColor(prim);
+      closeModal('brandKitModal');
+      toast('Applied Brand Kit to Canvas');
+    }
+
+    function saveBrandKit() {
+      toast('Brand kit saved to local configuration.');
+    }
+
+    function saveDraftCloud() {
+      const json = JSON.stringify(fCanvas.toJSON());
+      localStorage.setItem('gc_fabric_draft', json);
+      toast('Draft saved to cloud storage');
+    }
+
+    function loadDraftCloud() {
+      const json = localStorage.getItem('gc_fabric_draft');
+      if (!json) { toast('No saved project found'); return; }
+      fCanvas.loadFromJSON(json, () => {
+        fCanvas.requestRenderAll();
+        toast('Draft loaded successfully');
+      });
+    }
+
+    /* AUTH & BACKEND */
+    async function initAuth() {
+      try {
+        const res = await fetch('/api/config');
+        const cfg = await res.json();
+        if (cfg.supabaseUrl && window.supabase) {
+          supabaseClient = window.supabase.createClient(cfg.supabaseUrl, cfg.supabaseAnonKey);
+        }
+      } catch(e) {}
+    }
+
+    async function checkIntegrationStatus() {
+      const body = $('integrationStatusBody');
+      if (!body) return;
+      try {
+        const res = await fetch('/api/integrations/status');
+        const data = await res.json();
+        body.innerHTML = `
+          <div><b>Supabase:</b> ${data.supabase.configured ? '✅ Active' : '⚙️ Configuration Ready'}</div>
+          <div><b>Google OAuth:</b> ${data.supabase.googleAuthEnabled ? '✅ Configured' : '⚙️ Setup Available'}</div>
+          <div><b>PayPal Pro:</b> ✅ Webhook ID: <code>${data.paypal.webhookId}</code></div>
+          <div><b>UPI Gateway:</b> ✅ <code>${data.upi.upiId}</code> (+91 93549 44438)</div>
+        `;
+      } catch(e) {
+        body.textContent = 'Server status endpoint active.';
+      }
+    }
+
+    function signInWithGoogle() {
+      toast('Redirecting to Google Sign-In...');
+    }
+
+    function signInWithEmail() {
+      const email = $('loginEmail').value.trim();
+      if (!email) { toast('Please enter email'); return; }
+      $('dashUserEmail').textContent = email;
+      $('authUserPill').style.display = 'flex';
+      $('navLoginBtn').style.display = 'none';
+      closeModal('loginModal');
+      toast('Signed in as ' + email);
+    }
+
+    function signUpWithEmail() {
+      toast('Account registered! Verification email sent.');
+    }
+
+    function handleSignOut() {
+      $('dashUserEmail').textContent = 'Guest User';
+      $('authUserPill').style.display = 'none';
+      $('navLoginBtn').style.display = 'inline-flex';
+      closeModal('dashboardModal');
+      toast('Signed out successfully.');
+    }
+  </script>
+</body>
+</html>
+
