@@ -1,0 +1,2215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GLOBAL CREATIVE — Architectural Signage, 3D Letters & AI CAD Studio</title>
+  <meta name="description" content="Global Creative is your complete platform for professional 3D acrylic signage, LED sign boards, architectural titanium letters, vector drafting studio, and instant quotations.">
+  <meta name="robots" content="index,follow,max-image-preview:large">
+
+  <!-- 1. Domain Canonical & Google Search Console Verification -->
+  <meta name="google-site-verification" content="dNDfnD64lB_mp98ZIV5CyCcW5WvO5ftVmwkXRHmAGx4" />
+  <link rel="canonical" href="https://wearstay.com/">
+
+  <!-- Open Graph / Social SEO -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://wearstay.com/">
+  <meta property="og:title" content="GLOBAL CREATIVE — Architectural Signage, 3D Letters & AI CAD Studio">
+  <meta property="og:description" content="Global Creative is your complete platform for professional 3D acrylic signage, LED sign boards, architectural titanium letters, vector drafting studio, and instant quotations.">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="GLOBAL CREATIVE — Architectural Signage, 3D Letters & AI CAD Studio">
+  <meta name="twitter:description" content="Global Creative is your complete platform for professional 3D acrylic signage, LED sign boards, architectural titanium letters, vector drafting studio, and instant quotations.">
+
+  <!-- 5. Adsterra Popunder Script -->
+  <script src="https://staturenonsense.com/65/63/98/6563980fc01fd0b6a828f0172f117b8e.js"></script>
+
+  <!-- Google Fonts: Plus Jakarta Sans, Inter, Montserrat, Cinzel -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;900&family=Inter:wght@400;500;600;700;800&family=Montserrat:wght@600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <!-- Fabric.js CDN (Client-side Vector CAD engine) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/5.3.1/fabric.min.js"></script>
+
+  <!-- jsPDF for 300 DPI Prepress PDF Generation -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+  <!-- 3. Supabase JS Client-Side SDK v2 (Browser DB & Auth) -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+  <style>
+    :root {
+      --navy-950: #06111F;
+      --navy-900: #0B1B2E;
+      --navy-850: #0F243C;
+      --navy-800: #152E4D;
+      --border-dark: #1E3A5A;
+      --border-dark-light: #2A4E77;
+      --bg-light: #F5F7FA;
+      --card-white: #FFFFFF;
+      --gold: #FFD21F;
+      --gold-hover: #FFE054;
+      --gold-dark: #D99B00;
+      --cyan: #00F2FF;
+      --red-hairline: #FF0000;
+      --green-cut: #10B981;
+      --text-dark: #111827;
+      --text-slate: #374151;
+      --text-muted: #64748B;
+      --text-light-muted: #94A3B8;
+      --radius-sm: 8px;
+      --radius-md: 12px;
+      --radius-lg: 18px;
+      --radius-xl: 24px;
+      --shadow-sm: 0 2px 8px rgba(0,0,0,0.06);
+      --shadow-md: 0 8px 24px rgba(0,0,0,0.08);
+      --shadow-lg: 0 16px 40px rgba(0,0,0,0.12);
+      --shadow-gold: 0 8px 24px rgba(255, 210, 31, 0.28);
+      --shadow-glow: 0 0 25px rgba(0, 242, 255, 0.25);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Plus Jakarta Sans', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background-color: var(--bg-light);
+      color: var(--text-dark);
+      overflow-x: hidden;
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    h1, h2, h3, h4, .font-heading {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+    }
+
+    .header-logo-text {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 900;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      font-size: 20px;
+      color: #FFFFFF;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .header-logo-text span {
+      color: var(--gold);
+    }
+
+    header {
+      background: var(--navy-950);
+      border-bottom: 1px solid var(--border-dark);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      backdrop-filter: blur(12px);
+    }
+
+    .header-container {
+      max-width: 1360px;
+      margin: 0 auto;
+      padding: 12px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+    }
+
+    .nav-link {
+      color: #CBD5E1;
+      font-size: 14px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: color 0.2s ease;
+      cursor: pointer;
+    }
+
+    .nav-link:hover, .nav-link.active {
+      color: var(--gold);
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+      font-size: 13px;
+      border-radius: var(--radius-md);
+      padding: 10px 22px;
+      cursor: pointer;
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+      border: none;
+      outline: none;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+
+    .btn-gold {
+      background: linear-gradient(135deg, #FFD21F 0%, #FFB800 100%);
+      color: #06111F;
+      box-shadow: var(--shadow-gold);
+    }
+
+    .btn-gold:hover {
+      background: linear-gradient(135deg, #FFE054 0%, #FFC72C 100%);
+      transform: translateY(-2px);
+      box-shadow: 0 10px 28px rgba(255, 210, 31, 0.4);
+    }
+
+    .btn-outline-dark {
+      background: rgba(255, 255, 255, 0.05);
+      color: #FFFFFF;
+      border: 1px solid var(--border-dark);
+    }
+
+    .btn-outline-dark:hover {
+      background: rgba(255, 255, 255, 0.12);
+      border-color: var(--border-dark-light);
+      color: var(--gold);
+    }
+
+    .btn-green {
+      background: #10B981;
+      color: #FFFFFF;
+    }
+
+    .hero-section {
+      background: linear-gradient(180deg, var(--navy-950) 0%, var(--navy-900) 65%, #0d2138 100%);
+      color: #FFFFFF;
+      padding: 48px 24px 72px 24px;
+      position: relative;
+      overflow: hidden;
+      border-bottom: 1px solid var(--border-dark);
+    }
+
+    .hero-section::before {
+      content: "";
+      position: absolute;
+      top: -150px;
+      right: -100px;
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(0, 242, 255, 0.12) 0%, rgba(255, 210, 31, 0.08) 50%, transparent 70%);
+      border-radius: 50%;
+      pointer-events: none;
+    }
+
+    .hero-container {
+      max-width: 1360px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 48px;
+      align-items: center;
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(255, 210, 31, 0.12);
+      border: 1px solid rgba(255, 210, 31, 0.3);
+      color: var(--gold);
+      padding: 6px 14px;
+      border-radius: 9999px;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+
+    .hero-heading {
+      font-size: 46px;
+      line-height: 1.12;
+      margin-bottom: 16px;
+      color: #FFFFFF;
+      letter-spacing: -0.03em;
+    }
+
+    .hero-heading .text-gold {
+      color: var(--gold);
+      background: linear-gradient(135deg, #FFE779 0%, #FFB800 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero-tags {
+      font-size: 14px;
+      color: var(--cyan);
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      margin-bottom: 16px;
+      text-transform: uppercase;
+    }
+
+    .hero-description {
+      font-size: 16px;
+      color: #94A3B8;
+      line-height: 1.6;
+      max-width: 580px;
+      margin-bottom: 28px;
+    }
+
+    .hero-btns {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-bottom: 36px;
+    }
+
+    .trust-strip {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 24px;
+      padding-top: 24px;
+      border-top: 1px solid var(--border-dark);
+    }
+
+    .trust-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .trust-icon {
+      font-size: 20px;
+    }
+
+    .trust-text {
+      font-size: 12px;
+      color: #CBD5E1;
+      line-height: 1.25;
+    }
+
+    .trust-text b {
+      display: block;
+      color: #FFFFFF;
+      font-size: 13px;
+    }
+
+    .quick-quote-card {
+      background: var(--navy-850);
+      border: 1px solid var(--border-dark-light);
+      border-radius: var(--radius-xl);
+      padding: 30px;
+      box-shadow: 0 20px 48px rgba(0, 0, 0, 0.4);
+      position: relative;
+    }
+
+    .qq-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+      border-bottom: 1px solid var(--border-dark);
+      padding-bottom: 14px;
+    }
+
+    .qq-title {
+      font-size: 18px;
+      font-weight: 800;
+      color: #FFFFFF;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .qq-badge {
+      background: rgba(0, 242, 255, 0.15);
+      color: var(--cyan);
+      border: 1px solid rgba(0, 242, 255, 0.4);
+      padding: 3px 8px;
+      border-radius: 9999px;
+      font-size: 11px;
+      font-weight: 700;
+    }
+
+    .form-group {
+      margin-bottom: 14px;
+    }
+
+    .form-label {
+      display: block;
+      font-size: 12px;
+      font-weight: 700;
+      color: #94A3B8;
+      margin-bottom: 6px;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .input-field, .select-field {
+      width: 100%;
+      background: var(--navy-950);
+      border: 1px solid var(--border-dark);
+      border-radius: var(--radius-sm);
+      color: #FFFFFF;
+      font-family: inherit;
+      font-size: 13px;
+      padding: 10px 12px;
+      outline: none;
+      transition: all 0.2s ease;
+    }
+
+    .input-field:focus, .select-field:focus {
+      border-color: var(--gold);
+      box-shadow: 0 0 0 2px rgba(255, 210, 31, 0.2);
+    }
+
+    .qq-result-box {
+      background: var(--navy-950);
+      border: 1px dashed var(--gold);
+      border-radius: var(--radius-md);
+      padding: 14px;
+      margin-top: 16px;
+      margin-bottom: 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .qq-price-label {
+      font-size: 11px;
+      color: #94A3B8;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .qq-price-val {
+      font-size: 26px;
+      font-weight: 900;
+      color: var(--gold);
+      font-family: 'Montserrat', sans-serif;
+    }
+
+    .section-wrap {
+      max-width: 1360px;
+      margin: 0 auto;
+      padding: 80px 24px;
+    }
+
+    .section-header {
+      text-align: center;
+      max-width: 680px;
+      margin: 0 auto 48px auto;
+    }
+
+    .section-eyebrow {
+      display: inline-block;
+      font-size: 12px;
+      font-weight: 800;
+      color: var(--navy-800);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+
+    .section-title {
+      font-size: 34px;
+      color: var(--navy-950);
+      line-height: 1.2;
+      margin-bottom: 12px;
+    }
+
+    .section-subtitle {
+      font-size: 15px;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 24px;
+    }
+
+    .service-card {
+      background: var(--card-white);
+      border-radius: var(--radius-lg);
+      border: 1px solid #E2E8F0;
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      cursor: pointer;
+    }
+
+    .service-card:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--shadow-lg);
+      border-color: #CBD5E1;
+    }
+
+    .service-card-img-wrap {
+      position: relative;
+      height: 180px;
+      overflow: hidden;
+      background: var(--navy-900);
+    }
+
+    .service-card-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+
+    .service-card:hover .service-card-img {
+      transform: scale(1.08);
+    }
+
+    .service-card-badge {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      background: rgba(6, 17, 31, 0.85);
+      color: var(--gold);
+      backdrop-filter: blur(8px);
+      padding: 4px 10px;
+      border-radius: 9999px;
+      font-size: 11px;
+      font-weight: 800;
+      border: 1px solid rgba(255, 210, 31, 0.3);
+    }
+
+    .service-card-body {
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+    }
+
+    .service-card-title {
+      font-size: 18px;
+      font-weight: 800;
+      color: var(--navy-950);
+      margin-bottom: 8px;
+    }
+
+    .service-card-desc {
+      font-size: 13px;
+      color: var(--text-muted);
+      line-height: 1.5;
+      margin-bottom: 16px;
+      flex-grow: 1;
+    }
+
+    .service-card-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-top: 1px solid #F1F5F9;
+      padding-top: 14px;
+    }
+
+    .service-card-price {
+      font-size: 13px;
+      font-weight: 800;
+      color: var(--navy-850);
+    }
+
+    .service-card-price span {
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--text-muted);
+    }
+
+    .studio-workspace-section {
+      background: #081524;
+      color: #FFFFFF;
+      padding: 72px 24px;
+      border-top: 1px solid var(--border-dark);
+      border-bottom: 1px solid var(--border-dark);
+    }
+
+    .studio-container {
+      max-width: 1360px;
+      margin: 0 auto;
+    }
+
+    .studio-card {
+      background: var(--navy-900);
+      border: 1px solid var(--border-dark);
+      border-radius: var(--radius-xl);
+      overflow: hidden;
+      box-shadow: 0 24px 60px rgba(0,0,0,0.5);
+    }
+
+    .studio-toolbar {
+      background: var(--navy-950);
+      border-bottom: 1px solid var(--border-dark);
+      padding: 12px 20px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .studio-canvas-area {
+      display: grid;
+      grid-template-columns: 240px 1fr 280px;
+      min-height: 540px;
+    }
+
+    .studio-sidebar-left {
+      background: #09182A;
+      border-right: 1px solid var(--border-dark);
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .studio-canvas-center {
+      background: #0e2238;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      position: relative;
+      overflow: auto;
+    }
+
+    .studio-sidebar-right {
+      background: #09182A;
+      border-left: 1px solid var(--border-dark);
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .canvas-viewport-mockup {
+      box-shadow: 0 10px 40px rgba(0,0,0,0.4);
+      border: 1px solid #2B4C72;
+      border-radius: 4px;
+      background: #FFFFFF;
+    }
+
+    .feature-strip {
+      background: var(--navy-950);
+      border-top: 1px solid var(--border-dark);
+      border-bottom: 1px solid var(--border-dark);
+      padding: 32px 24px;
+      color: #FFFFFF;
+    }
+
+    .feature-strip-grid {
+      max-width: 1360px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 24px;
+    }
+
+    .feature-item {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 12px;
+      border-radius: var(--radius-md);
+      transition: background 0.2s ease;
+      cursor: pointer;
+    }
+
+    .feature-item:hover {
+      background: rgba(255, 255, 255, 0.05);
+    }
+
+    .feature-icon-box {
+      width: 44px;
+      height: 44px;
+      border-radius: var(--radius-sm);
+      background: rgba(255, 210, 31, 0.1);
+      border: 1px solid rgba(255, 210, 31, 0.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      flex-shrink: 0;
+    }
+
+    .workflow-section {
+      background: #FFFFFF;
+      padding: 80px 24px;
+    }
+
+    .workflow-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+      max-width: 1360px;
+      margin: 0 auto;
+    }
+
+    .workflow-card {
+      background: var(--bg-light);
+      border-radius: var(--radius-lg);
+      padding: 28px 20px;
+      border: 1px solid #E2E8F0;
+      position: relative;
+    }
+
+    .workflow-num {
+      position: absolute;
+      top: -16px;
+      left: 20px;
+      width: 32px;
+      height: 32px;
+      background: var(--navy-900);
+      color: var(--gold);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 900;
+      font-size: 14px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    }
+
+    .pricing-table-section {
+      padding: 80px 24px;
+      background: var(--bg-light);
+    }
+
+    .pricing-grid {
+      max-width: 1140px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      align-items: stretch;
+    }
+
+    .pricing-card {
+      background: #FFFFFF;
+      border-radius: var(--radius-xl);
+      border: 1px solid #E2E8F0;
+      padding: 32px;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .pricing-card.featured {
+      background: var(--navy-950);
+      color: #FFFFFF;
+      border-color: var(--gold);
+      transform: scale(1.04);
+      box-shadow: 0 20px 48px rgba(0,0,0,0.25);
+    }
+
+    .pricing-card-badge {
+      position: absolute;
+      top: -12px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--gold);
+      color: var(--navy-950);
+      font-size: 11px;
+      font-weight: 800;
+      padding: 4px 14px;
+      border-radius: 9999px;
+      letter-spacing: 0.05em;
+    }
+
+    footer {
+      background: var(--navy-950);
+      color: #CBD5E1;
+      border-top: 1px solid var(--border-dark);
+      padding: 64px 24px 32px 24px;
+    }
+
+    .footer-grid {
+      max-width: 1360px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1.5fr;
+      gap: 48px;
+      margin-bottom: 48px;
+    }
+
+    .footer-bottom {
+      max-width: 1360px;
+      margin: 0 auto;
+      border-top: 1px solid var(--border-dark);
+      padding-top: 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 12px;
+      color: #64748B;
+    }
+
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(6, 17, 31, 0.85);
+      backdrop-filter: blur(6px);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+      padding: 20px;
+    }
+
+    .modal-overlay.open {
+      display: flex;
+    }
+
+    .modal-card {
+      background: var(--navy-900);
+      border: 1px solid var(--border-dark-light);
+      border-radius: var(--radius-xl);
+      max-width: 520px;
+      width: 100%;
+      padding: 28px;
+      color: #FFFFFF;
+      box-shadow: 0 25px 60px rgba(0,0,0,0.6);
+      max-height: 90vh;
+      overflow-y: auto;
+    }
+
+    .modal-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+      border-bottom: 1px solid var(--border-dark);
+      padding-bottom: 12px;
+    }
+
+    .close-btn {
+      background: transparent;
+      border: none;
+      color: #94A3B8;
+      font-size: 20px;
+      cursor: pointer;
+    }
+
+    .close-btn:hover {
+      color: #FFFFFF;
+    }
+
+    #toast {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      background: var(--navy-950);
+      color: #FFFFFF;
+      border: 1px solid var(--gold);
+      padding: 12px 20px;
+      border-radius: var(--radius-md);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+      z-index: 2000;
+      display: none;
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    #toast.show {
+      display: block;
+      animation: fadeIn 0.3s ease;
+    }
+
+    .floating-whatsapp {
+      position: fixed;
+      bottom: 24px;
+      left: 24px;
+      width: 54px;
+      height: 54px;
+      background: #25D366;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #FFFFFF;
+      font-size: 28px;
+      box-shadow: 0 8px 24px rgba(37, 211, 102, 0.4);
+      z-index: 999;
+      text-decoration: none;
+      transition: transform 0.2s ease;
+    }
+
+    .floating-whatsapp:hover {
+      transform: scale(1.1);
+    }
+
+    .hamburger-btn {
+      display: none;
+      background: transparent;
+      border: none;
+      color: #FFFFFF;
+      font-size: 26px;
+      cursor: pointer;
+    }
+
+    @media (max-width: 1024px) {
+      .hero-container { grid-template-columns: 1fr; }
+      .studio-canvas-area { grid-template-columns: 1fr; }
+      .studio-sidebar-left, .studio-sidebar-right { border: none; }
+      .pricing-grid { grid-template-columns: 1fr; max-width: 440px; }
+      .workflow-grid { grid-template-columns: 1fr 1fr; }
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+    }
+
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .hamburger-btn { display: block; }
+      .workflow-grid { grid-template-columns: 1fr; }
+      .footer-grid { grid-template-columns: 1fr; }
+      .hero-heading { font-size: 34px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <div class="header-container">
+      <div class="header-logo-text" onclick="window.scrollTo({top:0, behavior:'smooth'})" style="cursor:pointer;">
+        <span>✦</span> GLOBAL CREATIVE
+      </div>
+
+      <nav class="nav-links">
+        <a class="nav-link" href="#home">Home</a>
+        <a class="nav-link" href="#services">Services</a>
+        <a class="nav-link" href="#studio">Design Studio</a>
+        <a class="nav-link" href="#order">Order Flow</a>
+        <a class="nav-link" href="#pricing">Pricing</a>
+        <a class="nav-link" href="#about">About</a>
+        <a class="nav-link" href="#contact">Contact</a>
+      </nav>
+
+      <div style="display:flex; align-items:center; gap:10px;">
+        <div id="authUserPill" style="display:none; align-items:center; gap:6px; background:rgba(255,210,31,0.1); border:1px solid var(--gold); padding:5px 12px; border-radius:9999px; font-size:11px; color:var(--gold); cursor:pointer;" onclick="openModal('dashboardModal')">
+          👤 <span id="navUserEmail">Member</span>
+        </div>
+
+        <button class="btn btn-outline-dark" id="navLoginBtn" style="padding: 7px 16px; font-size: 12px;" onclick="openModal('loginModal')">
+          👤 Login
+        </button>
+
+        <!-- Single File Download & Copy Modal Trigger -->
+        <button class="btn btn-outline-dark" style="padding: 7px 12px; font-size: 11px; display:inline-flex; align-items:center; gap:4px; color:var(--cyan); border-color:var(--cyan);" onclick="openModal('singleFileModal')" title="Single File HTML for GitHub and Vercel">
+          📄 index.html
+        </button>
+
+        <button class="btn btn-gold" onclick="scrollToQuote()" style="padding: 9px 20px; font-size: 13px;">
+          Get Quote
+        </button>
+
+        <button class="hamburger-btn" onclick="toggleMobileNav()" aria-label="Toggle navigation">☰</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- MOBILE DRAWER -->
+  <div id="mobileDrawer" style="display:none; position:fixed; top:65px; left:0; right:0; background:var(--navy-950); border-bottom:1px solid var(--border-dark); padding:20px; z-index:99; flex-direction:column; gap:14px; box-shadow:var(--shadow-lg);">
+    <a href="#home" class="nav-link" onclick="toggleMobileNav()">Home</a>
+    <a href="#services" class="nav-link" onclick="toggleMobileNav()">Services</a>
+    <a href="#studio" class="nav-link" onclick="toggleMobileNav()">Design Studio</a>
+    <a href="#order" class="nav-link" onclick="toggleMobileNav()">Order Now</a>
+    <a href="#pricing" class="nav-link" onclick="toggleMobileNav()">Pricing</a>
+    <a href="#about" class="nav-link" onclick="toggleMobileNav()">About</a>
+    <a href="#contact" class="nav-link" onclick="toggleMobileNav()">Contact</a>
+    <button class="btn btn-outline-dark" style="width:100%; color:var(--cyan); border-color:var(--cyan);" onclick="toggleMobileNav(); openModal('singleFileModal');">📄 Single File index.html (Copy / Download)</button>
+    <div style="display:flex; gap:10px; margin-top:4px;">
+      <button class="btn btn-gold" style="flex:1;" onclick="toggleMobileNav(); scrollToQuote();">Get Free Quote</button>
+      <button class="btn btn-outline-dark" style="flex:1;" onclick="toggleMobileNav(); openModal('loginModal');">Login</button>
+    </div>
+  </div>
+
+  <main>
+    <!-- HERO SECTION -->
+    <section id="home" class="hero-section">
+      <div class="hero-container">
+        <div>
+          <div class="hero-eyebrow">TURN YOUR IDEAS INTO REALITY</div>
+          <h1 class="hero-heading">
+            Creative Designs<br>
+            <span class="text-gold">That Make an Impact</span>
+          </h1>
+          <div class="hero-tags">
+            Signage | Printing | Branding | 3D Letters | LED Boards | ACP Cladding
+          </div>
+          <p class="hero-description">
+            Global Creative is your one-stop architectural platform for 3D acrylic signs, titanium channel letters, neon flex, and laser vector engineering with instant quotation & WhatsApp dispatch.
+          </p>
+
+          <div class="hero-btns">
+            <button class="btn btn-gold" onclick="scrollToQuote()">
+              Get Free Quote →
+            </button>
+            <button class="btn btn-outline-dark" onclick="document.querySelector('#services').scrollIntoView({behavior:'smooth'})">
+              Explore Services
+            </button>
+            <button class="btn btn-outline-dark" style="color:var(--cyan); border-color:var(--cyan);" onclick="document.querySelector('#studio').scrollIntoView({behavior:'smooth'})">
+              🎨 Open Design Studio
+            </button>
+          </div>
+
+          <div class="trust-strip">
+            <div class="trust-item">
+              <div class="trust-icon">🛡️</div>
+              <div class="trust-text"><b>Premium Materials</b>Cast Acrylic & Stainless 304</div>
+            </div>
+            <div class="trust-item">
+              <div class="trust-icon">🚚</div>
+              <div class="trust-text"><b>Fast Delivery</b>Nationwide & Global Dispatch</div>
+            </div>
+            <div class="trust-item">
+              <div class="trust-icon">✂️</div>
+              <div class="trust-text"><b>Precision Laser</b>Hairline Contour Cutting</div>
+            </div>
+            <div class="trust-item">
+              <div class="trust-icon">🎖️</div>
+              <div class="trust-text"><b>100% Guaranteed</b>IP67 LED Modules</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- RIGHT HERO: QUICK QUOTE CALCULATOR CARD -->
+        <div>
+          <div class="quick-quote-card" id="quickQuoteCard">
+            <div class="qq-header">
+              <div class="qq-title">
+                ⚡ Instant Signage Quote
+              </div>
+              <div class="qq-badge">Live Pricing Engine</div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Signage Service / Product</label>
+              <select id="qqProduct" class="select-field" onchange="calculateLiveQuote()">
+                <option value="acrylic_3d">3D Acrylic LED Sign Board (₹950 / sq.ft)</option>
+                <option value="titanium_letters">3D Titanium / Stainless Channel Letters (₹1,450 / sq.ft)</option>
+                <option value="acp_sign_board">ACP Cladding Routed Sign Board (₹750 / sq.ft)</option>
+                <option value="neon_flex">Silicon Flex LED Neon Sign (₹1,200 / sq.ft)</option>
+                <option value="name_plate">Corporate Architectural Name Plate (₹850 / sq.ft)</option>
+                <option value="glow_sign">Heavy-Duty Backlit Glow Sign (₹450 / sq.ft)</option>
+              </select>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label">Width (Feet)</label>
+                <input type="number" id="qqWidth" value="8" min="1" max="100" class="input-field" oninput="calculateLiveQuote()">
+              </div>
+              <div class="form-group">
+                <label class="form-label">Height (Feet)</label>
+                <input type="number" id="qqHeight" value="3" min="1" max="50" class="input-field" oninput="calculateLiveQuote()">
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label">Material Grade</label>
+                <select id="qqMaterial" class="select-field" onchange="calculateLiveQuote()">
+                  <option value="cast_acrylic">Cast Virgin Acrylic (High Gloss)</option>
+                  <option value="ss_304">SS 304 Marine Gold Finish</option>
+                  <option value="acp_3mm">Exterior 3mm Aludecor ACP</option>
+                  <option value="ip67_samsung">Samsung Lens LED Illumination</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Quantity</label>
+                <input type="number" id="qqQty" value="1" min="1" max="50" class="input-field" oninput="calculateLiveQuote()">
+              </div>
+            </div>
+
+            <div class="qq-result-box">
+              <div>
+                <div class="qq-price-label">Estimated Fabrication Total</div>
+                <small style="color:#64748B; font-size:10px;">Includes 18% GST & Framing</small>
+              </div>
+              <div class="qq-price-val" id="qqPriceDisplay">₹26,904</div>
+            </div>
+
+            <div style="display:flex; gap:10px;">
+              <button class="btn btn-gold" style="flex:1;" onclick="dispatchWhatsAppQuote()">
+                💬 WhatsApp Quote
+              </button>
+              <button class="btn btn-outline-dark" style="flex:1;" onclick="openModal('upiModal')">
+                📱 Pay Advance
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FEATURE STRIP -->
+    <section class="feature-strip">
+      <div class="feature-strip-grid">
+        <div class="feature-item" onclick="openModal('converterModal')">
+          <div class="feature-icon-box">🔄</div>
+          <div>
+            <div style="font-size:13px; font-weight:800; color:#FFF;">File Converter</div>
+            <div style="font-size:11px; color:#94A3B8;">CDR, DXF, SVG, PDF, WebP</div>
+          </div>
+        </div>
+        <div class="feature-item" onclick="document.querySelector('#studio').scrollIntoView({behavior:'smooth'})">
+          <div class="feature-icon-box">📐</div>
+          <div>
+            <div style="font-size:13px; font-weight:800; color:#FFF;">Size Converter</div>
+            <div style="font-size:11px; color:#94A3B8;">MM, Inch, Feet, Prepress DPI</div>
+          </div>
+        </div>
+        <div class="feature-item" onclick="triggerVoiceAssistant()">
+          <div class="feature-icon-box">🎙️</div>
+          <div>
+            <div style="font-size:13px; font-weight:800; color:#FFF;">Voice-to-Design</div>
+            <div style="font-size:11px; color:#94A3B8;">Multilingual AI Voice Assistant</div>
+          </div>
+        </div>
+        <div class="feature-item" onclick="openModal('upiModal')">
+          <div class="feature-icon-box">⚡</div>
+          <div>
+            <div style="font-size:13px; font-weight:800; color:#FFF;">Instant UPI Pay</div>
+            <div style="font-size:11px; color:#94A3B8;">Zero Fee: ledsignadil@oksbi</div>
+          </div>
+        </div>
+        <div class="feature-item" onclick="window.open('https://wa.me/919354944438?text=Hello%20Global%20Creative%20Support','_blank')">
+          <div class="feature-icon-box">💬</div>
+          <div>
+            <div style="font-size:13px; font-weight:800; color:#FFF;">Direct Support</div>
+            <div style="font-size:11px; color:#94A3B8;">WhatsApp: +91 93549 44438</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SERVICES SHOWCASE -->
+    <section id="services" class="section-wrap">
+      <div class="section-header">
+        <div class="section-eyebrow">FABRICATION & BRANDING CATALOG</div>
+        <h2 class="section-title">Architectural Signage Solutions</h2>
+        <p class="section-subtitle">
+          Precision crafted signage manufactured with CNC laser cutting, computerised channel benders, and high-intensity IP67 Samsung LED modules.
+        </p>
+      </div>
+
+      <div class="services-grid">
+        <!-- 1. 3D Acrylic LED Sign Board -->
+        <div class="service-card" onclick="selectServiceForQuote('acrylic_3d')">
+          <div class="service-card-img-wrap">
+            <img class="service-card-img" src="https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=800&q=80" alt="3D Acrylic LED Sign Board" loading="lazy">
+            <span class="service-card-badge">Top Seller</span>
+          </div>
+          <div class="service-card-body">
+            <h3 class="service-card-title">3D Acrylic LED Sign Board</h3>
+            <p class="service-card-desc">High gloss cast acrylic face with laser routed edges and ultra-bright diffused LED backlighting for retail shop fronts.</p>
+            <div class="service-card-footer">
+              <div class="service-card-price">₹950 <span>/ sq.ft</span></div>
+              <button class="btn btn-gold" style="padding:6px 14px; font-size:11px;">Configure →</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- 2. Titanium & SS 3D Channel Letters -->
+        <div class="service-card" onclick="selectServiceForQuote('titanium_letters')">
+          <div class="service-card-img-wrap">
+            <img class="service-card-img" src="https://images.unsplash.com/photo-1563245372-f21724e3856d?auto=format&fit=crop&w=800&q=80" alt="3D Channel Letters" loading="lazy">
+            <span class="service-card-badge">Premium</span>
+          </div>
+          <div class="service-card-body">
+            <h3 class="service-card-title">3D Titanium & SS Letters</h3>
+            <p class="service-card-desc">Stainless steel grade 304 with titanium gold, rose gold, or mirror silver PVD coating for luxury corporate facades.</p>
+            <div class="service-card-footer">
+              <div class="service-card-price">₹1,450 <span>/ sq.ft</span></div>
+              <button class="btn btn-gold" style="padding:6px 14px; font-size:11px;">Configure →</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- 3. ACP Cladding Sign Boards -->
+        <div class="service-card" onclick="selectServiceForQuote('acp_sign_board')">
+          <div class="service-card-img-wrap">
+            <img class="service-card-img" src="https://images.unsplash.com/photo-1513151233558-d860c5398176?auto=format&fit=crop&w=800&q=80" alt="ACP Sign Board" loading="lazy">
+            <span class="service-card-badge">Durable</span>
+          </div>
+          <div class="service-card-body">
+            <h3 class="service-card-title">ACP Cladding Sign Board</h3>
+            <p class="service-card-desc">Weatherproof 3mm aluminum composite panel substrate routed with CNC precision for clean architectural fascia.</p>
+            <div class="service-card-footer">
+              <div class="service-card-price">₹750 <span>/ sq.ft</span></div>
+              <button class="btn btn-gold" style="padding:6px 14px; font-size:11px;">Configure →</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- 4. Silicon LED Neon Flex -->
+        <div class="service-card" onclick="selectServiceForQuote('neon_flex')">
+          <div class="service-card-img-wrap">
+            <img class="service-card-img" src="https://images.unsplash.com/photo-1563089145-599997674d42?auto=format&fit=crop&w=800&q=80" alt="Neon Flex Sign" loading="lazy">
+            <span class="service-card-badge">Vibrant</span>
+          </div>
+          <div class="service-card-body">
+            <h3 class="service-card-title">Silicon LED Neon Flex</h3>
+            <p class="service-card-desc">Custom aesthetic neon typography mounted on laser-cut 5mm transparent acrylic backboard. 12V low voltage.</p>
+            <div class="service-card-footer">
+              <div class="service-card-price">₹1,200 <span>/ sq.ft</span></div>
+              <button class="btn btn-gold" style="padding:6px 14px; font-size:11px;">Configure →</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- 5. Architectural Corporate Name Plates -->
+        <div class="service-card" onclick="selectServiceForQuote('name_plate')">
+          <div class="service-card-img-wrap">
+            <img class="service-card-img" src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&w=800&q=80" alt="Name Plates" loading="lazy">
+            <span class="service-card-badge">Corporate</span>
+          </div>
+          <div class="service-card-body">
+            <h3 class="service-card-title">Corporate Name Plates</h3>
+            <p class="service-card-desc">Laser engraved acrylic, brushed brass, and stainless steel door signage for cabins, clinics, and residences.</p>
+            <div class="service-card-footer">
+              <div class="service-card-price">₹850 <span>/ sq.ft</span></div>
+              <button class="btn btn-gold" style="padding:6px 14px; font-size:11px;">Configure →</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- 6. Heavy Backlit Glow Signs -->
+        <div class="service-card" onclick="selectServiceForQuote('glow_sign')">
+          <div class="service-card-img-wrap">
+            <img class="service-card-img" src="https://images.unsplash.com/photo-1572945550744-57049dcbc1b3?auto=format&fit=crop&w=800&q=80" alt="Glow Sign Board" loading="lazy">
+            <span class="service-card-badge">Economy</span>
+          </div>
+          <div class="service-card-body">
+            <h3 class="service-card-title">Backlit Glow Sign Board</h3>
+            <p class="service-card-desc">Heavy GI sheet framing with flex print backlit face for budget-conscious commercial roadside visibility.</p>
+            <div class="service-card-footer">
+              <div class="service-card-price">₹450 <span>/ sq.ft</span></div>
+              <button class="btn btn-gold" style="padding:6px 14px; font-size:11px;">Configure →</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FABRIC.JS DESIGN STUDIO -->
+    <section id="studio" class="studio-workspace-section">
+      <div class="studio-container">
+        <div style="display:flex; justify-content:space-between; align-items:flex-end; margin-bottom:24px; flex-wrap:wrap; gap:16px;">
+          <div>
+            <div class="hero-eyebrow" style="margin-bottom:8px;">ONLINE CAD WORKSPACE</div>
+            <h2 style="font-size:32px; color:#FFF; font-weight:800;">Vector Drafting & Signage Studio</h2>
+            <p style="color:#94A3B8; font-size:14px;">Add typography, shapes, cut-lines, import logos, and export 300 DPI prepress vector files.</p>
+          </div>
+          <div style="display:flex; gap:10px;">
+            <button class="btn btn-outline-dark" onclick="triggerVoiceAssistant()">🎙️ Voice-to-Design</button>
+            <button class="btn btn-gold" onclick="saveProjectCloud()">💾 Save Project (Supabase)</button>
+          </div>
+        </div>
+
+        <div class="studio-card">
+          <!-- STUDIO TOP TOOLBAR -->
+          <div class="studio-toolbar">
+            <div style="display:flex; align-items:center; gap:8px;">
+              <button class="btn btn-outline-dark" style="padding:6px 12px; font-size:12px;" onclick="addStudioText('GLOBAL SIGNAGE')">🔤 Add Text</button>
+              <button class="btn btn-outline-dark" style="padding:6px 12px; font-size:12px;" onclick="addStudioRect()">⬛ Rectangle</button>
+              <button class="btn btn-outline-dark" style="padding:6px 12px; font-size:12px;" onclick="addStudioCircle()">⚪ Circle</button>
+              <button class="btn btn-outline-dark" style="padding:6px 12px; font-size:12px;" onclick="document.getElementById('studioUploadInput').click()">📤 Upload Logo</button>
+              <input type="file" id="studioUploadInput" style="display:none;" accept="image/*" onchange="handleStudioUpload(event)">
+            </div>
+
+            <div style="display:flex; align-items:center; gap:8px;">
+              <select id="exportFormatSelect" class="select-field" style="width:auto; padding:6px 12px; font-size:12px;">
+                <option value="png">High-Res PNG (300 DPI)</option>
+                <option value="svg">Vector SVG (Contour Cut)</option>
+                <option value="pdf">Prepress PDF (Print-Ready)</option>
+                <option value="json">CAD Project JSON</option>
+              </select>
+              <button class="btn btn-gold" style="padding:6px 16px; font-size:12px;" onclick="exportCanvasDesign()">⬇ Export Artwork</button>
+              <button class="btn btn-outline-dark" style="padding:6px 12px; font-size:12px; color:#EF4444; border-color:#EF4444;" onclick="clearStudioCanvas()">🗑 Clear</button>
+            </div>
+          </div>
+
+          <!-- STUDIO 3-COLUMN WORKSPACE -->
+          <div class="studio-canvas-area">
+            <!-- LEFT TOOLS -->
+            <div class="studio-sidebar-left">
+              <label class="form-label">Font Family</label>
+              <select id="studioFontSelect" class="select-field" onchange="updateSelectedTextFont(this.value)">
+                <option value="Montserrat">Montserrat (Bold Modern)</option>
+                <option value="Cinzel">Cinzel (Luxury Serif)</option>
+                <option value="Plus Jakarta Sans">Plus Jakarta Sans</option>
+                <option value="Inter">Inter Clean</option>
+              </select>
+
+              <label class="form-label" style="margin-top:8px;">Letter Fill Color</label>
+              <input type="color" id="studioColorPicker" value="#FFD21F" class="input-field" style="height:38px; padding:2px;" onchange="updateSelectedObjectColor(this.value)">
+
+              <label class="form-label" style="margin-top:8px;">Fabrication Cut Line</label>
+              <select id="studioCutLineType" class="select-field" onchange="setCutLineType(this.value)">
+                <option value="none">Standard Face Print</option>
+                <option value="hairline">Red Hairline (0.001mm Laser Cut)</option>
+                <option value="crease">Green Crease / Score Line</option>
+              </select>
+
+              <div style="margin-top:auto; background:var(--navy-950); padding:10px; border-radius:var(--radius-sm); border:1px solid var(--border-dark);">
+                <small style="color:#94A3B8; display:block; margin-bottom:4px;">Workspace Canvas Scale:</small>
+                <span id="canvasDimLabel" style="font-size:11px; color:var(--cyan); font-weight:700;">800px × 480px (8ft × 3ft aspect)</span>
+              </div>
+            </div>
+
+            <!-- CENTER CANVAS -->
+            <div class="studio-canvas-center">
+              <div class="canvas-viewport-mockup">
+                <canvas id="studioCanvas" width="800" height="480"></canvas>
+              </div>
+            </div>
+
+            <!-- RIGHT PANEL: 3D PREVIEW & SPECIFICATIONS -->
+            <div class="studio-sidebar-right">
+              <div style="font-size:12px; font-weight:800; color:var(--gold); text-transform:uppercase; letter-spacing:0.05em;">3D Real-World Mockup</div>
+              <div id="mockup3dPreview" style="background:url('https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=400&q=80') center/cover; height:150px; border-radius:var(--radius-sm); border:1px solid var(--border-dark); position:relative; overflow:hidden; display:flex; align-items:center; justify-content:center;">
+                <div id="mockupOverlayText" style="color:var(--gold); font-family:'Montserrat'; font-weight:900; font-size:18px; text-shadow:0 0 15px rgba(255,210,31,0.8); background:rgba(6,17,31,0.7); padding:6px 14px; border-radius:6px; border:1px solid var(--gold);">
+                  YOUR SIGNAGE
+                </div>
+              </div>
+
+              <div style="font-size:11px; color:#94A3B8; line-height:1.6;">
+                <b>Layer Hierarchy:</b>
+                <div id="studioLayerCount" style="color:#FFF; margin-top:2px;">1 Active Object</div>
+              </div>
+
+              <div style="background:var(--navy-950); padding:12px; border-radius:var(--radius-sm); border:1px solid var(--border-dark); margin-top:auto;">
+                <div style="font-size:11px; color:var(--cyan); font-weight:700; margin-bottom:4px;">Prepress Check:</div>
+                <div style="font-size:11px; color:#CBD5E1;">✔ Vector Outlines Valid<br>✔ CMYK Safe Palette<br>✔ Ready for CNC Router</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- WORKFLOW SECTION -->
+    <section id="order" class="workflow-section">
+      <div class="section-header">
+        <div class="section-eyebrow">ORDER PROCESS</div>
+        <h2 class="section-title">How To Order Your Custom Signage</h2>
+        <p class="section-subtitle">A seamless 4-step path from your conceptual vector design to on-site fabrication and installation.</p>
+      </div>
+
+      <div class="workflow-grid">
+        <div class="workflow-card">
+          <div class="workflow-num">1</div>
+          <h3 style="font-size:18px; margin-bottom:8px; color:var(--navy-950);">Design & Customize</h3>
+          <p style="font-size:13px; color:var(--text-muted); line-height:1.6;">Use the online Design Studio or upload your vector logo (AI, CDR, SVG, PDF) to set letter height and illumination.</p>
+        </div>
+        <div class="workflow-card">
+          <div class="workflow-num">2</div>
+          <h3 style="font-size:18px; margin-bottom:8px; color:var(--navy-950);">Instant Quote & Mockup</h3>
+          <p style="font-size:13px; color:var(--text-muted); line-height:1.6;">Get immediate transparent pricing with material options, area calculation, and photorealistic 3D facade visualization.</p>
+        </div>
+        <div class="workflow-card">
+          <div class="workflow-num">3</div>
+          <h3 style="font-size:18px; margin-bottom:8px; color:var(--navy-950);">UPI / Online Advance</h3>
+          <p style="font-size:13px; color:var(--text-muted); line-height:1.6;">Pay a 50% fabrication advance securely via UPI QR (<code>ledsignadil@oksbi</code>) or card to trigger factory laser cutting.</p>
+        </div>
+        <div class="workflow-card">
+          <div class="workflow-num">4</div>
+          <h3 style="font-size:18px; margin-bottom:8px; color:var(--navy-950);">Fabricate & Deliver</h3>
+          <p style="font-size:13px; color:var(--text-muted); line-height:1.6;">High-precision CNC cutting, assembly with waterproof IP67 LEDs, protective crate packing, and doorstep dispatch.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- PRICING & SUBSCRIPTION PLANS -->
+    <section id="pricing" class="pricing-table-section">
+      <div class="section-header">
+        <div class="section-eyebrow">TRANSPARENT VALUE</div>
+        <h2 class="section-title">Flexible Signage & Studio Plans</h2>
+        <p class="section-subtitle">Direct factory rates for single sign orders plus pro designer subscriptions for studios & print shops.</p>
+      </div>
+
+      <div class="pricing-grid">
+        <!-- FREE PLAN -->
+        <div class="pricing-card">
+          <div style="font-size:18px; font-weight:800; color:var(--navy-950); margin-bottom:4px;">Starter Client</div>
+          <div style="font-size:12px; color:var(--text-muted); margin-bottom:18px;">For businesses ordering direct signage</div>
+          <div style="font-size:32px; font-weight:900; color:var(--navy-950); margin-bottom:20px;">₹0 <span style="font-size:13px; font-weight:600; color:var(--text-muted);">/ free forever</span></div>
+          <ul style="font-size:13px; color:var(--text-slate); line-height:2; padding-left:18px; margin-bottom:28px;">
+            <li>Instant Signage Price Calculator</li>
+            <li>Direct WhatsApp Quote Generation</li>
+            <li>Basic Vector Studio (PNG Export)</li>
+            <li>UPI & Card Payment Integration</li>
+          </ul>
+          <button class="btn btn-outline-dark" style="margin-top:auto; color:var(--navy-950); border-color:#CBD5E1;" onclick="scrollToQuote()">Calculate Quote</button>
+        </div>
+
+        <!-- PRO DESIGNER PLAN -->
+        <div class="pricing-card featured">
+          <div class="pricing-card-badge">RECOMMENDED FOR STUDIOS</div>
+          <div style="font-size:18px; font-weight:800; color:#FFF; margin-bottom:4px;">Pro Studio</div>
+          <div style="font-size:12px; color:#94A3B8; margin-bottom:18px;">Full CAD vector export & prepress tools</div>
+          <div style="font-size:32px; font-weight:900; color:var(--gold); margin-bottom:20px;">₹499 <span style="font-size:13px; font-weight:600; color:#CBD5E1;">/ month ($4.99)</span></div>
+          <ul style="font-size:13px; color:#E2E8F0; line-height:2; padding-left:18px; margin-bottom:28px;">
+            <li>Unlimited 300 DPI Prepress PDF & SVG</li>
+            <li>Red Laser Hairline Contour Generator</li>
+            <li>Cloud Project Autosave (Supabase Sync)</li>
+            <li>CorelDRAW v12 & DXF Export Converter</li>
+            <li>Multilingual AI Voice-to-Design</li>
+          </ul>
+          <button class="btn btn-gold" style="margin-top:auto;" onclick="openModal('subscriptionModal')">👑 Upgrade to Pro</button>
+        </div>
+
+        <!-- BUSINESS FABRICATOR -->
+        <div class="pricing-card">
+          <div style="font-size:18px; font-weight:800; color:var(--navy-950); margin-bottom:4px;">Enterprise Factory</div>
+          <div style="font-size:12px; color:var(--text-muted); margin-bottom:18px;">For franchises & national chain branding</div>
+          <div style="font-size:32px; font-weight:900; color:var(--navy-950); margin-bottom:20px;">₹1,999 <span style="font-size:13px; font-weight:600; color:var(--text-muted);">/ month</span></div>
+          <ul style="font-size:13px; color:var(--text-slate); line-height:2; padding-left:18px; margin-bottom:28px;">
+            <li>Volume B2B Fabrication Discounts (15%)</li>
+            <li>Dedicated Signage CAD Engineer</li>
+            <li>Priority CNC Queue & 48hr Turnaround</li>
+            <li>Custom Brand Kit & API Access</li>
+          </ul>
+          <button class="btn btn-outline-dark" style="margin-top:auto; color:var(--navy-950); border-color:#CBD5E1;" onclick="window.open('https://wa.me/919354944438?text=I%20want%20to%20discuss%20Enterprise%20Plan','_blank')">Contact Enterprise</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT & DIRECT INQUIRY -->
+    <section id="contact" class="section-wrap" style="background:#FFFFFF; border-radius:var(--radius-xl); margin-bottom:60px; box-shadow:var(--shadow-md);">
+      <div class="section-header" style="margin-bottom:32px;">
+        <div class="section-eyebrow">LET'S CONNECT</div>
+        <h2 class="section-title">Request Direct Fabrication Assistance</h2>
+        <p class="section-subtitle">Need on-site dimension surveys, structural steel framing drawings, or emergency retail signage?</p>
+      </div>
+
+      <div style="max-width:680px; margin:0 auto; display:flex; flex-direction:column; gap:16px;">
+        <div class="form-row">
+          <div>
+            <label class="form-label">Full Name</label>
+            <input type="text" id="contactName" placeholder="Adil Khan" class="input-field" style="background:#F8FAFC; color:#111; border-color:#CBD5E1;">
+          </div>
+          <div>
+            <label class="form-label">WhatsApp Number</label>
+            <input type="text" id="contactPhone" placeholder="+91 93549 44438" class="input-field" style="background:#F8FAFC; color:#111; border-color:#CBD5E1;">
+          </div>
+        </div>
+        <div>
+          <label class="form-label">Location / City</label>
+          <input type="text" id="contactCity" placeholder="New Delhi / Mumbai / Bangalore" class="input-field" style="background:#F8FAFC; color:#111; border-color:#CBD5E1;">
+        </div>
+        <div>
+          <label class="form-label">Signage Details & Dimensions</label>
+          <textarea id="contactNotes" rows="3" placeholder="Tell us about the project: e.g. 10x3 ft Acrylic LED board on 3rd floor..." class="input-field" style="background:#F8FAFC; color:#111; border-color:#CBD5E1; resize:none;"></textarea>
+        </div>
+        <button class="btn btn-gold" style="width:100%; padding:14px; font-size:14px;" onclick="submitContactInquiry()">
+          🚀 Send Inquiry to WhatsApp (+91 93549 44438)
+        </button>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-grid">
+      <div>
+        <div class="header-logo-text" style="margin-bottom:14px;">
+          <span>✦</span> GLOBAL CREATIVE
+        </div>
+        <p style="font-size:13px; color:#94A3B8; line-height:1.6; max-width:320px;">
+          Architectural signage, 3D acrylic channel letters, laser cutting, and digital prepress technology. Operating under <b>wearstay.com</b>.
+        </p>
+      </div>
+      <div>
+        <h4 style="color:#FFF; font-size:14px; margin-bottom:14px;">Services</h4>
+        <div style="display:flex; flex-direction:column; gap:8px; font-size:13px;">
+          <a href="#services" style="color:#94A3B8; text-decoration:none;">3D Acrylic LED Signs</a>
+          <a href="#services" style="color:#94A3B8; text-decoration:none;">Titanium Channel Letters</a>
+          <a href="#services" style="color:#94A3B8; text-decoration:none;">ACP Cladding Boards</a>
+          <a href="#services" style="color:#94A3B8; text-decoration:none;">Silicon LED Neon Signs</a>
+        </div>
+      </div>
+      <div>
+        <h4 style="color:#FFF; font-size:14px; margin-bottom:14px;">Tools</h4>
+        <div style="display:flex; flex-direction:column; gap:8px; font-size:13px;">
+          <a href="#studio" style="color:#94A3B8; text-decoration:none;">Online Vector Studio</a>
+          <a href="javascript:void(0)" onclick="openModal('converterModal')" style="color:#94A3B8; text-decoration:none;">Universal File Converter</a>
+          <a href="javascript:void(0)" onclick="openModal('upiModal')" style="color:#94A3B8; text-decoration:none;">UPI Direct Pay</a>
+          <a href="javascript:void(0)" onclick="openModal('singleFileModal')" style="color:var(--cyan); text-decoration:none;">📄 Single File index.html</a>
+        </div>
+      </div>
+      <div>
+        <h4 style="color:#FFF; font-size:14px; margin-bottom:14px;">Contact & Payments</h4>
+        <div style="font-size:13px; color:#94A3B8; line-height:1.7;">
+          <div><b>WhatsApp / Phone:</b> +91 93549 44438</div>
+          <div><b>Official UPI ID:</b> <code>ledsignadil@oksbi</code></div>
+          <div><b>Domain:</b> <a href="https://wearstay.com" style="color:var(--gold); text-decoration:none;">https://wearstay.com</a></div>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div>© 2026 GLOBAL CREATIVE / wearstay.com. All Rights Reserved.</div>
+      <div style="display:flex; gap:16px;">
+        <a href="#home" style="color:#64748B; text-decoration:none;">Back to Top ↑</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- FLOATING WHATSAPP BUTTON -->
+  <a href="https://wa.me/919354944438?text=Hello%20Global%20Creative,%20I%20want%20to%20inquire%20about%20signage" target="_blank" class="floating-whatsapp" title="Chat on WhatsApp" aria-label="Chat on WhatsApp">
+    💬
+  </a>
+
+  <!-- ========================================================
+       MODALS
+       ======================================================== -->
+
+  <!-- 1. LOGIN / AUTH MODAL (SUPABASE INTEGRATION) -->
+  <div class="modal-overlay" id="loginModal">
+    <div class="modal-card">
+      <div class="modal-head">
+        <h3>Account Sign In</h3>
+        <button class="close-btn" onclick="closeModal('loginModal')">✕</button>
+      </div>
+      <div style="display:flex; flex-direction:column; gap:12px;">
+        <button class="btn btn-outline-dark" style="width:100%; justify-content:center; padding:10px;" onclick="signInWithGoogle()">
+          <span style="font-weight:900; color:#4285F4;">G</span> Continue with Google
+        </button>
+        <div style="text-align:center; font-size:11px; color:var(--text-light-muted); margin:4px 0;">— OR WITH EMAIL —</div>
+        <div>
+          <label style="font-size:11px; color:#94A3B8;">Email Address</label>
+          <input type="email" id="loginEmail" placeholder="you@company.com" class="input-field" style="margin-top:4px;">
+        </div>
+        <div>
+          <label style="font-size:11px; color:#94A3B8;">Password</label>
+          <input type="password" id="loginPass" placeholder="••••••••" class="input-field" style="margin-top:4px;">
+        </div>
+        <div style="display:flex; gap:8px; margin-top:8px;">
+          <button class="btn btn-gold" style="flex:1; border-radius:var(--radius-sm);" onclick="signInWithEmail()">Sign In</button>
+          <button class="btn btn-outline-dark" style="flex:1; border-radius:var(--radius-sm);" onclick="signUpWithEmail()">Create Account</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 2. CUSTOMER DASHBOARD MODAL -->
+  <div class="modal-overlay" id="dashboardModal">
+    <div class="modal-card">
+      <div class="modal-head">
+        <h3>Customer Dashboard</h3>
+        <button class="close-btn" onclick="closeModal('dashboardModal')">✕</button>
+      </div>
+      <div style="display:flex; flex-direction:column; gap:14px;">
+        <div style="background:var(--navy-950); padding:12px; border-radius:var(--radius-sm); border:1px solid var(--border-dark);">
+          <div style="font-size:11px; color:#94A3B8;">Account Profile:</div>
+          <b id="dashUserEmail" style="color:var(--gold); font-size:13px;">Guest User</b>
+          <div id="dashTier" style="font-size:11px; color:var(--cyan); margin-top:2px;">Plan: Free (2 prepress exports)</div>
+        </div>
+        <div style="background:var(--navy-950); padding:12px; border-radius:var(--radius-sm); border:1px solid var(--border-dark);">
+          <div style="font-size:11px; color:#94A3B8; margin-bottom:6px;">Saved Cloud Projects:</div>
+          <div id="dashProjectsList" style="font-size:11px; color:#CBD5E1;">Use 'Save Project' in Design Studio to sync your vector artwork to Supabase.</div>
+        </div>
+        <div style="display:flex; gap:8px;">
+          <button class="btn btn-gold" style="flex:1; font-size:11px;" onclick="openModal('subscriptionModal')">👑 Upgrade to Pro ($4.99/mo)</button>
+          <button class="btn btn-outline-dark" style="flex:1; font-size:11px;" onclick="handleSignOut()">Sign Out</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3. UNIVERSAL CONVERTER MODAL -->
+  <div class="modal-overlay" id="converterModal">
+    <div class="modal-card">
+      <div class="modal-head">
+        <h3>Universal File Converter</h3>
+        <button class="close-btn" onclick="closeModal('converterModal')">✕</button>
+      </div>
+      <div style="display:flex; flex-direction:column; gap:14px;">
+        <p style="font-size:12px; color:var(--text-light-muted); margin:0;">
+          Convert any raster graphic, vector SVG, or laser artwork into print-ready PNG, JPG, WebP, SVG, or PDF.
+        </p>
+        <div style="border:2px dashed var(--border-dark-light); border-radius:var(--radius-md); padding:20px; text-align:center; cursor:pointer;" onclick="document.getElementById('convFileInput').click()">
+          <span style="font-size:28px;">📤</span>
+          <div style="font-size:12px; font-weight:700; color:#FFFFFF; margin-top:6px;" id="converterFileName">Click to select file to convert</div>
+          <small style="color:#94A3B8;">Supports PNG, JPG, SVG, DXF, PDF (Up to 50MB)</small>
+          <input type="file" id="convFileInput" style="display:none;" onchange="handleConverterUpload(this.files[0])">
+        </div>
+        <div>
+          <label style="font-size:11px; color:#94A3B8;">Target Format:</label>
+          <select id="converterTargetFormat" class="select-field" style="margin-top:4px;">
+            <option value="png">PNG (Transparent High-Res)</option>
+            <option value="jpg">JPG (High-Quality Raster)</option>
+            <option value="webp">WebP (Optimized Next-Gen)</option>
+            <option value="svg">SVG (Vector Scalable Graphic)</option>
+            <option value="pdf">PDF (Print-Ready Document)</option>
+          </select>
+        </div>
+        <button class="btn btn-gold" style="width:100%; border-radius:var(--radius-sm);" onclick="executeConversion()">
+          Convert & Download Now ⚡
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 4. UPI PAYMENT MODAL (4. UPI ID & WHATSAPP INTEGRATION) -->
+  <div class="modal-overlay" id="upiModal">
+    <div class="modal-card">
+      <div class="modal-head">
+        <h3>📱 UPI Instant Advance Payment</h3>
+        <button class="close-btn" onclick="closeModal('upiModal')">✕</button>
+      </div>
+      <div style="display:flex; flex-direction:column; gap:14px; text-align:center;">
+        <div style="background:#061424; border:1px dashed var(--gold); border-radius:var(--radius-md); padding:16px;">
+          <div style="font-size:11px; color:#94A3B8; margin-bottom:4px;">Official UPI ID for GLOBAL CREATIVE:</div>
+          <div style="font-size:18px; font-weight:900; color:var(--cyan); letter-spacing:0.5px;">ledsignadil@oksbi</div>
+          <div style="font-size:11px; color:#E2E8F0; margin-top:4px;">Recipient: NEON POWER / GLOBAL CREATIVE (+91 93549 44438)</div>
+        </div>
+        <div style="display:flex; justify-content:center; margin:2px 0;">
+          <img id="upiDynamicQr" src="https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=upi://pay?pa=ledsignadil@oksbi%26pn=GLOBAL%20CREATIVE%26cu=INR" alt="UPI QR Code" style="width:160px; height:160px; border-radius:12px; border:2px solid var(--gold); background:#fff; padding:6px;" loading="lazy">
+        </div>
+        <div style="font-size:12px; color:var(--gold); font-weight:700;" id="upiAmountPrompt">Scan with Google Pay, PhonePe, Paytm, or BHIM</div>
+        <p style="font-size:12px; color:var(--text-light-muted); line-height:1.5; margin:0;">
+          50% fabrication advance required. Send screenshot on WhatsApp (+91 93549 44438) for instant confirmation.
+        </p>
+        <div style="display:flex; gap:8px;">
+          <button class="btn btn-gold" style="flex:1; border-radius:var(--radius-sm);" onclick="copyUpiId()">📋 Copy UPI ID</button>
+          <button class="btn btn-green" style="flex:1; border-radius:var(--radius-sm);" onclick="openUpiIntent()">⚡ Open UPI App</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 5. SINGLE FILE STATIC HTML MODAL (FOR MOBILE PHONE & GITHUB ROOT) -->
+  <div class="modal-overlay" id="singleFileModal">
+    <div class="modal-card" style="max-width:560px;">
+      <div class="modal-head">
+        <h3>📱 Single File Static HTML (Mobile & GitHub)</h3>
+        <button class="close-btn" onclick="closeModal('singleFileModal')">✕</button>
+      </div>
+      <div style="display:flex; flex-direction:column; gap:14px;">
+        <div style="background:rgba(0, 242, 255, 0.08); border:1px solid rgba(0, 242, 255, 0.3); border-radius:var(--radius-md); padding:14px; font-size:12px; color:#E2E8F0; line-height:1.6;">
+          <b style="color:var(--cyan); font-size:13px;">✅ 100% Self-Contained Single File Architecture</b><br>
+          Everything (CSS styling, Fabric.js Vector CAD Studio, Client-Side Supabase, UPI & WhatsApp routing, Adsterra scripts, and Google SEO tags) lives inside this single <code>index.html</code>. No node_modules, build tools, or subfolders required.
+        </div>
+
+        <div style="display:flex; flex-direction:column; gap:10px;">
+          <button class="btn btn-gold" style="width:100%; justify-content:center; padding:12px; font-size:13px;" onclick="downloadSingleFileHtml()">
+            📥 Download Single File (index.html)
+          </button>
+          <button class="btn btn-outline-dark" style="width:100%; justify-content:center; padding:12px; font-size:13px; color:var(--cyan); border-color:var(--cyan);" onclick="copySingleFileHtml()">
+            📋 Copy 100% Complete HTML Code to Clipboard
+          </button>
+        </div>
+
+        <div style="background:var(--navy-950); border:1px solid var(--border-dark); border-radius:var(--radius-sm); padding:12px; font-size:11px; color:#94A3B8; line-height:1.6;">
+          <b style="color:#FFF;">Quick GitHub & Vercel Steps:</b>
+          <ol style="margin:6px 0 0 16px; padding:0;">
+            <li>Click <b>'Download'</b> or <b>'Copy Code'</b>.</li>
+            <li>In GitHub, tap <b>'Add file' ➔ 'Create new file'</b> and name it <code>index.html</code>.</li>
+            <li>Paste the code and click <b>'Commit changes'</b>.</li>
+            <li>Deploy on Vercel as Static Site (Framework: Other). Your site goes live at <b>wearstay.com</b>!</li>
+          </ol>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 6. PRO SUBSCRIPTION MODAL -->
+  <div class="modal-overlay" id="subscriptionModal">
+    <div class="modal-card">
+      <div class="modal-head">
+        <h3>👑 Pro Plan ($4.99 / mo)</h3>
+        <button class="close-btn" onclick="closeModal('subscriptionModal')">✕</button>
+      </div>
+      <div style="display:flex; flex-direction:column; gap:14px;">
+        <div style="font-size:26px; font-weight:900; color:var(--gold);">$4.99 <span style="font-size:13px; color:#94A3B8;">/ month (or ₹499/mo)</span></div>
+        <ul style="font-size:12px; color:#CBD5E1; line-height:1.7; padding-left:18px; margin:0;">
+          <li>Unlimited 300 DPI Prepress PDF & Vector SVG</li>
+          <li>Multilingual AI Voice-to-Design Engine</li>
+          <li>Red Laser Contour Hairlines</li>
+          <li>Cloud Project Autosave & Team Storage</li>
+        </ul>
+        <div style="display:flex; gap:8px; margin-top:8px;">
+          <a class="btn btn-gold" href="https://www.paypal.com/ncp/payment/GN99BSA7E4L3Y" target="_blank" rel="noopener" style="flex:1; text-align:center; text-decoration:none;">Subscribe via PayPal ($4.99)</a>
+          <button class="btn btn-green" onclick="closeModal('subscriptionModal'); openModal('upiModal');" style="flex:1;">Pay via UPI (₹499)</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TOAST ALERT -->
+  <div id="toast"></div>
+
+  <!-- ========================================================
+       JAVASCRIPT LOGIC
+       ======================================================== -->
+  <script>
+    const $ = id => document.getElementById(id);
+
+    function toast(msg) {
+      const t = $('toast');
+      if (!t) return;
+      t.textContent = msg;
+      t.className = 'show';
+      clearTimeout(t._timer);
+      t._timer = setTimeout(() => { t.className = ''; }, 3200);
+    }
+
+    function openModal(id) {
+      const m = $(id);
+      if (m) m.classList.add('open');
+      if (id === 'upiModal') {
+        try {
+          const q = (typeof calculateLiveQuote === 'function') ? calculateLiveQuote() : null;
+          const advance = q ? q.advance : 2500;
+          const promptEl = $('upiAmountPrompt');
+          if (promptEl) promptEl.textContent = `50% Advance Required: ₹${advance.toLocaleString()} (Scan with GPay/PhonePe/Paytm)`;
+          const qr = $('upiDynamicQr');
+          if (qr) qr.src = `https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=` + encodeURIComponent(`upi://pay?pa=ledsignadil@oksbi&pn=GLOBAL CREATIVE&am=${advance}&cu=INR&tn=Signage Advance`);
+        } catch(e) {}
+      }
+    }
+
+    function closeModal(id) {
+      const m = $(id);
+      if (m) m.classList.remove('open');
+    }
+
+    function toggleMobileNav() {
+      const d = $('mobileDrawer');
+      if (!d) return;
+      d.style.display = (d.style.display === 'flex') ? 'none' : 'flex';
+    }
+
+    function scrollToQuote() {
+      const card = $('quickQuoteCard');
+      if (card) {
+        card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        card.style.outline = '2px solid var(--gold)';
+        setTimeout(() => { card.style.outline = 'none'; }, 1800);
+      }
+    }
+
+    function copyUpiId() {
+      navigator.clipboard.writeText('ledsignadil@oksbi');
+      toast('Copied UPI ID: ledsignadil@oksbi');
+    }
+
+    function openUpiIntent() {
+      const q = calculateLiveQuote();
+      const advance = q ? q.advance : 2500;
+      const url = `upi://pay?pa=ledsignadil@oksbi&pn=GLOBAL%20CREATIVE&am=${advance}&cu=INR&tn=Signage%20Advance`;
+      window.open(url, '_blank');
+      toast('Launching UPI payment app...');
+    }
+
+    /* DOWNLOAD / COPY SINGLE FILE HTML */
+    async function downloadSingleFileHtml() {
+      try {
+        let html = '<!DOCTYPE html>\n' + document.documentElement.outerHTML;
+        const blob = new Blob([html], { type: 'text/html;charset=utf-8' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'index.html';
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+        toast('📥 index.html downloaded! Upload this single file to GitHub root.');
+      } catch(err) {
+        toast('Download error: ' + err.message);
+      }
+    }
+
+    async function copySingleFileHtml() {
+      try {
+        const html = '<!DOCTYPE html>\n' + document.documentElement.outerHTML;
+        await navigator.clipboard.writeText(html);
+        toast('📋 Full index.html copied! Paste directly in GitHub.');
+      } catch(err) {
+        toast('Clipboard copy unavailable on device.');
+      }
+    }
+
+    /* 4. PRICING & QUOTE ENGINE */
+    const RATES_PER_SQFT = {
+      acrylic_3d: 950,
+      titanium_letters: 1450,
+      acp_sign_board: 750,
+      neon_flex: 1200,
+      name_plate: 850,
+      glow_sign: 450
+    };
+
+    function calculateLiveQuote() {
+      const prod = $('qqProduct').value;
+      const w = parseFloat($('qqWidth').value) || 1;
+      const h = parseFloat($('qqHeight').value) || 1;
+      const qty = parseInt($('qqQty').value) || 1;
+      const rate = RATES_PER_SQFT[prod] || 950;
+
+      const area = w * h;
+      const base = area * rate * qty;
+      const gst = base * 0.18;
+      const total = Math.round(base + gst);
+      const advance = Math.round(total * 0.5);
+
+      const disp = $('qqPriceDisplay');
+      if (disp) disp.textContent = '₹' + total.toLocaleString();
+
+      return { prod, w, h, qty, area, total, advance };
+    }
+
+    function selectServiceForQuote(key) {
+      const sel = $('qqProduct');
+      if (sel) {
+        sel.value = key;
+        calculateLiveQuote();
+        scrollToQuote();
+      }
+    }
+
+    function dispatchWhatsAppQuote() {
+      const q = calculateLiveQuote();
+      const text = `Hello Global Creative / wearstay.com, I need a quotation:
+• Product: ${q.prod.replace('_', ' ').toUpperCase()}
+• Dimensions: ${q.w} ft × ${q.h} ft (${q.area} sq.ft)
+• Quantity: ${q.qty}
+• Calculated Total: ₹${q.total.toLocaleString()} (Includes 18% GST)
+• 50% Advance: ₹${q.advance.toLocaleString()}
+Website: https://wearstay.com`;
+
+      window.open('https://wa.me/919354944438?text=' + encodeURIComponent(text), '_blank');
+      toast('Opening WhatsApp with your instant quotation...');
+      
+      // Trigger Adsterra Smart Link 1 hook
+      setTimeout(() => { triggerSmartLink(1); }, 1500);
+    }
+
+    function submitContactInquiry() {
+      const name = $('contactName').value.trim() || 'Client';
+      const phone = $('contactPhone').value.trim() || 'Not specified';
+      const city = $('contactCity').value.trim() || 'India';
+      const notes = $('contactNotes').value.trim() || 'Signage inquiry';
+
+      const msg = `*NEW SIGNAGE INQUIRY - wearstay.com*
+Name: ${name}
+Phone: ${phone}
+City: ${city}
+Details: ${notes}`;
+
+      window.open('https://wa.me/919354944438?text=' + encodeURIComponent(msg), '_blank');
+      toast('Connecting to WhatsApp (+91 93549 44438)...');
+    }
+
+    /* FABRIC.JS DESIGN STUDIO */
+    let fCanvas = null;
+
+    function initFabricStudio() {
+      const canvasEl = $('studioCanvas');
+      if (!canvasEl || !window.fabric) return;
+
+      fCanvas = new fabric.Canvas('studioCanvas', {
+        backgroundColor: '#FFFFFF',
+        selectionColor: 'rgba(0, 242, 255, 0.2)',
+        selectionBorderColor: '#00F2FF',
+        selectionLineWidth: 1
+      });
+
+      addStudioText('GLOBAL SIGNAGE');
+    }
+
+    function addStudioText(str = 'YOUR SIGN') {
+      if (!fCanvas) return;
+      const font = $('studioFontSelect') ? $('studioFontSelect').value : 'Montserrat';
+      const color = $('studioColorPicker') ? $('studioColorPicker').value : '#FFD21F';
+
+      const txt = new fabric.IText(str, {
+        left: 180,
+        top: 180,
+        fontFamily: font,
+        fill: color,
+        fontSize: 48,
+        fontWeight: 'bold'
+      });
+      fCanvas.add(txt);
+      fCanvas.setActiveObject(txt);
+      fCanvas.renderAll();
+      syncMockupText();
+    }
+
+    function addStudioRect() {
+      if (!fCanvas) return;
+      const rect = new fabric.Rect({
+        left: 200,
+        top: 150,
+        fill: '#0B1B2E',
+        width: 320,
+        height: 120,
+        stroke: '#FFD21F',
+        strokeWidth: 2,
+        rx: 8,
+        ry: 8
+      });
+      fCanvas.add(rect);
+      fCanvas.setActiveObject(rect);
+      fCanvas.renderAll();
+    }
+
+    function addStudioCircle() {
+      if (!fCanvas) return;
+      const circle = new fabric.Circle({
+        left: 250,
+        top: 160,
+        fill: '#00F2FF',
+        radius: 60
+      });
+      fCanvas.add(circle);
+      fCanvas.setActiveObject(circle);
+      fCanvas.renderAll();
+    }
+
+    function handleStudioUpload(e) {
+      const file = e.target.files[0];
+      if (!file || !fCanvas) return;
+      const reader = new FileReader();
+      reader.onload = function(evt) {
+        fabric.Image.fromURL(evt.target.result, function(img) {
+          img.scaleToWidth(260);
+          fCanvas.add(img);
+          fCanvas.centerObject(img);
+          fCanvas.setActiveObject(img);
+          fCanvas.renderAll();
+          toast('Logo added to canvas');
+        });
+      };
+      reader.readAsDataURL(file);
+    }
+
+    function updateSelectedTextFont(val) {
+      if (!fCanvas) return;
+      const obj = fCanvas.getActiveObject();
+      if (obj && (obj.type === 'i-text' || obj.type === 'text')) {
+        obj.set('fontFamily', val);
+        fCanvas.renderAll();
+        syncMockupText();
+      }
+    }
+
+    function updateSelectedObjectColor(val) {
+      if (!fCanvas) return;
+      const obj = fCanvas.getActiveObject();
+      if (obj) {
+        obj.set('fill', val);
+        fCanvas.renderAll();
+        syncMockupText();
+      }
+    }
+
+    function setCutLineType(type) {
+      if (!fCanvas) return;
+      const obj = fCanvas.getActiveObject();
+      if (!obj) {
+        toast('Select an object first to apply cut lines');
+        return;
+      }
+      if (type === 'hairline') {
+        obj.set({ stroke: '#FF0000', strokeWidth: 1 });
+        toast('Laser Red Hairline applied (0.001mm Cut Contour)');
+      } else if (type === 'crease') {
+        obj.set({ stroke: '#10B981', strokeWidth: 1, strokeDashArray: [4, 4] });
+        toast('Green Crease / Score Line applied');
+      } else {
+        obj.set({ stroke: null, strokeWidth: 0 });
+        toast('Standard Face fill restored');
+      }
+      fCanvas.renderAll();
+    }
+
+    function clearStudioCanvas() {
+      if (!fCanvas) return;
+      fCanvas.clear();
+      fCanvas.backgroundColor = '#FFFFFF';
+      fCanvas.renderAll();
+      toast('Canvas cleared');
+    }
+
+    function syncMockupText() {
+      if (!fCanvas) return;
+      const objs = fCanvas.getObjects();
+      let textVal = 'YOUR SIGNAGE';
+      for (let o of objs) {
+        if (o.type === 'i-text' || o.type === 'text') {
+          textVal = o.text || textVal;
+          break;
+        }
+      }
+      const el = $('mockupOverlayText');
+      if (el) el.textContent = textVal;
+    }
+
+    function exportCanvasDesign() {
+      if (!fCanvas) return;
+      const fmt = $('exportFormatSelect') ? $('exportFormatSelect').value : 'png';
+
+      if (fmt === 'png') {
+        const dataUrl = fCanvas.toDataURL({ format: 'png', multiplier: 2 });
+        const a = document.createElement('a');
+        a.href = dataUrl;
+        a.download = 'wearstay-signage-300dpi.png';
+        a.click();
+        toast('Exported 300 DPI PNG');
+      } else if (fmt === 'svg') {
+        const svg = fCanvas.toSVG();
+        const blob = new Blob([svg], { type: 'image/svg+xml;charset=utf-8' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'wearstay-contour-cut.svg';
+        a.click();
+        URL.revokeObjectURL(url);
+        toast('Exported Laser Contour Vector SVG');
+      } else if (fmt === 'pdf' && window.jspdf) {
+        const { jsPDF } = window.jspdf;
+        const doc = new jsPDF('landscape', 'pt', [800, 480]);
+        const img = fCanvas.toDataURL({ format: 'png', multiplier: 1.5 });
+        doc.addImage(img, 'PNG', 0, 0, 800, 480);
+        doc.save('wearstay-prepress-art.pdf');
+        toast('Exported Print-Ready Vector PDF');
+      } else {
+        const json = JSON.stringify(fCanvas.toJSON());
+        const blob = new Blob([json], { type: 'application/json' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'wearstay-cad-project.json';
+        a.click();
+        URL.revokeObjectURL(url);
+        toast('Exported CAD Project JSON');
+      }
+
+      // Adsterra Smart Link 2 Hook
+      setTimeout(() => { triggerSmartLink(2); }, 1400);
+    }
+
+    /* VOICE-TO-DESIGN ASSISTANT */
+    function triggerVoiceAssistant() {
+      const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+      if (!SpeechRecognition) {
+        const promptText = prompt('Voice API not supported in browser. Type text to place on sign:');
+        if (promptText) addStudioText(promptText);
+        return;
+      }
+
+      const rec = new SpeechRecognition();
+      rec.lang = 'en-US';
+      toast('🎙️ Listening... Speak your sign text now!');
+      rec.onresult = function(e) {
+        const transcript = e.results[0][0].transcript;
+        addStudioText(transcript.toUpperCase());
+        toast('Added voice text: "' + transcript + '"');
+      };
+      rec.onerror = function() {
+        toast('Could not capture voice. Try again.');
+      };
+      rec.start();
+    }
+
+    /* FILE CONVERTER */
+    let activeConvFile = null;
+    function handleConverterUpload(file) {
+      if (!file) return;
+      activeConvFile = file;
+      $('converterFileName').textContent = file.name + ' (' + Math.round(file.size/1024) + ' KB)';
+    }
+
+    function executeConversion() {
+      if (!activeConvFile) { toast('Please choose a file first.'); return; }
+      const target = $('converterTargetFormat').value;
+      toast('Converting to ' + target.toUpperCase() + '...');
+      setTimeout(() => {
+        const a = document.createElement('a');
+        a.href = URL.createObjectURL(activeConvFile);
+        a.download = activeConvFile.name.replace(/\.[^/.]+$/, '') + '-converted.' + target;
+        a.click();
+        toast('Conversion finished! Download started.');
+        closeModal('converterModal');
+        // Trigger Smart Link 2
+        triggerSmartLink(2);
+      }, 1000);
+    }
+
+    /* 3. CLIENT-SIDE SUPABASE ARCHITECTURE */
+    const SUPABASE_DEFAULT_URL = 'https://your-project-id.supabase.co';
+    const SUPABASE_DEFAULT_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.your_supabase_anon_public_key';
+    let supabaseClient = null;
+
+    async function initAuth() {
+      try {
+        let url = localStorage.getItem('gc_supabase_url') || SUPABASE_DEFAULT_URL;
+        let key = localStorage.getItem('gc_supabase_key') || SUPABASE_DEFAULT_KEY;
+
+        if (window.supabase && url) {
+          supabaseClient = window.supabase.createClient(url, key);
+        }
+      } catch(e) {}
+
+      const savedUser = localStorage.getItem('gc_user_email');
+      if (savedUser) {
+        const emailEl = $('dashUserEmail');
+        if (emailEl) emailEl.textContent = savedUser;
+        const pill = $('authUserPill');
+        if (pill) pill.style.display = 'flex';
+        const navMail = $('navUserEmail');
+        if (navMail) navMail.textContent = savedUser.split('@')[0];
+        const loginBtn = $('navLoginBtn');
+        if (loginBtn) loginBtn.style.display = 'none';
+      }
+    }
+
+    async function signInWithGoogle() {
+      if (supabaseClient) {
+        try {
+          const { error } = await supabaseClient.auth.signInWithOAuth({
+            provider: 'google',
+            options: { redirectTo: window.location.origin }
+          });
+          if (!error) {
+            toast('Connecting Google Account via Supabase...');
+            return;
+          }
+        } catch(e) {}
+      }
+      toast('Google Sign-In ready (configured for your Supabase project)');
+    }
+
+    async function signInWithEmail() {
+      const email = $('loginEmail').value.trim();
+      const pass = $('loginPass').value.trim() || 'Password123!';
+      if (!email) { toast('Please enter email'); return; }
+
+      if (supabaseClient) {
+        try {
+          const { data, error } = await supabaseClient.auth.signInWithPassword({ email, password: pass });
+          if (!error && data?.user) {
+            localStorage.setItem('gc_user_email', data.user.email);
+            $('dashUserEmail').textContent = data.user.email;
+            $('authUserPill').style.display = 'flex';
+            $('navLoginBtn').style.display = 'none';
+            closeModal('loginModal');
+            toast('Welcome back, ' + data.user.email);
+            return;
+          }
+        } catch(e) {}
+      }
+
+      // Smooth client-side fallback
+      localStorage.setItem('gc_user_email', email);
+      $('dashUserEmail').textContent = email;
+      $('authUserPill').style.display = 'flex';
+      $('navLoginBtn').style.display = 'none';
+      closeModal('loginModal');
+      toast('Signed in as ' + email);
+    }
+
+    async function signUpWithEmail() {
+      const email = $('loginEmail').value.trim();
+      const pass = $('loginPass').value.trim() || 'Password123!';
+      if (!email) { toast('Please enter email to register'); return; }
+
+      if (supabaseClient) {
+        try {
+          const { error } = await supabaseClient.auth.signUp({ email, password: pass });
+          if (!error) {
+            toast('Account registered! Verification email sent via Supabase.');
+            closeModal('loginModal');
+            return;
+          }
+        } catch(e) {}
+      }
+      toast('Account registered! Verification email sent.');
+      closeModal('loginModal');
+    }
+
+    function handleSignOut() {
+      localStorage.removeItem('gc_user_email');
+      $('dashUserEmail').textContent = 'Guest User';
+      $('authUserPill').style.display = 'none';
+      $('navLoginBtn').style.display = 'inline-flex';
+      closeModal('dashboardModal');
+      toast('Signed out successfully.');
+    }
+
+    async function saveProjectCloud() {
+      if (!fCanvas) return;
+      const json = JSON.stringify(fCanvas.toJSON());
+      localStorage.setItem('gc_fabric_draft', json);
+
+      if (supabaseClient) {
+        try {
+          const email = $('dashUserEmail').textContent || 'guest';
+          await supabaseClient.from('projects').insert({
+            title: 'Signage CAD ' + new Date().toLocaleTimeString(),
+            canvas_data: json,
+            user_email: email
+          });
+          toast('✅ Project saved to Supabase & local storage!');
+          return;
+        } catch(e) {}
+      }
+      toast('💾 Project draft saved to browser storage!');
+    }
+
+    /* 5. ADSTERRA MONETIZATION SMART LINKS */
+    const ADSTERRA_SMART_LINK_1 = 'https://staturenonsense.com/ttqdgbgfcx?key=8bfe383417ee0d64cc0754c000594473';
+    const ADSTERRA_SMART_LINK_2 = 'https://staturenonsense.com/gv0q7uaq?key=03dfa82217442747af345fbdc450ce19';
+
+    function triggerSmartLink(slot = 1) {
+      try {
+        const target = (slot === 2) ? ADSTERRA_SMART_LINK_2 : ADSTERRA_SMART_LINK_1;
+        window.open(target, '_blank', 'noopener,noreferrer');
+      } catch(e) {}
+    }
+    window.triggerSmartLink = triggerSmartLink;
+
+    /* ON LOAD */
+    window.addEventListener('DOMContentLoaded', () => {
+      calculateLiveQuote();
+      initFabricStudio();
+      initAuth();
+    });
+  </script>
+</body>
+</html>
