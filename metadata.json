@@ -1,8 +1,0 @@
-{
-  "name": "DESIGNHUB GLOBAL — Create. Edit. Design. Convert. Download.",
-  "description": "A New Global Standard for Simple Design & File Work. Create, edit, design, convert, and download in one easy workspace.",
-  "requestFramePermissions": [],
-  "majorCapabilities": [
-    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
-  ]
-}
