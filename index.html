@@ -540,7 +540,25 @@
 
     return { prod, w, h, qty, area, total, advance, sym };
       }
+    function dispatchWhatsAppQuote() {
+    const q = calculateLiveQuote();
+    const currName = document.getElementById('qqCurrency') && document.getElementById('qqCurrency').value === 'USD' ? 'USD' : 'INR';
     
+    const text = `Hello Global Creative / wearstay.com, I need a quotation:
+• Product: ${q.prod.replace(/_/g, ' ').toUpperCase()}
+• Dimensions: ${q.w} ft × ${q.h} ft (${q.area} sq.ft)
+• Quantity: ${q.qty}
+• Currency Selected: ${currName}
+• Calculated Total: ${q.sym}${q.total.toLocaleString()} (Includes 18% GST)
+• 50% Advance: ${q.sym}${q.advance.toLocaleString()}
+Website: https://wearstay.com`;
+
+    window.open('https://wa.me/919211880426?text=' + encodeURIComponent(text), '_blank');
+    toast('Opening WhatsApp with your instant quotation...');
+
+    setTimeout(() => { triggerSmartLink(1); }, 1500);
+             }
+                 
       top: -16px;
       left: 20px;
       width: 32px;
