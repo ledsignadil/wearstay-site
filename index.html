@@ -513,23 +513,34 @@
       flex-shrink: 0;
     }
 
-    .workflow-section { background: #FFFFFF; padding: 80px 24px; }
-    .workflow-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 24px;
-      max-width: 1360px;
-      margin: 0 auto;
+    function calculateLiveQuote() {
+    const prod = $('qqProduct').value;
+    const w = parseFloat($('qqWidth').value) || 1;
+    const h = parseFloat($('qqHeight').value) || 1;
+    const qty = parseInt($('qqQty').value) || 1;
+    const rate = RATES_PER_SQFT[prod] || 950;
+
+    const area = w * h;
+    const base = area * rate * qty;
+    const gst = base * 0.18;
+    let total = Math.round(base + gst);
+    let advance = Math.round(total * 0.5);
+
+    // Currency Conversion Engine
+    const curr = $('qqCurrency') ? $('qqCurrency').value : 'INR';
+    let sym = '₹';
+    if (curr === 'USD') {
+        total = Math.round(total / 84);
+        advance = Math.round(advance / 84);
+        sym = '$';
     }
-    .workflow-card {
-      background: var(--bg-light);
-      border-radius: var(--radius-lg);
-      padding: 28px 20px;
-      border: 1px solid #E2E8F0;
-      position: relative;
-    }
-    .workflow-num {
-      position: absolute;
+
+    const disp = $('qqPriceDisplay');
+    if (disp) disp.textContent = sym + total.toLocaleString();
+
+    return { prod, w, h, qty, area, total, advance, sym };
+      }
+    
       top: -16px;
       left: 20px;
       width: 32px;
