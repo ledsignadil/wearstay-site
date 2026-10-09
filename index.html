@@ -799,7 +799,14 @@
               </div>
               <div class="qq-badge">Live Pricing Engine</div>
             </div>
-
+<div class="form-group">
+  <label class="form-label">Currency (Select for International)</label>
+  <select id="qqCurrency" class="select-field" onchange="calculateLiveQuote()">
+    <option value="INR">₹ Indian Rupee (INR)</option>
+    <option value="USD">$ US Dollar (USD)</option>
+  </select>
+</div>
+            
             <div class="form-group">
               <label class="form-label">Signage Service / Product</label>
               <select id="qqProduct" class="select-field" onchange="calculateLiveQuote()">
