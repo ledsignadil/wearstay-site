@@ -762,46 +762,7 @@ async function startAiDesign() {
         document.getElementById(loadingId).style.display = "none";
 
         if(data.error) {
-            chatBox.innerHTML += `<div style="margin-top: 15px; color: #ff6666;">Error: ${data.error.message}</div>`;
-        } else {
-            if (mode === "image") {
-                let imageUrl = data.data[0].url;
-                chatBox.innerHTML += `
-                    <div style="margin-top: 15px; background: #333; padding: 15px; border-radius: 8px; text-align: center;">
-                        <img src="${imageUrl}" style="max-width: 100%; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.5);">
-                        <br>
-                        <a href="${imageUrl}" target="_blank" download="Wearstay_Design.png" style="display: inline-block; margin-top: 15px; padding: 12px 25px; background: #4CAF50; color: white; text-decoration: none; border-radius: 5px; font-weight: bold;">📥 Download PNG File</a>
-                    </div>
-                `;
-            } else {
-                let textResult = data.choices[0].message.content;
-                
-                // Text/Code ko .txt file mein download karne ka logic
-                let blob = new Blob([textResult], { type: "text/plain" });
-                let textUrl = URL.createObjectURL(blob);
 
-                chatBox.innerHTML += `
-                    <div style="margin-top: 15px; background: #333; padding: 15px; border-radius: 8px; white-space: pre-wrap; font-size: 14px; text-align: left;">
-                        ${textResult}
-                        <br>
-                        <a href="${textUrl}" download="Wearstay_Response.txt" style="display: inline-block; margin-top: 15px; padding: 12px 25px; background: #2196F3; color: white; text-decoration: none; border-radius: 5px; font-weight: bold;">📥 Download Text/Code</a>
-                        <button onclick="window.print()" style="margin-left: 10px; padding: 12px 25px; background: #ff9800; color: white; border: none; border-radius: 5px; font-weight: bold; cursor: pointer;">🖨️ Save as PDF</button>
-                    </div>
-                `;
-            }
-            userCredits--; 
-        }
-    } catch (error) {
-        document.getElementById(loadingId).style.display = "none";
-        chatBox.innerHTML += `<div style="margin-top: 15px; color: #ff6666;">Internet problem. Wapas try karein.</div>`;
-    }
-    chatBox.scrollTop = chatBox.scrollHeight; 
-}
-</script>
-<!-- ========================================== -->
-<!-- WEARSTAY AI - ADVANCED (PRO) - END -->
-<!-- ========================================== -->
-  
   <!-- HEADER -->
   <header>
     <div class="header-container">
