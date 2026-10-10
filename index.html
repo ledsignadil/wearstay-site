@@ -1008,7 +1008,152 @@
   </style>
 </head>
 <body>
+<!-- ========================================== -->
+<!-- WEARSTAY AI - VERCEL SECURE BACKEND VERSION -->
+<!-- ========================================== -->
+<div style="max-width: 800px; margin: 40px auto; background: #1a1a1a; border-radius: 12px; overflow: hidden; font-family: sans-serif; box-shadow: 0 4px 15px rgba(0,0,0,0.5);">
+    
+    <div style="background: #ffcc00; color: #000; padding: 15px; text-align: center; font-size: 22px; font-weight: bold;">
+        🌍 World's 1st AI Design & Business Studio ✨
+    </div>
 
+    <div style="background: #333; padding: 12px; text-align: center; color: white;">
+        <label style="font-size: 16px; margin-right: 10px;"><b>Select Mode: </b></label>
+        <select id="ai-mode" style="padding: 8px; border-radius: 5px; font-weight: bold; background: #fff; color: #000; border: none; cursor: pointer;">
+            <option value="image">🎨 Image & Design Generation (PNG)</option>
+            <option value="text">📝 Text, Code & Ideas (TXT/PDF)</option>
+        </select>
+    </div>
+
+    <div id="ai-chat-box" style="height: 400px; overflow-y: auto; padding: 20px; background: #222; color: #fff;">
+        <p style="background: #333; padding: 15px; border-radius: 8px; display: inline-block; margin: 0; line-height: 1.5;">
+            Welcome to the <b>World's 1st</b> fully integrated AI Design Studio by Wearstay. <br><br>You have <span id="credit-count" style="color:#ffcc00; font-weight:bold;"></span> free credits remaining.
+        </p>
+    </div>
+
+    <div style="display: flex; padding: 15px; background: #111;">
+        <input type="text" id="ai-user-input" placeholder="Type your prompt here..." style="flex: 1; padding: 15px; border-radius: 6px; border: none; outline: none; background: #333; color: #fff; font-size: 16px;">
+        <button onclick="startAiDesign()" style="padding: 15px 25px; margin-left: 10px; background: #ffcc00; color: #000; border: none; border-radius: 6px; font-weight: bold; cursor: pointer; font-size: 16px;">Generate</button>
+    </div>
+
+</div>
+
+<script>
+let userCredits = localStorage.getItem("wearstay_credits");
+if (userCredits === null) {
+    userCredits = 2; 
+    localStorage.setItem("wearstay_credits", userCredits);
+} else {
+    userCredits = parseInt(userCredits);
+}
+let isPremium = false;
+let premiumDate = localStorage.getItem("wearstay_premium_date");
+
+if (premiumDate) {
+    let daysPassed = (Date.now() - parseInt(premiumDate)) / (1000 * 60 * 60 * 24);
+    if (daysPassed <= 30) {
+        isPremium = true; 
+    } else {
+        localStorage.removeItem("wearstay_premium_date"); 
+        isPremium = false;
+    }
+}
+
+document.getElementById("credit-count").innerText = isPremium ? "Unlimited (30 Days)" : userCredits;
+
+function unlockPremium() {
+    let enteredCode = document.getElementById("premium-code-input").value;
+    if (enteredCode === premiumPassword) {
+        localStorage.setItem("wearstay_premium_date", Date.now()); 
+        alert("🎉 Premium Unlocked! You now have unlimited access for 30 Days.");
+        location.reload(); 
+    } else {
+        alert("❌ Invalid Code. Please check again or contact support.");
+    }
+}
+
+async function startAiDesign() {
+    let inputField = document.getElementById("ai-user-input");
+    let promptText = inputField.value.trim();
+    let chatBox = document.getElementById("ai-chat-box");
+    let mode = document.getElementById("ai-mode").value; 
+    
+    if (!promptText) return; 
+
+    if (!isPremium && userCredits <= 0) {
+        chatBox.innerHTML += `
+            <div style="background: #ffe6e6; padding: 20px; border-radius: 8px; text-align: center; color: #cc0000; margin-top: 15px; border: 2px solid #cc0000;">
+                <b style="font-size: 20px;">🛑 Free Trial Expired!</b><br><br>
+                Your 2 free designs are completed. Subscribe to our Premium Plan.<br>
+                <b style="font-size: 22px; color: #000;">Subscription: ₹800 / Month</b><br><br>
+                <a href="upi://pay?pa=ledsignadil@oksbi&pn=Wearstay%20AI&cu=INR&am=800" style="background: #00baf2; color: white; padding: 12px 20px; text-decoration: none; border-radius: 5px; display: inline-block; font-weight: bold; margin: 5px;">🇮🇳 Pay ₹800 via Paytm / UPI</a>
+                <a href="https://paypal.me/wearstay/10" target="_blank" style="background: #003087; color: white; padding: 12px 20px; text-decoration: none; border-radius: 5px; display: inline-block; font-weight: bold; margin: 5px;">🌍 Pay $10 via PayPal</a>
+                <p style="color: #333; font-size: 14px; margin-top: 15px;">After payment, contact us on WhatsApp to get your 30-Day Unlock Code.</p>
+                <div style="margin-top: 15px; background: #fff; padding: 15px; border-radius: 5px;">
+                    <input type="text" id="premium-code-input" placeholder="Enter Premium Code" style="padding: 10px; border: 1px solid #ccc; border-radius: 4px; width: 60%;">
+                    <button onclick="unlockPremium()" style="padding: 10px 15px; background: #28a745; color: white; border: none; border-radius: 4px; cursor: pointer; font-weight: bold;">Unlock</button>
+                </div>
+            </div>
+        `;
+        chatBox.scrollTop = chatBox.scrollHeight;
+        return; 
+    }
+
+    chatBox.innerHTML += `<div style="text-align: right; margin-top: 15px;"><p style="background: #ffcc00; color: #000; padding: 12px; border-radius: 8px; display: inline-block; margin: 0; text-align: left;">${promptText}</p></div>`;
+    inputField.value = ""; 
+
+    let loadingId = "load-" + Date.now();
+    let remainingText = isPremium ? "Unlimited Access" : `Free Credits left: ${userCredits - 1}`;
+    chatBox.innerHTML += `<div id="${loadingId}" style="margin-top: 15px;"><p style="background: #333; padding: 12px; border-radius: 8px; display: inline-block; margin: 0;">⏳ AI is processing your request... (${remainingText})</p></div>`;
+    chatBox.scrollTop = chatBox.scrollHeight;
+
+    try {
+        // Yahan hum aapki website ke secure Vercel backend ko call kar rahe hain
+        let response = await fetch('/api/generate', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ mode: mode, promptText: promptText })
+        });
+
+        let data = await response.json();
+        document.getElementById(loadingId).style.display = "none";
+
+        if(data.error) {
+            chatBox.innerHTML += `<div style="margin-top: 15px; color: #ff6666;">Error: ${data.error.message || 'Something went wrong.'}</div>`;
+        } else {
+            if (mode === "image") {
+                let imageUrl = data.data[0].url;
+                chatBox.innerHTML += `
+                    <div style="margin-top: 15px; background: #333; padding: 15px; border-radius: 8px; text-align: center;">
+                        <img src="${imageUrl}" style="max-width: 100%; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.5);">
+                        <br>
+                        <a href="${imageUrl}" target="_blank" download="Wearstay_Design.png" style="display: inline-block; margin-top: 15px; padding: 12px 25px; background: #4CAF50; color: white; text-decoration: none; border-radius: 5px; font-weight: bold;">📥 Download Image</a>
+                    </div>
+                `;
+            } else {
+                let textResult = data.choices[0].message.content;
+                chatBox.innerHTML += `
+                    <div style="margin-top: 15px; background: #333; padding: 15px; border-radius: 8px; white-space: pre-wrap; font-size: 15px; line-height: 1.6; text-align: left;">
+                        ${textResult}
+                    </div>
+                `;
+            }
+            if (!isPremium) {
+                userCredits--; 
+                localStorage.setItem("wearstay_credits", userCredits);
+            }
+        }
+    } catch (error) {
+        document.getElementById(loadingId).style.display = "none";
+        chatBox.innerHTML += `<div style="margin-top: 15px; color: #ff6666;">Network Connection Failed. Please try again.</div>`;
+    }
+    chatBox.scrollTop = chatBox.scrollHeight; 
+}
+</script>
+<!-- ========================================== -->
+<!-- WEARSTAY AI - VERCEL SECURE BACKEND VERSION -->
+<!-- ========================================== -->
+  
   <!-- TOP HEADER -->
   <header>
     <a href="#home" class="brand-wrap">
@@ -1983,197 +2128,6 @@
           <button class="btn btn-gold" style="flex:1; border-radius:var(--radius-sm);" onclick="copyUpiId()">📋 Copy UPI ID</button>
           <button class="btn btn-green" style="flex:1; border-radius:var(--radius-sm);" onclick="openUpiIntent()">⚡ Open UPI App</button>
         </div>
-      </div>
-    </div>
-  </div>
-
-
-  <!-- ========================================== -->
-<!-- WEARSTAY AI - 30 DAYS PREMIUM LOCK VERSION - START -->
-<!-- ========================================== -->
-<div style="max-width: 800px; margin: 40px auto; background: #1a1a1a; border-radius: 12px; overflow: hidden; font-family: sans-serif; box-shadow: 0 4px 15px rgba(0,0,0,0.5);">
-    
-    <div style="background: #ffcc00; color: #000; padding: 15px; text-align: center; font-size: 22px; font-weight: bold;">
-        🌍 World's 1st AI Design & Business Studio ✨
-    </div>
-
-    <!-- Mode Selector -->
-    <div style="background: #333; padding: 12px; text-align: center; color: white;">
-        <label style="font-size: 16px; margin-right: 10px;"><b>Select Mode: </b></label>
-        <select id="ai-mode" style="padding: 8px; border-radius: 5px; font-weight: bold; background: #fff; color: #000; border: none; cursor: pointer;">
-            <option value="image">🎨 Image & Design Generation (PNG)</option>
-            <option value="text">📝 Text, Code & Ideas (TXT/PDF)</option>
-        </select>
-    </div>
-
-    <div id="ai-chat-box" style="height: 400px; overflow-y: auto; padding: 20px; background: #222; color: #fff;">
-        <p style="background: #333; padding: 15px; border-radius: 8px; display: inline-block; margin: 0; line-height: 1.5;">
-            Welcome to the <b>World's 1st</b> fully integrated AI Design Studio by Wearstay. <br><br>You have <span id="credit-count" style="color:#ffcc00; font-weight:bold;"></span> free credits remaining.
-        </p>
-    </div>
-
-    <div style="display: flex; padding: 15px; background: #111;">
-        <input type="text" id="ai-user-input" placeholder="Type your prompt here..." style="flex: 1; padding: 15px; border-radius: 6px; border: none; outline: none; background: #333; color: #fff; font-size: 16px;">
-        <button onclick="startAiDesign()" style="padding: 15px 25px; margin-left: 10px; background: #ffcc00; color: #000; border: none; border-radius: 6px; font-weight: bold; cursor: pointer; font-size: 16px;">Generate</button>
-    </div>
-
-</div>
-
-<script>
-// Memory Check: Local Storage for Credits
-let userCredits = localStorage.getItem("wearstay_credits");
-if (userCredits === null) {
-    userCredits = 2; // Naye user ke liye 2 free credits
-    localStorage.setItem("wearstay_credits", userCredits);
-} else {
-    userCredits = parseInt(userCredits);
-}
-
-// 30 Days Premium Expiry Logic
-const premiumPassword = "WEARSTAYPRO"; 
-let isPremium = false;
-let premiumDate = localStorage.getItem("wearstay_premium_date");
-
-if (premiumDate) {
-    let daysPassed = (Date.now() - parseInt(premiumDate)) / (1000 * 60 * 60 * 24);
-    if (daysPassed <= 30) {
-        isPremium = true; // Agar 30 din nahi hue toh premium chalu rahega
-    } else {
-        localStorage.removeItem("wearstay_premium_date"); // 30 din baad expire
-        isPremium = false;
-    }
-}
-
-document.getElementById("credit-count").innerText = isPremium ? "Unlimited (30 Days)" : userCredits;
-
-function unlockPremium() {
-    let enteredCode = document.getElementById("premium-code-input").value;
-    if (enteredCode === premiumPassword) {
-        localStorage.setItem("wearstay_premium_date", Date.now()); // Aaj ki date save ho jayegi
-        alert("🎉 Premium Unlocked! You now have unlimited access for 30 Days.");
-        location.reload(); 
-    } else {
-        alert("❌ Invalid Code. Please check again or contact support.");
-    }
-}
-
-async function startAiDesign() {
-    let inputField = document.getElementById("ai-user-input");
-    let promptText = inputField.value.trim();
-    let chatBox = document.getElementById("ai-chat-box");
-    let mode = document.getElementById("ai-mode").value; 
-    
-    if (!promptText) return; 
-
-    // STRICT LOCK: Subscription aur Payment Buttons
-    if (!isPremium && userCredits <= 0) {
-        chatBox.innerHTML += `
-            <div style="background: #ffe6e6; padding: 20px; border-radius: 8px; text-align: center; color: #cc0000; margin-top: 15px; border: 2px solid #cc0000;">
-                <b style="font-size: 20px;">🛑 Free Trial Expired!</b><br><br>
-                Your 2 free designs are completed. To continue using Wearstay AI, please subscribe to our Premium Plan.<br>
-                <b style="font-size: 22px; color: #000;">Subscription: ₹800 / Month</b><br><br>
-                
-                <!-- UPI / Paytm Button (India) -->
-                <a href="upi://pay?pa=ledsignadil@oksbi&pn=Wearstay%20AI&cu=INR&am=800" style="background: #00baf2; color: white; padding: 12px 20px; text-decoration: none; border-radius: 5px; display: inline-block; font-weight: bold; margin: 5px;">🇮🇳 Pay ₹800 via Paytm / UPI</a>
-                
-                <!-- PayPal Button (International) -->
-                <a href="https://paypal.me/wearstay/10" target="_blank" style="background: #003087; color: white; padding: 12px 20px; text-decoration: none; border-radius: 5px; display: inline-block; font-weight: bold; margin: 5px;">🌍 Pay $10 via PayPal</a>
-                
-                <p style="color: #333; font-size: 14px; margin-top: 15px;">After payment, contact us on WhatsApp to get your 30-Day Unlock Code.</p>
-                
-                <!-- Premium Unlock Box -->
-                <div style="margin-top: 15px; background: #fff; padding: 15px; border-radius: 5px;">
-                    <input type="text" id="premium-code-input" placeholder="Enter Premium Code" style="padding: 10px; border: 1px solid #ccc; border-radius: 4px; width: 60%;">
-                    <button onclick="unlockPremium()" style="padding: 10px 15px; background: #28a745; color: white; border: none; border-radius: 4px; cursor: pointer; font-weight: bold;">Unlock</button>
-                </div>
-            </div>
-        `;
-        chatBox.scrollTop = chatBox.scrollHeight;
-        return; 
-    }
-
-    chatBox.innerHTML += `<div style="text-align: right; margin-top: 15px;"><p style="background: #ffcc00; color: #000; padding: 12px; border-radius: 8px; display: inline-block; margin: 0; text-align: left;">${promptText}</p></div>`;
-    inputField.value = ""; 
-
-    let loadingId = "load-" + Date.now();
-    let remainingText = isPremium ? "Unlimited Access" : `Free Credits left: ${userCredits - 1}`;
-    chatBox.innerHTML += `<div id="${loadingId}" style="margin-top: 15px;"><p style="background: #333; padding: 12px; border-radius: 8px; display: inline-block; margin: 0;">⏳ AI is processing your request... (${remainingText})</p></div>`;
-    chatBox.scrollTop = chatBox.scrollHeight;
-
-    // YAHAN AAPKI ASLI API KEY LAGI HUI HAI
-    let apiKey = "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"; 
-    
-    try {
-        let apiUrl = mode === "image" ? "https://api.openai.com/v1/images/generations" : "https://api.openai.com/v1/chat/completions";
-        
-        let apiBody = mode === "image" ? 
-            { model: "dall-e-3", prompt: promptText, n: 1, size: "1024x1024" } : 
-            { model: "gpt-4o", messages: [
-                {"role": "system", "content": "You are the Wearstay AI Assistant. You must always reply in the exact same language the user uses to communicate with you."},
-                {"role": "user", "content": promptText}
-            ] };
-
-        let response = await fetch(apiUrl, {
-            method: "POST",
-            headers: { "Content-Type": "application/json", "Authorization": `Bearer ${apiKey}` },
-            body: JSON.stringify(apiBody)
-        });
-
-        let data = await response.json();
-        document.getElementById(loadingId).style.display = "none";
-
-        if(data.error) {
-            chatBox.innerHTML += `<div style="margin-top: 15px; color: #ff6666;">Error: ${data.error.message}</div>`;
-        } else {
-            if (mode === "image") {
-                let imageUrl = data.data[0].url;
-                chatBox.innerHTML += `
-                    <div style="margin-top: 15px; background: #333; padding: 15px; border-radius: 8px; text-align: center;">
-                        <img src="${imageUrl}" style="max-width: 100%; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.5);">
-                        <br>
-                        <a href="${imageUrl}" target="_blank" download="Wearstay_Design.png" style="display: inline-block; margin-top: 15px; padding: 12px 25px; background: #4CAF50; color: white; text-decoration: none; border-radius: 5px; font-weight: bold;">📥 Download PNG Image</a>
-                    </div>
-                `;
-            } else {
-                let textResult = data.choices[0].message.content;
-                let blob = new Blob([textResult], { type: "text/plain" });
-                let textUrl = URL.createObjectURL(blob);
-
-                chatBox.innerHTML += `
-                    <div style="margin-top: 15px; background: #333; padding: 15px; border-radius: 8px; white-space: pre-wrap; font-size: 15px; line-height: 1.6; text-align: left;">
-                        ${textResult}
-                        <br><br>
-                        <a href="${textUrl}" download="Wearstay_Response.txt" style="display: inline-block; margin-top: 10px; padding: 10px 20px; background: #2196F3; color: white; text-decoration: none; border-radius: 5px; font-weight: bold;">📥 Save as Text</a>
-                        <button onclick="window.print()" style="margin-left: 10px; padding: 10px 20px; background: #ff9800; color: white; border: none; border-radius: 5px; font-weight: bold; cursor: pointer;">🖨️ Save as PDF</button>
-                    </div>
-                `;
-            }
-            // 2 mein se 1 credit minus karna (Agar premium nahi hai toh)
-            if (!isPremium) {
-                userCredits--; 
-                localStorage.setItem("wearstay_credits", userCredits);
-            }
-        }
-    } catch (error) {
-        document.getElementById(loadingId).style.display = "none";
-        chatBox.innerHTML += `<div style="margin-top: 15px; color: #ff6666;">Network Error. Please check your connection and try again.</div>`;
-    }
-    chatBox.scrollTop = chatBox.scrollHeight; 
-}
-</script>
-<!-- ========================================== -->
-<!-- WEARSTAY AI - 30 DAYS PREMIUM LOCK VERSION - END -->
-<!-- ========================================== -->
-
-  <!-- 7. INTEGRATION STATUS MODAL -->
-  <div class="modal-overlay" id="integrationModal">
-    <div class="modal-card">
-      <div class="modal-head">
-        <h3>⚡ Integration & Backend Status</h3>
-        <button class="close-btn" onclick="closeModal('integrationModal')">✕</button>
-      </div>
-      <div id="integrationStatusBody" style="font-size:12px; color:#CBD5E1; line-height:1.6; display:flex; flex-direction:column; gap:10px;">
-        Loading live diagnostics from server...
       </div>
     </div>
   </div>
