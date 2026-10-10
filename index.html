@@ -682,7 +682,126 @@
   </style>
 </head>
 <body>
+<!-- ========================================== -->
+<!-- WEARSTAY AI - ADVANCED (PRO) - START -->
+<!-- ========================================== -->
+<div style="max-width: 800px; margin: 40px auto; background: #1a1a1a; border-radius: 12px; overflow: hidden; font-family: sans-serif; box-shadow: 0 4px 15px rgba(0,0,0,0.5);">
+    
+    <div style="background: #ffcc00; color: #000; padding: 15px; text-align: center; font-size: 22px; font-weight: bold;">
+        ✨ Wearstay AI (Design & Chat) ✨
+    </div>
 
+    <!-- Mode Selector -->
+    <div style="background: #333; padding: 10px; text-align: center; color: white;">
+        <label><b>Mode Chunein: </b></label>
+        <select id="ai-mode" style="padding: 5px; border-radius: 5px; font-weight: bold;">
+            <option value="image">🎨 Design / Photo (PNG)</option>
+            <option value="text">📝 Text / Code / Ideas (TXT/PDF)</option>
+        </select>
+    </div>
+
+    <div id="ai-chat-box" style="height: 400px; overflow-y: auto; padding: 20px; background: #222; color: #fff;">
+        <p style="background: #333; padding: 12px; border-radius: 8px; display: inline-block; margin: 0;">
+            Hello! Main Wearstay ka Advanced AI hoon. Main aapke liye Designs bhi bana sakta hoon aur ChatGPT ki tarah sawalo ke jawab ya code bhi likh sakta hoon.
+        </p>
+    </div>
+
+    <div style="display: flex; padding: 15px; background: #111;">
+        <input type="text" id="ai-user-input" placeholder="Yahan type karein..." style="flex: 1; padding: 15px; border-radius: 6px; border: none; outline: none; background: #333; color: #fff; font-size: 16px;">
+        <button onclick="startAiDesign()" style="padding: 15px 25px; margin-left: 10px; background: #ffcc00; color: #000; border: none; border-radius: 6px; font-weight: bold; cursor: pointer; font-size: 16px;">Generate</button>
+    </div>
+
+</div>
+
+<script>
+let userCredits = 2; 
+
+async function startAiDesign() {
+    let inputField = document.getElementById("ai-user-input");
+    let promptText = inputField.value.trim();
+    let chatBox = document.getElementById("ai-chat-box");
+    let mode = document.getElementById("ai-mode").value; // User ne kya chuna hai
+    
+    if (!promptText) return; 
+
+    // Subscription Check
+    if (userCredits <= 0) {
+        chatBox.innerHTML += `
+            <div style="background: #ffe6e6; padding: 20px; border-radius: 8px; text-align: center; color: #cc0000; margin-top: 15px;">
+                <b style="font-size: 18px;">Free Limit Khatam! 🛑</b><br><br>
+                Unlimited AI Access ke liye Premium Subscription lijiye.<br><br>
+                <a href="/pricing" style="background: #cc0000; color: white; padding: 12px 25px; text-decoration: none; border-radius: 5px; display: inline-block; font-weight: bold;">Buy Subscription</a>
+            </div>
+        `;
+        chatBox.scrollTop = chatBox.scrollHeight;
+        return; 
+    }
+
+    chatBox.innerHTML += `<div style="text-align: right; margin-top: 15px;"><p style="background: #ffcc00; color: #000; padding: 12px; border-radius: 8px; display: inline-block; margin: 0;">${promptText}</p></div>`;
+    inputField.value = ""; 
+
+    let loadingId = "load-" + Date.now();
+    chatBox.innerHTML += `<div id="${loadingId}" style="margin-top: 15px;"><p style="background: #333; padding: 12px; border-radius: 8px; display: inline-block; margin: 0;">⏳ AI kaam kar raha hai... (Credits: ${userCredits})</p></div>`;
+    chatBox.scrollTop = chatBox.scrollHeight;
+
+    let apiKey = "YOUR_OPENAI_API_KEY_HERE"; // <--- APNI API KEY DALEIN
+    
+    try {
+        let apiUrl = mode === "image" ? "https://api.openai.com/v1/images/generations" : "https://api.openai.com/v1/chat/completions";
+        let apiBody = mode === "image" ? 
+            { model: "dall-e-3", prompt: promptText, n: 1, size: "1024x1024" } : 
+            { model: "gpt-4o", messages: [{"role": "user", "content": promptText}] };
+
+        let response = await fetch(apiUrl, {
+            method: "POST",
+            headers: { "Content-Type": "application/json", "Authorization": `Bearer ${apiKey}` },
+            body: JSON.stringify(apiBody)
+        });
+
+        let data = await response.json();
+        document.getElementById(loadingId).style.display = "none";
+
+        if(data.error) {
+            chatBox.innerHTML += `<div style="margin-top: 15px; color: #ff6666;">Error: ${data.error.message}</div>`;
+        } else {
+            if (mode === "image") {
+                let imageUrl = data.data[0].url;
+                chatBox.innerHTML += `
+                    <div style="margin-top: 15px; background: #333; padding: 15px; border-radius: 8px; text-align: center;">
+                        <img src="${imageUrl}" style="max-width: 100%; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.5);">
+                        <br>
+                        <a href="${imageUrl}" target="_blank" download="Wearstay_Design.png" style="display: inline-block; margin-top: 15px; padding: 12px 25px; background: #4CAF50; color: white; text-decoration: none; border-radius: 5px; font-weight: bold;">📥 Download PNG File</a>
+                    </div>
+                `;
+            } else {
+                let textResult = data.choices[0].message.content;
+                
+                // Text/Code ko .txt file mein download karne ka logic
+                let blob = new Blob([textResult], { type: "text/plain" });
+                let textUrl = URL.createObjectURL(blob);
+
+                chatBox.innerHTML += `
+                    <div style="margin-top: 15px; background: #333; padding: 15px; border-radius: 8px; white-space: pre-wrap; font-size: 14px; text-align: left;">
+                        ${textResult}
+                        <br>
+                        <a href="${textUrl}" download="Wearstay_Response.txt" style="display: inline-block; margin-top: 15px; padding: 12px 25px; background: #2196F3; color: white; text-decoration: none; border-radius: 5px; font-weight: bold;">📥 Download Text/Code</a>
+                        <button onclick="window.print()" style="margin-left: 10px; padding: 12px 25px; background: #ff9800; color: white; border: none; border-radius: 5px; font-weight: bold; cursor: pointer;">🖨️ Save as PDF</button>
+                    </div>
+                `;
+            }
+            userCredits--; 
+        }
+    } catch (error) {
+        document.getElementById(loadingId).style.display = "none";
+        chatBox.innerHTML += `<div style="margin-top: 15px; color: #ff6666;">Internet problem. Wapas try karein.</div>`;
+    }
+    chatBox.scrollTop = chatBox.scrollHeight; 
+}
+</script>
+<!-- ========================================== -->
+<!-- WEARSTAY AI - ADVANCED (PRO) - END -->
+<!-- ========================================== -->
+  
   <!-- HEADER -->
   <header>
     <div class="header-container">
@@ -1384,7 +1503,7 @@
         <div style="background:#061424; border:1px dashed var(--gold); border-radius:var(--radius-md); padding:16px;">
           <div style="font-size:11px; color:#94A3B8; margin-bottom:4px;">Official UPI ID for GLOBAL CREATIVE:</div>
           <div style="font-size:18px; font-weight:900; color:var(--cyan); letter-spacing:0.5px;">ledsignadil@oksbi</div>
-          <div style="font-size:11px; color:#E2E8F0; margin-top:4px;">Recipient: NEON POWER / GLOBAL CREATIVE (+91 93549 44438)</div>
+          <div style="font-size:11px; color:#E2E8F0; margin-top:4px;">Recipient: NEON POWER / GLOBAL CREATIVE (+91 929211 880426)</div>
         </div>
         <div style="display:flex; justify-content:center; margin:2px 0;">
           <img id="upiDynamicQr" src="https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=upi://pay?pa=ledsignadil@oksbi%26pn=GLOBAL%20CREATIVE%26cu=INR" alt="UPI QR Code" style="width:160px; height:160px; border-radius:12px; border:2px solid var(--gold); background:#fff; padding:6px;" loading="lazy">
@@ -1579,8 +1698,8 @@ Phone: ${phone}
 City: ${city}
 Details: ${notes}`;
 
-      window.open('https://wa.me/919354944438?text=' + encodeURIComponent(msg), '_blank');
-      toast('Connecting to WhatsApp (+91 93549 44438)...');
+      window.open('https://wa.me/91 92118 80426 ?text=' + encodeURIComponent(msg), '_blank');
+      toast('Connecting to WhatsApp (+91 92118 80426)...');
     }
 
     /* FABRIC.JS DESIGN STUDIO */
