@@ -1127,109 +1127,231 @@
         <!-- RIGHT HERO COLUMN: 3D ARCHITECTURAL FACADE + QUICK QUOTE -->
         <div class="hero-visual-col">
           <!-- 3D STOREFRONT ARCHITECTURAL SIGNAGE MOCKUP -->
-          <!-- ========================================== -->
-<!-- STANDALONE AI STUDIO WIDGET (WITH IN-BUILT RESULT AREA & 3 OPTIONS) -->
-<div id="aiStudioWidget" class="bg-[#131b2c] rounded-xl overflow-hidden shadow-2xl border border-gray-700 max-w-lg mx-auto font-sans text-white mb-6">
+
+<!-- STANDALONE AI STUDIO WIDGET (BULLETPROOF DESIGN & LOGIC) -->
+<style>
+    /* 100% Guaranteed Premium Design for the Widget */
+    .ai-widget-wrapper {
+        background: #111827;
+        border: 1px solid #1f2937;
+        border-radius: 12px;
+        max-width: 500px;
+        margin: 0 auto 30px auto;
+        overflow: hidden;
+        box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+        font-family: system-ui, -apple-system, sans-serif;
+        color: #ffffff;
+    }
+    .ai-header {
+        background: linear-gradient(135deg, #00e5ff 0%, #00bfff 100%);
+        color: #000;
+        padding: 16px;
+        text-align: center;
+        font-weight: 900;
+        font-size: 16px;
+        letter-spacing: 0.5px;
+    }
+    .ai-body { padding: 20px; }
+    .ai-dropdown {
+        width: 100%;
+        background: #ffffff;
+        color: #000000;
+        font-weight: 800;
+        padding: 14px;
+        border-radius: 8px;
+        border: none;
+        margin-bottom: 16px;
+        font-size: 14px;
+        outline: none;
+        cursor: pointer;
+    }
+    .ai-info-box {
+        background: #1f2937;
+        padding: 16px;
+        border-radius: 8px;
+        font-size: 13px;
+        color: #d1d5db;
+        margin-bottom: 16px;
+        line-height: 1.6;
+    }
+    .ai-input-row {
+        display: flex;
+        gap: 10px;
+        margin-bottom: 16px;
+    }
+    .ai-btn-icon {
+        background: #374151;
+        color: #fff;
+        border: none;
+        border-radius: 8px;
+        width: 50px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        font-size: 18px;
+        transition: 0.2s;
+    }
+    .ai-btn-icon:hover { background: #4b5563; }
+    .ai-btn-mic { background: #ffffff; color: #000000; }
+    .ai-btn-mic:hover { background: #e5e7eb; }
+    .ai-text-input {
+        flex: 1;
+        background: #1f2937;
+        border: 1px solid #374151;
+        color: #ffffff;
+        padding: 12px 16px;
+        border-radius: 8px;
+        outline: none;
+        font-size: 14px;
+        width: 100%;
+    }
+    .ai-text-input:focus { border-color: #00e5ff; }
+    .ai-generate-btn {
+        width: 100%;
+        background: #ffc107;
+        color: #000000;
+        font-weight: 900;
+        font-size: 16px;
+        padding: 16px;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: 0.2s;
+    }
+    .ai-generate-btn:hover { background: #ffb300; }
     
-    <!-- Header -->
-    <div class="bg-gradient-to-r from-cyan-400 to-cyan-500 p-4 text-center">
-        <h3 class="text-black font-extrabold text-lg flex items-center justify-center gap-2">
-            ✨ World's 1st AI Design & Business Studio
-        </h3>
+    /* Result Area Styles */
+    .ai-result-area {
+        display: none;
+        margin-top: 20px;
+        border-top: 1px solid #374151;
+        padding-top: 20px;
+    }
+    .ai-result-box {
+        background: #0f172a;
+        border: 1px dashed #4b5563;
+        border-radius: 8px;
+        min-height: 140px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        padding: 16px;
+        margin-bottom: 16px;
+        font-size: 13px;
+        color: #9ca3af;
+    }
+    .ai-dl-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 8px;
+    }
+    .ai-dl-btn {
+        padding: 10px 0;
+        border-radius: 6px;
+        color: #fff;
+        font-weight: 800;
+        font-size: 11px;
+        border: none;
+        cursor: pointer;
+    }
+    
+    /* Paywall Styles */
+    .ai-paywall {
+        display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.85);
+        z-index: 99999; align-items: center; justify-content: center; padding: 16px;
+    }
+    .ai-paywall-card {
+        background: #090D16; border: 1px solid rgba(0,229,255,0.3); border-radius: 12px;
+        max-width: 400px; width: 100%; padding: 24px; position: relative; color: #fff; text-align: center;
+    }
+    .ai-pay-tabs { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; background: #111827; padding: 4px; border-radius: 8px; margin: 16px 0; }
+    .ai-pay-tab { padding: 10px; border-radius: 6px; font-size: 12px; font-weight: bold; border: none; cursor: pointer; }
+</style>
+
+<div class="ai-widget-wrapper">
+    <div class="ai-header">
+        ✨ World's 1st AI Design & Business Studio
     </div>
 
-    <!-- Body -->
-    <div class="p-5">
-        
-        <!-- 3 Options Dropdown (As per screenshot) -->
-        <select id="aiModeSelect" class="w-full bg-white text-black font-bold p-3 rounded-lg outline-none mb-4 appearance-none shadow-inner border-[3px] border-gray-200">
+    <div class="ai-body">
+        <!-- Dropdown 3 Options -->
+        <select id="aiModeSelect" class="ai-dropdown">
             <option value="image">🎨 Auto Image & Design Generation</option>
             <option value="vector">🗣️ Voice to Vector & Editing</option>
             <option value="text">✍️ Content & Text Writing</option>
         </select>
 
-        <!-- Status & Credits -->
-        <div class="bg-[#242b3d] p-4 rounded-lg mb-4 text-sm text-gray-300 shadow-inner">
-            <p>Welcome to <strong class="text-white">Wearstay AI</strong>. I can design, write code, tell stories, and speak your language!</p>
-            <p class="mt-3">You have <strong id="widgetCreditCount" class="text-yellow-400 font-bold text-base">2</strong> free credits remaining.</p>
-            <p id="aiStatusText" class="mt-2 text-cyan-400 text-xs font-bold hidden animate-pulse">Listening to your voice... (सुन रहा हूँ)</p>
+        <div class="ai-info-box">
+            <p>Welcome to <strong style="color:#fff;">Wearstay AI</strong>. I can design, write code, edit files, and speak your language!</p>
+            <p style="margin-top: 10px;">You have <strong id="widgetCreditCount" style="color: #ffc107; font-size: 16px;">2</strong> free credits remaining.</p>
+            <p id="aiStatusText" style="color: #00e5ff; font-weight: bold; margin-top: 8px; display: none;">Listening to your voice... (बोलिए, मैं सुन रहा हूँ)</p>
         </div>
 
-        <!-- Input Area (Upload, Voice, Text) -->
-        <div class="flex gap-2 mb-3">
-            <button onclick="document.getElementById('aiFileUpload').click()" class="bg-[#374151] hover:bg-[#4b5563] text-white p-3 rounded-lg transition" title="Upload Photo/File">
-                <i class="fa-solid fa-paperclip"></i> 🔗
-            </button>
-            <input type="file" id="aiFileUpload" class="hidden" accept="image/*,.pdf,.cdr,.svg">
+        <div class="ai-input-row">
+            <button onclick="document.getElementById('aiFileUpload').click()" class="ai-btn-icon" title="Upload Image or File">🔗</button>
+            <input type="file" id="aiFileUpload" style="display: none;" accept="image/*,.pdf,.cdr,.svg">
             
-            <button onclick="startVoiceRecognition()" class="bg-white hover:bg-gray-200 text-black p-3 rounded-lg transition" title="Speak in any language">
-                <i class="fa-solid fa-microphone"></i> 🎤
-            </button>
+            <button onclick="startVoiceRecognition()" class="ai-btn-icon ai-btn-mic" title="Speak in any language">🎤</button>
             
-            <input type="text" id="aiTextInput" placeholder="Type or speak in any language..." class="flex-1 bg-[#242b3d] border border-gray-600 text-white p-3 rounded-lg outline-none focus:border-cyan-400">
+            <input type="text" id="aiTextInput" class="ai-text-input" placeholder="Type or speak in any language...">
         </div>
 
-        <!-- Generate Button -->
-        <button id="generateBtn" onclick="handleGenerateAction()" class="w-full bg-[#ffc107] hover:bg-[#ffb300] text-black font-extrabold text-base py-3.5 rounded-lg shadow-lg transition">
+        <button id="generateBtn" onclick="handleGenerateAction()" class="ai-generate-btn">
             Generate 🪄
         </button>
 
-        <!-- RESULT AREA (THIS IS NEW: Output shows here, not on the bottom canvas) -->
-        <div id="aiResultArea" class="hidden mt-4 border-t border-gray-600 pt-4">
-            <p class="text-xs text-green-400 font-bold mb-2">✅ Generation Successful!</p>
+        <!-- RESULT AREA (Standalone Result) -->
+        <div id="aiResultArea" class="ai-result-area">
+            <p style="color: #10b981; font-weight: bold; font-size: 13px; margin-bottom: 10px;">✅ Generated Successfully!</p>
             
-            <!-- Dummy Image Placeholder for output -->
-            <div id="resultPreview" class="w-full h-32 bg-gray-800 rounded-lg flex items-center justify-center text-gray-500 mb-3 border border-dashed border-gray-600">
+            <div id="resultPreview" class="ai-result-box">
                 [ AI Generated Result Will Appear Here ]
             </div>
             
-            <!-- Download Buttons based on user demand -->
-            <div class="grid grid-cols-4 gap-2 text-center text-[10px] font-bold">
-                <button onclick="downloadMockFile('JPG')" class="bg-blue-600 hover:bg-blue-500 py-2 rounded text-white shadow">.JPG</button>
-                <button onclick="downloadMockFile('PDF')" class="bg-red-600 hover:bg-red-500 py-2 rounded text-white shadow">.PDF</button>
-                <button onclick="downloadMockFile('SVG')" class="bg-purple-600 hover:bg-purple-500 py-2 rounded text-white shadow">.SVG (CDR)</button>
-                <button onclick="downloadMockFile('TXT')" class="bg-gray-600 hover:bg-gray-500 py-2 rounded text-white shadow">.TXT</button>
+            <!-- Download Options -->
+            <div class="ai-dl-grid">
+                <button onclick="downloadMockFile('JPG')" class="ai-dl-btn" style="background: #2563eb;">.JPG</button>
+                <button onclick="downloadMockFile('PDF')" class="ai-dl-btn" style="background: #dc2626;">.PDF</button>
+                <button onclick="downloadMockFile('SVG')" class="ai-dl-btn" style="background: #9333ea;">.SVG (CDR)</button>
+                <button onclick="downloadMockFile('TXT')" class="ai-dl-btn" style="background: #4b5563;">.TXT</button>
             </div>
         </div>
-
     </div>
 </div>
 
-<!-- PAYWALL MODAL (OPENS ON 3RD ATTEMPT) -->
-<div id="proPaywallModal" style="display:none; position: fixed; inset: 0; background: rgba(0,0,0,0.85); z-index: 9999; align-items: center; justify-content: center; padding: 16px; font-family: sans-serif;">
-    <div style="background: #090D16; border: 1px solid rgba(0,229,255,0.3); border-radius: 12px; max-width: 400px; width: 100%; padding: 24px; position: relative; color: #fff; box-shadow: 0 20px 25px -5px rgba(0,0,0,0.5);">
+<!-- PAYWALL MODAL -->
+<div id="proPaywallModal" class="ai-paywall">
+    <div class="ai-paywall-card">
+        <button onclick="document.getElementById('proPaywallModal').style.display='none'" style="position: absolute; top: 10px; right: 15px; background: none; border: none; color: #9ca3af; font-size: 24px; cursor: pointer;">&times;</button>
         
-        <button onclick="document.getElementById('proPaywallModal').style.display='none'" style="position: absolute; top: 12px; right: 12px; background: none; border: none; color: #9ca3af; font-size: 18px; cursor: pointer;">&times;</button>
-        
-        <div style="text-align: center; margin-bottom: 16px;">
-            <div style="color: #00e5ff; font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 1px;">0 Credits Remaining</div>
-            <h3 style="font-size: 16px; font-weight: bold; margin: 4px 0;">Unlock Unlimited AI Access</h3>
-            <p style="font-size: 11px; color: #9ca3af;">Upgrade to Pro to continue generating, editing, and downloading files.</p>
+        <div style="color: #00e5ff; font-size: 11px; font-weight: 800; text-transform: uppercase;">0 Credits Remaining</div>
+        <h3 style="font-size: 18px; font-weight: bold; margin: 8px 0;">Unlock Unlimited AI Access</h3>
+        <p style="font-size: 12px; color: #9ca3af;">Upgrade to Pro to continue generating, editing, and downloading files.</p>
+
+        <div class="ai-pay-tabs">
+            <button id="pwUpiBtn" onclick="togglePayMode('upi')" class="ai-pay-tab" style="background: #00e5ff; color: #000;">UPI (₹800)</button>
+            <button id="pwPaypalBtn" onclick="togglePayMode('paypal')" class="ai-pay-tab" style="background: #1f2937; color: #d1d5db;">PayPal ($9.99)</button>
         </div>
 
-        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; background: #111827; padding: 4px; border-radius: 8px; margin-bottom: 16px; font-size: 12px; font-weight: bold; text-align: center;">
-            <button id="pwUpiBtn" onclick="togglePayMode('upi')" style="padding: 8px; border-radius: 6px; background: #00e5ff; color: #000; border: none; cursor: pointer;">UPI (₹800)</button>
-            <button id="pwPaypalBtn" onclick="togglePayMode('paypal')" style="padding: 8px; border-radius: 6px; background: #1f2937; color: #d1d5db; border: none; cursor: pointer;">PayPal ($9.99)</button>
-        </div>
-
-        <!-- UPI Box -->
         <div id="pwUpiBox" style="display: block;">
-            <div style="background: #0f172a; border: 1px solid #1e293b; border-radius: 8px; padding: 12px; text-align: center; margin-bottom: 12px;">
-                <div style="font-size: 11px; color: #cbd5e1; margin-bottom: 8px;">Amount: ₹800 / Month</div>
-                <div style="font-size: 13px; font-weight: 800; font-family: monospace; color: #38bdf8; margin: 4px 0;">UPI: ledsignadil@oksbi</div>
+            <div style="background: #0f172a; border: 1px solid #1e293b; border-radius: 8px; padding: 12px; margin-bottom: 12px;">
+                <div style="font-size: 12px; color: #cbd5e1;">Amount: ₹800 / Month</div>
+                <div style="font-size: 14px; font-weight: 800; color: #38bdf8; margin-top: 4px;">UPI: ledsignadil@oksbi</div>
             </div>
-            <a href="upi://pay?pa=ledsignadil@oksbi&pn=WEARSTAY%20AI&am=800.00&cu=INR" style="display: block; width: 100%; background: linear-gradient(135deg, #00e5ff 0%, #0070f3 100%); color: #000; font-weight: bold; font-size: 12px; padding: 10px; border-radius: 8px; text-align: center; text-decoration: none; margin-bottom: 12px;">
+            <a href="upi://pay?pa=ledsignadil@oksbi&pn=WEARSTAY%20AI&am=800.00&cu=INR" style="display: block; background: linear-gradient(135deg, #00e5ff 0%, #00bfff 100%); color: #000; font-weight: bold; padding: 12px; border-radius: 8px; text-decoration: none; margin-bottom: 12px;">
                 1-Tap Mobile UPI App Pay (₹800)
             </a>
-            <div style="border-top: 1px solid #1f2937; padding-top: 12px; display: flex; gap: 8px;">
-                <input type="text" id="pwUtrInput" placeholder="Enter 12-Digit UTR" style="flex: 1; background: #0f172a; border: 1px solid #1e293b; border-radius: 6px; padding: 6px 10px; font-size: 11px; color: #fff;">
-                <button onclick="verifyUtrAndUnlock()" style="background: #059669; color: #fff; font-weight: bold; font-size: 11px; padding: 6px 12px; border-radius: 6px; border: none; cursor: pointer;">Verify</button>
+            <div style="display: flex; gap: 8px; margin-top: 10px;">
+                <input type="text" id="pwUtrInput" placeholder="Enter 12-Digit UTR" style="flex: 1; background: #0f172a; border: 1px solid #1e293b; border-radius: 6px; padding: 10px; color: #fff; font-size: 12px;">
+                <button onclick="verifyUtrAndUnlock()" style="background: #10b981; color: #fff; font-weight: bold; padding: 10px 16px; border-radius: 6px; border: none; cursor: pointer;">Verify</button>
             </div>
         </div>
 
-        <!-- PayPal Box -->
-        <div id="pwPaypalBox" style="display: none; background: #0f172a; border: 1px solid #1e293b; border-radius: 8px; padding: 16px; text-align: center;">
-            <div style="font-size: 15px; font-weight: 800; margin-bottom: 12px;">$9.99 USD / Month</div>
+        <div id="pwPaypalBox" style="display: none; background: #0f172a; border: 1px solid #1e293b; border-radius: 8px; padding: 20px;">
+            <div style="font-size: 18px; font-weight: 800;">$9.99 USD / Month</div>
+            <div style="font-size: 12px; color: #00e5ff; margin-top: 5px;">(PayPal Integration Ready)</div>
         </div>
     </div>
 </div>
@@ -1249,11 +1371,11 @@
         let countDisplay = document.getElementById('widgetCreditCount');
         if(isWidgetPro) {
             countDisplay.innerText = "Unlimited";
-            countDisplay.className = "text-green-400 font-bold text-base";
+            countDisplay.style.color = "#10b981"; // Green
         } else {
             countDisplay.innerText = widgetCredits;
             if(widgetCredits <= 0) {
-                countDisplay.className = "text-red-500 font-bold text-base"; // Turns red when 0
+                countDisplay.style.color = "#ef4444"; // Red when 0
             }
         }
     }
@@ -1287,8 +1409,9 @@
 
         const prompt = document.getElementById('aiTextInput').value;
         const mode = document.getElementById('aiModeSelect').value;
+        const fileInput = document.getElementById('aiFileUpload').value;
         
-        if (!prompt && !document.getElementById('aiFileUpload').value) {
+        if (!prompt && !fileInput) {
             alert("Please type, speak something, or upload a file first!");
             return;
         }
@@ -1300,24 +1423,23 @@
             updateCreditUI();
         }
 
-        // SHOW RESULT AREA IN THE BOX (Not on the bottom canvas)
+        // SHOW RESULT AREA IN THE BOX
         const resultBox = document.getElementById('aiResultArea');
         const preview = document.getElementById('resultPreview');
         
         resultBox.style.display = 'block';
-        preview.innerText = `Processing: "${prompt}" in ${mode} mode...`;
+        preview.innerText = `Processing: "${prompt}"...`;
         
-        // Simulating AI taking 2 seconds to generate
+        // Simulating AI generation success
         setTimeout(() => {
-            preview.innerHTML = `<span class="text-white font-bold">Generated Result based on: <br><span class="text-cyan-400">${prompt}</span></span>`;
-        }, 2000);
+            preview.innerHTML = `<span style="color:#fff; font-weight:bold;">AI Task Completed: <br><span style="color:#00e5ff;">${prompt || 'Uploaded File Adjusted'}</span></span>`;
+        }, 1500);
     }
 
     function downloadMockFile(format) {
         alert("Downloading your generated " + format + " file securely...");
     }
 
-    // Paywall Tab Toggles
     function togglePayMode(mode) {
         if(mode === 'upi') {
             document.getElementById('pwUpiBox').style.display = 'block'; document.getElementById('pwPaypalBox').style.display = 'none';
@@ -1344,7 +1466,7 @@
     }
 </script>
 <!-- STANDALONE AI STUDIO WIDGET END -->
-
+          
           <!-- QUICK QUOTE CARD -->
           <div class="quick-quote-card">
             <h3>Quick Quote</h3>
