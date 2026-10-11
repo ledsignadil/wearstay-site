@@ -1128,271 +1128,235 @@
         <div class="hero-visual-col">
           <!-- 3D STOREFRONT ARCHITECTURAL SIGNAGE MOCKUP -->
           <!-- ========================================== -->
-<!-- WEARSTAY AI - ULTIMATE MULTILINGUAL PRO -->
-<!-- ========================================== -->
-<div style="width: 100%; background: #1a1a1a; border-radius: 18px; border: 1px solid #2A4E77; overflow: hidden; font-family: sans-serif; box-shadow: 0 20px 50px rgba(0,0,0,0.5);">
+<!-- WEARSTAY AI STUDIO WIDGET (SIMPLE & VOICE-ENABLED) -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<script src="https://cdn.tailwindcss.com"></script>
+
+<div id="aiStudioWidget" class="bg-[#131b2c] rounded-xl overflow-hidden shadow-2xl border border-gray-700 max-w-lg mx-auto font-sans text-white mb-6">
     
-    <div style="background: linear-gradient(135deg, #0284c7, #00f2ff); color: #000; padding: 12px; text-align: center; font-size: 18px; font-weight: 900;">
-        ✨ World's 1st AI Design & Business Studio 
+    <!-- Header -->
+    <div class="bg-gradient-to-r from-cyan-400 to-cyan-500 p-4 text-center">
+        <h3 class="text-black font-extrabold text-lg flex items-center justify-center gap-2">
+            ✨ World's 1st AI Design & Business Studio
+        </h3>
     </div>
 
-    <!-- ADMIN SETUP: API KEY -->
-    <div id="admin-api-config" style="background: #2b2b2b; padding: 8px; border-bottom: 2px dashed #444; text-align: center; font-size: 12px;">
-        <span style="color: #bbb;">🔑 Admin: </span>
-        <input type="password" id="admin-secret-key-input" placeholder="sk-proj-..." style="padding: 4px; border-radius: 4px; border: 1px solid #555; background: #111; color: #fff; width: 40%;">
-        <button onclick="saveAdminKey()" style="padding: 4px 8px; background: #28a745; color: #fff; border: none; border-radius: 4px; cursor: pointer;">Save</button>
-        <div id="key-status-msg" style="margin-top: 4px; color: #ffcc00; font-size: 10px;">*Key saves in your browser securely.</div>
-    </div>
-
-    <div style="background: #333; padding: 10px; text-align: center; color: white;">
-        <select id="ai-mode" style="padding: 6px; border-radius: 5px; font-weight: bold; background: #fff; color: #000; border: none; cursor: pointer; width: 95%;">
-            <option value="image">🎨 Auto Image & Design Generation</option>
-            <option value="text">📝 Text, HTML Code, Stories & Ideas</option>
+    <!-- Body -->
+    <div class="p-5">
+        <!-- Dropdown -->
+        <select class="w-full bg-white text-black font-bold p-3 rounded-lg outline-none mb-4 appearance-none shadow-inner cursor-pointer">
+            <option>🎨 Auto Image & Design Generation</option>
+            <option>🗣️ Voice to Vector & Editing</option>
+            <option>✍️ Content & Text Writing</option>
         </select>
-    </div>
 
-    <div id="ai-chat-box" style="height: 350px; overflow-y: auto; padding: 15px; background: #222; color: #fff;">
-        <p style="background: #333; padding: 12px; border-radius: 8px; display: inline-block; margin: 0; line-height: 1.4; font-size: 14px;">
-            Welcome to <b>Wearstay AI</b>. I can design, write code, tell stories, and speak your language! <br><br>You have <span id="credit-count" style="color:#ffcc00; font-weight:bold;"></span> free credits remaining.
-        </p>
-    </div>
-
-    <!-- UPLOAD PREVIEW AREA -->
-    <div id="upload-preview-container" style="display: none; padding: 10px; background: #111; border-top: 1px solid #333;">
-        <span style="color: #bbb; font-size: 11px; display: block; margin-bottom: 5px;">Attached Image:</span>
-        <img id="image-preview" style="max-height: 50px; border-radius: 5px; border: 1px solid #444;">
-        <button onclick="removeUpload()" style="background: transparent; color: #ff4444; border: none; cursor: pointer; margin-left: 10px; font-weight: bold; font-size:12px;">❌ Remove</button>
-    </div>
-
-    <!-- MOBILE RESPONSIVE INPUT AREA -->
-    <div style="display: flex; flex-wrap: wrap; gap: 8px; padding: 12px; background: #111; align-items: center; border-top: 1px solid #222;">
-        
-        <input type="file" id="image-upload-input" accept="image/*" style="display: none;" onchange="handleImageUpload(event)">
-        
-        <div style="display: flex; gap: 8px;">
-            <button onclick="document.getElementById('image-upload-input').click()" style="padding: 10px 12px; background: #444; color: #fff; border: none; border-radius: 6px; font-size: 16px; cursor: pointer;" title="Upload Photo or Document">📎</button>
-            <button id="voice-btn" onclick="startVoice()" style="padding: 10px 12px; background: #e0e0e0; color: #000; border: none; border-radius: 6px; font-size: 16px; cursor: pointer;" title="Speak Prompt">🎤</button>
+        <!-- Message Box -->
+        <div class="bg-[#242b3d] p-4 rounded-lg mb-4 text-sm text-gray-300 shadow-inner">
+            <p>Welcome to <strong class="text-white">Wearstay AI</strong>. I can design, write code, tell stories, and speak your language!</p>
+            <p class="mt-3">You have <strong id="widgetCreditCount" class="text-yellow-400 font-bold text-base">2</strong> free credits remaining.</p>
         </div>
-        
-        <input type="text" id="ai-user-input" placeholder="Type or speak in any language..." style="flex: 1; min-width: 140px; padding: 10px; border-radius: 6px; border: none; outline: none; background: #333; color: #fff; font-size: 14px;">
-        
-        <button onclick="startAiDesign()" style="padding: 10px 15px; background: #ffcc00; color: #000; border: none; border-radius: 6px; font-weight: bold; cursor: pointer; font-size: 14px; flex-grow: 1; text-align: center;">Generate</button>
-    </div>
 
+        <!-- Input Area (Mic & Upload) -->
+        <div class="flex gap-2 mb-4">
+            <!-- Upload Button -->
+            <button onclick="document.getElementById('aiFileUpload').click()" class="bg-[#374151] hover:bg-[#4b5563] text-white p-3 rounded-lg transition" title="Upload Photo/Design">
+                <i class="fa-solid fa-paperclip"></i>
+            </button>
+            <input type="file" id="aiFileUpload" class="hidden" accept="image/*,.pdf,.cdr,.svg">
+            
+            <!-- Voice/Mic Button -->
+            <button id="micBtn" onclick="startVoiceRecognition()" class="bg-white hover:bg-gray-200 text-black p-3 rounded-lg transition shadow-[0_0_10px_rgba(255,255,255,0.2)]" title="Speak your command">
+                <i class="fa-solid fa-microphone text-lg"></i>
+            </button>
+            
+            <!-- Text Input -->
+            <input type="text" id="aiTextInput" placeholder="Type or speak in any language..." class="flex-1 bg-[#242b3d] border border-gray-600 text-white p-3 rounded-lg outline-none focus:border-cyan-400 transition">
+        </div>
+
+        <!-- Generate Button -->
+        <button onclick="handleGenerateAction()" class="w-full bg-[#ffc107] hover:bg-[#ffb300] text-black font-extrabold text-base py-3.5 rounded-lg shadow-lg transition flex justify-center items-center gap-2">
+            Generate <i class="fa-solid fa-wand-magic-sparkles"></i>
+        </button>
+    </div>
+</div>
+
+<!-- PAYWALL MODAL (Strict 2-Credit Lock) -->
+<div id="proPaywallModal" style="display:none; position: fixed; inset: 0; background: rgba(0,0,0,0.85); z-index: 9999; align-items: center; justify-content: center; padding: 16px; font-family: sans-serif; backdrop-filter: blur(5px);">
+    <div style="background: #090D16; border: 1px solid rgba(0,229,255,0.3); border-radius: 12px; max-width: 400px; width: 100%; padding: 24px; position: relative; color: #fff; box-shadow: 0 20px 25px -5px rgba(0,0,0,0.5);">
+        
+        <button onclick="document.getElementById('proPaywallModal').style.display='none'" style="position: absolute; top: 12px; right: 12px; background: none; border: none; color: #9ca3af; font-size: 18px; cursor: pointer;">&times;</button>
+        
+        <div style="text-align: center; margin-bottom: 16px;">
+            <div style="color: #00e5ff; font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 1px;">Pro Subscription Required</div>
+            <h3 style="font-size: 16px; font-weight: bold; margin: 4px 0;">Unlock Unlimited AI Access</h3>
+            <p style="font-size: 11px; color: #9ca3af;">You've used your 2 free credits. Upgrade to Pro for unlimited AI designs, voice edits, and vector downloads.</p>
+        </div>
+
+        <!-- Payment Tabs -->
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; background: #111827; padding: 4px; border-radius: 8px; margin-bottom: 16px; font-size: 12px; font-weight: bold; text-align: center;">
+            <button id="pwUpiBtn" onclick="togglePayMode('upi')" style="padding: 8px; border-radius: 6px; background: #00e5ff; color: #000; border: none; cursor: pointer; transition: all 0.3s;">UPI (₹800)</button>
+            <button id="pwPaypalBtn" onclick="togglePayMode('paypal')" style="padding: 8px; border-radius: 6px; background: #1f2937; color: #d1d5db; border: none; cursor: pointer; transition: all 0.3s;">PayPal ($9.99)</button>
+        </div>
+
+        <!-- UPI Section -->
+        <div id="pwUpiBox" style="display: block;">
+            <div style="background: #0f172a; border: 1px solid #1e293b; border-radius: 8px; padding: 12px; text-align: center; margin-bottom: 12px;">
+                <div style="font-size: 11px; color: #cbd5e1; margin-bottom: 8px;">Scan via GPay, PhonePe, Paytm, BHIM</div>
+                <div style="font-size: 14px; font-weight: 800; margin-top: 8px;">Amount: ₹800 / Month</div>
+                <div style="font-size: 11px; font-family: monospace; color: #38bdf8; margin: 4px 0; background: #1e293b; padding: 4px; border-radius: 4px; display: inline-block;">UPI: ledsignadil@oksbi</div>
+            </div>
+            
+            <a href="upi://pay?pa=ledsignadil@oksbi&pn=WEARSTAY%20AI&am=800.00&cu=INR" style="display: block; width: 100%; background: linear-gradient(135deg, #00e5ff 0%, #0070f3 100%); color: #000; font-weight: bold; font-size: 12px; padding: 12px; border-radius: 8px; text-align: center; text-decoration: none; margin-bottom: 12px; box-shadow: 0 4px 15px rgba(0, 229, 255, 0.3);">
+                <i class="fa-solid fa-mobile-screen-button"></i> 1-Tap Mobile UPI App Pay (₹800)
+            </a>
+            
+            <div style="border-top: 1px solid #1f2937; padding-top: 12px; display: flex; gap: 8px;">
+                <input type="text" id="pwUtrInput" placeholder="Enter 12-Digit UTR No." style="flex: 1; background: #0f172a; border: 1px solid #1e293b; border-radius: 6px; padding: 8px 10px; font-size: 11px; color: #fff; outline: none;">
+                <button onclick="verifyUtrAndUnlock()" style="background: #059669; color: #fff; font-weight: bold; font-size: 11px; padding: 8px 16px; border-radius: 6px; border: none; cursor: pointer; transition: 0.3s;" onmouseover="this.style.background='#047857'" onmouseout="this.style.background='#059669'">Verify</button>
+            </div>
+        </div>
+
+        <!-- PayPal Section -->
+        <div id="pwPaypalBox" style="display: none; background: #0f172a; border: 1px solid #1e293b; border-radius: 8px; padding: 16px; text-align: center;">
+            <div style="font-size: 12px; color: #cbd5e1; margin-bottom: 4px;">Pay securely worldwide</div>
+            <div style="font-size: 18px; font-weight: 800; margin-bottom: 12px;">$9.99 USD <span style="font-size:10px; font-weight:normal; color:#9ca3af;">/ Month</span></div>
+            <div style="font-size: 11px; color: #00e5ff; background: #1e293b; padding: 8px; border-radius: 4px;">(PayPal API Buttons Ready)</div>
+        </div>
+    </div>
 </div>
 
 <script>
-let uploadedImageBase64 = "";
+    // --- STATE MANAGEMENT ---
+    let widgetCredits = localStorage.getItem('ws_user_credits');
+    let isWidgetPro = localStorage.getItem('ws_user_pro') === 'true';
 
-function handleImageUpload(event) {
-    const file = event.target.files[0];
-    if (file) {
-        const reader = new FileReader();
-        reader.onload = function(e) {
-            uploadedImageBase64 = e.target.result;
-            document.getElementById("image-preview").src = uploadedImageBase64;
-            document.getElementById("upload-preview-container").style.display = "block";
-            document.getElementById("ai-mode").value = "text"; 
-        };
-        reader.readAsDataURL(file);
-    }
-}
-
-function removeUpload() {
-    uploadedImageBase64 = "";
-    document.getElementById("image-upload-input").value = "";
-    document.getElementById("upload-preview-container").style.display = "none";
-}
-
-function startVoice() {
-    if (!('webkitSpeechRecognition' in window)) { 
-        alert("🎤 Voice feature requires Google Chrome browser."); 
-        return; 
-    }
-    let recognition = new webkitSpeechRecognition();
-    recognition.lang = 'hi-IN'; // Will pick up both Hindi and English naturally
-    recognition.continuous = false;
-    
-    recognition.onstart = function() {
-        document.getElementById("voice-btn").innerText = "🔴";
-        document.getElementById("voice-btn").style.background = "#ff4444";
-        document.getElementById("ai-user-input").placeholder = "Listening...";
-    };
-    
-    recognition.onresult = function(event) {
-        let currentText = document.getElementById("ai-user-input").value;
-        let spokenText = event.results[0][0].transcript;
-        document.getElementById("ai-user-input").value = currentText ? currentText + " " + spokenText : spokenText;
-        resetVoiceBtn();
-    };
-    
-    recognition.onerror = function(event) {
-        alert("🎤 Mic Error: Please allow Microphone access in browser settings.");
-        resetVoiceBtn();
-    };
-    
-    recognition.onend = function() { resetVoiceBtn(); };
-    
-    try { recognition.start(); } catch(e) { alert("Mic is already active or blocked."); }
-}
-
-function resetVoiceBtn() {
-    document.getElementById("voice-btn").innerText = "🎤";
-    document.getElementById("voice-btn").style.background = "#e0e0e0";
-    document.getElementById("ai-user-input").placeholder = "Type or speak in any language...";
-}
-
-let secureApiKey = localStorage.getItem("wearstay_api_key") || "";
-updateKeyUI();
-
-function saveAdminKey() {
-    let inputVal = document.getElementById("admin-secret-key-input").value.trim();
-    if(inputVal.startsWith("sk-")) {
-        localStorage.setItem("wearstay_api_key", inputVal);
-        secureApiKey = inputVal;
-        alert("🔒 API Key saved!"); updateKeyUI();
-    } else { alert("❌ Invalid Key."); }
-}
-
-function updateKeyUI() {
-    let box = document.getElementById("admin-api-config");
-    if (secureApiKey) { document.getElementById("key-status-msg").innerText = "✅ AI Active."; box.style.opacity = "0.5"; }
-}
-
-let userCredits = localStorage.getItem("wearstay_credits");
-if (userCredits === null) {
-    userCredits = 2; 
-    localStorage.setItem("wearstay_credits", userCredits);
-} else { userCredits = parseInt(userCredits); }
-
-const premiumPassword = "WEARSTAYPRO"; 
-let isPremium = false;
-let premiumDate = localStorage.getItem("wearstay_premium_date");
-
-if (premiumDate) {
-    let daysPassed = (Date.now() - parseInt(premiumDate)) / (1000 * 60 * 60 * 24);
-    if (daysPassed <= 30) { isPremium = true; } 
-    else { localStorage.removeItem("wearstay_premium_date"); isPremium = false; }
-}
-
-document.getElementById("credit-count").innerText = isPremium ? "Unlimited" : userCredits;
-
-function unlockPremium() {
-    let enteredCode = document.getElementById("premium-code-input").value;
-    if (enteredCode === premiumPassword) {
-        localStorage.setItem("wearstay_premium_date", Date.now()); 
-        location.reload(); 
-    } else { alert("❌ Invalid Code."); }
-}
-
-async function startAiDesign() {
-    let inputField = document.getElementById("ai-user-input");
-    let promptText = inputField.value.trim();
-    let chatBox = document.getElementById("ai-chat-box");
-    let mode = document.getElementById("ai-mode").value; 
-    
-    if (!promptText && !uploadedImageBase64) return; 
-    if (!secureApiKey) { alert("Admin: Save API Key first."); return; }
-
-    if (!isPremium && userCredits <= 0) {
-        chatBox.innerHTML += `
-            <div style="background: #ffe6e6; padding: 25px; border-radius: 8px; text-align: center; color: #cc0000; margin-top: 15px; border: 2px solid #cc0000;">
-                <b style="font-size: 20px;">🛑 Trial Locked!</b><br><br>
-                Unlock Premium Monthly Subscription.<br>
-                <b style="font-size: 24px; color: #000; background: #ffcc00; padding: 5px 10px; border-radius: 5px;">₹800 / Month</b><br><br>
-                <a href="upi://pay?pa=ledsignadil@oksbi&pn=Wearstay%20AI&cu=INR&am=800" style="background: #00baf2; color: white; padding: 12px 20px; text-decoration: none; border-radius: 5px; display: inline-block; font-weight: bold; margin: 5px;">🇮🇳 Pay ₹800 via Paytm / UPI</a>
-                <br>
-                <a href="https://www.paypal.com/ncp/payment/BJXPNCZGH8TV4" target="_blank" style="background: #003087; color: white; padding: 12px 20px; text-decoration: none; border-radius: 5px; display: inline-block; font-weight: bold; margin: 5px;">🌍 Pay via PayPal</a>
-                <div style="margin-top: 15px; background: #fff; padding: 15px; border-radius: 5px;">
-                    <input type="password" id="premium-code-input" placeholder="Unlock Code" style="padding: 10px; border: 1px solid #ccc; width: 60%;">
-                    <button onclick="unlockPremium()" style="padding: 10px 15px; background: #28a745; color: white; border: none; cursor: pointer; font-weight: bold;">Unlock</button>
-                </div>
-            </div>
-        `;
-        chatBox.scrollTop = chatBox.scrollHeight;
-        return; 
+    // Initialize 2 Free Credits if first time
+    if (widgetCredits === null) {
+        widgetCredits = 2;
+        localStorage.setItem('ws_user_credits', 2);
+    } else {
+        widgetCredits = parseInt(widgetCredits);
     }
 
-    let userMsgHtml = `<div style="text-align: right; margin-top: 15px;"><div style="background: #ffcc00; color: #000; padding: 12px; border-radius: 8px; display: inline-block; margin: 0; text-align: left;">`;
-    if (uploadedImageBase64) { userMsgHtml += `<img src="${uploadedImageBase64}" style="max-height: 100px; display: block; border-radius: 5px; margin-bottom: 5px;">`; }
-    userMsgHtml += `${promptText}</div></div>`;
-    chatBox.innerHTML += userMsgHtml;
-    
-    inputField.value = ""; 
-
-    let loadingId = "load-" + Date.now();
-    let remainingText = isPremium ? "Unlimited Access" : `Credits left: ${userCredits - 1}`;
-    chatBox.innerHTML += `<div id="${loadingId}" style="margin-top: 15px;"><p style="background: #333; padding: 12px; border-radius: 8px; display: inline-block; margin: 0;">⏳ Generating... (${remainingText})</p></div>`;
-    chatBox.scrollTop = chatBox.scrollHeight;
-
-    try {
-        let apiUrl = "https://corsproxy.io/?https://api.openai.com/v1/chat/completions"; 
-        let apiBody = {};
-
-        if (mode === "image" && !uploadedImageBase64) {
-            apiUrl = "https://corsproxy.io/?https://api.openai.com/v1/images/generations";
-            apiBody = { model: "dall-e-3", prompt: promptText, n: 1, size: "1024x1024" };
+    // --- UI UPDATES ---
+    function updateCreditUI() {
+        const creditDisplay = document.getElementById('widgetCreditCount');
+        if(isWidgetPro) {
+            creditDisplay.innerText = "Unlimited";
+            creditDisplay.className = "text-green-400 font-bold text-base";
         } else {
-            let messageContent = [];
-            if (promptText) messageContent.push({ "type": "text", "text": promptText });
-            if (uploadedImageBase64) messageContent.push({ "type": "image_url", "image_url": { "url": uploadedImageBase64 } });
-            if (messageContent.length === 0) messageContent.push({ "type": "text", "text": "Analyze this." });
-
-            // YAHAN PAR NAYA AI SYSTEM PROMPT DALA GAYA HAI - BOLI GAYI BHASHA MEIN JAWAB DENE KE LIYE
-            apiBody = { 
-                model: "gpt-4o", 
-                messages: [
-                    {
-                        "role": "system", 
-                        "content": "You are the Wearstay AI Design & Business Studio. CRITICAL: ALWAYS reply in the exact same language the user uses to communicate with you (e.g., reply in Hindi if asked in Hindi, English if asked in English). You are highly capable: you can write HTML code, generate YouTube thumbnail ideas, write stories, write business plans, analyze images, and read text from photos. Act professionally and creatively."
-                    }, 
-                    {"role": "user", "content": messageContent}
-                ] 
-            };
-        }
-
-        let response = await fetch(apiUrl, {
-            method: "POST",
-            headers: { "Content-Type": "application/json", "Authorization": `Bearer ${secureApiKey}` },
-            body: JSON.stringify(apiBody)
-        });
-
-        let data = await response.json();
-        document.getElementById(loadingId).style.display = "none";
-
-        if(data.error) {
-            chatBox.innerHTML += `<div style="margin-top: 15px; color: #ff6666;"><b>API Error:</b> ${data.error.message}</div>`;
-        } else {
-            if (mode === "image" && !uploadedImageBase64) {
-                let imageUrl = data.data[0].url;
-                chatBox.innerHTML += `
-                    <div style="margin-top: 15px; background: #333; padding: 15px; border-radius: 8px; text-align: center;">
-                        <img src="${imageUrl}" style="max-width: 100%; border-radius: 8px;">
-                        <br><a href="${imageUrl}" target="_blank" download="Wearstay_Design.png" style="display: inline-block; margin-top: 15px; padding: 12px 25px; background: #4CAF50; color: white; text-decoration: none; border-radius: 5px; font-weight: bold;">📥 Download High-Quality JPG/PNG</a>
-                    </div>
-                `;
-            } else {
-                chatBox.innerHTML += `<div style="margin-top: 15px; background: #333; padding: 15px; border-radius: 8px; white-space: pre-wrap; font-size: 15px;">${data.choices[0].message.content}</div>`;
+            creditDisplay.innerText = widgetCredits;
+            if(widgetCredits <= 0) {
+                creditDisplay.className = "text-red-400 font-bold text-base";
             }
+        }
+    }
+    
+    // Call on load
+    updateCreditUI();
+
+    // --- GENERATE ACTION ---
+    function handleGenerateAction() {
+        if (isWidgetPro) {
+            const prompt = document.getElementById('aiTextInput').value;
+            alert("PRO ACTIVE: Generating design for -> " + (prompt || "Default"));
+            return;
+        }
+        
+        if (widgetCredits > 0) {
+            // Deduct Credit
+            widgetCredits--;
+            localStorage.setItem('ws_user_credits', widgetCredits);
+            updateCreditUI();
             
-            if (!isPremium) {
-                userCredits--; 
-                localStorage.setItem("wearstay_credits", userCredits);
-                document.getElementById("credit-count").innerText = userCredits;
+            // Mock Action
+            const prompt = document.getElementById('aiTextInput').value;
+            alert(`File Processed! You have ${widgetCredits} credits left.`);
+            
+            if(widgetCredits === 0) {
+                // Show Paywall immediately when credits hit 0
+                setTimeout(() => { document.getElementById('proPaywallModal').style.display = 'flex'; }, 1000);
             }
-            removeUpload(); 
+        } else {
+            // Out of credits - Show Paywall
+            document.getElementById('proPaywallModal').style.display = 'flex';
         }
-    } catch (error) {
-        document.getElementById(loadingId).style.display = "none";
-        chatBox.innerHTML += `<div style="margin-top: 15px; color: #ff6666;"><b>Network Error:</b> Proxy connection failed. Please try again.</div>`;
     }
-    chatBox.scrollTop = chatBox.scrollHeight; 
-}
-</script>
-<!-- ========================================== -->
-<!-- WEARSTAY AI - ULTIMATE MULTILINGUAL PRO -->
-<!-- ========================================== -->
 
+    // --- VOICE RECOGNITION (ANY LANGUAGE) ---
+    function startVoiceRecognition() {
+        const inputField = document.getElementById('aiTextInput');
+        const micBtn = document.getElementById('micBtn');
+        
+        const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+        if (!SpeechRecognition) { 
+            alert("Sorry, your browser doesn't support Voice AI. Please type."); 
+            return; 
+        }
+        
+        const recognition = new SpeechRecognition();
+        recognition.lang = 'hi-IN'; // Works for Hindi, Urdu, and English mixed
+        
+        recognition.onstart = function() {
+            // Visual feedback for the user
+            micBtn.classList.add('bg-red-500', 'text-white');
+            micBtn.classList.remove('bg-white', 'text-black');
+            inputField.placeholder = "सुन रहा हूँ... बोलिए (Listening...)";
+        };
+        
+        recognition.onresult = function(event) {
+            const spokenText = event.results[0][0].transcript;
+            inputField.value = spokenText;
+            
+            // Automatically click generate if they have credits
+            if(widgetCredits > 0 || isWidgetPro) {
+                handleGenerateAction();
+            } else {
+                document.getElementById('proPaywallModal').style.display = 'flex';
+            }
+        };
+        
+        recognition.onend = function() {
+            // Reset visual feedback
+            micBtn.classList.remove('bg-red-500', 'text-white');
+            micBtn.classList.add('bg-white', 'text-black');
+            inputField.placeholder = "Type or speak in any language...";
+        };
+        
+        recognition.start();
+    }
+
+    // --- PAYWALL LOGIC ---
+    function togglePayMode(mode) {
+        const upiBox = document.getElementById('pwUpiBox');
+        const ppBox = document.getElementById('pwPaypalBox');
+        const upiBtn = document.getElementById('pwUpiBtn');
+        const ppBtn = document.getElementById('pwPaypalBtn');
+
+        if(mode === 'upi') {
+            upiBox.style.display = 'block'; ppBox.style.display = 'none';
+            upiBtn.style.background = '#00e5ff'; upiBtn.style.color = '#000';
+            ppBtn.style.background = '#1f2937'; ppBtn.style.color = '#d1d5db';
+        } else {
+            upiBox.style.display = 'none'; ppBox.style.display = 'block';
+            ppBtn.style.background = '#00e5ff'; ppBtn.style.color = '#000';
+            upiBtn.style.background = '#1f2937'; upiBtn.style.color = '#d1d5db';
+        }
+    }
+
+    function verifyUtrAndUnlock() {
+        let utr = document.getElementById('pwUtrInput').value.trim();
+        if(utr.length >= 8) {
+            localStorage.setItem('ws_user_pro', 'true');
+            isWidgetPro = true;
+            document.getElementById('proPaywallModal').style.display = 'none';
+            updateCreditUI();
+            alert("Payment Verified! PRO Features Unlocked Successfully.");
+        } else {
+            alert("Please enter a valid 12-Digit UTR Number from your UPI App.");
+        }
+    }
+</script>
           <!-- QUICK QUOTE CARD -->
           <div class="quick-quote-card">
             <h3>Quick Quote</h3>
