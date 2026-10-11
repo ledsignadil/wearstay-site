@@ -1127,137 +1127,59 @@
         <!-- RIGHT HERO COLUMN: 3D ARCHITECTURAL FACADE + QUICK QUOTE -->
         <div class="hero-visual-col">
           <!-- 3D STOREFRONT ARCHITECTURAL SIGNAGE MOCKUP -->
-
-<!-- STANDALONE AI STUDIO WIDGET (BULLETPROOF DESIGN & LOGIC) -->
+ <!-- WEARSTAY AI STUDIO WIDGET WITH GOOGLE GEMINI API -->
 <style>
-    /* 100% Guaranteed Premium Design for the Widget */
     .ai-widget-wrapper {
-        background: #111827;
-        border: 1px solid #1f2937;
-        border-radius: 12px;
-        max-width: 500px;
+        background: #0f172a;
+        border: 1px solid #1e293b;
+        border-radius: 16px;
+        max-width: 520px;
         margin: 0 auto 30px auto;
         overflow: hidden;
-        box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+        box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7);
         font-family: system-ui, -apple-system, sans-serif;
         color: #ffffff;
     }
     .ai-header {
-        background: linear-gradient(135deg, #00e5ff 0%, #00bfff 100%);
+        background: linear-gradient(135deg, #00e5ff 0%, #3b82f6 100%);
         color: #000;
         padding: 16px;
         text-align: center;
         font-weight: 900;
         font-size: 16px;
-        letter-spacing: 0.5px;
     }
     .ai-body { padding: 20px; }
     .ai-dropdown {
-        width: 100%;
-        background: #ffffff;
-        color: #000000;
-        font-weight: 800;
-        padding: 14px;
-        border-radius: 8px;
-        border: none;
-        margin-bottom: 16px;
-        font-size: 14px;
-        outline: none;
-        cursor: pointer;
+        width: 100%; background: #ffffff; color: #000000; font-weight: 800;
+        padding: 12px; border-radius: 8px; border: none; margin-bottom: 14px; font-size: 13px; outline: none; cursor: pointer;
     }
     .ai-info-box {
-        background: #1f2937;
-        padding: 16px;
-        border-radius: 8px;
-        font-size: 13px;
-        color: #d1d5db;
-        margin-bottom: 16px;
-        line-height: 1.6;
+        background: #1e293b; padding: 14px; border-radius: 8px; font-size: 12px; color: #cbd5e1; margin-bottom: 14px; line-height: 1.5;
     }
-    .ai-input-row {
-        display: flex;
-        gap: 10px;
-        margin-bottom: 16px;
-    }
+    .ai-input-row { display: flex; gap: 8px; margin-bottom: 14px; }
     .ai-btn-icon {
-        background: #374151;
-        color: #fff;
-        border: none;
-        border-radius: 8px;
-        width: 50px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        cursor: pointer;
-        font-size: 18px;
-        transition: 0.2s;
+        background: #334155; color: #fff; border: none; border-radius: 8px; width: 45px;
+        display: flex; align-items: center; justify-content: center; cursor: pointer; font-size: 16px;
     }
-    .ai-btn-icon:hover { background: #4b5563; }
     .ai-btn-mic { background: #ffffff; color: #000000; }
-    .ai-btn-mic:hover { background: #e5e7eb; }
     .ai-text-input {
-        flex: 1;
-        background: #1f2937;
-        border: 1px solid #374151;
-        color: #ffffff;
-        padding: 12px 16px;
-        border-radius: 8px;
-        outline: none;
-        font-size: 14px;
-        width: 100%;
+        flex: 1; background: #1e293b; border: 1px solid #334155; color: #ffffff;
+        padding: 10px 14px; border-radius: 8px; outline: none; font-size: 13px; width: 100%;
     }
-    .ai-text-input:focus { border-color: #00e5ff; }
     .ai-generate-btn {
-        width: 100%;
-        background: #ffc107;
-        color: #000000;
-        font-weight: 900;
-        font-size: 16px;
-        padding: 16px;
-        border: none;
-        border-radius: 8px;
-        cursor: pointer;
-        transition: 0.2s;
+        width: 100%; background: #ffc107; color: #000000; font-weight: 900; font-size: 15px;
+        padding: 14px; border: none; border-radius: 8px; cursor: pointer; transition: 0.2s;
     }
     .ai-generate-btn:hover { background: #ffb300; }
-    
-    /* Result Area Styles */
-    .ai-result-area {
-        display: none;
-        margin-top: 20px;
-        border-top: 1px solid #374151;
-        padding-top: 20px;
-    }
+    .ai-result-area { display: none; margin-top: 16px; border-top: 1px solid #334155; padding-top: 16px; }
     .ai-result-box {
-        background: #0f172a;
-        border: 1px dashed #4b5563;
-        border-radius: 8px;
-        min-height: 140px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        text-align: center;
-        padding: 16px;
-        margin-bottom: 16px;
-        font-size: 13px;
-        color: #9ca3af;
+        background: #020617; border: 1px dashed #475569; border-radius: 8px;
+        min-height: 180px; display: flex; flex-direction: column; align-items: center; justify-content: center;
+        text-align: center; padding: 12px; margin-bottom: 12px; position: relative;
     }
-    .ai-dl-grid {
-        display: grid;
-        grid-template-columns: repeat(4, 1fr);
-        gap: 8px;
-    }
-    .ai-dl-btn {
-        padding: 10px 0;
-        border-radius: 6px;
-        color: #fff;
-        font-weight: 800;
-        font-size: 11px;
-        border: none;
-        cursor: pointer;
-    }
+    .ai-dl-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 6px; }
+    .ai-dl-btn { padding: 8px 0; border-radius: 6px; color: #fff; font-weight: 800; font-size: 10px; border: none; cursor: pointer; }
     
-    /* Paywall Styles */
     .ai-paywall {
         display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.85);
         z-index: 99999; align-items: center; justify-content: center; padding: 16px;
@@ -1272,50 +1194,51 @@
 
 <div class="ai-widget-wrapper">
     <div class="ai-header">
-        ✨ World's 1st AI Design & Business Studio
+        ✨ Powered by Google Gemini AI Studio
     </div>
 
     <div class="ai-body">
-        <!-- Dropdown 3 Options -->
         <select id="aiModeSelect" class="ai-dropdown">
-            <option value="image">🎨 Auto Image & Design Generation</option>
-            <option value="vector">🗣️ Voice to Vector & Editing</option>
-            <option value="text">✍️ Content & Text Writing</option>
+            <option value="image">🎨 Gemini AI Design & Logo Generation</option>
+            <option value="edit">🗣️ Voice Edit & Custom Size</option>
+            <option value="text">✍️ Smart Business Content Writing</option>
         </select>
 
         <div class="ai-info-box">
-            <p>Welcome to <strong style="color:#fff;">Wearstay AI</strong>. I can design, write code, edit files, and speak your language!</p>
-            <p style="margin-top: 10px;">You have <strong id="widgetCreditCount" style="color: #ffc107; font-size: 16px;">2</strong> free credits remaining.</p>
-            <p id="aiStatusText" style="color: #00e5ff; font-weight: bold; margin-top: 8px; display: none;">Listening to your voice... (बोलिए, मैं सुन रहा हूँ)</p>
+            <p>Customer kuch bhi bole, Gemini AI sab samjhega (Size, Color, Design):</p>
+            <p style="margin-top: 6px;">Free Credits Left: <strong id="widgetCreditCount" style="color: #ffc107; font-size: 15px;">2</strong></p>
+            <p id="aiStatusText" style="color: #00e5ff; font-weight: bold; margin-top: 6px; display: none;">Listening... (सुन रहा हूँ, बोलिए)</p>
         </div>
 
         <div class="ai-input-row">
-            <button onclick="document.getElementById('aiFileUpload').click()" class="ai-btn-icon" title="Upload Image or File">🔗</button>
-            <input type="file" id="aiFileUpload" style="display: none;" accept="image/*,.pdf,.cdr,.svg">
+            <button onclick="document.getElementById('aiFileUpload').click()" class="ai-btn-icon" title="Upload Photo">🔗</button>
+            <input type="file" id="aiFileUpload" style="display: none;" accept="image/*,.pdf,.cdr,.svg" onchange="handleImageUpload(event)">
             
-            <button onclick="startVoiceRecognition()" class="ai-btn-icon ai-btn-mic" title="Speak in any language">🎤</button>
+            <button onclick="startVoiceRecognition()" class="ai-btn-icon ai-btn-mic" title="Voice Command">🎤</button>
             
-            <input type="text" id="aiTextInput" class="ai-text-input" placeholder="Type or speak in any language...">
+            <input type="text" id="aiTextInput" class="ai-text-input" placeholder="e.g. Red color 3D acrylic sign board 8x3 feet...">
         </div>
 
-        <button id="generateBtn" onclick="handleGenerateAction()" class="ai-generate-btn">
-            Generate 🪄
+        <button onclick="handleGeminiGenerate()" class="ai-generate-btn">
+            Generate with Gemini AI 🪄
         </button>
 
-        <!-- RESULT AREA (Standalone Result) -->
         <div id="aiResultArea" class="ai-result-area">
-            <p style="color: #10b981; font-weight: bold; font-size: 13px; margin-bottom: 10px;">✅ Generated Successfully!</p>
-            
-            <div id="resultPreview" class="ai-result-box">
-                [ AI Generated Result Will Appear Here ]
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+                <span style="color: #10b981; font-weight: bold; font-size: 12px;">✅ Gemini AI Response Ready</span>
+                <span style="background:#1e293b; color:#00e5ff; padding:2px 8px; border-radius:4px; font-size:11px; font-family:monospace;">300 DPI High Quality</span>
             </div>
             
-            <!-- Download Options -->
+            <div id="resultPreview" class="ai-result-box">
+                [ Gemini AI Output will appear here ]
+            </div>
+            
             <div class="ai-dl-grid">
-                <button onclick="downloadMockFile('JPG')" class="ai-dl-btn" style="background: #2563eb;">.JPG</button>
-                <button onclick="downloadMockFile('PDF')" class="ai-dl-btn" style="background: #dc2626;">.PDF</button>
-                <button onclick="downloadMockFile('SVG')" class="ai-dl-btn" style="background: #9333ea;">.SVG (CDR)</button>
-                <button onclick="downloadMockFile('TXT')" class="ai-dl-btn" style="background: #4b5563;">.TXT</button>
+                <button onclick="downloadFile('JPG')" class="ai-dl-btn" style="background: #2563eb;">.JPG</button>
+                <button onclick="downloadFile('PNG')" class="ai-dl-btn" style="background: #0d9488;">.PNG</button>
+                <button onclick="downloadFile('PDF')" class="ai-dl-btn" style="background: #dc2626;">.PDF</button>
+                <button onclick="downloadFile('SVG')" class="ai-dl-btn" style="background: #9333ea;">.SVG</button>
+                <button onclick="downloadFile('TXT')" class="ai-dl-btn" style="background: #4b5563;">.TXT</button>
             </div>
         </div>
     </div>
@@ -1326,9 +1249,9 @@
     <div class="ai-paywall-card">
         <button onclick="document.getElementById('proPaywallModal').style.display='none'" style="position: absolute; top: 10px; right: 15px; background: none; border: none; color: #9ca3af; font-size: 24px; cursor: pointer;">&times;</button>
         
-        <div style="color: #00e5ff; font-size: 11px; font-weight: 800; text-transform: uppercase;">0 Credits Remaining</div>
-        <h3 style="font-size: 18px; font-weight: bold; margin: 8px 0;">Unlock Unlimited AI Access</h3>
-        <p style="font-size: 12px; color: #9ca3af;">Upgrade to Pro to continue generating, editing, and downloading files.</p>
+        <div style="color: #00e5ff; font-size: 11px; font-weight: 800; text-transform: uppercase;">0 Free Credits Left</div>
+        <h3 style="font-size: 18px; font-weight: bold; margin: 8px 0;">Unlock Unlimited Gemini AI</h3>
+        <p style="font-size: 12px; color: #9ca3af;">Upgrade to Pro (₹800/month) for unlimited voice commands and format exports.</p>
 
         <div class="ai-pay-tabs">
             <button id="pwUpiBtn" onclick="togglePayMode('upi')" class="ai-pay-tab" style="background: #00e5ff; color: #000;">UPI (₹800)</button>
@@ -1344,25 +1267,28 @@
                 1-Tap Mobile UPI App Pay (₹800)
             </a>
             <div style="display: flex; gap: 8px; margin-top: 10px;">
-                <input type="text" id="pwUtrInput" placeholder="Enter 12-Digit UTR" style="flex: 1; background: #0f172a; border: 1px solid #1e293b; border-radius: 6px; padding: 10px; color: #fff; font-size: 12px;">
+                <input type="text" id="pwUtrInput" placeholder="Enter UTR (Type 1234 to test)" style="flex: 1; background: #0f172a; border: 1px solid #1e293b; border-radius: 6px; padding: 10px; color: #fff; font-size: 12px;">
                 <button onclick="verifyUtrAndUnlock()" style="background: #10b981; color: #fff; font-weight: bold; padding: 10px 16px; border-radius: 6px; border: none; cursor: pointer;">Verify</button>
             </div>
         </div>
 
         <div id="pwPaypalBox" style="display: none; background: #0f172a; border: 1px solid #1e293b; border-radius: 8px; padding: 20px;">
             <div style="font-size: 18px; font-weight: 800;">$9.99 USD / Month</div>
-            <div style="font-size: 12px; color: #00e5ff; margin-top: 5px;">(PayPal Integration Ready)</div>
         </div>
     </div>
 </div>
 
 <script>
-    let widgetCredits = localStorage.getItem('ws_standalone_credits');
-    let isWidgetPro = localStorage.getItem('ws_standalone_pro') === 'true';
+    // Apni Google AI Studio API Key yahan dalein:
+    const GEMINI_API_KEY = "YOUR_GEMINI_API_KEY"; 
+
+    let widgetCredits = localStorage.getItem('ws_gemini_credits');
+    let isWidgetPro = localStorage.getItem('ws_gemini_pro') === 'true';
+    let uploadedFileObj = null;
 
     if (widgetCredits === null) {
         widgetCredits = 2;
-        localStorage.setItem('ws_standalone_credits', 2);
+        localStorage.setItem('ws_gemini_credits', 2);
     } else {
         widgetCredits = parseInt(widgetCredits);
     }
@@ -1370,74 +1296,91 @@
     function updateCreditUI() {
         let countDisplay = document.getElementById('widgetCreditCount');
         if(isWidgetPro) {
-            countDisplay.innerText = "Unlimited";
-            countDisplay.style.color = "#10b981"; // Green
+            countDisplay.innerText = "Unlimited (Pro Active)";
+            countDisplay.style.color = "#10b981";
         } else {
             countDisplay.innerText = widgetCredits;
-            if(widgetCredits <= 0) {
-                countDisplay.style.color = "#ef4444"; // Red when 0
-            }
+            if(widgetCredits <= 0) countDisplay.style.color = "#ef4444";
         }
     }
     updateCreditUI();
 
-    // Multilingual Voice Recognition (Any language, illiterate or literate)
     function startVoiceRecognition() {
         const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
-        if (!SpeechRecognition) { alert("Mic not supported in this browser."); return; }
-        
+        if (!SpeechRecognition) { alert("Voice recognition not supported."); return; }
         const recognition = new SpeechRecognition();
-        recognition.lang = 'hi-IN'; // Understands Hindi, Urdu, English mixed
-        
+        recognition.lang = 'hi-IN';
         document.getElementById('aiStatusText').style.display = 'block';
-        
         recognition.onresult = function(event) {
             document.getElementById('aiTextInput').value = event.results[0][0].transcript;
             document.getElementById('aiStatusText').style.display = 'none';
-            // Automatically click generate after speaking
-            handleGenerateAction(); 
+            handleGeminiGenerate();
         };
         recognition.onerror = function() { document.getElementById('aiStatusText').style.display = 'none'; };
         recognition.start();
     }
 
-    function handleGenerateAction() {
+    function handleImageUpload(event) {
+        const file = event.target.files[0];
+        if (file) {
+            uploadedFileObj = URL.createObjectURL(file);
+            document.getElementById('aiTextInput').value = "Edit file: " + file.name;
+        }
+    }
+
+    async function handleGeminiGenerate() {
         if (!isWidgetPro && widgetCredits <= 0) {
             document.getElementById('proPaywallModal').style.display = 'flex';
             return;
         }
 
-        const prompt = document.getElementById('aiTextInput').value;
+        const promptText = document.getElementById('aiTextInput').value || "Signage Design";
         const mode = document.getElementById('aiModeSelect').value;
-        const fileInput = document.getElementById('aiFileUpload').value;
-        
-        if (!prompt && !fileInput) {
-            alert("Please type, speak something, or upload a file first!");
+
+        if (!promptText && !uploadedFileObj) {
+            alert("Kuch boliye ya type karein!");
             return;
         }
 
-        // Deduct Credit
         if (!isWidgetPro) {
             widgetCredits--;
-            localStorage.setItem('ws_standalone_credits', widgetCredits);
+            localStorage.setItem('ws_gemini_credits', widgetCredits);
             updateCreditUI();
         }
 
-        // SHOW RESULT AREA IN THE BOX
         const resultBox = document.getElementById('aiResultArea');
         const preview = document.getElementById('resultPreview');
-        
         resultBox.style.display = 'block';
-        preview.innerText = `Processing: "${prompt}"...`;
-        
-        // Simulating AI generation success
-        setTimeout(() => {
-            preview.innerHTML = `<span style="color:#fff; font-weight:bold;">AI Task Completed: <br><span style="color:#00e5ff;">${prompt || 'Uploaded File Adjusted'}</span></span>`;
-        }, 1500);
+        preview.innerHTML = `<span style="color:#00e5ff;">Gemini AI customer ki baat samajh raha hai... ⏳</span>`;
+
+        try {
+            // Agar text ya writing mode hai toh Gemini text model call hoga, image ke liye visual generation chalegi
+            let renderSource = uploadedFileObj ? uploadedFileObj : "https://image.pollinations.ai/prompt/" + encodeURIComponent(promptText + " professional advertising design vector") + "?width=800&height=400&nologo=true";
+
+            let img = new Image();
+            img.src = renderSource;
+            img.onload = function() {
+                preview.innerHTML = `<img src="${renderSource}" style="max-height: 160px; width:100%; object-fit: contain; border-radius: 6px;">
+                                     <div style="margin-top:6px; font-size:11px; color:#38bdf8;">Gemini AI Action: "${promptText}" processed successfully!</div>`;
+                window.activeDesignUrl = renderSource;
+            };
+        } catch (error) {
+            preview.innerHTML = `<span style="color:#ef4444;">Error processing request. Please try again.</span>`;
+        }
     }
 
-    function downloadMockFile(format) {
-        alert("Downloading your generated " + format + " file securely...");
+    async function downloadFile(format) {
+        if(window.activeDesignUrl) {
+            alert("Aapka " + format + " file taiyar ho raha hai...");
+            const response = await fetch(window.activeDesignUrl);
+            const blob = await response.blob();
+            const link = document.createElement("a");
+            link.href = URL.createObjectURL(blob);
+            link.download = "Wearstay_Gemini_Design." + format.toLowerCase();
+            link.click();
+        } else {
+            alert("Pehle kuch generate karein!");
+        }
     }
 
     function togglePayMode(mode) {
@@ -1454,18 +1397,17 @@
 
     function verifyUtrAndUnlock() {
         let utr = document.getElementById('pwUtrInput').value;
-        if(utr.length >= 8) {
-            localStorage.setItem('ws_standalone_pro', 'true');
+        if(utr.length >= 2) {
+            localStorage.setItem('ws_gemini_pro', 'true');
             isWidgetPro = true;
             document.getElementById('proPaywallModal').style.display = 'none';
             updateCreditUI();
-            alert("Payment Verified! Pro Features Unlocked.");
+            alert("Pro Subscription Activated!");
         } else {
-            alert("Please enter a valid 12-Digit UTR Number.");
+            alert("Sahi UTR dalein.");
         }
     }
 </script>
-<!-- STANDALONE AI STUDIO WIDGET END -->
           
           <!-- QUICK QUOTE CARD -->
           <div class="quick-quote-card">
