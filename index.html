@@ -1127,66 +1127,271 @@
         <!-- RIGHT HERO COLUMN: 3D ARCHITECTURAL FACADE + QUICK QUOTE -->
         <div class="hero-visual-col">
           <!-- 3D STOREFRONT ARCHITECTURAL SIGNAGE MOCKUP -->
-          <div class="storefront-card">
-            <div class="storefront-art-wrap">
-              <svg viewBox="0 0 540 230" xmlns="http://www.w3.org/2000/svg" style="background: #040A12;">
-                <defs>
-                  <radialGradient id="facadeSpotlight" cx="50%" cy="30%" r="65%">
-                    <stop offset="0%" stop-color="#FFD21F" stop-opacity="0.3" />
-                    <stop offset="50%" stop-color="#0284C7" stop-opacity="0.1" />
-                    <stop offset="100%" stop-color="#040A12" stop-opacity="0" />
-                  </radialGradient>
-                  <linearGradient id="goldChannelGlow" x1="0%" y1="0%" x2="100%" y2="0%">
-                    <stop offset="0%" stop-color="#FFF085" />
-                    <stop offset="50%" stop-color="#FFD21F" />
-                    <stop offset="100%" stop-color="#D97706" />
-                  </linearGradient>
-                  <filter id="neonBlur" x="-20%" y="-20%" width="140%" height="140%">
-                    <feGaussianBlur stdDeviation="6" result="blur" />
-                    <feMerge>
-                      <feMergeNode in="blur" />
-                      <feMergeNode in="SourceGraphic" />
-                    </feMerge>
-                  </filter>
-                </defs>
+          <!-- ========================================== -->
+<!-- WEARSTAY AI - ULTIMATE MULTILINGUAL PRO -->
+<!-- ========================================== -->
+<div style="width: 100%; background: #1a1a1a; border-radius: 18px; border: 1px solid #2A4E77; overflow: hidden; font-family: sans-serif; box-shadow: 0 20px 50px rgba(0,0,0,0.5);">
+    
+    <div style="background: linear-gradient(135deg, #0284c7, #00f2ff); color: #000; padding: 12px; text-align: center; font-size: 18px; font-weight: 900;">
+        ✨ World's 1st AI Design & Business Studio 
+    </div>
 
-                <!-- Facade Background Texture & Spotlights -->
-                <rect x="0" y="0" width="540" height="230" fill="#06121E" />
-                <rect x="0" y="0" width="540" height="150" fill="url(#facadeSpotlight)" />
+    <!-- ADMIN SETUP: API KEY -->
+    <div id="admin-api-config" style="background: #2b2b2b; padding: 8px; border-bottom: 2px dashed #444; text-align: center; font-size: 12px;">
+        <span style="color: #bbb;">🔑 Admin: </span>
+        <input type="password" id="admin-secret-key-input" placeholder="sk-proj-..." style="padding: 4px; border-radius: 4px; border: 1px solid #555; background: #111; color: #fff; width: 40%;">
+        <button onclick="saveAdminKey()" style="padding: 4px 8px; background: #28a745; color: #fff; border: none; border-radius: 4px; cursor: pointer;">Save</button>
+        <div id="key-status-msg" style="margin-top: 4px; color: #ffcc00; font-size: 10px;">*Key saves in your browser securely.</div>
+    </div>
 
-                <!-- Architectural Modern Dark Stone Facade Wall -->
-                <rect x="25" y="20" width="490" height="190" rx="10" fill="#0A1828" stroke="#163250" stroke-width="2" />
-                <line x1="25" y1="120" x2="515" y2="120" stroke="#10253C" stroke-width="1.5" />
-                <line x1="180" y1="20" x2="180" y2="120" stroke="#10253C" stroke-width="1" />
-                <line x1="360" y1="20" x2="360" y2="120" stroke="#10253C" stroke-width="1" />
+    <div style="background: #333; padding: 10px; text-align: center; color: white;">
+        <select id="ai-mode" style="padding: 6px; border-radius: 5px; font-weight: bold; background: #fff; color: #000; border: none; cursor: pointer; width: 95%;">
+            <option value="image">🎨 Auto Image & Design Generation</option>
+            <option value="text">📝 Text, HTML Code, Stories & Ideas</option>
+        </select>
+    </div>
 
-                <!-- 3D Architectural Letters Backing Plate -->
-                <rect x="90" y="38" width="360" height="70" rx="8" fill="#040B14" stroke="#FFD21F" stroke-width="1.2" stroke-opacity="0.4" />
+    <div id="ai-chat-box" style="height: 350px; overflow-y: auto; padding: 15px; background: #222; color: #fff;">
+        <p style="background: #333; padding: 12px; border-radius: 8px; display: inline-block; margin: 0; line-height: 1.4; font-size: 14px;">
+            Welcome to <b>Wearstay AI</b>. I can design, write code, tell stories, and speak your language! <br><br>You have <span id="credit-count" style="color:#ffcc00; font-weight:bold;"></span> free credits remaining.
+        </p>
+    </div>
 
-                <!-- Logo Icon on Facade -->
-                <circle cx="130" cy="73" r="18" fill="url(#goldChannelGlow)" filter="url(#neonBlur)" opacity="0.9" />
-                <text x="130" y="80" font-family="'Montserrat', sans-serif" font-weight="900" font-size="18" fill="#040B14" text-anchor="middle">G</text>
+    <!-- UPLOAD PREVIEW AREA -->
+    <div id="upload-preview-container" style="display: none; padding: 10px; background: #111; border-top: 1px solid #333;">
+        <span style="color: #bbb; font-size: 11px; display: block; margin-bottom: 5px;">Attached Image:</span>
+        <img id="image-preview" style="max-height: 50px; border-radius: 5px; border: 1px solid #444;">
+        <button onclick="removeUpload()" style="background: transparent; color: #ff4444; border: none; cursor: pointer; margin-left: 10px; font-weight: bold; font-size:12px;">❌ Remove</button>
+    </div>
 
-                <!-- 3D Channel Letters (YOUR BRAND - OUR CREATIVE TOUCH) -->
-                <text x="285" y="68" font-family="'Montserrat', sans-serif" font-weight="900" font-size="24" fill="url(#goldChannelGlow)" filter="url(#neonBlur)" text-anchor="middle" letter-spacing="1">
-                  YOUR BRAND
-                </text>
-                <text x="285" y="92" font-family="'Plus Jakarta Sans', sans-serif" font-weight="800" font-size="10" fill="#00F2FF" text-anchor="middle" letter-spacing="3">
-                  OUR CREATIVE TOUCH
-                </text>
+    <!-- MOBILE RESPONSIVE INPUT AREA -->
+    <div style="display: flex; flex-wrap: wrap; gap: 8px; padding: 12px; background: #111; align-items: center; border-top: 1px solid #222;">
+        
+        <input type="file" id="image-upload-input" accept="image/*" style="display: none;" onchange="handleImageUpload(event)">
+        
+        <div style="display: flex; gap: 8px;">
+            <button onclick="document.getElementById('image-upload-input').click()" style="padding: 10px 12px; background: #444; color: #fff; border: none; border-radius: 6px; font-size: 16px; cursor: pointer;" title="Upload Photo or Document">📎</button>
+            <button id="voice-btn" onclick="startVoice()" style="padding: 10px 12px; background: #e0e0e0; color: #000; border: none; border-radius: 6px; font-size: 16px; cursor: pointer;" title="Speak Prompt">🎤</button>
+        </div>
+        
+        <input type="text" id="ai-user-input" placeholder="Type or speak in any language..." style="flex: 1; min-width: 140px; padding: 10px; border-radius: 6px; border: none; outline: none; background: #333; color: #fff; font-size: 14px;">
+        
+        <button onclick="startAiDesign()" style="padding: 10px 15px; background: #ffcc00; color: #000; border: none; border-radius: 6px; font-weight: bold; cursor: pointer; font-size: 14px; flex-grow: 1; text-align: center;">Generate</button>
+    </div>
 
-                <!-- Glass Showroom Windows on Lower Level -->
-                <rect x="50" y="130" width="130" height="80" rx="4" fill="#071E36" stroke="#1C3D63" stroke-width="1.5" />
-                <rect x="205" y="130" width="130" height="80" rx="4" fill="#0B2B4C" stroke="#1C3D63" stroke-width="1.5" opacity="0.9" />
-                <rect x="360" y="130" width="130" height="80" rx="4" fill="#071E36" stroke="#1C3D63" stroke-width="1.5" />
+</div>
 
-                <!-- Interior Showroom Warm Light Rays -->
-                <line x1="270" y1="130" x2="270" y2="210" stroke="#FFD21F" stroke-width="2" stroke-opacity="0.5" />
-                <circle cx="270" cy="165" r="22" fill="#FFD21F" opacity="0.15" filter="url(#neonBlur)" />
-                <text x="270" y="170" font-size="9" font-family="sans-serif" font-weight="700" fill="#E2E8F0" text-anchor="middle">DESIGN STUDIO</text>
-              </svg>
+<script>
+let uploadedImageBase64 = "";
+
+function handleImageUpload(event) {
+    const file = event.target.files[0];
+    if (file) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            uploadedImageBase64 = e.target.result;
+            document.getElementById("image-preview").src = uploadedImageBase64;
+            document.getElementById("upload-preview-container").style.display = "block";
+            document.getElementById("ai-mode").value = "text"; 
+        };
+        reader.readAsDataURL(file);
+    }
+}
+
+function removeUpload() {
+    uploadedImageBase64 = "";
+    document.getElementById("image-upload-input").value = "";
+    document.getElementById("upload-preview-container").style.display = "none";
+}
+
+function startVoice() {
+    if (!('webkitSpeechRecognition' in window)) { 
+        alert("🎤 Voice feature requires Google Chrome browser."); 
+        return; 
+    }
+    let recognition = new webkitSpeechRecognition();
+    recognition.lang = 'hi-IN'; // Will pick up both Hindi and English naturally
+    recognition.continuous = false;
+    
+    recognition.onstart = function() {
+        document.getElementById("voice-btn").innerText = "🔴";
+        document.getElementById("voice-btn").style.background = "#ff4444";
+        document.getElementById("ai-user-input").placeholder = "Listening...";
+    };
+    
+    recognition.onresult = function(event) {
+        let currentText = document.getElementById("ai-user-input").value;
+        let spokenText = event.results[0][0].transcript;
+        document.getElementById("ai-user-input").value = currentText ? currentText + " " + spokenText : spokenText;
+        resetVoiceBtn();
+    };
+    
+    recognition.onerror = function(event) {
+        alert("🎤 Mic Error: Please allow Microphone access in browser settings.");
+        resetVoiceBtn();
+    };
+    
+    recognition.onend = function() { resetVoiceBtn(); };
+    
+    try { recognition.start(); } catch(e) { alert("Mic is already active or blocked."); }
+}
+
+function resetVoiceBtn() {
+    document.getElementById("voice-btn").innerText = "🎤";
+    document.getElementById("voice-btn").style.background = "#e0e0e0";
+    document.getElementById("ai-user-input").placeholder = "Type or speak in any language...";
+}
+
+let secureApiKey = localStorage.getItem("wearstay_api_key") || "";
+updateKeyUI();
+
+function saveAdminKey() {
+    let inputVal = document.getElementById("admin-secret-key-input").value.trim();
+    if(inputVal.startsWith("sk-")) {
+        localStorage.setItem("wearstay_api_key", inputVal);
+        secureApiKey = inputVal;
+        alert("🔒 API Key saved!"); updateKeyUI();
+    } else { alert("❌ Invalid Key."); }
+}
+
+function updateKeyUI() {
+    let box = document.getElementById("admin-api-config");
+    if (secureApiKey) { document.getElementById("key-status-msg").innerText = "✅ AI Active."; box.style.opacity = "0.5"; }
+}
+
+let userCredits = localStorage.getItem("wearstay_credits");
+if (userCredits === null) {
+    userCredits = 2; 
+    localStorage.setItem("wearstay_credits", userCredits);
+} else { userCredits = parseInt(userCredits); }
+
+const premiumPassword = "WEARSTAYPRO"; 
+let isPremium = false;
+let premiumDate = localStorage.getItem("wearstay_premium_date");
+
+if (premiumDate) {
+    let daysPassed = (Date.now() - parseInt(premiumDate)) / (1000 * 60 * 60 * 24);
+    if (daysPassed <= 30) { isPremium = true; } 
+    else { localStorage.removeItem("wearstay_premium_date"); isPremium = false; }
+}
+
+document.getElementById("credit-count").innerText = isPremium ? "Unlimited" : userCredits;
+
+function unlockPremium() {
+    let enteredCode = document.getElementById("premium-code-input").value;
+    if (enteredCode === premiumPassword) {
+        localStorage.setItem("wearstay_premium_date", Date.now()); 
+        location.reload(); 
+    } else { alert("❌ Invalid Code."); }
+}
+
+async function startAiDesign() {
+    let inputField = document.getElementById("ai-user-input");
+    let promptText = inputField.value.trim();
+    let chatBox = document.getElementById("ai-chat-box");
+    let mode = document.getElementById("ai-mode").value; 
+    
+    if (!promptText && !uploadedImageBase64) return; 
+    if (!secureApiKey) { alert("Admin: Save API Key first."); return; }
+
+    if (!isPremium && userCredits <= 0) {
+        chatBox.innerHTML += `
+            <div style="background: #ffe6e6; padding: 25px; border-radius: 8px; text-align: center; color: #cc0000; margin-top: 15px; border: 2px solid #cc0000;">
+                <b style="font-size: 20px;">🛑 Trial Locked!</b><br><br>
+                Unlock Premium Monthly Subscription.<br>
+                <b style="font-size: 24px; color: #000; background: #ffcc00; padding: 5px 10px; border-radius: 5px;">₹800 / Month</b><br><br>
+                <a href="upi://pay?pa=ledsignadil@oksbi&pn=Wearstay%20AI&cu=INR&am=800" style="background: #00baf2; color: white; padding: 12px 20px; text-decoration: none; border-radius: 5px; display: inline-block; font-weight: bold; margin: 5px;">🇮🇳 Pay ₹800 via Paytm / UPI</a>
+                <br>
+                <a href="https://www.paypal.com/ncp/payment/BJXPNCZGH8TV4" target="_blank" style="background: #003087; color: white; padding: 12px 20px; text-decoration: none; border-radius: 5px; display: inline-block; font-weight: bold; margin: 5px;">🌍 Pay via PayPal</a>
+                <div style="margin-top: 15px; background: #fff; padding: 15px; border-radius: 5px;">
+                    <input type="password" id="premium-code-input" placeholder="Unlock Code" style="padding: 10px; border: 1px solid #ccc; width: 60%;">
+                    <button onclick="unlockPremium()" style="padding: 10px 15px; background: #28a745; color: white; border: none; cursor: pointer; font-weight: bold;">Unlock</button>
+                </div>
             </div>
-          </div>
+        `;
+        chatBox.scrollTop = chatBox.scrollHeight;
+        return; 
+    }
+
+    let userMsgHtml = `<div style="text-align: right; margin-top: 15px;"><div style="background: #ffcc00; color: #000; padding: 12px; border-radius: 8px; display: inline-block; margin: 0; text-align: left;">`;
+    if (uploadedImageBase64) { userMsgHtml += `<img src="${uploadedImageBase64}" style="max-height: 100px; display: block; border-radius: 5px; margin-bottom: 5px;">`; }
+    userMsgHtml += `${promptText}</div></div>`;
+    chatBox.innerHTML += userMsgHtml;
+    
+    inputField.value = ""; 
+
+    let loadingId = "load-" + Date.now();
+    let remainingText = isPremium ? "Unlimited Access" : `Credits left: ${userCredits - 1}`;
+    chatBox.innerHTML += `<div id="${loadingId}" style="margin-top: 15px;"><p style="background: #333; padding: 12px; border-radius: 8px; display: inline-block; margin: 0;">⏳ Generating... (${remainingText})</p></div>`;
+    chatBox.scrollTop = chatBox.scrollHeight;
+
+    try {
+        let apiUrl = "https://corsproxy.io/?https://api.openai.com/v1/chat/completions"; 
+        let apiBody = {};
+
+        if (mode === "image" && !uploadedImageBase64) {
+            apiUrl = "https://corsproxy.io/?https://api.openai.com/v1/images/generations";
+            apiBody = { model: "dall-e-3", prompt: promptText, n: 1, size: "1024x1024" };
+        } else {
+            let messageContent = [];
+            if (promptText) messageContent.push({ "type": "text", "text": promptText });
+            if (uploadedImageBase64) messageContent.push({ "type": "image_url", "image_url": { "url": uploadedImageBase64 } });
+            if (messageContent.length === 0) messageContent.push({ "type": "text", "text": "Analyze this." });
+
+            // YAHAN PAR NAYA AI SYSTEM PROMPT DALA GAYA HAI - BOLI GAYI BHASHA MEIN JAWAB DENE KE LIYE
+            apiBody = { 
+                model: "gpt-4o", 
+                messages: [
+                    {
+                        "role": "system", 
+                        "content": "You are the Wearstay AI Design & Business Studio. CRITICAL: ALWAYS reply in the exact same language the user uses to communicate with you (e.g., reply in Hindi if asked in Hindi, English if asked in English). You are highly capable: you can write HTML code, generate YouTube thumbnail ideas, write stories, write business plans, analyze images, and read text from photos. Act professionally and creatively."
+                    }, 
+                    {"role": "user", "content": messageContent}
+                ] 
+            };
+        }
+
+        let response = await fetch(apiUrl, {
+            method: "POST",
+            headers: { "Content-Type": "application/json", "Authorization": `Bearer ${secureApiKey}` },
+            body: JSON.stringify(apiBody)
+        });
+
+        let data = await response.json();
+        document.getElementById(loadingId).style.display = "none";
+
+        if(data.error) {
+            chatBox.innerHTML += `<div style="margin-top: 15px; color: #ff6666;"><b>API Error:</b> ${data.error.message}</div>`;
+        } else {
+            if (mode === "image" && !uploadedImageBase64) {
+                let imageUrl = data.data[0].url;
+                chatBox.innerHTML += `
+                    <div style="margin-top: 15px; background: #333; padding: 15px; border-radius: 8px; text-align: center;">
+                        <img src="${imageUrl}" style="max-width: 100%; border-radius: 8px;">
+                        <br><a href="${imageUrl}" target="_blank" download="Wearstay_Design.png" style="display: inline-block; margin-top: 15px; padding: 12px 25px; background: #4CAF50; color: white; text-decoration: none; border-radius: 5px; font-weight: bold;">📥 Download High-Quality JPG/PNG</a>
+                    </div>
+                `;
+            } else {
+                chatBox.innerHTML += `<div style="margin-top: 15px; background: #333; padding: 15px; border-radius: 8px; white-space: pre-wrap; font-size: 15px;">${data.choices[0].message.content}</div>`;
+            }
+            
+            if (!isPremium) {
+                userCredits--; 
+                localStorage.setItem("wearstay_credits", userCredits);
+                document.getElementById("credit-count").innerText = userCredits;
+            }
+            removeUpload(); 
+        }
+    } catch (error) {
+        document.getElementById(loadingId).style.display = "none";
+        chatBox.innerHTML += `<div style="margin-top: 15px; color: #ff6666;"><b>Network Error:</b> Proxy connection failed. Please try again.</div>`;
+    }
+    chatBox.scrollTop = chatBox.scrollHeight; 
+}
+</script>
+<!-- ========================================== -->
+<!-- WEARSTAY AI - ULTIMATE MULTILINGUAL PRO -->
+<!-- ========================================== -->
 
           <!-- QUICK QUOTE CARD -->
           <div class="quick-quote-card">
