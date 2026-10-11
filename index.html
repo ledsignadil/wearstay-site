@@ -1128,10 +1128,7 @@
         <div class="hero-visual-col">
           <!-- 3D STOREFRONT ARCHITECTURAL SIGNAGE MOCKUP -->
           <!-- ========================================== -->
-<!-- WEARSTAY AI STUDIO WIDGET (SIMPLE & VOICE-ENABLED) -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-<script src="https://cdn.tailwindcss.com"></script>
-
+<!-- STANDALONE AI STUDIO WIDGET (WITH IN-BUILT RESULT AREA & 3 OPTIONS) -->
 <div id="aiStudioWidget" class="bg-[#131b2c] rounded-xl overflow-hidden shadow-2xl border border-gray-700 max-w-lg mx-auto font-sans text-white mb-6">
     
     <!-- Header -->
@@ -1143,220 +1140,211 @@
 
     <!-- Body -->
     <div class="p-5">
-        <!-- Dropdown -->
-        <select class="w-full bg-white text-black font-bold p-3 rounded-lg outline-none mb-4 appearance-none shadow-inner cursor-pointer">
-            <option>🎨 Auto Image & Design Generation</option>
-            <option>🗣️ Voice to Vector & Editing</option>
-            <option>✍️ Content & Text Writing</option>
+        
+        <!-- 3 Options Dropdown (As per screenshot) -->
+        <select id="aiModeSelect" class="w-full bg-white text-black font-bold p-3 rounded-lg outline-none mb-4 appearance-none shadow-inner border-[3px] border-gray-200">
+            <option value="image">🎨 Auto Image & Design Generation</option>
+            <option value="vector">🗣️ Voice to Vector & Editing</option>
+            <option value="text">✍️ Content & Text Writing</option>
         </select>
 
-        <!-- Message Box -->
+        <!-- Status & Credits -->
         <div class="bg-[#242b3d] p-4 rounded-lg mb-4 text-sm text-gray-300 shadow-inner">
             <p>Welcome to <strong class="text-white">Wearstay AI</strong>. I can design, write code, tell stories, and speak your language!</p>
             <p class="mt-3">You have <strong id="widgetCreditCount" class="text-yellow-400 font-bold text-base">2</strong> free credits remaining.</p>
+            <p id="aiStatusText" class="mt-2 text-cyan-400 text-xs font-bold hidden animate-pulse">Listening to your voice... (सुन रहा हूँ)</p>
         </div>
 
-        <!-- Input Area (Mic & Upload) -->
-        <div class="flex gap-2 mb-4">
-            <!-- Upload Button -->
-            <button onclick="document.getElementById('aiFileUpload').click()" class="bg-[#374151] hover:bg-[#4b5563] text-white p-3 rounded-lg transition" title="Upload Photo/Design">
-                <i class="fa-solid fa-paperclip"></i>
+        <!-- Input Area (Upload, Voice, Text) -->
+        <div class="flex gap-2 mb-3">
+            <button onclick="document.getElementById('aiFileUpload').click()" class="bg-[#374151] hover:bg-[#4b5563] text-white p-3 rounded-lg transition" title="Upload Photo/File">
+                <i class="fa-solid fa-paperclip"></i> 🔗
             </button>
             <input type="file" id="aiFileUpload" class="hidden" accept="image/*,.pdf,.cdr,.svg">
             
-            <!-- Voice/Mic Button -->
-            <button id="micBtn" onclick="startVoiceRecognition()" class="bg-white hover:bg-gray-200 text-black p-3 rounded-lg transition shadow-[0_0_10px_rgba(255,255,255,0.2)]" title="Speak your command">
-                <i class="fa-solid fa-microphone text-lg"></i>
+            <button onclick="startVoiceRecognition()" class="bg-white hover:bg-gray-200 text-black p-3 rounded-lg transition" title="Speak in any language">
+                <i class="fa-solid fa-microphone"></i> 🎤
             </button>
             
-            <!-- Text Input -->
-            <input type="text" id="aiTextInput" placeholder="Type or speak in any language..." class="flex-1 bg-[#242b3d] border border-gray-600 text-white p-3 rounded-lg outline-none focus:border-cyan-400 transition">
+            <input type="text" id="aiTextInput" placeholder="Type or speak in any language..." class="flex-1 bg-[#242b3d] border border-gray-600 text-white p-3 rounded-lg outline-none focus:border-cyan-400">
         </div>
 
         <!-- Generate Button -->
-        <button onclick="handleGenerateAction()" class="w-full bg-[#ffc107] hover:bg-[#ffb300] text-black font-extrabold text-base py-3.5 rounded-lg shadow-lg transition flex justify-center items-center gap-2">
-            Generate <i class="fa-solid fa-wand-magic-sparkles"></i>
+        <button id="generateBtn" onclick="handleGenerateAction()" class="w-full bg-[#ffc107] hover:bg-[#ffb300] text-black font-extrabold text-base py-3.5 rounded-lg shadow-lg transition">
+            Generate 🪄
         </button>
+
+        <!-- RESULT AREA (THIS IS NEW: Output shows here, not on the bottom canvas) -->
+        <div id="aiResultArea" class="hidden mt-4 border-t border-gray-600 pt-4">
+            <p class="text-xs text-green-400 font-bold mb-2">✅ Generation Successful!</p>
+            
+            <!-- Dummy Image Placeholder for output -->
+            <div id="resultPreview" class="w-full h-32 bg-gray-800 rounded-lg flex items-center justify-center text-gray-500 mb-3 border border-dashed border-gray-600">
+                [ AI Generated Result Will Appear Here ]
+            </div>
+            
+            <!-- Download Buttons based on user demand -->
+            <div class="grid grid-cols-4 gap-2 text-center text-[10px] font-bold">
+                <button onclick="downloadMockFile('JPG')" class="bg-blue-600 hover:bg-blue-500 py-2 rounded text-white shadow">.JPG</button>
+                <button onclick="downloadMockFile('PDF')" class="bg-red-600 hover:bg-red-500 py-2 rounded text-white shadow">.PDF</button>
+                <button onclick="downloadMockFile('SVG')" class="bg-purple-600 hover:bg-purple-500 py-2 rounded text-white shadow">.SVG (CDR)</button>
+                <button onclick="downloadMockFile('TXT')" class="bg-gray-600 hover:bg-gray-500 py-2 rounded text-white shadow">.TXT</button>
+            </div>
+        </div>
+
     </div>
 </div>
 
-<!-- PAYWALL MODAL (Strict 2-Credit Lock) -->
-<div id="proPaywallModal" style="display:none; position: fixed; inset: 0; background: rgba(0,0,0,0.85); z-index: 9999; align-items: center; justify-content: center; padding: 16px; font-family: sans-serif; backdrop-filter: blur(5px);">
+<!-- PAYWALL MODAL (OPENS ON 3RD ATTEMPT) -->
+<div id="proPaywallModal" style="display:none; position: fixed; inset: 0; background: rgba(0,0,0,0.85); z-index: 9999; align-items: center; justify-content: center; padding: 16px; font-family: sans-serif;">
     <div style="background: #090D16; border: 1px solid rgba(0,229,255,0.3); border-radius: 12px; max-width: 400px; width: 100%; padding: 24px; position: relative; color: #fff; box-shadow: 0 20px 25px -5px rgba(0,0,0,0.5);">
         
         <button onclick="document.getElementById('proPaywallModal').style.display='none'" style="position: absolute; top: 12px; right: 12px; background: none; border: none; color: #9ca3af; font-size: 18px; cursor: pointer;">&times;</button>
         
         <div style="text-align: center; margin-bottom: 16px;">
-            <div style="color: #00e5ff; font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 1px;">Pro Subscription Required</div>
+            <div style="color: #00e5ff; font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 1px;">0 Credits Remaining</div>
             <h3 style="font-size: 16px; font-weight: bold; margin: 4px 0;">Unlock Unlimited AI Access</h3>
-            <p style="font-size: 11px; color: #9ca3af;">You've used your 2 free credits. Upgrade to Pro for unlimited AI designs, voice edits, and vector downloads.</p>
+            <p style="font-size: 11px; color: #9ca3af;">Upgrade to Pro to continue generating, editing, and downloading files.</p>
         </div>
 
-        <!-- Payment Tabs -->
         <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; background: #111827; padding: 4px; border-radius: 8px; margin-bottom: 16px; font-size: 12px; font-weight: bold; text-align: center;">
-            <button id="pwUpiBtn" onclick="togglePayMode('upi')" style="padding: 8px; border-radius: 6px; background: #00e5ff; color: #000; border: none; cursor: pointer; transition: all 0.3s;">UPI (₹800)</button>
-            <button id="pwPaypalBtn" onclick="togglePayMode('paypal')" style="padding: 8px; border-radius: 6px; background: #1f2937; color: #d1d5db; border: none; cursor: pointer; transition: all 0.3s;">PayPal ($9.99)</button>
+            <button id="pwUpiBtn" onclick="togglePayMode('upi')" style="padding: 8px; border-radius: 6px; background: #00e5ff; color: #000; border: none; cursor: pointer;">UPI (₹800)</button>
+            <button id="pwPaypalBtn" onclick="togglePayMode('paypal')" style="padding: 8px; border-radius: 6px; background: #1f2937; color: #d1d5db; border: none; cursor: pointer;">PayPal ($9.99)</button>
         </div>
 
-        <!-- UPI Section -->
+        <!-- UPI Box -->
         <div id="pwUpiBox" style="display: block;">
             <div style="background: #0f172a; border: 1px solid #1e293b; border-radius: 8px; padding: 12px; text-align: center; margin-bottom: 12px;">
-                <div style="font-size: 11px; color: #cbd5e1; margin-bottom: 8px;">Scan via GPay, PhonePe, Paytm, BHIM</div>
-                <div style="font-size: 14px; font-weight: 800; margin-top: 8px;">Amount: ₹800 / Month</div>
-                <div style="font-size: 11px; font-family: monospace; color: #38bdf8; margin: 4px 0; background: #1e293b; padding: 4px; border-radius: 4px; display: inline-block;">UPI: ledsignadil@oksbi</div>
+                <div style="font-size: 11px; color: #cbd5e1; margin-bottom: 8px;">Amount: ₹800 / Month</div>
+                <div style="font-size: 13px; font-weight: 800; font-family: monospace; color: #38bdf8; margin: 4px 0;">UPI: ledsignadil@oksbi</div>
             </div>
-            
-            <a href="upi://pay?pa=ledsignadil@oksbi&pn=WEARSTAY%20AI&am=800.00&cu=INR" style="display: block; width: 100%; background: linear-gradient(135deg, #00e5ff 0%, #0070f3 100%); color: #000; font-weight: bold; font-size: 12px; padding: 12px; border-radius: 8px; text-align: center; text-decoration: none; margin-bottom: 12px; box-shadow: 0 4px 15px rgba(0, 229, 255, 0.3);">
-                <i class="fa-solid fa-mobile-screen-button"></i> 1-Tap Mobile UPI App Pay (₹800)
+            <a href="upi://pay?pa=ledsignadil@oksbi&pn=WEARSTAY%20AI&am=800.00&cu=INR" style="display: block; width: 100%; background: linear-gradient(135deg, #00e5ff 0%, #0070f3 100%); color: #000; font-weight: bold; font-size: 12px; padding: 10px; border-radius: 8px; text-align: center; text-decoration: none; margin-bottom: 12px;">
+                1-Tap Mobile UPI App Pay (₹800)
             </a>
-            
             <div style="border-top: 1px solid #1f2937; padding-top: 12px; display: flex; gap: 8px;">
-                <input type="text" id="pwUtrInput" placeholder="Enter 12-Digit UTR No." style="flex: 1; background: #0f172a; border: 1px solid #1e293b; border-radius: 6px; padding: 8px 10px; font-size: 11px; color: #fff; outline: none;">
-                <button onclick="verifyUtrAndUnlock()" style="background: #059669; color: #fff; font-weight: bold; font-size: 11px; padding: 8px 16px; border-radius: 6px; border: none; cursor: pointer; transition: 0.3s;" onmouseover="this.style.background='#047857'" onmouseout="this.style.background='#059669'">Verify</button>
+                <input type="text" id="pwUtrInput" placeholder="Enter 12-Digit UTR" style="flex: 1; background: #0f172a; border: 1px solid #1e293b; border-radius: 6px; padding: 6px 10px; font-size: 11px; color: #fff;">
+                <button onclick="verifyUtrAndUnlock()" style="background: #059669; color: #fff; font-weight: bold; font-size: 11px; padding: 6px 12px; border-radius: 6px; border: none; cursor: pointer;">Verify</button>
             </div>
         </div>
 
-        <!-- PayPal Section -->
+        <!-- PayPal Box -->
         <div id="pwPaypalBox" style="display: none; background: #0f172a; border: 1px solid #1e293b; border-radius: 8px; padding: 16px; text-align: center;">
-            <div style="font-size: 12px; color: #cbd5e1; margin-bottom: 4px;">Pay securely worldwide</div>
-            <div style="font-size: 18px; font-weight: 800; margin-bottom: 12px;">$9.99 USD <span style="font-size:10px; font-weight:normal; color:#9ca3af;">/ Month</span></div>
-            <div style="font-size: 11px; color: #00e5ff; background: #1e293b; padding: 8px; border-radius: 4px;">(PayPal API Buttons Ready)</div>
+            <div style="font-size: 15px; font-weight: 800; margin-bottom: 12px;">$9.99 USD / Month</div>
         </div>
     </div>
 </div>
 
 <script>
-    // --- STATE MANAGEMENT ---
-    let widgetCredits = localStorage.getItem('ws_user_credits');
-    let isWidgetPro = localStorage.getItem('ws_user_pro') === 'true';
+    let widgetCredits = localStorage.getItem('ws_standalone_credits');
+    let isWidgetPro = localStorage.getItem('ws_standalone_pro') === 'true';
 
-    // Initialize 2 Free Credits if first time
     if (widgetCredits === null) {
         widgetCredits = 2;
-        localStorage.setItem('ws_user_credits', 2);
+        localStorage.setItem('ws_standalone_credits', 2);
     } else {
         widgetCredits = parseInt(widgetCredits);
     }
 
-    // --- UI UPDATES ---
     function updateCreditUI() {
-        const creditDisplay = document.getElementById('widgetCreditCount');
+        let countDisplay = document.getElementById('widgetCreditCount');
         if(isWidgetPro) {
-            creditDisplay.innerText = "Unlimited";
-            creditDisplay.className = "text-green-400 font-bold text-base";
+            countDisplay.innerText = "Unlimited";
+            countDisplay.className = "text-green-400 font-bold text-base";
         } else {
-            creditDisplay.innerText = widgetCredits;
+            countDisplay.innerText = widgetCredits;
             if(widgetCredits <= 0) {
-                creditDisplay.className = "text-red-400 font-bold text-base";
+                countDisplay.className = "text-red-500 font-bold text-base"; // Turns red when 0
             }
         }
     }
-    
-    // Call on load
     updateCreditUI();
 
-    // --- GENERATE ACTION ---
-    function handleGenerateAction() {
-        if (isWidgetPro) {
-            const prompt = document.getElementById('aiTextInput').value;
-            alert("PRO ACTIVE: Generating design for -> " + (prompt || "Default"));
-            return;
-        }
-        
-        if (widgetCredits > 0) {
-            // Deduct Credit
-            widgetCredits--;
-            localStorage.setItem('ws_user_credits', widgetCredits);
-            updateCreditUI();
-            
-            // Mock Action
-            const prompt = document.getElementById('aiTextInput').value;
-            alert(`File Processed! You have ${widgetCredits} credits left.`);
-            
-            if(widgetCredits === 0) {
-                // Show Paywall immediately when credits hit 0
-                setTimeout(() => { document.getElementById('proPaywallModal').style.display = 'flex'; }, 1000);
-            }
-        } else {
-            // Out of credits - Show Paywall
-            document.getElementById('proPaywallModal').style.display = 'flex';
-        }
-    }
-
-    // --- VOICE RECOGNITION (ANY LANGUAGE) ---
+    // Multilingual Voice Recognition (Any language, illiterate or literate)
     function startVoiceRecognition() {
-        const inputField = document.getElementById('aiTextInput');
-        const micBtn = document.getElementById('micBtn');
-        
         const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
-        if (!SpeechRecognition) { 
-            alert("Sorry, your browser doesn't support Voice AI. Please type."); 
-            return; 
-        }
+        if (!SpeechRecognition) { alert("Mic not supported in this browser."); return; }
         
         const recognition = new SpeechRecognition();
-        recognition.lang = 'hi-IN'; // Works for Hindi, Urdu, and English mixed
+        recognition.lang = 'hi-IN'; // Understands Hindi, Urdu, English mixed
         
-        recognition.onstart = function() {
-            // Visual feedback for the user
-            micBtn.classList.add('bg-red-500', 'text-white');
-            micBtn.classList.remove('bg-white', 'text-black');
-            inputField.placeholder = "सुन रहा हूँ... बोलिए (Listening...)";
-        };
+        document.getElementById('aiStatusText').style.display = 'block';
         
         recognition.onresult = function(event) {
-            const spokenText = event.results[0][0].transcript;
-            inputField.value = spokenText;
-            
-            // Automatically click generate if they have credits
-            if(widgetCredits > 0 || isWidgetPro) {
-                handleGenerateAction();
-            } else {
-                document.getElementById('proPaywallModal').style.display = 'flex';
-            }
+            document.getElementById('aiTextInput').value = event.results[0][0].transcript;
+            document.getElementById('aiStatusText').style.display = 'none';
+            // Automatically click generate after speaking
+            handleGenerateAction(); 
         };
-        
-        recognition.onend = function() {
-            // Reset visual feedback
-            micBtn.classList.remove('bg-red-500', 'text-white');
-            micBtn.classList.add('bg-white', 'text-black');
-            inputField.placeholder = "Type or speak in any language...";
-        };
-        
+        recognition.onerror = function() { document.getElementById('aiStatusText').style.display = 'none'; };
         recognition.start();
     }
 
-    // --- PAYWALL LOGIC ---
-    function togglePayMode(mode) {
-        const upiBox = document.getElementById('pwUpiBox');
-        const ppBox = document.getElementById('pwPaypalBox');
-        const upiBtn = document.getElementById('pwUpiBtn');
-        const ppBtn = document.getElementById('pwPaypalBtn');
+    function handleGenerateAction() {
+        if (!isWidgetPro && widgetCredits <= 0) {
+            document.getElementById('proPaywallModal').style.display = 'flex';
+            return;
+        }
 
+        const prompt = document.getElementById('aiTextInput').value;
+        const mode = document.getElementById('aiModeSelect').value;
+        
+        if (!prompt && !document.getElementById('aiFileUpload').value) {
+            alert("Please type, speak something, or upload a file first!");
+            return;
+        }
+
+        // Deduct Credit
+        if (!isWidgetPro) {
+            widgetCredits--;
+            localStorage.setItem('ws_standalone_credits', widgetCredits);
+            updateCreditUI();
+        }
+
+        // SHOW RESULT AREA IN THE BOX (Not on the bottom canvas)
+        const resultBox = document.getElementById('aiResultArea');
+        const preview = document.getElementById('resultPreview');
+        
+        resultBox.style.display = 'block';
+        preview.innerText = `Processing: "${prompt}" in ${mode} mode...`;
+        
+        // Simulating AI taking 2 seconds to generate
+        setTimeout(() => {
+            preview.innerHTML = `<span class="text-white font-bold">Generated Result based on: <br><span class="text-cyan-400">${prompt}</span></span>`;
+        }, 2000);
+    }
+
+    function downloadMockFile(format) {
+        alert("Downloading your generated " + format + " file securely...");
+    }
+
+    // Paywall Tab Toggles
+    function togglePayMode(mode) {
         if(mode === 'upi') {
-            upiBox.style.display = 'block'; ppBox.style.display = 'none';
-            upiBtn.style.background = '#00e5ff'; upiBtn.style.color = '#000';
-            ppBtn.style.background = '#1f2937'; ppBtn.style.color = '#d1d5db';
+            document.getElementById('pwUpiBox').style.display = 'block'; document.getElementById('pwPaypalBox').style.display = 'none';
+            document.getElementById('pwUpiBtn').style.background = '#00e5ff'; document.getElementById('pwUpiBtn').style.color = '#000';
+            document.getElementById('pwPaypalBtn').style.background = '#1f2937'; document.getElementById('pwPaypalBtn').style.color = '#d1d5db';
         } else {
-            upiBox.style.display = 'none'; ppBox.style.display = 'block';
-            ppBtn.style.background = '#00e5ff'; ppBtn.style.color = '#000';
-            upiBtn.style.background = '#1f2937'; upiBtn.style.color = '#d1d5db';
+            document.getElementById('pwUpiBox').style.display = 'none'; document.getElementById('pwPaypalBox').style.display = 'block';
+            document.getElementById('pwPaypalBtn').style.background = '#00e5ff'; document.getElementById('pwPaypalBtn').style.color = '#000';
+            document.getElementById('pwUpiBtn').style.background = '#1f2937'; document.getElementById('pwUpiBtn').style.color = '#d1d5db';
         }
     }
 
     function verifyUtrAndUnlock() {
-        let utr = document.getElementById('pwUtrInput').value.trim();
+        let utr = document.getElementById('pwUtrInput').value;
         if(utr.length >= 8) {
-            localStorage.setItem('ws_user_pro', 'true');
+            localStorage.setItem('ws_standalone_pro', 'true');
             isWidgetPro = true;
             document.getElementById('proPaywallModal').style.display = 'none';
             updateCreditUI();
-            alert("Payment Verified! PRO Features Unlocked Successfully.");
+            alert("Payment Verified! Pro Features Unlocked.");
         } else {
-            alert("Please enter a valid 12-Digit UTR Number from your UPI App.");
+            alert("Please enter a valid 12-Digit UTR Number.");
         }
     }
 </script>
+<!-- STANDALONE AI STUDIO WIDGET END -->
+
           <!-- QUICK QUOTE CARD -->
           <div class="quick-quote-card">
             <h3>Quick Quote</h3>
