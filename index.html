@@ -1810,7 +1810,7 @@
             <span>📍 Factory:</span> <span>Industrial Area, Global Hub</span>
           </div>
           <div class="footer-contact-item">
-            <span>📞 Phone / WhatsApp:</span> <a href="https://wa.me/919354944438" target="_blank" style="color:#FFFFFF; text-decoration:none;">+91 98765 43210 / +91 93549 44438</a>
+            <span>📞 Phone / WhatsApp:</span> <a href="https://wa.me/919211880426 target="_blank" style="color:#FFFFFF; text-decoration:none;">+91 92118 80426 / +91 93549 44438</a>
           </div>
           <div class="footer-contact-item">
             <span>✉️ Email:</span> <a href="mailto:ledsignadil@gmail.com" style="color:#FFFFFF; text-decoration:none;">info@globalcreative.com</a>
@@ -2407,7 +2407,7 @@ Website: https://wearstay.com`;
         })
       }).catch(() => {});
 
-      window.open('https://wa.me/919354944438?text=' + encodeURIComponent(msg), '_blank');
+      window.open('https://wa.me/919211880426?text=' + encodeURIComponent(msg), '_blank');
       toast('Order #' + orderId + ' generated! WhatsApp opened.');
     }
 
@@ -2434,7 +2434,7 @@ Website: https://wearstay.com`;
       doc.text(`Date: ${new Date().toLocaleDateString()}`, 14, 46);
       doc.text(`Quotation ID: GC-QUOTE-${Date.now().toString().slice(-6)}`, 14, 54);
       doc.text(`Client: ${$('custName').value.trim() || 'Valued Customer'}`, 14, 62);
-      doc.text(`Phone: ${$('custPhone').value.trim() || '+91 93549 44438'}`, 14, 70);
+      doc.text(`Phone: ${$('custPhone').value.trim() || '+91 92118 80426'}`, 14, 70);
 
       doc.setDrawColor(226, 232, 240);
       doc.line(14, 76, 196, 76);
@@ -2660,7 +2660,7 @@ Website: https://wearstay.com`;
           <div><b>Supabase:</b> ${data.supabase.configured ? '✅ Active' : '⚙️ Configuration Ready'}</div>
           <div><b>Google OAuth:</b> ${data.supabase.googleAuthEnabled ? '✅ Configured' : '⚙️ Setup Available'}</div>
           <div><b>PayPal Pro:</b> ✅ Webhook ID: <code>${data.paypal.webhookId}</code></div>
-          <div><b>UPI Gateway:</b> ✅ <code>${data.upi.upiId}</code> (+91 93549 44438)</div>
+          <div><b>UPI Gateway:</b> ✅ <code>${data.upi.upiId}</code> (+919211880426)</div>
         `;
       } catch(e) {
         body.textContent = 'Server status endpoint active.';
