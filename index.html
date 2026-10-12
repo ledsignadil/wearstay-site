@@ -1127,7 +1127,296 @@
         <!-- RIGHT HERO COLUMN: 3D ARCHITECTURAL FACADE + QUICK QUOTE -->
         <div class="hero-visual-col">
           <!-- 3D STOREFRONT ARCHITECTURAL SIGNAGE MOCKUP -->
+<!-- WEARSTAY AI DESIGN & SIGNAGE STUDIO WIDGET -->
+<style>
+    .ai-widget-wrapper {
+        background: #0f172a;
+        border: 1px solid #1e293b;
+        border-radius: 16px;
+        max-width: 520px;
+        margin: 0 auto 30px auto;
+        overflow: hidden;
+        box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7);
+        font-family: system-ui, -apple-system, sans-serif;
+        color: #ffffff;
+    }
+    .ai-header {
+        background: linear-gradient(135deg, #00e5ff 0%, #3b82f6 100%);
+        color: #000;
+        padding: 16px;
+        text-align: center;
+        font-weight: 900;
+        font-size: 16px;
+    }
+    .ai-body { padding: 20px; }
+    .ai-dropdown {
+        width: 100%; background: #ffffff; color: #000000; font-weight: 800;
+        padding: 12px; border-radius: 8px; border: none; margin-bottom: 14px; font-size: 13px; outline: none; cursor: pointer;
+    }
+    .ai-info-box {
+        background: #1e293b; padding: 14px; border-radius: 8px; font-size: 12px; color: #cbd5e1; margin-bottom: 14px; line-height: 1.5;
+    }
+    .ai-input-row { display: flex; gap: 8px; margin-bottom: 14px; }
+    .ai-btn-icon {
+        background: #334155; color: #fff; border: none; border-radius: 8px; width: 45px;
+        display: flex; align-items: center; justify-content: center; cursor: pointer; font-size: 16px;
+    }
+    .ai-btn-mic { background: #ffffff; color: #000000; }
+    .ai-text-input {
+        flex: 1; background: #1e293b; border: 1px solid #334155; color: #ffffff;
+        padding: 10px 14px; border-radius: 8px; outline: none; font-size: 13px; width: 100%;
+        user-select: text; -webkit-user-select: text;
+    }
+    .ai-generate-btn {
+        width: 100%; background: #ffc107; color: #000000; font-weight: 900; font-size: 15px;
+        padding: 14px; border: none; border-radius: 8px; cursor: pointer; transition: 0.2s;
+    }
+    .ai-generate-btn:hover { background: #ffb300; }
+    .ai-result-area { display: none; margin-top: 16px; border-top: 1px solid #334155; padding-top: 16px; }
+    .ai-result-box {
+        background: #020617; border: 1px dashed #475569; border-radius: 8px;
+        min-height: 180px; display: flex; flex-direction: column; align-items: center; justify-content: center;
+        text-align: center; padding: 12px; margin-bottom: 12px; position: relative; overflow: hidden;
+    }
+    .ai-dl-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 6px; }
+    .ai-dl-btn { padding: 8px 0; border-radius: 6px; color: #fff; font-weight: 800; font-size: 10px; border: none; cursor: pointer; }
+    
+    .ai-paywall {
+        display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.85);
+        z-index: 99999; align-items: center; justify-content: center; padding: 16px;
+    }
+    .ai-paywall-card {
+        background: #090D16; border: 1px solid rgba(0,229,255,0.3); border-radius: 12px;
+        max-width: 400px; width: 100%; padding: 24px; position: relative; color: #fff; text-align: center;
+    }
+    .ai-pay-tabs { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; background: #111827; padding: 4px; border-radius: 8px; margin: 16px 0; }
+    .ai-pay-tab { padding: 10px; border-radius: 6px; font-size: 12px; font-weight: bold; border: none; cursor: pointer; }
+</style>
 
+<div class="ai-widget-wrapper">
+    <div class="ai-header">
+        🎨 Wearstay AI Design & Business Studio
+    </div>
+
+    <div class="ai-body">
+        <select id="aiModeSelect" class="ai-dropdown">
+            <option value="auto">🎨 Voice to Design, Color & Size Generation</option>
+            <option value="edit">🗣️ Voice Edit & Custom Layout</option>
+            <option value="text">✍️ Business Quotation & Content Writing</option>
+        </select>
+
+        <div class="ai-info-box">
+            <p>Mic dabakar kuch bhi bolein (Text box me likha jayega). Phir Generate dabayein:</p>
+            <p style="margin-top: 6px;">Free Downloads Left: <strong id="widgetCreditCount" style="color: #ffc107; font-size: 15px;">2</strong></p>
+            <p id="aiStatusText" style="color: #00e5ff; font-weight: bold; margin-top: 6px; display: none;">Listening... (सुन रहा हूँ, टाइप हो रहा है)</p>
+        </div>
+
+        <div class="ai-input-row">
+            <button onclick="document.getElementById('aiFileUpload').click()" class="ai-btn-icon" title="Upload Optional Photo">🔗</button>
+            <input type="file" id="aiFileUpload" style="display: none;" accept="image/*,.pdf,.cdr,.svg" onchange="handleImageUpload(event)">
+            
+            <button onclick="startVoiceRecognition(event)" class="ai-btn-icon ai-btn-mic" title="Voice to Text">🎤</button>
+            
+            <input type="text" id="aiTextInput" class="ai-text-input" placeholder="Type or speak requirement in any language...">
+        </div>
+
+        <button onclick="handleWidgetGenerate()" class="ai-generate-btn">
+            Generate Design & Size 🪄
+        </button>
+
+        <div id="aiResultArea" class="ai-result-area">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+                <span style="color: #10b981; font-weight: bold; font-size: 12px;">✅ Design & Size Ready</span>
+                <span id="liveDimensionBadge" style="background:#1e293b; color:#00e5ff; padding:2px 8px; border-radius:4px; font-size:11px; font-family:monospace;">300 DPI Scale</span>
+            </div>
+            
+            <div id="resultPreview" class="ai-result-box">
+                [ Generated design preview will appear here ]
+            </div>
+            
+            <div class="ai-dl-grid">
+                <button onclick="downloadFile('JPG')" class="ai-dl-btn" style="background: #2563eb;">.JPG</button>
+                <button onclick="downloadFile('PNG')" class="ai-dl-btn" style="background: #0d9488;">.PNG</button>
+                <button onclick="downloadFile('PDF')" class="ai-dl-btn" style="background: #dc2626;">.PDF</button>
+                <button onclick="downloadFile('SVG')" class="ai-dl-btn" style="background: #9333ea;" title="CDR Compatible">.SVG</button>
+                <button onclick="downloadFile('TXT')" class="ai-dl-btn" style="background: #4b5563;">.TXT</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- PAYWALL MODAL -->
+<div id="proPaywallModal" class="ai-paywall">
+    <div class="ai-paywall-card">
+        <button onclick="document.getElementById('proPaywallModal').style.display='none'" style="position: absolute; top: 10px; right: 15px; background: none; border: none; color: #9ca3af; font-size: 24px; cursor: pointer;">&times;</button>
+        
+        <div style="color: #00e5ff; font-size: 11px; font-weight: 800; text-transform: uppercase;">0 Free Downloads Left</div>
+        <h3 style="font-size: 18px; font-weight: bold; margin: 8px 0;">Unlock Pro Monthly Studio</h3>
+        <p style="font-size: 12px; color: #9ca3af;">Upgrade to Pro (₹800/month or $9.99/month) for unlimited vector & file downloads.</p>
+
+        <div class="ai-pay-tabs">
+            <button id="pwUpiBtn" onclick="togglePayMode('upi')" class="ai-pay-tab" style="background: #00e5ff; color: #000;">UPI (₹800)</button>
+            <button id="pwPaypalBtn" onclick="togglePayMode('paypal')" class="ai-pay-tab" style="background: #1f2937; color: #d1d5db;">PayPal ($9.99)</button>
+        </div>
+
+        <div id="pwUpiBox" style="display: block;">
+            <div style="background: #0f172a; border: 1px solid #1e293b; border-radius: 8px; padding: 12px; margin-bottom: 12px;">
+                <div style="font-size: 12px; color: #cbd5e1;">Amount: ₹800 / Month</div>
+                <div style="font-size: 14px; font-weight: 800; color: #38bdf8; margin-top: 4px;">UPI: ledsignadil@oksbi</div>
+            </div>
+            <a href="upi://pay?pa=ledsignadil@oksbi&pn=WEARSTAY%20AI&am=800.00&cu=INR" style="display: block; background: linear-gradient(135deg, #00e5ff 0%, #00bfff 100%); color: #000; font-weight: bold; padding: 12px; border-radius: 8px; text-decoration: none; margin-bottom: 12px;">
+                1-Tap Mobile UPI App Pay (₹800)
+            </a>
+            <div style="display: flex; gap: 8px; margin-top: 10px;">
+                <input type="text" id="pwUtrInput" placeholder="Enter 12-Digit UTR Number" style="flex: 1; background: #0f172a; border: 1px solid #1e293b; border-radius: 6px; padding: 10px; color: #fff; font-size: 12px;">
+                <button onclick="verifyUtrAndUnlock()" style="background: #10b981; color: #fff; font-weight: bold; padding: 10px 16px; border-radius: 6px; border: none; cursor: pointer;">Verify</button>
+            </div>
+        </div>
+
+        <div id="pwPaypalBox" style="display: none; background: #0f172a; border: 1px solid #1e293b; border-radius: 8px; padding: 20px;">
+            <div style="font-size: 18px; font-weight: 800;">$9.99 USD / Month</div>
+            <div style="font-size: 12px; color: #00e5ff; margin-top: 5px;">Secure PayPal Subscription Active</div>
+        </div>
+    </div>
+</div>
+
+<script>
+    let widgetDownloads = localStorage.getItem('ws_widget_dl_count');
+    let isWidgetPro = localStorage.getItem('ws_widget_pro_status') === 'true';
+    let uploadedFileUrl = null;
+
+    if (widgetDownloads === null) {
+        widgetDownloads = 2;
+        localStorage.setItem('ws_widget_dl_count', 2);
+    } else {
+        widgetDownloads = parseInt(widgetDownloads);
+    }
+
+    function updateCreditUI() {
+        let countDisplay = document.getElementById('widgetCreditCount');
+        if(isWidgetPro) {
+            countDisplay.innerText = "Unlimited (Pro Active)";
+            countDisplay.style.color = "#10b981";
+        } else {
+            countDisplay.innerText = widgetDownloads;
+            if(widgetDownloads <= 0) countDisplay.style.color = "#ef4444";
+        }
+    }
+    updateCreditUI();
+
+    function startVoiceRecognition(e) {
+        if(e) e.stopPropagation();
+        const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+        if (!SpeechRecognition) { alert("Voice recognition not supported."); return; }
+        
+        const recognition = new SpeechRecognition();
+        recognition.lang = 'hi-IN';
+        document.getElementById('aiStatusText').style.display = 'block';
+        
+        recognition.onresult = function(event) {
+            const spokenText = event.results[0][0].transcript;
+            const inputField = document.getElementById('aiTextInput');
+            inputField.value = spokenText;
+            inputField.focus();
+            document.getElementById('aiStatusText').style.display = 'none';
+        };
+        recognition.onerror = function() { document.getElementById('aiStatusText').style.display = 'none'; };
+        recognition.start();
+    }
+
+    function handleImageUpload(event) {
+        const file = event.target.files[0];
+        if (file) {
+            uploadedFileUrl = URL.createObjectURL(file);
+            document.getElementById('aiTextInput').value = "Reference File: " + file.name;
+        }
+    }
+
+    function handleWidgetGenerate() {
+        const promptText = document.getElementById('aiTextInput').value;
+        
+        if (!promptText && !uploadedFileUrl) {
+            alert("Kripya mic se bolein ya text type karein!");
+            return;
+        }
+
+        const resultBox = document.getElementById('aiResultArea');
+        const preview = document.getElementById('resultPreview');
+        resultBox.style.display = 'block';
+        preview.innerHTML = `<span style="color:#00e5ff;">Generating design & layout... ⏳</span>`;
+
+        let sourceImage = "";
+        if (uploadedFileUrl) {
+            sourceImage = uploadedFileUrl;
+        } else {
+            sourceImage = "https://image.pollinations.ai/prompt/" + encodeURIComponent(promptText + " professional signage layout with exact size and vector art") + "?width=800&height=400&nologo=true";
+        }
+
+        let img = new Image();
+        img.src = sourceImage;
+        img.onload = function() {
+            preview.innerHTML = `
+                <div style="position:relative; width:100%; height:100%;">
+                    <img src="${sourceImage}" style="max-height: 170px; width:100%; object-fit: contain; border-radius: 6px;">
+                    <div style="position:absolute; bottom:6px; left:6px; background:rgba(0,0,0,0.85); color:#00e5ff; font-size:10px; padding:3px 8px; border-radius:4px; font-family:monospace;">
+                        Text: "${promptText}"
+                    </div>
+                </div>`;
+            window.activeDesignUrl = sourceImage;
+        };
+    }
+
+    async function downloadFile(format) {
+        if (!isWidgetPro && widgetDownloads <= 0) {
+            document.getElementById('proPaywallModal').style.display = 'flex';
+            return;
+        }
+
+        if(window.activeDesignUrl) {
+            if (!isWidgetPro) {
+                widgetDownloads--;
+                localStorage.setItem('ws_widget_dl_count', widgetDownloads);
+                updateCreditUI();
+            }
+
+            alert("Aapka ." + format + " file download ho raha hai...");
+            const response = await fetch(window.activeDesignUrl);
+            const blob = await response.blob();
+            const link = document.createElement("a");
+            link.href = URL.createObjectURL(blob);
+            link.download = "Wearstay_Design." + format.toLowerCase();
+            link.click();
+        } else {
+            alert("Pehle Generate button dabayein!");
+        }
+    }
+
+    function togglePayMode(mode) {
+        if(mode === 'upi') {
+            document.getElementById('pwUpiBox').style.display = 'block'; document.getElementById('pwPaypalBox').style.display = 'none';
+            document.getElementById('pwUpiBtn').style.background = '#00e5ff'; document.getElementById('pwUpiBtn').style.color = '#000';
+            document.getElementById('pwPaypalBtn').style.background = '#1f2937'; document.getElementById('pwPaypalBtn').style.color = '#d1d5db';
+        } else {
+            document.getElementById('pwUpiBox').style.display = 'none'; document.getElementById('pwPaypalBox').style.display = 'block';
+            document.getElementById('pwPaypalBtn').style.background = '#00e5ff'; document.getElementById('pwPaypalBtn').style.color = '#000';
+            document.getElementById('pwUpiBtn').style.background = '#1f2937'; document.getElementById('pwUpiBtn').style.color = '#d1d5db';
+        }
+    }
+
+    function verifyUtrAndUnlock() {
+        let utr = document.getElementById('pwUtrInput').value;
+        if(utr.length >= 8) {
+            localStorage.setItem('ws_widget_pro_status', 'true');
+            isWidgetPro = true;
+            document.getElementById('proPaywallModal').style.display = 'none';
+            updateCreditUI();
+            alert("Payment Verified! Monthly Pro Subscription Activated.");
+        } else {
+            alert("Kripya valid 12-digit UTR number darj karein.");
+        }
+    }
+</script>
+          
           <!-- QUICK QUOTE CARD -->
           <div class="quick-quote-card">
             <h3>Quick Quote</h3>
