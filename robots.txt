@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://wearstay.com/sitemap.xml
