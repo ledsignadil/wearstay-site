@@ -1273,9 +1273,6 @@
 </div>
 
 <script>
-    // ⬇️ Bhai, bas is line me 'YOUR_GEMINI_API_KEY' ki jagah apni Asli API Key dalna ⬇️
-    const GEMINI_API_KEY = "YOUR_GEMINI_API_KEY"; 
-
     let wsDownloads = localStorage.getItem('ws_final_dl_count');
     let isWsPro = localStorage.getItem('ws_final_pro_status') === 'true';
 
@@ -1293,20 +1290,19 @@
     }
     wsUpdateCreditUI();
 
-    // Isolated Voice Function (Bilkul Naya Naam)
     function wsStandaloneVoiceRecording(e) {
-        if(e) { e.preventDefault(); e.stopPropagation(); } // Taki website ke dusre click trigger na ho
+        if(e) { e.preventDefault(); e.stopPropagation(); } 
         const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
         if (!SpeechRecognition) { alert("Voice recognition not supported."); return; }
         
         const recognition = new SpeechRecognition();
-        recognition.lang = 'hi-IN'; // duniya ki kisi bhi bhasha (Hindi, English) ke liye best 
+        recognition.lang = 'hi-IN'; 
         document.getElementById('wsUniqueStatusText').style.display = 'block';
         
         recognition.onresult = function(event) {
             const spokenText = event.results[0][0].transcript;
             const inputField = document.getElementById('wsUniqueTextInput');
-            inputField.value = spokenText; // Sirf isi dabbe me aayega
+            inputField.value = spokenText; 
             inputField.focus();
             document.getElementById('wsUniqueStatusText').style.display = 'none';
         };
@@ -1325,31 +1321,27 @@
             document.getElementById('wsUniquePaywall').style.display = 'flex'; return;
         }
 
-        if (GEMINI_API_KEY === "YOUR_GEMINI_API_KEY" || !GEMINI_API_KEY) {
-            alert("Bhai, Code me apni Asli GEMINI_API_KEY daalna bhool gaye ho!"); return;
-        }
-
         const resultBox = document.getElementById('wsUniqueResultArea');
         const preview = document.getElementById('wsUniqueResultPreview');
         resultBox.style.display = 'block';
         preview.innerHTML = `<span style="color:#00e5ff;">Gemini AI aapka command samajh raha hai... ⏳</span>`;
 
         try {
-            const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${GEMINI_API_KEY}`, {
+            // Ab yeh seedha Vercel backend ke paas jayega, HTML me API key ki zaroorat nahi hai
+            const response = await fetch('/api/generate', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                    contents: [{
-                        parts: [{
-                            text: `You are an expert signage and graphic designer. User request: "${promptText}". Create a completely scalable 2D SVG logo or layout matching the request. Return ONLY the raw SVG code without any markdown or tags.`
-                        }]
-                    }]
-                })
+                body: JSON.stringify({ promptText: promptText })
             });
 
             const data = await response.json();
-            let aiResult = data.candidates[0].content.parts[0].text;
             
+            if (data.error) {
+                preview.innerHTML = `<span style="color:#ef4444;">Error: ${data.error}</span>`;
+                return;
+            }
+
+            let aiResult = data.svgCode;
             aiResult = aiResult.replace(/```xml/g, '').replace(/```svg/g, '').replace(/```html/g, '').replace(/```/g, '').trim();
 
             preview.innerHTML = `
@@ -1360,7 +1352,7 @@
             window.activeDesignSvg = aiResult; 
             
         } catch (error) {
-            preview.innerHTML = `<span style="color:#ef4444;">Error: API Key check karein.</span>`;
+            preview.innerHTML = `<span style="color:#ef4444;">Server error: Kripya dobara try karein.</span>`;
         }
     }
 
@@ -1413,7 +1405,7 @@
         } else { alert("Kripya valid 12-digit UTR number darj karein."); }
     }
 </script>
-
+          
           <!-- QUICK QUOTE CARD -->
           <div class="quick-quote-card">
             <h3>Quick Quote</h3>
