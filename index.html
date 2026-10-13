@@ -1141,66 +1141,265 @@
         <!-- RIGHT HERO COLUMN: 3D ARCHITECTURAL FACADE + QUICK QUOTE -->
         <div class="hero-visual-col">
           <!-- 3D STOREFRONT ARCHITECTURAL SIGNAGE MOCKUP -->
-          <div class="storefront-card">
-            <div class="storefront-art-wrap">
-              <svg viewBox="0 0 540 230" xmlns="http://www.w3.org/2000/svg" style="background: #040A12;">
-                <defs>
-                  <radialGradient id="facadeSpotlight" cx="50%" cy="30%" r="65%">
-                    <stop offset="0%" stop-color="#FFD21F" stop-opacity="0.3" />
-                    <stop offset="50%" stop-color="#0284C7" stop-opacity="0.1" />
-                    <stop offset="100%" stop-color="#040A12" stop-opacity="0" />
-                  </radialGradient>
-                  <linearGradient id="goldChannelGlow" x1="0%" y1="0%" x2="100%" y2="0%">
-                    <stop offset="0%" stop-color="#FFF085" />
-                    <stop offset="50%" stop-color="#FFD21F" />
-                    <stop offset="100%" stop-color="#D97706" />
-                  </linearGradient>
-                  <filter id="neonBlur" x="-20%" y="-20%" width="140%" height="140%">
-                    <feGaussianBlur stdDeviation="6" result="blur" />
-                    <feMerge>
-                      <feMergeNode in="blur" />
-                      <feMergeNode in="SourceGraphic" />
-                    </feMerge>
-                  </filter>
-                </defs>
+        
+    <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GLOBAL CREATIVE — Architectural Signage, 3D Letters & AI CAD Studio</title>
+  <meta name="description" content="Global Creative is your complete platform for professional 3D acrylic signage, LED sign boards, architectural titanium letters, vector drafting studio, and instant quotations.">
+  <meta name="google-site-verification" content="dNDfnD64lB_mp98ZIV5CyCcW5WvO5ftVmwkXRHmAGx4" />
+  <link rel="canonical" href="https://wearstay.com/">
 
-                <!-- Facade Background Texture & Spotlights -->
-                <rect x="0" y="0" width="540" height="230" fill="#06121E" />
-                <rect x="0" y="0" width="540" height="150" fill="url(#facadeSpotlight)" />
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
 
-                <!-- Architectural Modern Dark Stone Facade Wall -->
-                <rect x="25" y="20" width="490" height="190" rx="10" fill="#0A1828" stroke="#163250" stroke-width="2" />
-                <line x1="25" y1="120" x2="515" y2="120" stroke="#10253C" stroke-width="1.5" />
-                <line x1="180" y1="20" x2="180" y2="120" stroke="#10253C" stroke-width="1" />
-                <line x1="360" y1="20" x2="360" y2="120" stroke="#10253C" stroke-width="1" />
+  <!-- Fabric.js & jsPDF -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/5.3.1/fabric.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 
-                <!-- 3D Architectural Letters Backing Plate -->
-                <rect x="90" y="38" width="360" height="70" rx="8" fill="#040B14" stroke="#FFD21F" stroke-width="1.2" stroke-opacity="0.4" />
+  <style>
+    :root {
+      --navy-950: #06111F; --navy-900: #0B1B2E; --navy-850: #0F243C;
+      --gold: #FFD21F; --cyan: #00F2FF; --border-dark: #1E3A5A;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Plus Jakarta Sans', sans-serif; background: #06111F; color: #FFFFFF; overflow-x: hidden; line-height: 1.5; }
+    
+    header { background: rgba(6, 17, 31, 0.95); border-bottom: 1px solid var(--border-dark); position: sticky; top: 0; z-index: 100; backdrop-filter: blur(12px); padding: 14px 24px; display: flex; justify-content: space-between; align-items: center; }
+    .brand { font-family: 'Montserrat', sans-serif; font-weight: 900; font-size: 20px; color: #fff; display: flex; align-items: center; gap: 8px; }
+    .brand span { color: var(--gold); }
+    
+    .btn { font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: 13px; padding: 10px 20px; border-radius: 10px; cursor: pointer; border: none; text-decoration: none; display: inline-flex; align-items: center; gap: 6px; }
+    .btn-gold { background: linear-gradient(135deg, #FFD21F 0%, #FFB800 100%); color: #06111F; box-shadow: 0 8px 24px rgba(255, 210, 31, 0.3); }
+    .btn-outline { background: rgba(255,255,255,0.05); color: #fff; border: 1px solid var(--border-dark); }
 
-                <!-- Logo Icon on Facade -->
-                <circle cx="130" cy="73" r="18" fill="url(#goldChannelGlow)" filter="url(#neonBlur)" opacity="0.9" />
-                <text x="130" y="80" font-family="'Montserrat', sans-serif" font-weight="900" font-size="18" fill="#040B14" text-anchor="middle">G</text>
+    /* AI VOICE STUDIO (REPLACED YOUR BRAND SPOT) */
+    .ai-studio-container { padding: 40px 20px; max-width: 800px; margin: 0 auto; text-align: center; }
+    .ai-card { background: #0b1b2e; border: 1px solid var(--border-dark); border-radius: 20px; padding: 30px; box-shadow: 0 25px 60px rgba(0,0,0,0.8); text-align: left; }
+    .ai-input-row { display: flex; gap: 10px; margin: 16px 0; }
+    .ai-input { flex: 1; background: #040a12; border: 1px solid var(--border-dark); color: #fff; padding: 14px 18px; border-radius: 12px; font-size: 15px; outline: none; }
+    .ai-input:focus { border-color: var(--cyan); }
+    
+    .credits-box { display: flex; justify-content: space-between; align-items: center; background: #040a12; padding: 12px 16px; border-radius: 10px; font-size: 13px; margin-bottom: 16px; border: 1px solid #162a45; }
+    .result-preview-box { background: #02060d; border: 2px dashed #203a5c; border-radius: 14px; min-height: 240px; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 16px; margin-top: 20px; position: relative; overflow: hidden; }
+    
+    .dl-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 8px; margin-top: 16px; }
+    .dl-btn { padding: 10px 0; border-radius: 8px; color: #fff; font-weight: 800; font-size: 11px; border: none; cursor: pointer; text-align: center; }
 
-                <!-- 3D Channel Letters (YOUR BRAND - OUR CREATIVE TOUCH) -->
-                <text x="285" y="68" font-family="'Montserrat', sans-serif" font-weight="900" font-size="24" fill="url(#goldChannelGlow)" filter="url(#neonBlur)" text-anchor="middle" letter-spacing="1">
-                  YOUR BRAND
-                </text>
-                <text x="285" y="92" font-family="'Plus Jakarta Sans', sans-serif" font-weight="800" font-size="10" fill="#00F2FF" text-anchor="middle" letter-spacing="3">
-                  OUR CREATIVE TOUCH
-                </text>
+    /* PAYWALL MODAL */
+    .modal { display: none; position: fixed; inset: 0; background: rgba(4,13,23,0.9); z-index: 1000; align-items: center; justify-content: center; padding: 20px; }
+    .modal-card { background: #0b1b2e; border: 1px solid var(--cyan); border-radius: 16px; max-width: 420px; width: 100%; padding: 28px; text-align: center; position: relative; color: #fff; }
+    
+    #toast { position: fixed; bottom: 20px; right: 20px; background: #0b1b2e; border: 1px solid var(--gold); color: #fff; padding: 12px 20px; border-radius: 10px; font-size: 13px; font-weight: 700; display: none; z-index: 2000; }
+    #toast.show { display: block; }
+  </style>
+</head>
+<body>
 
-                <!-- Glass Showroom Windows on Lower Level -->
-                <rect x="50" y="130" width="130" height="80" rx="4" fill="#071E36" stroke="#1C3D63" stroke-width="1.5" />
-                <rect x="205" y="130" width="130" height="80" rx="4" fill="#0B2B4C" stroke="#1C3D63" stroke-width="1.5" opacity="0.9" />
-                <rect x="360" y="130" width="130" height="80" rx="4" fill="#071E36" stroke="#1C3D63" stroke-width="1.5" />
+  <header>
+    <div class="brand"><span>✦</span> GLOBAL CREATIVE</div>
+    <div>
+      <button class="btn btn-outline" style="font-size: 11px; padding: 6px 14px;" onclick="document.getElementById('loginModal').style.display='flex'">👤 Login / Credits</button>
+    </div>
+  </header>
 
-                <!-- Interior Showroom Warm Light Rays -->
-                <line x1="270" y1="130" x2="270" y2="210" stroke="#FFD21F" stroke-width="2" stroke-opacity="0.5" />
-                <circle cx="270" cy="165" r="22" fill="#FFD21F" opacity="0.15" filter="url(#neonBlur)" />
-                <text x="270" y="170" font-size="9" font-family="sans-serif" font-weight="700" fill="#E2E8F0" text-anchor="middle">DESIGN STUDIO</text>
-              </svg>
-            </div>
+  <main>
+    <section class="ai-studio-container">
+      <div style="display: inline-block; background: rgba(0, 242, 255, 0.12); border: 1px solid rgba(0, 242, 255, 0.4); color: var(--cyan); padding: 6px 16px; border-radius: 9999px; font-size: 12px; font-weight: 800; text-transform: uppercase; margin-bottom: 16px;">AI Voice-to-Design Studio</div>
+      <h1 style="font-size: 34px; font-weight: 900; margin-bottom: 10px;">Speak Your Sign, <span style="color:var(--gold)">AI Creates & Sizes</span></h1>
+      <p style="color: #94a3b8; font-size: 13px; max-width: 550px; margin: 0 auto 20px;">Duniya ki kisi bhi bhasha mein mic par bolein. Gemini AI direct vector aur print-ready file taiyar karega!</p>
+
+      <div class="ai-card">
+        <div class="credits-box">
+          <span>Free Downloads Available:</span>
+          <strong id="userCreditsDisplay" style="color: var(--gold); font-size: 15px;">2 Free Credits Left</strong>
+        </div>
+
+        <div class="ai-input-row">
+          <button onclick="document.getElementById('fileUploadInput').click()" class="btn btn-outline" title="Upload Custom Photo" style="padding: 0 16px;">🔗 Upload</button>
+          <input type="file" id="fileUploadInput" style="display: none;" accept="image/*,.cdr,.svg,.pdf" onchange="handleUserUpload(event)">
+          
+          <button onclick="startVoiceInput()" class="btn btn-gold" title="Voice to Text">🎤 Speak</button>
+          
+          <input type="text" id="aiPromptInput" class="ai-input" placeholder="Speak or type requirement in any language...">
+        </div>
+        <div id="voiceStatus" style="color: var(--cyan); font-size: 12px; font-weight: 700; margin-bottom: 12px; display: none;">🎙️ Listening... (Speak now in any language)</div>
+
+        <button onclick="generateAiDesign()" class="btn btn-gold" style="width: 100%; padding: 14px; font-size: 15px;">
+          Generate Design & Vector 🪄
+        </button>
+
+        <div id="aiResultArea" style="display: none;">
+          <div class="result-preview-box" id="resultPreviewContainer">
+            [ Design Preview ]
           </div>
+          
+          <div style="margin-top: 12px; font-size: 12px; color: #94a3b8; text-align: center;">First 2 downloads are 100% Free:</div>
+          
+          <div class="dl-grid">
+            <button onclick="downloadDesignFile('JPG')" class="dl-btn" style="background: #2563eb;">.JPG</button>
+            <button onclick="downloadDesignFile('PNG')" class="dl-btn" style="background: #0d9488;">.PNG</button>
+            <button onclick="downloadDesignFile('PDF')" class="dl-btn" style="background: #dc2626;">.PDF</button>
+            <button onclick="downloadDesignFile('SVG')" class="dl-btn" style="background: #9333ea;" title="CorelDRAW Compatible">.SVG/.CDR</button>
+            <button onclick="downloadDesignFile('TXT')" class="dl-btn" style="background: #4b5563;">.TXT</button>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- PAYWALL MODAL -->
+  <div class="modal" id="paywallModal">
+    <div class="modal-card">
+      <button onclick="document.getElementById('paywallModal').style.display='none'" style="position: absolute; top: 12px; right: 16px; background: none; border: none; color: #94a3b8; font-size: 20px; cursor: pointer;">✕</button>
+      <div style="color: var(--cyan); font-size: 11px; font-weight: 800; text-transform: uppercase; margin-bottom: 6px;">Free Credit Limit Reached</div>
+      <h3 style="font-size: 18px; margin-bottom: 10px;">Unlock Pro Downloads</h3>
+      <p style="font-size: 12px; color: #94a3b8; margin-bottom: 16px;">Aapne 2 free downloads poore kar liye hain. Agli file ke liye payment karein:</p>
+      
+      <div style="background: #040a12; padding: 14px; border-radius: 8px; margin-bottom: 14px; text-align:left;">
+        <div style="font-size: 13px; font-weight: 800; color: var(--gold);">UPI Advance: ₹800 / Month</div>
+        <div style="font-size: 11px; color: #94a3b8; margin-top: 2px;">UPI ID: ledsignadil@oksbi</div>
+      </div>
+      <div style="display: flex; gap: 8px;">
+        <input type="text" id="utrInput" placeholder="Enter 12-Digit UTR Number" class="ai-input" style="font-size: 12px; padding: 8px;">
+        <button onclick="verifyUtr()" class="btn btn-gold" style="padding: 0 14px; font-size: 12px;">Verify</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- LOGIN MODAL -->
+  <div class="modal" id="loginModal">
+    <div class="modal-card">
+      <button onclick="document.getElementById('loginModal').style.display='none'" style="position: absolute; top: 12px; right: 16px; background: none; border: none; color: #94a3b8; font-size: 20px; cursor: pointer;">✕</button>
+      <h3 style="font-size: 18px; margin-bottom: 12px;">Customer Login</h3>
+      <input type="email" id="userEmailInput" placeholder="Enter your email" class="ai-input" style="margin-bottom: 10px; font-size: 13px; padding: 10px;">
+      <button onclick="saveUserLogin()" class="btn btn-gold" style="width: 100%;">Login & Claim 2 Free Credits</button>
+    </div>
+  </div>
+
+  <div id="toast"></div>
+
+  <script>
+    const $ = id => document.getElementById(id);
+    function showToast(msg) { const t = $('toast'); t.textContent = msg; t.className = 'show'; setTimeout(() => t.className = '', 3000); }
+
+    let credits = localStorage.getItem('gc_credits') !== null ? parseInt(localStorage.getItem('gc_credits')) : 2;
+    let isPro = localStorage.getItem('gc_pro') === 'true';
+
+    function updateCreditsUI() {
+      if(isPro) {
+        $('userCreditsDisplay').innerText = "Unlimited (Pro Active)";
+        $('userCreditsDisplay').style.color = "#10b981";
+      } else {
+        $('userCreditsDisplay').innerText = credits + " Free Credits Left";
+      }
+    }
+    updateCreditsUI();
+
+    function saveUserLogin() {
+      const email = $('userEmailInput').value.trim();
+      if(email) {
+        localStorage.setItem('gc_user', email);
+        $('loginModal').style.display = 'none';
+        showToast("Logged in successfully! 2 Free Credits active.");
+      } else { alert("Enter valid email"); }
+    }
+
+    function startVoiceInput() {
+      const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+      if (!SpeechRecognition) { alert("Voice recognition not supported."); return; }
+      const rec = new SpeechRecognition();
+      rec.lang = 'hi-IN';
+      $('voiceStatus').style.display = 'block';
+      
+      rec.onresult = (e) => {
+        $('aiPromptInput').value = e.results[0][0].transcript;
+        $('voiceStatus').style.display = 'none';
+      };
+      rec.onerror = () => { $('voiceStatus').style.display = 'none'; };
+      rec.start();
+    }
+
+    let uploadedCustomImage = null;
+    function handleUserUpload(e) {
+      const file = e.target.files[0];
+      if(file) {
+        const reader = new FileReader();
+        reader.onload = (evt) => {
+          uploadedCustomImage = evt.target.result;
+          showToast("Photo uploaded successfully!");
+        };
+        reader.readAsDataURL(file);
+      }
+    }
+
+    async function generateAiDesign() {
+      const prompt = $('aiPromptInput').value.trim();
+      if(!prompt) { alert("Kripya mic se bolein ya text type karein!"); return; }
+
+      $('aiResultArea').style.display = 'block';$('resultPreviewContainer').innerHTML = `<span style="color:var(--cyan)">Gemini AI is crafting your vector design... ⏳</span>`;
+
+      try {
+        const res = await fetch('/api/generate', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ promptText: prompt })
+        });
+        const data = await res.json();
+        if(data.error) { $('resultPreviewContainer').innerHTML = `<span style="color:#ef4444">Error: ${data.error}</span>`; return; }
+
+        let svg = data.svgCode.replace(/```xml/g, '').replace(/```svg/g, '').replace(/```/g, '').trim();
+        let previewHtml = `<div style="background:#fff; padding:12px; border-radius:8px; width:100%; height:100%; display:flex; align-items:center; justify-content:center;">${svg}</div>`;
+        if(uploadedCustomImage) {
+          previewHtml += `<div style="position:absolute; top:10px; right:10px; width:60px; height:60px; border:2px solid var(--gold); border-radius:6px; overflow:hidden;"><img src="${uploadedCustomImage}" style="width:100%; height:100%; object-fit:cover;"></div>`;
+        }
+
+        $('resultPreviewContainer').innerHTML = previewHtml;
+        window.activeSvgCode = svg;
+      } catch (err) {
+        $('resultPreviewContainer').innerHTML = `<span style="color:#ef4444">Server connection failed. Try again.</span>`;
+      }
+    }
+
+    function downloadDesignFile(format) {
+      if(!window.activeSvgCode) { alert("Pehle Generate button dabayein!"); return; }
+
+      if(!isPro && credits <= 0) {
+        $('paywallModal').style.display = 'flex';
+        return;
+      }
+
+      if(!isPro) {
+        credits--;
+        localStorage.setItem('gc_credits', credits);
+        updateCreditsUI();
+      }
+
+      showToast("Downloading ." + format + " file...");
+      const blob = new Blob([window.activeSvgCode], { type: "image/svg+xml" });
+      const link = document.createElement("a");
+      link.href = URL.createObjectURL(blob);
+      link.download = `GlobalCreative_Design.${format.toLowerCase()}`;
+      link.click();
+    }
+
+    function verifyUtr() {
+      const utr = $('utrInput').value.trim();
+      if(utr.length >= 8) {
+        localStorage.setItem('gc_pro', 'true');
+        isPro = true;
+        updateCreditsUI();
+        $('paywallModal').style.display = 'none';
+        showToast("Payment verified! Unlimited Downloads Activated.");
+      } else { alert("Kripya valid 12-digit UTR number dalein."); }
+    }
+  </script>
+</body>
+</html>
 
           <!-- QUICK QUOTE CARD -->
           <div class="quick-quote-card">
