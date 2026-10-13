@@ -29,6 +29,29 @@
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;900&family=Inter:wght@400;500;600;700;800&family=Montserrat:wght@600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 
   <!-- Fabric.js CDN (Client-side Vector CAD engine) -->
+     <!-- NAYA: AI VOICE STUDIO WIDGET -->
+    <section class="section-wrap" style="padding-bottom: 0;">
+      <div class="ws-ai-wrapper">
+          <div class="ws-ai-header">🤖 AI Voice-to-Design Studio (Gemini Powered)</div>
+          <div class="ws-ai-body">
+              <p style="color: #cbd5e1; font-size: 13px; margin-bottom: 12px;">Mic dabakar kisi bhi bhasha mein bolein. AI turant vector design banayega:</p>
+              
+              <div class="ws-ai-row">
+                  <button onclick="wsStandaloneVoiceRecording(event)" class="btn btn-outline-dark" style="background:#fff; color:#000;">🎤 Speak</button>
+                  <input type="text" id="wsUniqueTextInput" class="ws-ai-input" placeholder="Type or speak requirement in any language...">
+              </div>
+              
+              <p id="wsUniqueStatusText" style="color: #00e5ff; font-weight: bold; margin-bottom: 12px; display: none;">Listening... (सुन रहा हूँ)</p>
+
+              <button onclick="wsStandaloneGenerate()" class="ws-ai-btn">Generate Design 🪄</button>
+
+              <div id="wsUniqueResultPreview" class="ws-ai-result-box"></div>
+              
+              <div id="paypal-button-container" style="margin-top: 20px; display: none;"></div>
+          </div>
+      </div>
+    </section>
+  
   <script src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/5.3.1/fabric.min.js"></script>
 
   <!-- jsPDF for 300 DPI Prepress PDF Generation -->
@@ -36,7 +59,22 @@
 
   <!-- 3. Supabase JS Client-Side SDK v2 (Browser DB & Auth) -->
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <!-- 3. Supabase JS Client-Side SDK v2 (Browser DB & Auth) -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  
+  <!-- NAYA: PayPal SDK -->
+  <script src="https://www.paypal.com/sdk/js?client-id=YOUR_PAYPAL_CLIENT_ID&currency=USD"></script>
 
+  <style>
+    /* NAYA: AI Widget CSS */
+    .ws-ai-wrapper { background: #0f172a; border: 1px solid #1e293b; border-radius: 16px; max-width: 800px; margin: 40px auto; overflow: hidden; box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7); }
+    .ws-ai-header { background: linear-gradient(135deg, #00e5ff 0%, #3b82f6 100%); color: #000; padding: 16px; text-align: center; font-weight: 900; }
+    .ws-ai-body { padding: 20px; color: #fff; }
+    .ws-ai-row { display: flex; gap: 8px; margin-bottom: 14px; }
+    .ws-ai-input { flex: 1; background: #1e293b; border: 1px solid #334155; color: #ffffff; padding: 10px 14px; border-radius: 8px; outline: none; }
+    .ws-ai-btn { background: #ffc107; color: #000; font-weight: 900; padding: 14px; border: none; border-radius: 8px; cursor: pointer; width: 100%; }
+    .ws-ai-result-box { background: #020617; border: 1px dashed #475569; border-radius: 8px; min-height: 200px; padding: 12px; text-align: center; margin-top: 16px; display: none; }
+    
   <style>
     :root {
       --navy-950: #06111F;
@@ -2210,6 +2248,66 @@ Details: ${notes}`;
       initFabricStudio();
       initAuth();
     });
+        /* NAYA: AI VOICE & VERCEL GENERATION LOGIC */
+    function wsStandaloneVoiceRecording(e) {
+        if(e) { e.preventDefault(); e.stopPropagation(); } 
+        const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+        if (!SpeechRecognition) { alert("Voice recognition not supported."); return; }
+        
+        const recognition = new SpeechRecognition();
+        recognition.lang = 'hi-IN'; 
+        document.getElementById('wsUniqueStatusText').style.display = 'block';
+        
+        recognition.onresult = function(event) {
+            document.getElementById('wsUniqueTextInput').value = event.results[0][0].transcript; 
+            document.getElementById('wsUniqueStatusText').style.display = 'none';
+        };
+        recognition.onerror = function() { document.getElementById('wsUniqueStatusText').style.display = 'none'; };
+        recognition.start();
+    }
+
+    async function wsStandaloneGenerate() {
+        const promptText = document.getElementById('wsUniqueTextInput').value;
+        if (!promptText) { alert("Kripya mic se bolein ya text type karein!"); return; }
+
+        const preview = document.getElementById('wsUniqueResultPreview');
+        preview.style.display = 'block';
+        preview.innerHTML = `<span style="color:#00e5ff;">Gemini AI design bana raha hai... ⏳</span>`;
+
+        try {
+            // Seedha Vercel API ko call (Key yahan nahi dikhegi)
+            const response = await fetch('/api/generate', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ promptText: promptText })
+            });
+
+            const data = await response.json();
+            if (data.error) { preview.innerHTML = `<span style="color:#ef4444;">Error: ${data.error}</span>`; return; }
+
+            let aiResult = data.svgCode.replace(/```xml/g, '').replace(/```svg/g, '').replace(/```html/g, '').replace(/```/g, '').trim();
+            preview.innerHTML = `<div style="background:#fff; padding:10px; border-radius:6px;">${aiResult}</div>
+                                 <button onclick="document.getElementById('paypal-button-container').style.display='block'" class="btn btn-gold" style="margin-top:15px;">Download Vector ($9.99)</button>`;
+        } catch (error) {
+            preview.innerHTML = `<span style="color:#ef4444;">Server error: Vercel connect nahi ho paya.</span>`;
+        }
+    }
+
+    // PayPal Button Render
+    if(window.paypal) {
+        paypal.Buttons({
+            createOrder: function(data, actions) {
+                return actions.order.create({ purchase_units: [{ amount: { value: '9.99' } }] });
+            },
+            onApprove: function(data, actions) {
+                return actions.order.capture().then(function(details) {
+                    alert('Payment successful! Aapka design unlock ho gaya hai.');
+                    // Yahan Supabase entry save kar sakte hain
+                });
+            }
+        }).render('#paypal-button-container');
+    }
+    
   </script>
 </body>
 </html>
