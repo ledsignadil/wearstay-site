@@ -3153,6 +3153,33 @@
                   </button>
 
                   <!-- WHATSAPP DIRECT ORDER BUTTON -->
+                  <!-- DesignHub Global: PayPal International Button -->
+<div class="w-full mb-3 text-center">
+    <!-- USD Amount (Glow effect) -->
+    <div class="text-emerald-400 font-bold text-sm mb-2 drop-shadow-md">
+        ( Approx <span id="advance-usd-display">$0</span> USD )
+    </div>
+    <!-- PayPal Button -->
+    <a href="https://www.paypal.com/ncp/payment/BJXPNCZGH8TV4" target="_blank" style="background-color: #ffc439; color: #000; padding: 10px 0; text-decoration: none; border-radius: 12px; font-size: 14px; font-weight: bold; display: block; width: 100%; border: 1px solid #ffc439; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);">
+        💳 Pay Advance with PayPal
+    </a>
+</div>
+
+<!-- Auto-calculate USD Script -->
+<script>
+    // यह कोड ₹ को $ में बदलकर दिखाएगा
+    setInterval(function() {
+        let advanceINRText = document.getElementById("mfgSummaryAdvance").innerText;
+        // Text में से '₹' और ',' हटाकर सिर्फ नंबर निकालना
+        let advanceINR = parseInt(advanceINRText.replace(/[^0-9]/g, '')); 
+        
+        if(!isNaN(advanceINR)) {
+            let advanceUSD = Math.round(advanceINR / 84); // 84 rupees per dollar
+            document.getElementById("advance-usd-display").innerText = "$" + advanceUSD;
+        }
+    }, 1000); // हर 1 सेकंड में अपडेट करेगा
+</script>
+                  
                   <a id="btnMfgWhatsAppOrder" href="https://wa.me/919211880426" target="_blank" rel="noopener" class="btn w-full py-2.5 px-4 rounded-xl text-xs font-bold justify-center transition flex items-center gap-2" style="background:#25D366; color:#000000;">
                     <span class="text-base">💬</span>
                     <span>Order via WhatsApp (+91 9211880426)</span>
