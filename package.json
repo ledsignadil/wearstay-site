@@ -6,40 +6,25 @@
   "scripts": {
     "dev": "tsx server.ts",
     "build": "vite build",
-    "start": "NODE_ENV=production tsx server.ts",
-    "clean": "rm -rf dist server.js",
-    "lint": "tsc --noEmit"
+    "start": "NODE_ENV=production tsx server.ts"
   },
   "dependencies": {
-    "@google/genai": "^2.4.0",
-    "@supabase/supabase-js": "^2.117.2",
-    "@tailwindcss/vite": "^4.3.3",
-    "@vitejs/plugin-react": "^6.1.1",
-    "adm-zip": "^0.6.1",
-    "canvas-confetti": "^1.9.4",
-    "dotenv": "^17.2.3",
-    "express": "^4.21.2",
-    "firebase": "^12.19.0",
-    "firebase-admin": "^14.5.0",
-    "jspdf": "^4.2.1",
-    "lucide-react": "^0.546.0",
-    "motion": "^12.23.24",
-    "openai": "^7.33.0",
-    "razorpay": "^2.9.8",
-    "react": "^19.0.1",
-    "react-dom": "^19.0.1",
-    "vite": "^8.3.0"
+    "@google/genai": "^0.1.2",
+    "@supabase/supabase-js": "^2.39.3",
+    "adm-zip": "^0.5.10",
+    "canvas-confetti": "^1.9.2",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "jspdf": "^2.5.1",
+    "razorpay": "^2.9.4"
   },
   "devDependencies": {
-    "@types/canvas-confetti": "^1.9.0",
+    "@types/canvas-confetti": "^1.6.4",
     "@types/express": "^4.17.21",
-    "@types/node": "^22.14.0",
-    "@types/react": "^19.3.0",
-    "@types/react-dom": "^19.3.0",
-    "autoprefixer": "^10.4.21",
-    "esbuild": "^0.25.0",
-    "tailwindcss": "^4.3.3",
-    "tsx": "^4.21.0",
-    "typescript": "^7.0.2"
+    "@types/node": "^20.12.7",
+    "esbuild": "^0.20.2",
+    "tsx": "^4.7.2",
+    "typescript": "^5.4.5",
+    "vite": "^5.2.8"
   }
 }
