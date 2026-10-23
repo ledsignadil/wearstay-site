@@ -2,6 +2,7 @@
   "name": "wearstay-site",
   "version": "1.0.0",
   "dependencies": {
-    "@google/generative-ai": "^0.2.0"
+    "@google/generative-ai": "^0.2.0",
+    "@vercel/speed-insights": "^2.0.0"
   }
 }
