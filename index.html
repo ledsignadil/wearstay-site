@@ -6714,31 +6714,6 @@ Customer: ${clientName} (${phone})`;
       });
     }
 
-/* AUTH & CLIENT-SIDE SUPABASE ARCHITECTURE */
-const SUPABASE_DEFAULT_URL = 'https://pnfxyxexxhbucjkgtwxj.supabase.co';
-const SUPABASE_DEFAULT_KEY = 'sb_publishable_YamN7OYn_ogyIJL4RjmUGw_OcClGAxE';
-    
-async function initAuth() {
-  let url = SUPABASE_DEFAULT_URL;
-  let key = SUPABASE_DEFAULT_KEY;
-
-  if (window.supabase && url && key) {
-    supabaseClient = window.supabase.createClient(url, key);
-    
-          // Listen to live auth changes
-          supabaseClient.auth.onAuthStateChange(async (event, session) => {
-            if (session?.user) {
-              window.supabaseUser = session.user;
-              window.supabaseToken = session.access_token;
-              updateLoggedInUI(session.user);
-              loadUserProfile();
-            } else {
-              window.supabaseUser = null;
-              window.supabaseToken = null;
-              updateLoggedOutUI();
-            }
-          });
-
           // Check current active session on load
           const { data: { session } } = await supabaseClient.auth.getSession();
           if (session?.user) {
