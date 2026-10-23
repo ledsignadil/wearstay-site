@@ -6714,29 +6714,17 @@ Customer: ${clientName} (${phone})`;
       });
     }
 
-    /* AUTH & CLIENT-SIDE SUPABASE ARCHITECTURE */
-    const SUPABASE_DEFAULT_URL = 'https://your-project-id.supabase.co';
-    const SUPABASE_DEFAULT_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.your_supabase_anon_public_key';
+/* AUTH & CLIENT-SIDE SUPABASE ARCHITECTURE */
+const SUPABASE_DEFAULT_URL = 'https://pnfxyxexxhbucjkgtwxj.supabase.co';
+const SUPABASE_DEFAULT_KEY = 'sb_publishable_YamN7OYn_ogyIJL4RjmUGw_OcClGAxE';
+    
+async function initAuth() {
+  let url = SUPABASE_DEFAULT_URL;
+  let key = SUPABASE_DEFAULT_KEY;
 
-    async function initAuth() {
-      try {
-        let url = '';
-        let key = '';
-
-        try {
-          const res = await fetch('/api/config');
-          if (res.ok) {
-            const cfg = await res.json();
-            if (cfg.supabaseUrl) {
-              url = cfg.supabaseUrl;
-              key = cfg.supabaseAnonKey;
-            }
-          }
-        } catch(e) {}
-
-        if (window.supabase && url && key) {
-          supabaseClient = window.supabase.createClient(url, key);
-
+  if (window.supabase && url && key) {
+    supabaseClient = window.supabase.createClient(url, key);
+    
           // Listen to live auth changes
           supabaseClient.auth.onAuthStateChange(async (event, session) => {
             if (session?.user) {
