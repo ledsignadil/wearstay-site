@@ -1,6 +1,24 @@
-import { createClient } from '@supabase/supabase-js'
+export default function handler(req, res) {
+  // Vercel ki settings se Supabase URL aur Key nikalna jo sabhi frameworks ko support kare
+  const rawSupabaseUrl = 
+    process.env.SUPABASE_URL || 
+    process.env.NEXT_PUBLIC_SUPABASE_URL || 
+    process.env.VITE_SUPABASE_URL || 
+    process.env.REACT_APP_SUPABASE_URL || 
+    '';
+    
+  const rawAnonKey = 
+    process.env.SUPABASE_ANON_KEY || 
+    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || 
+    process.env.VITE_SUPABASE_ANON_KEY || 
+    process.env.REACT_APP_SUPABASE_ANON_KEY || 
+    '';
 
-const supabaseUrl = 'https://pnfxyxexxhbucjkgtwxj.supabase.co'
-const supabaseKey = 'EyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBuZnh5eGV4eGhidWNqa2d0d3hqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTExMzg2NTIsImV4cCI6MjEwNjcxNDY1Mn0.adi1lUSgJPx38bNzi4xJT1gHFBIwDUEdbsay440QCkY'
+  // Safai karke exact URL aur Key frontend (index.html) ko bhejna
+  const cleanUrl = rawSupabaseUrl.replace(/\/rest\/v1\/?$/, '').replace(/\/+$/, '').trim();
 
-export const supabase = createClient(supabaseUrl, supabaseKey)
+  res.status(200).json({
+    supabaseUrl: cleanUrl,
+    supabaseAnonKey: rawAnonKey
+  });
+}
