@@ -1,7 +1,6 @@
 import { createClient } from '@supabase/supabase-js'
 
-// Yahan process.env ya import.meta ki jagah seedha apna URL aur Key daalein (quotes ' ' ke andar)
 const supabaseUrl = 'https://pnfxyxexxhbucjkgtwxj.supabase.co'
-const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...' // Yahan apni poori SUPABASE_ANON_KEY paste karein
+const supabaseKey = 'EyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBuZnh5eGV4eGhidWNqa2d0d3hqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTExMzg2NTIsImV4cCI6MjEwNjcxNDY1Mn0.adi1lUSgJPx38bNzi4xJT1gHFBIwDUEdbsay440QCkY'
 
 export const supabase = createClient(supabaseUrl, supabaseKey)
