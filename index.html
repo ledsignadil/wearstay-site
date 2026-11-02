@@ -8063,16 +8063,29 @@ Customer: ${clientName} (${phone})`;
 
         toast(`Creating secure order for ${targetPlan.toUpperCase()} Plan (${priceLabel})...`);
 
-        const res = await fetch('/api/razorpay/create-order', {
+              // Naya code - Token nikal kar server ko bhejne ke liye
+      let token = '';
+      try {
+          const { data } = await supabase.auth.getSession();
+          if (data && data.session) token = data.session.access_token;
+      } catch (err) {
+          console.log("Token nahi mila", err);
+      }
+
+      const res = await fetch('/api/razorpay/create-order', {
           method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
+          headers: { 
+              'Content-Type': 'application/json',
+              'Authorization': `Bearer ${token}` 
+          },
           body: JSON.stringify({
-            planKey: targetPlan,
-            currency: targetCurrency,
-            userId,
-            email
+              planKey: targetPlan,
+              currency: targetCurrency,
+              userId: userId,
+              email: email
           })
-        });
+      });
+    
 
         const data = await res.json();
         if (!res.ok || !data.success) {
