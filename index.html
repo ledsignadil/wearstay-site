@@ -8113,7 +8113,7 @@ Customer: ${clientName} (${phone})`;
           name: 'DESIGNHUB GLOBAL',
           description: data.description || `DESIGNHUB GLOBAL ${targetPlan.toUpperCase()} (${data.credits} Credits)`,
           image: 'https://placehold.co/128x128/06111f/ffd21f?text=DH',
-          data.id
+          order_id: data.id,
           prefill: {
             email: (data.prefill && data.prefill.email) || email,
             contact: '+919211880426'
