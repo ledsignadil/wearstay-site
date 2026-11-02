@@ -8102,7 +8102,7 @@ Customer: ${clientName} (${phone})`;
           name: 'DESIGNHUB GLOBAL',
           description: data.description || `DESIGNHUB GLOBAL ${targetPlan.toUpperCase()} (${data.credits} Credits)`,
           image: 'https://placehold.co/128x128/06111f/ffd21f?text=DH',
-          order_id: data.orderId,
+          order_id: data.id,
           prefill: {
             email: (data.prefill && data.prefill.email) || email,
             contact: '+919211880426'
@@ -8124,7 +8124,7 @@ Customer: ${clientName} (${phone})`;
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
                   razorpay_payment_id: response.razorpay_payment_id,
-                  razorpay_order_id: response.razorpay_order_id || data.orderId,
+                  razorpay_order_id: response.razorpay_order_id || data.id,
                   razorpay_signature: response.razorpay_signature,
                   planKey: targetPlan,
                   userId,
