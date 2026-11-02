@@ -8072,7 +8072,7 @@ Customer: ${clientName} (${phone})`;
           console.log("Token nahi mila", err);
       }
 
-      const res = await fetch('/api', {
+      const res = await fetch('/api/razorpay', {
           method: 'POST',
           headers: { 
               'Content-Type': 'application/json',
