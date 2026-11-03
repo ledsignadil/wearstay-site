@@ -8128,86 +8128,151 @@ Customer: ${clientName} (${phone})`;
             color: '#FFD21F'
           },
           handler: async function (response) {
-            toast('⏳ Payment received! Verifying cryptographically with server...');
-            try {
-              const verifyRes = await fetch('/api/razorpay/verify-payment', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                  razorpay_payment_id: response.razorpay_payment_id,
-                  razorpay_order_id: response.razorpay_order_id || data.id,
-                  razorpay_signature: response.razorpay_signature,
-                  planKey: targetPlan,
-                  userId,
-                  email
-                })
-              });
-
-              const verifyData = await verifyRes.json();
-              if (verifyRes.ok && verifyData.success) {
-                const creditsAdded = verifyData.creditsAdded || data.credits;
-                const curCredits = parseInt(localStorage.getItem('dh_user_credits') || '0', 10);
-                const newCredits = curCredits + creditsAdded;
-
-                localStorage.setItem('dh_has_subscription', 'true');
-                localStorage.setItem('dh_user_credits', newCredits.toString());
-                localStorage.setItem('dh_active_plan', targetPlan);
-
-                if (typeof updatePaywallUI === 'function') updatePaywallUI();
-                if (typeof updateUserCreditsDisplay === 'function') updateUserCreditsDisplay(newCredits);
-
-                toast(`🎉 ${verifyData.message || 'Subscription Activated!'}`);
-                closeModal('subscriptionModal');
-
-                if (typeof confetti === 'function') confetti();
-              } else {
-                throw new Error(verifyData.error || 'Payment verification failed');
-              }
-            } catch (vErr) {
-              console.error('Payment verification error:', vErr);
-              toast('❌ Verification error: ' + vErr.message);
-              if (errEl) {
-                errEl.style.display = 'block';
-                errEl.innerHTML = `⚠️ Verification error: ${vErr.message}. If payment was debited, our server webhook will process it, or contact us: <a href="https://wa.me/919211880426" target="_blank" style="color:var(--gold); font-weight:bold;">WhatsApp Support</a>`;
-              }
-            }
-          },
-          modal: {
-            ondismiss: function () {
-              isRazorpayCheckoutLoading = false;
-              if (btn) {
-                btn.disabled = false;
-                btn.innerHTML = `⚡ Pay with Razorpay (${priceLabel})`;
-              }
-              toast('Razorpay checkout window closed.');
-            }
-          }
-        };
-
-        const rzp = new window.Razorpay(options);
-        rzp.on('payment.failed', function (resp) {
-          console.warn('Razorpay payment declined/failed:', resp.error);
-          toast(`⚠️ Payment failed: ${resp.error?.description || 'Declined'}`);
-          if (errEl) {
-            errEl.style.display = 'block';
-            errEl.textContent = `Payment Failed: ${resp.error?.description || 'Transaction declined'}. Please try again or use direct UPI.`;
-          }
-        });
-
-        rzp.open();
-      } catch (err) {
-        console.error('Razorpay checkout error:', err);
-        toast('⚠️ ' + err.message);
-        if (errEl) {
-          errEl.style.display = 'block';
-          errEl.innerHTML = `⚠️ ${err.message}. <button type="button" class="btn btn-outline-dark" style="margin-left:8px; padding:3px 8px; font-size:12px;" onclick="triggerRazorpayCheckout('${targetPlan}', ${targetPrice}, '${targetCurrency}')">Retry</button>`;
-        }
-      } finally {
-        isRazorpayCheckoutLoading = false;
-        if (btn) {
-          btn.disabled = false;
-          btn.innerHTML = `⚡ Pay $${window.currentSelectedPriceUsd || 3.99} with Razorpay (Global Cards / USD)`;
-        }
+async function triggerRazorpayCheckout(planKey, price, currency = 'USD') {
+if (isRazorpayCheckoutLoading) return;
+const targetPlan = planKey || window.currentSelectedPlan || 'standard';
+const targetCurrency = (currency || 'USD').toUpperCase();
+const USD_MAP = { starter: 1.49, standard: 3.99, pro: 7.99 };
+const INR_MAP = { starter: 99, standard: 299, pro: 599 };
+const targetPrice = price || (targetCurrency === 'USD' ? (USD_MAP[targetPlan] || 3.99) : (INR_MAP[targetPlan] || 299));
+const priceLabel = targetCurrency === 'USD' ? $${targetPrice} USD : ₹${targetPrice} INR;
+const btn = $('btnRazorpayModalCheckout');
+const errEl = $('razorpayCheckoutError');
+if (errEl) { errEl.style.display = 'none'; errEl.textContent = ''; }
+if (btn) {
+btn.disabled = true;
+btn.innerHTML = ⏳ Connecting to Razorpay Gateway (${priceLabel})...;
+}
+isRazorpayCheckoutLoading = true;
+try {
+// Ensure Razorpay SDK script is ready
+if (typeof window.Razorpay !== 'function') {
+await new Promise((resolve, reject) => {
+const script = document.createElement('script');
+script.src = 'https://checkout.razorpay.com/v1/checkout.js';
+script.async = true;
+script.onload = () => resolve(true);
+script.onerror = () => reject(new Error('Failed to load Razorpay checkout script. Please check your network or adblocker.'));
+document.head.appendChild(script);
+});
+}
+const userId = (window.supabaseUser && window.supabaseUser.id) || localStorage.getItem('dh_user_id') || 'guest_user';
+const email = (window.supabaseUser && window.supabaseUser.email) || localStorage.getItem('dh_user_email') || 'customer@wearstay.com';
+toast(Creating secure order for ${targetPlan.toUpperCase()} Plan (${priceLabel})...);
+const res = await fetch('/api/razorpay/create-order', {
+method: 'POST',
+headers: { 'Content-Type': 'application/json' },
+body: JSON.stringify({
+planKey: targetPlan,
+amount: Math.round(targetPrice * 100), // ✨ YAHAN AMOUNT FIX KIYA HAI ✨
+currency: targetCurrency,
+userId,
+email
+})
+});
+const data = await res.json();
+if (!res.ok || !data.success) {
+throw new Error(data.error || 'Server could not create Razorpay order');
+}
+const activeOrderCurrency = data.currency || targetCurrency;
+const activeOrderAmount = data.amount;
+const options = {
+key: 'rzp_live_TsNtW2yGttILeE',
+amount: activeOrderAmount,
+currency: activeOrderCurrency,
+name: 'DESIGNHUB GLOBAL',
+description: data.description || DESIGNHUB GLOBAL ${targetPlan.toUpperCase()} (${data.credits} Credits),
+image: 'https://placehold.co/128x128/06111f/ffd21f?text=DH',
+order_id: data.orderId || data.id || (data.order && data.order.id),
+prefill: {
+email: (data.prefill && data.prefill.email) || email,
+contact: '+919211880426'
+},
+notes: {
+planKey: targetPlan,
+credits: data.credits,
+currency: activeOrderCurrency,
+userId
+},
+theme: {
+color: '#FFD21F'
+},
+handler: async function (response) {
+toast('⏳ Payment received! Verifying cryptographically with server...');
+try {
+const verifyRes = await fetch('/api/razorpay/verify-payment', {
+method: 'POST',
+headers: { 'Content-Type': 'application/json' },
+body: JSON.stringify({
+razorpay_payment_id: response.razorpay_payment_id,
+razorpay_order_id: response.razorpay_order_id || data.id,
+razorpay_signature: response.razorpay_signature,
+planKey: targetPlan,
+userId,
+email
+})
+});
+const verifyData = await verifyRes.json();
+if (verifyRes.ok && verifyData.success) {
+const creditsAdded = verifyData.creditsAdded || data.credits;
+const curCredits = parseInt(localStorage.getItem('dh_user_credits') || '0', 10);
+const newCredits = curCredits + creditsAdded;
+localStorage.setItem('dh_has_subscription', 'true');
+localStorage.setItem('dh_user_credits', newCredits.toString());
+localStorage.setItem('dh_active_plan', targetPlan);
+if (typeof updatePaywallUI === 'function') updatePaywallUI();
+if (typeof updateUserCreditsDisplay === 'function') updateUserCreditsDisplay(newCredits);
+toast(🎉 ${verifyData.message || 'Subscription Activated!'});
+closeModal('subscriptionModal');
+if (typeof confetti === 'function') confetti();
+} else {
+throw new Error(verifyData.error || 'Payment verification failed');
+}
+} catch (vErr) {
+console.error('Payment verification error:', vErr);
+toast('❌ Verification error: ' + vErr.message);
+if (errEl) {
+errEl.style.display = 'block';
+errEl.innerHTML = ⚠️ Verification error: ${vErr.message}. If payment was debited, our server webhook will process it, or contact us: <a href="https://wa.me/919211880426" target="_blank" style="color:var(--gold); font-weight:bold;">WhatsApp Support</a>;
+}
+}
+},
+modal: {
+ondismiss: function () {
+isRazorpayCheckoutLoading = false;
+if (btn) {
+btn.disabled = false;
+btn.innerHTML = ⚡ Pay with Razorpay (${priceLabel});
+}
+toast('Razorpay checkout window closed.');
+}
+}
+};
+const rzp = new window.Razorpay(options);
+rzp.on('payment.failed', function (resp) {
+console.warn('Razorpay payment declined/failed:', resp.error);
+toast(⚠️ Payment failed: ${resp.error?.description || 'Declined'});
+if (errEl) {
+errEl.style.display = 'block';
+errEl.textContent = Payment Failed: ${resp.error?.description || 'Transaction declined'}. Please try again or use direct UPI.;
+}
+});
+rzp.open();
+} catch (err) {
+console.error('Razorpay checkout error:', err);
+toast('⚠️ ' + err.message);
+if (errEl) {
+errEl.style.display = 'block';
+errEl.innerHTML = ⚠️ ${err.message}. <button type="button" class="btn btn-outline-dark" style="margin-left:8px; padding:3px 8px; font-size:12px;" onclick="triggerRazorpayCheckout('${targetPlan}', ${targetPrice}, '${targetCurrency}')">Retry</button>;
+}
+} finally {
+isRazorpayCheckoutLoading = false;
+if (btn) {
+btn.disabled = false;
+btn.innerHTML = ⚡ Pay $${window.currentSelectedPriceUsd || 3.99} with Razorpay (Global Cards / USD);
+}
+}
+    }
       }
     }
     window.triggerRazorpayCheckout = triggerRazorpayCheckout;
