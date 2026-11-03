@@ -8168,16 +8168,7 @@ amount: Math.round(targetPrice * 100), // ✨ YAHAN AMOUNT FIX KIYA HAI ✨
 currency: targetCurrency,
 userId,
 email
-})
-});
-const data = await res.json();
-if (!res.ok || !data.success) {
-throw new Error(data.error || 'Server could not create Razorpay order');
-}
-const activeOrderCurrency = data.currency || targetCurrency;
-const activeOrderAmount = data.amount;
-const activeOrderCurrency = data.currency || targetCurrency;
-const activeOrderAmount = data.amount;
+const res = await fetch('/api/razorpay/create-order', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ planKey: targetPlan, amount: Math.round(targetPrice * 100), // ✨ AMOUNT FIXED ✨ currency: targetCurrency, userId, email }) }); const data = await res.json(); if (!res.ok || !data.success) { throw new Error(data.error || 'Server could not create Razorpay order'); } const activeOrderCurrency = data.currency || targetCurrency; const activeOrderAmount = data.amount; const options = { key: 'rzp_live_TsNtW2yGttILeE', amount: activeOrderAmount, currency: activeOrderCurrency, name: 'DESIGNHUB GLOBAL', description: data.description || `DESIGNHUB GLOBAL ${targetPlan.toUpperCase()} (${data.credits} Credits)`, image: 'https://placehold.co/128x128/06111f/ffd21f?text=DH', order_id: data.orderId || data.id || (data.order && data.order.id), prefill: { email, contact: '+919211880426' }, theme: { color: '#FFD21F' }, handler: async function (response) { toast('⏳ Payment received! Verifying...');
 const options = {
 key: 'rzp_live_TsNtW2yGttILeE',
 amount: activeOrderAmount,
