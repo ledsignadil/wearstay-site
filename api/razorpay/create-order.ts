@@ -9,10 +9,8 @@ export default async function handler(req, res) {
         throw new Error("Razorpay keys missing in Vercel Environment Variables");
     }
 
-    // Razorpay authentication set up karna
     const auth = Buffer.from(`${key_id}:${key_secret}`).toString('base64');
 
-    // Direct Razorpay API ko request bhejna (Bina kisi package ke)
     const response = await fetch('https://api.razorpay.com/v1/orders', {
       method: 'POST',
       headers: {
@@ -20,7 +18,7 @@ export default async function handler(req, res) {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-        amount: 399, // 399 cents = $3.99
+        amount: 399,
         currency: req.body.currency || 'USD',
         receipt: `rcpt_${req.body.userId || 'guest'}`
       })
