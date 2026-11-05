@@ -72,7 +72,7 @@ const cleanEnvVar = (v: string | undefined): string => {
 };
 
 const envKeyId = cleanEnvVar(process.env.RAZORPAY_KEY_ID || process.env.VITE_RAZORPAY_KEY_ID);
-const RAZORPAY_KEY_ID = (envKeyId && !envKeyId.includes('Tohmh2s')) ? envKeyId : 'rzp_live_TvrJAa0CIbZZAU';
+const RAZORPAY_KEY_ID = (envKeyId && !envKeyId.includes('Tohmh2s')) ? envKeyId : 'rzp_live_TwWVuI7BuCTlZv';
 const RAZORPAY_KEY_SECRET = cleanEnvVar(process.env.RAZORPAY_KEY_SECRET);
 const RAZORPAY_WEBHOOK_SECRET = cleanEnvVar(process.env.RAZORPAY_WEBHOOK_SECRET);
 
@@ -84,7 +84,7 @@ const isRazorpayConfigured = Boolean(
 
 function getRazorpayClient(): Razorpay | null {
   const envKey = cleanEnvVar(process.env.RAZORPAY_KEY_ID || process.env.VITE_RAZORPAY_KEY_ID);
-  const kId = (envKey && !envKey.includes('Tohmh2s')) ? envKey : 'rzp_live_TvrJAa0CIbZZAU';
+  const kId = (envKey && !envKey.includes('Tohmh2s')) ? envKey : 'rzp_live_TwWVuI7BuCTlZv';
   const kSec = cleanEnvVar(process.env.RAZORPAY_KEY_SECRET);
   if (!kId || !kSec || kSec === 'test_secret_mock') return null;
   return new Razorpay({ key_id: kId, key_secret: kSec });
@@ -2885,7 +2885,7 @@ app.post(['/api/advertising-order/:id/create-advance-order', '/api/signage/order
 
     res.json({
       success: true,
-      keyId: RAZORPAY_KEY_ID || 'rzp_live_TvrJAa0CIbZZAU',
+      keyId: RAZORPAY_KEY_ID || 'rzp_live_TwWVuI7BuCTlZv',
       orderId: rzpOrderId,
       amount: amountInPaise,
       currency: 'INR',
@@ -3293,7 +3293,7 @@ app.post(['/api/razorpay/create-order', '/api/razorpay/create-subscription'], as
 
     res.json({
       success: true,
-      keyId: RAZORPAY_KEY_ID || 'rzp_live_TvrJAa0CIbZZAU',
+      keyId: RAZORPAY_KEY_ID || 'rzp_live_TwWVuI7BuCTlZv',
       orderId, // Non-empty if created via server, or empty string for direct standard checkout
       amount: orderAmount,
       currency: orderCurrency,
@@ -3308,14 +3308,14 @@ app.post(['/api/razorpay/create-order', '/api/razorpay/create-subscription'], as
         contact: '+919211880426'
       },
       theme: { color: '#FFD21F' },
-      notice: 'Razorpay Live Checkout ready with key rzp_live_TvrJAa0CIbZZAU'
+      notice: 'Razorpay Live Checkout ready with key rzp_live_TwWVuI7BuCTlZv'
     });
   } catch (err: any) {
     console.error('Razorpay order creation top-level error:', err);
     const planConfig = designHubPlansConfig.starter;
     res.json({
       success: true,
-      keyId: RAZORPAY_KEY_ID || 'rzp_live_TvrJAa0CIbZZAU',
+      keyId: RAZORPAY_KEY_ID || 'rzp_live_TwWVuI7BuCTlZv',
       orderId: '',
       amount: 9900,
       currency: 'INR',
@@ -3327,7 +3327,7 @@ app.post(['/api/razorpay/create-order', '/api/razorpay/create-subscription'], as
       description: 'DESIGNHUB GLOBAL STARTER Membership • 100 Production Credits',
       prefill: { email: 'customer@wearstay.com', contact: '+919211880426' },
       theme: { color: '#FFD21F' },
-      notice: 'Direct Razorpay Live Checkout activated with key rzp_live_TvrJAa0CIbZZAU'
+      notice: 'Direct Razorpay Live Checkout activated with key rzp_live_TwWVuI7BuCTlZv'
     });
   }
 });
