@@ -9,6 +9,8 @@ function normalizeVercelEnvironment(): void {
   const targetKeys = [
     'DATABASE_URL',
     'SUPABASE_URL',
+    'VITE_SUPABASE_URL',
+    'NEXT_PUBLIC_SUPABASE_URL',
     'SUPABASE_CONFIG',
     'SUPABASE_CREDENTIALS',
     'NEW_PUBLISHABLE_KEY',
@@ -16,6 +18,8 @@ function normalizeVercelEnvironment(): void {
     'LEGACY_ANON_KEY',
     'LEGACY_SERVICE_ROLE_KEY',
     'SUPABASE_ANON_KEY',
+    'VITE_SUPABASE_ANON_KEY',
+    'NEXT_PUBLIC_SUPABASE_ANON_KEY',
     'SUPABASE_SERVICE_ROLE_KEY'
   ];
 
