@@ -8127,7 +8127,7 @@ const SUPABASE_DEFAULT_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzd
         toast(`⚠️ ${e.message}`);
       }
     }
-    async function signInWithGoogle() {
+async function signInWithGoogle() {
   const errEl = document.getElementById('loginErrorText');
   if (errEl) { errEl.style.display = 'none'; errEl.textContent = ''; }
 
@@ -8153,6 +8153,8 @@ const SUPABASE_DEFAULT_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzd
   } catch (e) {
     toast('⚠️ ' + e.message);
   }
+    }
+    
 }
 
       toast('Signing in...');
