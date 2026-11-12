@@ -8108,8 +8108,7 @@ Customer: ${clientName} (${phone})`;
       }
     }
 
-
-            errEl.innerHTML = `⚠️ <b>Google Sign-In Notice:</b> ${escapeHtml(error.message)}. Please sign in using your Email & Password below.`;
+   errEl.innerHTML = `⚠️ <b>Google Sign-In Notice:</b> ${escapeHtml(error.message)}. Please sign in using your Email & Password below.`;
             errEl.style.display = 'block';
           }
           toast(`⚠️ ${error.message}`);
