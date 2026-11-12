@@ -8108,69 +8108,7 @@ const SUPABASE_DEFAULT_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzd
       }
     }
 
-    async function signInWithGoogle() {
-      const errEl = $('loginErrorText');
-      if (errEl) { errEl.style.display = 'none'; errEl.textContent = ''; }
 
-      if (!supabaseClient) {
-        toast('Syncing with live Supabase authentication...');
-        await initAuth();
-      }
-
-      if (!supabaseClient) {
-        const banner = $('supabaseConnectBanner');
-        const form = $('supabaseQuickConfigForm');
-        if (banner) banner.style.display = 'block';
-        if (form) form.style.display = 'block';
-        if (errEl) {
-          errEl.innerHTML = `⚠️ <b>Supabase Not Connected:</b> In Vercel Project Settings → Environment Variables, add <b>VITE_SUPABASE_URL</b> &amp; <b>VITE_SUPABASE_ANON_KEY</b>.<br>Or enter your new Supabase Project URL & Anon Key in the box above to connect immediately.`;
-          errEl.style.display = 'block';
-        }
-        toast('⚠️ Please configure Supabase URL & Anon Key to enable Google Login.');
-        return;
-      }
-
-      toast('Connecting to Google Sign-In...');
-
-      try {
-        const redirectOrigin = window.location.origin;
-        const isInIframe = window.self !== window.top;
-
-        if (!isInIframe) {
-          // Standard Live Domain (www.wearstay.com) - Direct Redirect is 100% reliable without popup blockers
-          const { error } = await supabaseClient.auth.signInWithOAuth({
-            provider: 'google',
-            options: {
-              redirectTo: redirectOrigin
-            }
-          });
-          if (error) {
-            if (errEl) {
-              errEl.innerHTML = `⚠️ <b>Google Sign-In Notice:</b> ${escapeHtml(error.message)}. Please sign in using your Email & Password below.`;
-              errEl.style.display = 'block';
-            }
-            toast(`⚠️ ${error.message}`);
-          }
-          return;
-        }
-
-        // Inside Preview iFrame: use popup to avoid replacing the parent frame
-        const { data, error } = await supabaseClient.auth.signInWithOAuth({
-          provider: 'google',
-          options: {
-            redirectTo: redirectOrigin,
-            skipBrowserRedirect: true
-          }
-        });
-
-        if (error) {
-          if (errEl) {
-            errEl.innerHTML = `⚠️ <b>Google Sign-In Notice:</b> ${escapeHtml(error.message)}. Please sign in using your Email & Password below.`;
-            errEl.style.display = 'block';
-          }
-          toast(`⚠️ ${error.message}`);
-          return;
-        }
 
         if (data?.url) {
           const popup = window.open(data.url, 'google_oauth_popup', 'width=520,height=650,menubar=no,toolbar=no,location=yes');
@@ -8189,20 +8127,35 @@ const SUPABASE_DEFAULT_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzd
         toast(`⚠️ ${e.message}`);
       }
     }
+async function signInWithGoogle() {
+  const errEl = $('loginErrorText');
+  if (errEl) { errEl.style.display = 'none'; errEl.textContent = ''; }
 
-    async function signInWithEmail() {
-      const email = $('loginEmail')?.value.trim();
-      const pass = $('loginPass')?.value.trim();
-      const errEl = $('loginErrorText');
-      if (errEl) errEl.style.display = 'none';
+    toast('⚠️ Supabase not connected. Please check configuration.');
+    return;
+  }
 
-      if (!email || !pass) {
-        const msg = 'Please enter both email and password.';
-        if (errEl) { errEl.textContent = msg; errEl.style.display = 'block'; }
-        toast('⚠️ ' + msg);
-        return;
+  toast('Redirecting to Google Login...');
+
+  try {
+    const { error } = await supabaseClient.auth.signInWithOAuth({
+      provider: 'google',
+      options: {
+        redirectTo: window.location.origin
       }
-
+    });
+    if (error) {
+      toast(`⚠️ ${error.message}`);
+      if (errEl) {
+        errEl.textContent = error.message;
+        errEl.style.display = 'block';
+      }
+    }
+  } catch (e) {
+    toast(`⚠️ ${e.message}`);
+  }
+    }
+     
       toast('Signing in...');
 
       if (supabaseClient) {
