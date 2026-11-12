@@ -8127,35 +8127,34 @@ const SUPABASE_DEFAULT_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzd
         toast(`⚠️ ${e.message}`);
       }
     }
-async function signInWithGoogle() {
-  const errEl = $('loginErrorText');
+    async function signInWithGoogle() {
+  const errEl = document.getElementById('loginErrorText');
   if (errEl) { errEl.style.display = 'none'; errEl.textContent = ''; }
 
-    toast('⚠️ Supabase not connected. Please check configuration.');
+  if (!window.supabaseClient) {
+    toast('Syncing with Supabase...');
+    if (typeof initAuth === 'function') await initAuth();
+  }
+
+  if (!window.supabaseClient) {
+    toast('⚠️ Supabase client not initialized.');
     return;
   }
 
-  toast('Redirecting to Google Login...');
-
+  toast('Connecting to Google Sign-In...');
   try {
-    const { error } = await supabaseClient.auth.signInWithOAuth({
+    const { error } = await window.supabaseClient.auth.signInWithOAuth({
       provider: 'google',
-      options: {
-        redirectTo: window.location.origin
-      }
+      options: { redirectTo: window.location.origin }
     });
     if (error) {
-      toast(`⚠️ ${error.message}`);
-      if (errEl) {
-        errEl.textContent = error.message;
-        errEl.style.display = 'block';
-      }
+      toast('⚠️ ' + error.message);
     }
   } catch (e) {
-    toast(`⚠️ ${e.message}`);
+    toast('⚠️ ' + e.message);
   }
-    }
-     
+}
+
       toast('Signing in...');
 
       if (supabaseClient) {
