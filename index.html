@@ -8108,63 +8108,7 @@ Customer: ${clientName} (${phone})`;
       }
     }
 
-    async function signInWithGoogle() {
-      const errEl = $('loginErrorText');
-      if (errEl) { errEl.style.display = 'none'; errEl.textContent = ''; }
 
-      if (!supabaseClient) {
-        toast('Syncing with live Supabase authentication...');
-        await initAuth();
-      }
-
-      if (!supabaseClient) {
-        const banner = $('supabaseConnectBanner');
-        const form = $('supabaseQuickConfigForm');
-        if (banner) banner.style.display = 'block';
-        if (form) form.style.display = 'block';
-        if (errEl) {
-          errEl.innerHTML = `⚠️ <b>Supabase Not Connected:</b> In Vercel Project Settings → Environment Variables, add <b>VITE_SUPABASE_URL</b> &amp; <b>VITE_SUPABASE_ANON_KEY</b>.<br>Or enter your new Supabase Project URL & Anon Key in the box above to connect immediately.`;
-          errEl.style.display = 'block';
-        }
-        toast('⚠️ Please configure Supabase URL & Anon Key to enable Google Login.');
-        return;
-      }
-
-      toast('Connecting to Google Sign-In...');
-
-      try {
-        const redirectOrigin = window.location.origin;
-        const isInIframe = window.self !== window.top;
-
-        if (!isInIframe) {
-          // Standard Live Domain (www.wearstay.com) - Direct Redirect is 100% reliable without popup blockers
-          const { error } = await supabaseClient.auth.signInWithOAuth({
-            provider: 'google',
-            options: {
-              redirectTo: redirectOrigin
-            }
-          });
-          if (error) {
-            if (errEl) {
-              errEl.innerHTML = `⚠️ <b>Google Sign-In Notice:</b> ${escapeHtml(error.message)}. Please sign in using your Email & Password below.`;
-              errEl.style.display = 'block';
-            }
-            toast(`⚠️ ${error.message}`);
-          }
-          return;
-        }
-
-        // Inside Preview iFrame: use popup to avoid replacing the parent frame
-        const { data, error } = await supabaseClient.auth.signInWithOAuth({
-          provider: 'google',
-          options: {
-            redirectTo: redirectOrigin,
-            skipBrowserRedirect: true
-          }
-        });
-
-        if (error) {
-          if (errEl) {
             errEl.innerHTML = `⚠️ <b>Google Sign-In Notice:</b> ${escapeHtml(error.message)}. Please sign in using your Email & Password below.`;
             errEl.style.display = 'block';
           }
@@ -8190,32 +8134,47 @@ Customer: ${clientName} (${phone})`;
       }
     }
 
-    async function signInWithEmail() {
-      const email = $('loginEmail')?.value.trim();
-      const pass = $('loginPass')?.value.trim();
-      const errEl = $('loginErrorText');
-      if (errEl) errEl.style.display = 'none';
+async function signInWithGoogle() {
+  const errEl = document.getElementById('loginErrorText');
+  if (errEl) { errEl.style.display = 'none'; errEl.textContent = ''; }
 
-      if (!email || !pass) {
-        const msg = 'Please enter both email and password.';
-        if (errEl) { errEl.textContent = msg; errEl.style.display = 'block'; }
-        toast('⚠️ ' + msg);
-        return;
+  if (!window.supabaseClient) {
+    toast('Syncing with Supabase...');
+    if (typeof initAuth === 'function') await initAuth();
+  }
+
+  if (!window.supabaseClient) {
+    toast('⚠️ Supabase client not initialized. Please click "Connect Keys".');
+    const banner = document.getElementById('supabaseConnectBanner');
+    const form = document.getElementById('supabaseQuickConfigForm');
+    if (banner) banner.style.display = 'block';
+    if (form) form.style.display = 'block';
+    return;
+  }
+
+  toast('Connecting to Google Sign-In...');
+  try {
+    const { error } = await window.supabaseClient.auth.signInWithOAuth({
+      provider: 'google',
+      options: { 
+        redirectTo: window.location.origin 
       }
-
-      toast('Signing in...');
-
-      if (supabaseClient) {
-        try {
-          const { data, error } = await supabaseClient.auth.signInWithPassword({ email, password: pass });
-          if (error) {
-            if (errEl) {
-              errEl.textContent = error.message;
-              errEl.style.display = 'block';
-            }
-            toast(`⚠️ ${error.message}`);
-            return;
-          }
+    });
+    if (error) {
+      if (errEl) {
+        errEl.innerHTML = `⚠️ <b>Google Login Notice:</b> ${escapeHtml(error.message)}`;
+        errEl.style.display = 'block';
+      }
+      toast('⚠️ ' + error.message);
+    }
+  } catch (e) {
+    if (errEl) {
+      errEl.innerHTML = `⚠️ <b>Error:</b> ${escapeHtml(e.message)}`;
+      errEl.style.display = 'block';
+    }
+    toast('⚠️ ' + e.message);
+  }
+    }
           if (data?.user) {
             window.supabaseUser = data.user;
             window.supabaseToken = data.session?.access_token;
