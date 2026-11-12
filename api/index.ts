@@ -20,7 +20,11 @@ function normalizeVercelEnvironment(): void {
     'SUPABASE_ANON_KEY',
     'VITE_SUPABASE_ANON_KEY',
     'NEXT_PUBLIC_SUPABASE_ANON_KEY',
-    'SUPABASE_SERVICE_ROLE_KEY'
+    'SUPABASE_SERVICE_ROLE_KEY',
+    'GEMINI_API_KEY',
+    'VITE_GEMINI_API_KEY',
+    'GOOGLE_GENAI_API_KEY',
+    'GOOGLE_API_KEY'
   ];
 
   for (const key of targetKeys) {
