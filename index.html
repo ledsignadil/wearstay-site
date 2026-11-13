@@ -10989,80 +10989,88 @@ Status: Production Vector (SVG), CorelDRAW (CDR v12) & AutoCAD (DXF) Ready`;
 
   <!-- RAZORPAY OFFICIAL CHECKOUT SDK -->
   <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
-<!-- Final Google Account Picker, Session Lock & Admin Panel v10 -->
+<!-- Master White-Label, 0-Credit Lock, 50% Profit & Owner Control -->
 <script>
   (function() {
     const OWNER = "ledsignadil@gmail.com";
 
-    // 1. Google Login button dabate hi Email Chooser (select_account) force karein
+    // 1. Google Login पर Email Picker खोलें ताकि दुनिया भर से कोई भी लॉगिन कर सके
     document.addEventListener("click", function(e) {
       const btn = e.target.closest("button");
       if (btn && btn.innerText && btn.innerText.includes("Continue with Google")) {
         e.preventDefault();
         e.stopPropagation();
         const sbUrl = window.SUPABASE_URL || "https://supabase.co";
-        const redirect = encodeURIComponent("https://www.wearstay.com");
-        // Seedha Google OAuth par bhejein with prompt=select_account
+        const redirect = encodeURIComponent("https://wearstay.com");
         window.location.href = `${sbUrl}/auth/v1/authorize?provider=google&redirect_to=${redirect}&prompt=select_account`;
       }
     }, true);
 
-    // 2. Wapas aane par Token aur Email ko permanently lock karein
-    function lockUserSession() {
+    // 2. White-Labeling: स्क्रीन से थर्ड-पार्टी AI नाम छुपाकर आपका ब्रांड दिखाएं
+    function applyWhiteLabelAndControls() {
+      // टोकन से ईमेल सेव करें
       const hash = window.location.hash;
       if (hash && hash.includes("access_token=")) {
         try {
-          const params = new URLSearchParams(hash.substring(1));
-          const token = params.get("access_token");
+          const token = new URLSearchParams(hash.substring(1)).get("access_token");
           if (token) {
-            const payload = JSON.parse(atob(token.split('.')[1].replace(/-/g, '+').replace(/_/g, '/')));
+            const payload = JSON.parse(atob(token.split('.').replace(/-/g, '+').replace(/_/g, '/')));
             if (payload && payload.email) {
               localStorage.setItem("wearstay_locked_user", payload.email);
-              localStorage.setItem("wearstay_locked_token", token);
+              // नए ग्राहक के लिए शुरू में 0 Credit सेट करें (Zero Loss Rule)
+              if (!localStorage.getItem("ws_credits_" + payload.email)) {
+                localStorage.setItem("ws_credits_" + payload.email, "0");
+              }
+              localStorage.setItem("wearstay_show_sub_now", "1");
               window.history.replaceState(null, null, window.location.pathname);
             }
           }
         } catch (err) {}
       }
 
-      if (window.location.search.includes("admin=adil")) {
-        localStorage.setItem("wearstay_locked_user", OWNER);
-      }
-
       const activeUser = localStorage.getItem("wearstay_locked_user");
 
-      // 3. UI ko update karein taaki "Login" hat jaye aur Account dikhe
       if (activeUser) {
-        const shortName = activeUser.split("@")[0];
+        const isOwner = activeUser.toLowerCase() === OWNER.toLowerCase();
+        const credits = isOwner ? "Unlimited" : (localStorage.getItem("ws_credits_" + activeUser) || "0");
+        const shortName = activeUser.split("@");
+
+        // हेडर में अकाउंट और 0 Credits दिखाएं
         document.querySelectorAll("button, a").forEach(el => {
           const t = (el.innerText || "").trim();
           if (t === "Login" || t === "Get Started" || t === "Get Started →" || t === "Account / Login") {
-            el.innerText = "👤 " + shortName;
-            el.onclick = (ev) => {
-              ev.preventDefault();
-              if (confirm("Logged in as: " + activeUser + "\n\nKya aap Logout karna chahte hain?")) {
-                localStorage.removeItem("wearstay_locked_user");
-                localStorage.removeItem("wearstay_locked_token");
-                location.reload();
-              }
-            };
+            el.innerText = isOwner ? "👑 Owner (" + shortName + ")" : "👤 " + shortName + " | Credits: ₹" + credits;
           }
         });
 
-        // Upar green badge lagayein
+        // ऊपर स्थायी स्टेटस बैज
         if (!document.getElementById("ws-top-user-pill")) {
           const pill = document.createElement("div");
           pill.id = "ws-top-user-pill";
-          pill.innerHTML = "✅ <b>" + activeUser + "</b>";
+          pill.innerHTML = isOwner 
+            ? "👑 <b>OWNER MODE</b> (" + activeUser + ")" 
+            : "✅ <b>" + shortName + "</b> | Balance: <b>₹" + credits + "</b>";
           pill.style.cssText = "position:fixed; top:10px; left:10px; z-index:2147483647; background:#0F172A; color:#10B981; border:1px solid #10B981; padding:5px 12px; border-radius:20px; font-size:11px; font-family:sans-serif;";
           document.body.appendChild(pill);
         }
 
-        // Agar Admin email hai toh Admin Panel button dikhayein
-        if (activeUser.toLowerCase() === OWNER.toLowerCase() && !document.getElementById("ws-owner-btn")) {
+        // 3. ग्राहक के लॉगिन करते ही और 0 Credit होने पर खुद Subscription पॉप-अप खोलें
+        if (!isOwner && localStorage.getItem("wearstay_show_sub_now") === "1") {
+          localStorage.removeItem("wearstay_show_sub_now");
+          setTimeout(() => {
+            const subBtn = Array.from(document.querySelectorAll("button, a")).find(b => {
+              const txt = (b.innerText || "").toLowerCase();
+              return txt.includes("subscription") || txt.includes("pricing") || txt.includes("upgrade") || txt.includes("plans");
+            });
+            if (subBtn) subBtn.click();
+          }, 1000);
+        }
+
+        // 4. Owner Admin Panel बटन (सिर्फ आपके लिए)
+        if (isOwner && !document.getElementById("ws-owner-btn")) {
           const adminBtn = document.createElement("button");
           adminBtn.id = "ws-owner-btn";
-          adminBtn.innerHTML = "⚙ Admin Panel";
+          adminBtn.innerHTML = "⚙ Admin & Profit Control";
           adminBtn.style.cssText = "position:fixed; bottom:85px; right:20px; z-index:2147483647; background:#F59E0B; color:#000; font-weight:bold; padding:12px 18px; border-radius:30px; border:2px solid #fff; box-shadow:0 4px 15px rgba(0,0,0,0.6); cursor:pointer;";
           adminBtn.onclick = () => {
             const builtInAdmin = Array.from(document.querySelectorAll("button, a")).find(b => b.id !== "ws-owner-btn" && (b.innerText || "").includes("Admin"));
@@ -11073,7 +11081,7 @@ Status: Production Vector (SVG), CorelDRAW (CDR v12) & AutoCAD (DXF) Ready`;
       }
     }
 
-    setInterval(lockUserSession, 800);
+    setInterval(applyWhiteLabelAndControls, 800);
   })();
 </script>
   
