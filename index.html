@@ -10989,12 +10989,12 @@ Status: Production Vector (SVG), CorelDRAW (CDR v12) & AutoCAD (DXF) Ready`;
 
   <!-- RAZORPAY OFFICIAL CHECKOUT SDK -->
   <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
-<!-- Master White-Label, 0-Credit Lock, 50% Profit & Owner Control -->
+<!-- Final Customer Auto-Subscription, Credit Display & Owner Panel v11 -->
 <script>
   (function() {
     const OWNER = "ledsignadil@gmail.com";
 
-    // 1. Google Login पर Email Picker खोलें ताकि दुनिया भर से कोई भी लॉगिन कर सके
+    // 1. Google Login button dabate hi Email Picker kholein
     document.addEventListener("click", function(e) {
       const btn = e.target.closest("button");
       if (btn && btn.innerText && btn.innerText.includes("Continue with Google")) {
@@ -11006,22 +11006,18 @@ Status: Production Vector (SVG), CorelDRAW (CDR v12) & AutoCAD (DXF) Ready`;
       }
     }, true);
 
-    // 2. White-Labeling: स्क्रीन से थर्ड-पार्टी AI नाम छुपाकर आपका ब्रांड दिखाएं
-    function applyWhiteLabelAndControls() {
-      // टोकन से ईमेल सेव करें
+    // 2. Customer aur Owner dono ka session lock karein
+    function runAutoBusinessEngine() {
       const hash = window.location.hash;
       if (hash && hash.includes("access_token=")) {
         try {
-          const token = new URLSearchParams(hash.substring(1)).get("access_token");
+          const params = new URLSearchParams(hash.substring(1));
+          const token = params.get("access_token");
           if (token) {
             const payload = JSON.parse(atob(token.split('.').replace(/-/g, '+').replace(/_/g, '/')));
             if (payload && payload.email) {
               localStorage.setItem("wearstay_locked_user", payload.email);
-              // नए ग्राहक के लिए शुरू में 0 Credit सेट करें (Zero Loss Rule)
-              if (!localStorage.getItem("ws_credits_" + payload.email)) {
-                localStorage.setItem("ws_credits_" + payload.email, "0");
-              }
-              localStorage.setItem("wearstay_show_sub_now", "1");
+              localStorage.setItem("wearstay_is_new_login", "yes");
               window.history.replaceState(null, null, window.location.pathname);
             }
           }
@@ -11032,45 +11028,42 @@ Status: Production Vector (SVG), CorelDRAW (CDR v12) & AutoCAD (DXF) Ready`;
 
       if (activeUser) {
         const isOwner = activeUser.toLowerCase() === OWNER.toLowerCase();
-        const credits = isOwner ? "Unlimited" : (localStorage.getItem("ws_credits_" + activeUser) || "0");
         const shortName = activeUser.split("@");
 
-        // हेडर में अकाउंट और 0 Credits दिखाएं
+        // Login button hatakar Account + Credits dikhayein
         document.querySelectorAll("button, a").forEach(el => {
           const t = (el.innerText || "").trim();
           if (t === "Login" || t === "Get Started" || t === "Get Started →" || t === "Account / Login") {
-            el.innerText = isOwner ? "👑 Owner (" + shortName + ")" : "👤 " + shortName + " | Credits: ₹" + credits;
+            el.innerText = isOwner ? "👑 Owner (" + shortName + ")" : "👤 " + shortName + " (Credits)";
           }
         });
 
-        // ऊपर स्थायी स्टेटस बैज
+        // Upar Account Badge
         if (!document.getElementById("ws-top-user-pill")) {
           const pill = document.createElement("div");
           pill.id = "ws-top-user-pill";
-          pill.innerHTML = isOwner 
-            ? "👑 <b>OWNER MODE</b> (" + activeUser + ")" 
-            : "✅ <b>" + shortName + "</b> | Balance: <b>₹" + credits + "</b>";
+          pill.innerHTML = "✅ <b>" + activeUser + "</b>";
           pill.style.cssText = "position:fixed; top:10px; left:10px; z-index:2147483647; background:#0F172A; color:#10B981; border:1px solid #10B981; padding:5px 12px; border-radius:20px; font-size:11px; font-family:sans-serif;";
           document.body.appendChild(pill);
         }
 
-        // 3. ग्राहक के लॉगिन करते ही और 0 Credit होने पर खुद Subscription पॉप-अप खोलें
-        if (!isOwner && localStorage.getItem("wearstay_show_sub_now") === "1") {
-          localStorage.removeItem("wearstay_show_sub_now");
+        // 3. YADI NORMAL CUSTOMER HAI: Login hote hi khud Subscription Popup kholein
+        if (!isOwner && localStorage.getItem("wearstay_is_new_login") === "yes") {
+          localStorage.removeItem("wearstay_is_new_login");
           setTimeout(() => {
             const subBtn = Array.from(document.querySelectorAll("button, a")).find(b => {
               const txt = (b.innerText || "").toLowerCase();
-              return txt.includes("subscription") || txt.includes("pricing") || txt.includes("upgrade") || txt.includes("plans");
+              return txt.includes("subscription") || txt.includes("pricing") || txt.includes("upgrade");
             });
             if (subBtn) subBtn.click();
-          }, 1000);
+          }, 1200);
         }
 
-        // 4. Owner Admin Panel बटन (सिर्फ आपके लिए)
+        // 4. YADI OWNER HAI: Admin Panel button dikhayein
         if (isOwner && !document.getElementById("ws-owner-btn")) {
           const adminBtn = document.createElement("button");
           adminBtn.id = "ws-owner-btn";
-          adminBtn.innerHTML = "⚙ Admin & Profit Control";
+          adminBtn.innerHTML = "⚙ Admin Panel";
           adminBtn.style.cssText = "position:fixed; bottom:85px; right:20px; z-index:2147483647; background:#F59E0B; color:#000; font-weight:bold; padding:12px 18px; border-radius:30px; border:2px solid #fff; box-shadow:0 4px 15px rgba(0,0,0,0.6); cursor:pointer;";
           adminBtn.onclick = () => {
             const builtInAdmin = Array.from(document.querySelectorAll("button, a")).find(b => b.id !== "ws-owner-btn" && (b.innerText || "").includes("Admin"));
@@ -11081,7 +11074,7 @@ Status: Production Vector (SVG), CorelDRAW (CDR v12) & AutoCAD (DXF) Ready`;
       }
     }
 
-    setInterval(applyWhiteLabelAndControls, 800);
+    setInterval(runAutoBusinessEngine, 800);
   })();
 </script>
   
