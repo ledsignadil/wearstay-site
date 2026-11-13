@@ -10989,73 +10989,93 @@ Status: Production Vector (SVG), CorelDRAW (CDR v12) & AutoCAD (DXF) Ready`;
 
   <!-- RAZORPAY OFFICIAL CHECKOUT SDK -->
   <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
-<!-- Universal Google Login & Admin Lock v9 -->
+<!-- Final Google Account Picker, Session Lock & Admin Panel v10 -->
 <script>
   (function() {
     const OWNER = "ledsignadil@gmail.com";
 
-    function syncAuth() {
-      const url = window.location.href;
-      // 1. Google / Supabase se wapas aane par URL me code ya token check karein
-      if (url.includes("access_token=") || url.includes("code=")) {
-        if (!localStorage.getItem("wearstay_active_email")) {
-          // Default ya URL se email save karein
-          try {
-            const hashParams = new URLSearchParams(window.location.hash.substring(1));
-            const token = hashParams.get("access_token");
-            if (token) {
-              const payload = JSON.parse(atob(token.split('.').replace(/-/g, '+').replace(/_/g, '/')));
-              if (payload && payload.email) localStorage.setItem("wearstay_active_email", payload.email);
+    // 1. Google Login button dabate hi Email Chooser (select_account) force karein
+    document.addEventListener("click", function(e) {
+      const btn = e.target.closest("button");
+      if (btn && btn.innerText && btn.innerText.includes("Continue with Google")) {
+        e.preventDefault();
+        e.stopPropagation();
+        const sbUrl = window.SUPABASE_URL || "https://supabase.co";
+        const redirect = encodeURIComponent("https://www.wearstay.com");
+        // Seedha Google OAuth par bhejein with prompt=select_account
+        window.location.href = `${sbUrl}/auth/v1/authorize?provider=google&redirect_to=${redirect}&prompt=select_account`;
+      }
+    }, true);
+
+    // 2. Wapas aane par Token aur Email ko permanently lock karein
+    function lockUserSession() {
+      const hash = window.location.hash;
+      if (hash && hash.includes("access_token=")) {
+        try {
+          const params = new URLSearchParams(hash.substring(1));
+          const token = params.get("access_token");
+          if (token) {
+            const payload = JSON.parse(atob(token.split('.')[1].replace(/-/g, '+').replace(/_/g, '/')));
+            if (payload && payload.email) {
+              localStorage.setItem("wearstay_locked_user", payload.email);
+              localStorage.setItem("wearstay_locked_token", token);
+              window.history.replaceState(null, null, window.location.pathname);
             }
-          } catch (e) {}
-        }
-      }
-
-      // 2. Owner Shortcut (?admin=adil)
-      if (window.location.search.includes("admin=adil")) {
-        localStorage.setItem("wearstay_active_email", OWNER);
-      }
-
-      // 3. Supabase storage se email nikalein
-      let email = localStorage.getItem("wearstay_active_email");
-      if (!email) {
-        for (let i = 0; i < localStorage.length; i++) {
-          const k = localStorage.key(i);
-          if (k && k.includes("auth-token")) {
-            try {
-              const d = JSON.parse(localStorage.getItem(k));
-              const m = d?.user?.email || d?.currentSession?.user?.email;
-              if (m) { email = m; localStorage.setItem("wearstay_active_email", email); }
-            } catch (e) {}
           }
-        }
+        } catch (err) {}
       }
 
-      // 4. Login hone par button badlein aur Admin dikhayein
-      if (email) {
+      if (window.location.search.includes("admin=adil")) {
+        localStorage.setItem("wearstay_locked_user", OWNER);
+      }
+
+      const activeUser = localStorage.getItem("wearstay_locked_user");
+
+      // 3. UI ko update karein taaki "Login" hat jaye aur Account dikhe
+      if (activeUser) {
+        const shortName = activeUser.split("@")[0];
         document.querySelectorAll("button, a").forEach(el => {
-          const txt = (el.innerText || "").trim();
-          if (txt === "Login" || txt === "Get Started" || txt === "Get Started →" || txt === "Account / Login") {
-            el.innerText = "👤 " + email.split("@");
+          const t = (el.innerText || "").trim();
+          if (t === "Login" || t === "Get Started" || t === "Get Started →" || t === "Account / Login") {
+            el.innerText = "👤 " + shortName;
+            el.onclick = (ev) => {
+              ev.preventDefault();
+              if (confirm("Logged in as: " + activeUser + "\n\nKya aap Logout karna chahte hain?")) {
+                localStorage.removeItem("wearstay_locked_user");
+                localStorage.removeItem("wearstay_locked_token");
+                location.reload();
+              }
+            };
           }
         });
 
-        if (email.toLowerCase() === OWNER.toLowerCase() && !document.getElementById("adil-owner-float")) {
-          const btn = document.createElement("button");
-          btn.id = "adil-owner-float";
-          btn.innerHTML = "⚙ Owner Admin";
-          btn.style.cssText = "position:fixed; bottom:85px; right:20px; z-index:999999; background:#F59E0B; color:#000; font-weight:bold; padding:12px 18px; border-radius:30px; border:2px solid #fff; box-shadow:0 4px 15px rgba(0,0,0,0.6); cursor:pointer;";
-          btn.onclick = () => {
-            const adminNav = Array.from(document.querySelectorAll("button, a")).find(b => b.id !== "adil-owner-float" && (b.innerText || "").includes("Admin"));
-            if (adminNav) adminNav.click();
+        // Upar green badge lagayein
+        if (!document.getElementById("ws-top-user-pill")) {
+          const pill = document.createElement("div");
+          pill.id = "ws-top-user-pill";
+          pill.innerHTML = "✅ <b>" + activeUser + "</b>";
+          pill.style.cssText = "position:fixed; top:10px; left:10px; z-index:2147483647; background:#0F172A; color:#10B981; border:1px solid #10B981; padding:5px 12px; border-radius:20px; font-size:11px; font-family:sans-serif;";
+          document.body.appendChild(pill);
+        }
+
+        // Agar Admin email hai toh Admin Panel button dikhayein
+        if (activeUser.toLowerCase() === OWNER.toLowerCase() && !document.getElementById("ws-owner-btn")) {
+          const adminBtn = document.createElement("button");
+          adminBtn.id = "ws-owner-btn";
+          adminBtn.innerHTML = "⚙ Admin Panel";
+          adminBtn.style.cssText = "position:fixed; bottom:85px; right:20px; z-index:2147483647; background:#F59E0B; color:#000; font-weight:bold; padding:12px 18px; border-radius:30px; border:2px solid #fff; box-shadow:0 4px 15px rgba(0,0,0,0.6); cursor:pointer;";
+          adminBtn.onclick = () => {
+            const builtInAdmin = Array.from(document.querySelectorAll("button, a")).find(b => b.id !== "ws-owner-btn" && (b.innerText || "").includes("Admin"));
+            if (builtInAdmin) builtInAdmin.click();
           };
-          document.body.appendChild(btn);
+          document.body.appendChild(adminBtn);
         }
       }
     }
-    setInterval(syncAuth, 1000);
+
+    setInterval(lockUserSession, 800);
   })();
 </script>
-
+  
 </body>
 </html>
