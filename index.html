@@ -11,6 +11,11 @@
   <meta name="google-site-verification" content="dNDfnD64lB_mp98ZIV5CyCcW5WvO5ftVmwkXRHmAGx4">
   <link rel="canonical" href="https://www.wearstay.com/">
 
+  <script>
+  window.SUPABASE_URL = "https://pnfxyxexxhbucjkgtwxj.supabase.co";
+  window.SUPABASE_ANON_KEY = "sb_publishable_YamN7OYn_ogyIJL4RjmUGw_Occ1GAXe";
+  </script>
+  
   <!-- Google Analytics / Google Tag Manager (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-WEARSTAY01"></script>
   <script>
@@ -10984,96 +10989,73 @@ Status: Production Vector (SVG), CorelDRAW (CDR v12) & AutoCAD (DXF) Ready`;
 
   <!-- RAZORPAY OFFICIAL CHECKOUT SDK -->
   <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
-<!-- Ultimate Login Session & Admin Panel Lock v8 -->
-<script>
-  const ADMIN_EMAIL = "ledsignadil@gmail.com";
-
-  function unlockWearstaySession() {
-    // 1. यदि URL में ?admin=adil है तो तुरंत मालिक को लॉगिन करें
-    if (window.location.search.includes("admin=adil")) {
-<!-- Real Login Fix & Built-in Owner Admin Console Trigger -->
+<!-- Universal Google Login & Admin Lock v9 -->
 <script>
   (function() {
     const OWNER = "ledsignadil@gmail.com";
 
-    function syncWearstayAuth() {
-      // 1. Google Login se wapas aane par URL se email aur token pakad kar save karein
-      if (window.location.hash && window.location.hash.includes("access_token=")) {
-        try {
-          const hashParams = new URLSearchParams(window.location.hash.substring(1));
-          const token = hashParams.get("access_token");
-          if (token) {
-            const payload = JSON.parse(atob(token.split('.')[1].replace(/-/g, '+').replace(/_/g, '/')));
-            if (payload && payload.email) {
-              localStorage.setItem("wearstay_active_email", payload.email);
+    function syncAuth() {
+      const url = window.location.href;
+      // 1. Google / Supabase se wapas aane par URL me code ya token check karein
+      if (url.includes("access_token=") || url.includes("code=")) {
+        if (!localStorage.getItem("wearstay_active_email")) {
+          // Default ya URL se email save karein
+          try {
+            const hashParams = new URLSearchParams(window.location.hash.substring(1));
+            const token = hashParams.get("access_token");
+            if (token) {
+              const payload = JSON.parse(atob(token.split('.').replace(/-/g, '+').replace(/_/g, '/')));
+              if (payload && payload.email) localStorage.setItem("wearstay_active_email", payload.email);
             }
-          }
-        } catch (e) {}
+          } catch (e) {}
+        }
       }
 
-      // 2. Direct Owner Shortcut (?admin=adil)
+      // 2. Owner Shortcut (?admin=adil)
       if (window.location.search.includes("admin=adil")) {
         localStorage.setItem("wearstay_active_email", OWNER);
       }
 
-      // 3. Saved email check karein
-      let loggedEmail = localStorage.getItem("wearstay_active_email");
-      if (!loggedEmail) {
+      // 3. Supabase storage se email nikalein
+      let email = localStorage.getItem("wearstay_active_email");
+      if (!email) {
         for (let i = 0; i < localStorage.length; i++) {
           const k = localStorage.key(i);
           if (k && k.includes("auth-token")) {
             try {
-              const obj = JSON.parse(localStorage.getItem(k));
-              const mail = obj?.user?.email || obj?.currentSession?.user?.email;
-              if (mail) {
-                loggedEmail = mail;
-                localStorage.setItem("wearstay_active_email", loggedEmail);
-              }
+              const d = JSON.parse(localStorage.getItem(k));
+              const m = d?.user?.email || d?.currentSession?.user?.email;
+              if (m) { email = m; localStorage.setItem("wearstay_active_email", email); }
             } catch (e) {}
           }
         }
       }
 
-      // 4. Login hone par UI ko update karein aur Login button hatayein
-      if (loggedEmail) {
+      // 4. Login hone par button badlein aur Admin dikhayein
+      if (email) {
         document.querySelectorAll("button, a").forEach(el => {
-          const t = (el.innerText || "").trim();
-          if (t === "Login" || t === "Get Started" || t === "Get Started →" || t === "Account / Login") {
-            el.innerText = "👤 " + loggedEmail.split("@")[0];
+          const txt = (el.innerText || "").trim();
+          if (txt === "Login" || txt === "Get Started" || txt === "Get Started →" || txt === "Account / Login") {
+            el.innerText = "👤 " + email.split("@");
           }
         });
 
-        // 5. Agar Owner hai toh website ka asli Owner Admin Console button dikhayein
-        if (loggedEmail.toLowerCase() === OWNER.toLowerCase()) {
-          document.querySelectorAll("button, a").forEach(el => {
-            if ((el.innerText || "").includes("Admin")) {
-              el.style.display = "inline-flex";
-            }
-          });
-
-          if (!document.getElementById("adil-owner-float")) {
-            const btn = document.createElement("button");
-            btn.id = "adil-owner-float";
-            btn.innerHTML = "⚙ Owner Admin";
-            btn.style.cssText = "position:fixed; bottom:85px; right:20px; z-index:999999; background:#F59E0B; color:#000; font-weight:bold; padding:12px 18px; border-radius:30px; border:2px solid #fff; box-shadow:0 4px 15px rgba(0,0,0,0.6); cursor:pointer;";
-            btn.onclick = function() {
-              // Website ke andar bane asli Admin modal ko kholein
-              const adminNav = Array.from(document.querySelectorAll("button, a")).find(b => b.id !== "adil-owner-float" && (b.innerText || "").includes("Admin"));
-              if (adminNav) {
-                adminNav.click();
-              } else {
-                alert("Owner Active: " + OWNER);
-              }
-            };
-            document.body.appendChild(btn);
-          }
+        if (email.toLowerCase() === OWNER.toLowerCase() && !document.getElementById("adil-owner-float")) {
+          const btn = document.createElement("button");
+          btn.id = "adil-owner-float";
+          btn.innerHTML = "⚙ Owner Admin";
+          btn.style.cssText = "position:fixed; bottom:85px; right:20px; z-index:999999; background:#F59E0B; color:#000; font-weight:bold; padding:12px 18px; border-radius:30px; border:2px solid #fff; box-shadow:0 4px 15px rgba(0,0,0,0.6); cursor:pointer;";
+          btn.onclick = () => {
+            const adminNav = Array.from(document.querySelectorAll("button, a")).find(b => b.id !== "adil-owner-float" && (b.innerText || "").includes("Admin"));
+            if (adminNav) adminNav.click();
+          };
+          document.body.appendChild(btn);
         }
       }
     }
-
-    setInterval(syncWearstayAuth, 1000);
+    setInterval(syncAuth, 1000);
   })();
 </script>
-  
+
 </body>
 </html>
