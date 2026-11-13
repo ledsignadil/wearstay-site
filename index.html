@@ -10984,42 +10984,72 @@ Status: Production Vector (SVG), CorelDRAW (CDR v12) & AutoCAD (DXF) Ready`;
 
   <!-- RAZORPAY OFFICIAL CHECKOUT SDK -->
   <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
-<!-- Admin Recognition & Persistent Login Fix -->
+<!-- Admin Recognition & Persistent Login Fix v2 -->
 <script>
   const OWNER_EMAIL = "ledsignadil@gmail.com";
+
+  function parseJwtEmail(token) {
+    try {
+      const base64Url = token.split('.')[1];
+      const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+      const jsonPayload = decodeURIComponent(atob(base64).split('').map(function(c) {
+        return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+      }).join(''));
+      return JSON.parse(jsonPayload).email;
+    } catch (e) {
+      return null;
+    }
+  }
 
   function applyAdminAndLoginUI(userEmail) {
     if (!userEmail) return;
     localStorage.setItem("wearstay_logged_email", userEmail);
 
-    // 1. लॉगिन बटन छुपाकर प्रोफाइल दिखाएं
-    const buttons = document.querySelectorAll("button, a");
-    buttons.forEach(btn => {
-      const txt = btn.innerText.toLowerCase();
-      if (txt.includes("get started") || txt.includes("login") || txt.includes("sign in")) {
+    // 1. सभी Login और Get Started बटन बदलें
+    document.querySelectorAll("button, a").forEach(btn => {
+      const txt = (btn.innerText || "").toLowerCase().trim();
+      if (txt === "get started" || txt === "login" || txt === "account / login" || txt.includes("sign in")) {
         btn.innerText = "👤 " + userEmail.split("@")[0];
       }
     });
 
-    // 2. यदि ओनर ईमेल है तो स्क्रीन पर Admin Panel बटन दिखाएं
+    // 2. यदि मालिक का ईमेल है तो Admin Panel बटन जोड़ें
     if (userEmail.toLowerCase() === OWNER_EMAIL.toLowerCase() && !document.getElementById("owner-admin-btn")) {
       const adminBtn = document.createElement("button");
       adminBtn.id = "owner-admin-btn";
       adminBtn.innerHTML = "👑 Admin Panel";
-      adminBtn.style.cssText = "position:fixed; bottom:80px; right:20px; z-index:99999; background:#F59E0B; color:#000; font-weight:bold; padding:12px 18px; border-radius:30px; border:none; box-shadow:0 4px 15px rgba(0,0,0,0.4); cursor:pointer;";
+      adminBtn.style.cssText = "position:fixed; bottom:85px; right:20px; z-index:999999; background:#F59E0B; color:#000; font-weight:bold; padding:12px 20px; border-radius:30px; border:2px solid #fff; box-shadow:0 4px 15px rgba(0,0,0,0.5); cursor:pointer; font-size:14px;";
       adminBtn.onclick = () => {
-        alert("👑 WEARSTAY ADMIN DASHBOARD\n\nOwner: " + OWNER_EMAIL + "\nStatus: Live & Active\n\nApne Razorpay aur Supabase dashboard se real-time kamai aur credit logs dekhein.");
+        alert("👑 WEARSTAY OWNER DASHBOARD\n\nAdmin: " + OWNER_EMAIL + "\nStatus: Verified & Active\n\nSabhi global payments aur credit logs aapke Razorpay aur Supabase dashboard par live hain.");
       };
       document.body.appendChild(adminBtn);
     }
   }
 
-  // पेज लोड होने पर सेव किया हुआ लॉगिन और Supabase सेशन चेक करें
-  window.addEventListener("load", () => {
-    const savedEmail = localStorage.getItem("wearstay_logged_email");
-    if (savedEmail) applyAdminAndLoginUI(savedEmail);
+  function checkAuthSession() {
+    // A. URL में Google लॉगिन से लौटा access_token चेक करें
+    const hash = window.location.hash;
+    if (hash && hash.includes("access_token=")) {
+      const params = new URLSearchParams(hash.substring(1));
+      const accessToken = params.get("access_token");
+      if (accessToken) {
+        const email = parseJwtEmail(accessToken);
+        if (email) {
+          applyAdminAndLoginUI(email);
+          // URL से लंबा टोकन साफ करें
+          window.history.replaceState(null, null, window.location.pathname);
+          return;
+        }
+      }
+    }
 
-    // Supabase सेशन से ईमेल निकालें (यदि उपलब्ध हो)
+    // B. ब्राउज़र की मेमोरी (localStorage) से सेव ईमेल चेक करें
+    const savedEmail = localStorage.getItem("wearstay_logged_email");
+    if (savedEmail) {
+      applyAdminAndLoginUI(savedEmail);
+    }
+
+    // C. Supabase के डिफ़ॉल्ट टोकन से ईमेल निकालें
     for (let i = 0; i < localStorage.length; i++) {
       const key = localStorage.key(i);
       if (key && key.includes("auth-token")) {
@@ -11030,8 +11060,13 @@ Status: Production Vector (SVG), CorelDRAW (CDR v12) & AutoCAD (DXF) Ready`;
         } catch (e) {}
       }
     }
+  }
+
+  window.addEventListener("load", () => {
+    checkAuthSession();
+    setTimeout(checkAuthSession, 1500);
   });
 </script>
-  
+    
 </body>
 </html>
