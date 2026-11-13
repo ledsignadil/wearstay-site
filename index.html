@@ -10991,83 +10991,88 @@ Status: Production Vector (SVG), CorelDRAW (CDR v12) & AutoCAD (DXF) Ready`;
   function unlockWearstaySession() {
     // 1. यदि URL में ?admin=adil है तो तुरंत मालिक को लॉगिन करें
     if (window.location.search.includes("admin=adil")) {
-      localStorage.setItem("wearstay_verified_user", ADMIN_EMAIL);
-    }
+<!-- Real Login Fix & Built-in Owner Admin Console Trigger -->
+<script>
+  (function() {
+    const OWNER = "ledsignadil@gmail.com";
 
-    // 2. Google / Supabase से लौटे टोकन से ईमेल निकालें
-    if (window.location.hash.includes("access_token=")) {
-      try {
-        const params = new URLSearchParams(window.location.hash.substring(1));
-        const token = params.get("access_token");
-        if (token) {
-          const base64 = token.split('.').replace(/-/g, '+').replace(/_/g, '/');
-          const data = JSON.parse(atob(base64));
-          if (data && data.email) {
-            localStorage.setItem("wearstay_verified_user", data.email);
-            window.history.replaceState(null, null, window.location.pathname);
-          }
-        }
-      } catch (e) {}
-    }
-
-    // 3. ब्राउज़र के सभी स्टोरेज में लॉगिन ईमेल खोजें
-    let userEmail = localStorage.getItem("wearstay_verified_user");
-    if (!userEmail) {
-      for (let i = 0; i < localStorage.length; i++) {
-        const key = localStorage.key(i);
-        if (key && (key.includes("supabase") || key.includes("auth") || key.includes("user"))) {
-          try {
-            const raw = localStorage.getItem(key);
-            if (raw && raw.includes("@")) {
-              const match = raw.match(/[a-zA-Z0-9._-]+@[a-zA-Z0-9._-]+\.[a-zA-Z0-9._-]+/);
-              if (match && match) {
-                userEmail = match;
-                localStorage.setItem("wearstay_verified_user", userEmail);
-                break;
-              }
+    function syncWearstayAuth() {
+      // 1. Google Login se wapas aane par URL se email aur token pakad kar save karein
+      if (window.location.hash && window.location.hash.includes("access_token=")) {
+        try {
+          const hashParams = new URLSearchParams(window.location.hash.substring(1));
+          const token = hashParams.get("access_token");
+          if (token) {
+            const payload = JSON.parse(atob(token.split('.')[1].replace(/-/g, '+').replace(/_/g, '/')));
+            if (payload && payload.email) {
+              localStorage.setItem("wearstay_active_email", payload.email);
             }
-          } catch (e) {}
-        }
+          }
+        } catch (e) {}
       }
-    }
 
-    // 4. लॉगिन मिलते ही बाहर के सभी Login बटन बदलें और Admin दिखाएं
-    if (userEmail) {
-      const shortName = userEmail.split("@");
+      // 2. Direct Owner Shortcut (?admin=adil)
+      if (window.location.search.includes("admin=adil")) {
+        localStorage.setItem("wearstay_active_email", OWNER);
+      }
 
-      document.querySelectorAll("button, a, span, div").forEach(el => {
-        if (el.children.length === 0) {
-          const txt = (el.innerText || "").trim().toLowerCase();
-          if (txt === "login" || txt === "log in" || txt === "get started" || txt === "sign in" || txt === "account / login") {
-            el.innerText = "👤 " + shortName;
+      // 3. Saved email check karein
+      let loggedEmail = localStorage.getItem("wearstay_active_email");
+      if (!loggedEmail) {
+        for (let i = 0; i < localStorage.length; i++) {
+          const k = localStorage.key(i);
+          if (k && k.includes("auth-token")) {
+            try {
+              const obj = JSON.parse(localStorage.getItem(k));
+              const mail = obj?.user?.email || obj?.currentSession?.user?.email;
+              if (mail) {
+                loggedEmail = mail;
+                localStorage.setItem("wearstay_active_email", loggedEmail);
+              }
+            } catch (e) {}
           }
         }
-      });
-
-      // ऊपर बाईं तरफ स्थायी हरे रंग का Account बैज लगाएं
-      if (!document.getElementById("ws-live-user-badge")) {
-        const badge = document.createElement("div");
-        badge.id = "ws-live-user-badge";
-        badge.innerHTML = "🟢 Logged in: <b>" + userEmail + "</b>";
-        badge.style.cssText = "position:fixed; top:10px; left:10px; z-index:2147483647; background:#0F172A; color:#10B981; border:1px solid #10B981; padding:5px 12px; border-radius:20px; font-size:11px; font-family:sans-serif; box-shadow:0 2px 10px rgba(0,0,0,0.6);";
-        document.body.appendChild(badge);
       }
 
-      // यदि एडमिन ईमेल है, तो सुनहरा Admin Panel बटन लॉक करें
-      if (userEmail.toLowerCase() === ADMIN_EMAIL.toLowerCase() && !document.getElementById("ws-master-admin-btn")) {
-        const btn = document.createElement("button");
-        btn.id = "ws-master-admin-btn";
-        btn.innerHTML = "👑 Admin Panel";
-        btn.style.cssText = "position:fixed; bottom:85px; right:20px; z-index:2147483647; background:#F59E0B; color:#000; font-weight:bold; padding:12px 20px; border-radius:30px; border:2px solid #fff; box-shadow:0 4px 15px rgba(0,0,0,0.7); cursor:pointer; font-size:14px;";
-        btn.onclick = () => {
-          alert("👑 WEARSTAY OWNER PANEL\n\nAdmin: " + ADMIN_EMAIL + "\nStatus: Active & Verified\n\nSabhi payments aur credits live hain.");
-        };
-        document.body.appendChild(btn);
+      // 4. Login hone par UI ko update karein aur Login button hatayein
+      if (loggedEmail) {
+        document.querySelectorAll("button, a").forEach(el => {
+          const t = (el.innerText || "").trim();
+          if (t === "Login" || t === "Get Started" || t === "Get Started →" || t === "Account / Login") {
+            el.innerText = "👤 " + loggedEmail.split("@")[0];
+          }
+        });
+
+        // 5. Agar Owner hai toh website ka asli Owner Admin Console button dikhayein
+        if (loggedEmail.toLowerCase() === OWNER.toLowerCase()) {
+          document.querySelectorAll("button, a").forEach(el => {
+            if ((el.innerText || "").includes("Admin")) {
+              el.style.display = "inline-flex";
+            }
+          });
+
+          if (!document.getElementById("adil-owner-float")) {
+            const btn = document.createElement("button");
+            btn.id = "adil-owner-float";
+            btn.innerHTML = "⚙ Owner Admin";
+            btn.style.cssText = "position:fixed; bottom:85px; right:20px; z-index:999999; background:#F59E0B; color:#000; font-weight:bold; padding:12px 18px; border-radius:30px; border:2px solid #fff; box-shadow:0 4px 15px rgba(0,0,0,0.6); cursor:pointer;";
+            btn.onclick = function() {
+              // Website ke andar bane asli Admin modal ko kholein
+              const adminNav = Array.from(document.querySelectorAll("button, a")).find(b => b.id !== "adil-owner-float" && (b.innerText || "").includes("Admin"));
+              if (adminNav) {
+                adminNav.click();
+              } else {
+                alert("Owner Active: " + OWNER);
+              }
+            };
+            document.body.appendChild(btn);
+          }
+        }
       }
     }
-  }
 
-  setInterval(unlockWearstaySession, 800);
+    setInterval(syncWearstayAuth, 1000);
+  })();
 </script>
   
 </body>
