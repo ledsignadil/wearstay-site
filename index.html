@@ -8107,32 +8107,7 @@ Customer: ${clientName} (${phone})`;
         console.warn('loadUserProfile error:', err);
       }
     }
-
-   errEl.innerHTML = `⚠️ <b>Google Sign-In Notice:</b> ${escapeHtml(error.message)}. Please sign in using your Email & Password below.`;
-            errEl.style.display = 'block';
-          }
-          toast(`⚠️ ${error.message}`);
-          return;
-        }
-
-        if (data?.url) {
-          const popup = window.open(data.url, 'google_oauth_popup', 'width=520,height=650,menubar=no,toolbar=no,location=yes');
-          if (!popup || popup.closed || typeof popup.closed === 'undefined') {
-            window.open(data.url, '_blank');
-          }
-          toast('Google Sign-In window opened.');
-          return;
-        }
-      } catch (e) {
-        console.error('Google Sign-In error:', e);
-        if (errEl) {
-          errEl.innerHTML = `⚠️ <b>Authentication Error:</b> ${escapeHtml(e.message)}. You can sign in immediately using Email & Password below.`;
-          errEl.style.display = 'block';
-        }
-        toast(`⚠️ ${e.message}`);
-      }
-    }
-
+          
 async function signInWithGoogle() {
   const errEl = document.getElementById('loginErrorText');
   if (errEl) { errEl.style.display = 'none'; errEl.textContent = ''; }
@@ -8143,7 +8118,7 @@ async function signInWithGoogle() {
   }
 
   if (!window.supabaseClient) {
-    toast('⚠️ Supabase client not initialized. Please click "Connect Keys".');
+    toast('⚠️ Supabase client not initialized.');
     const banner = document.getElementById('supabaseConnectBanner');
     const form = document.getElementById('supabaseQuickConfigForm');
     if (banner) banner.style.display = 'block';
@@ -8161,7 +8136,7 @@ async function signInWithGoogle() {
     });
     if (error) {
       if (errEl) {
-        errEl.innerHTML = `⚠️ <b>Google Login Notice:</b> ${escapeHtml(error.message)}`;
+        errEl.innerHTML = `⚠️ <b>Google Login Error:</b> ${escapeHtml(error.message)}`;
         errEl.style.display = 'block';
       }
       toast('⚠️ ' + error.message);
@@ -8173,37 +8148,7 @@ async function signInWithGoogle() {
     }
     toast('⚠️ ' + e.message);
   }
-    }
-          if (data?.user) {
-            window.supabaseUser = data.user;
-            window.supabaseToken = data.session?.access_token;
-            updateLoggedInUI(data.user);
-            closeModal('loginModal');
-            toast('Welcome back, ' + data.user.email);
-            loadUserProfile();
-            return;
-          }
-        } catch(e) {
-          if (errEl) { errEl.textContent = e.message; errEl.style.display = 'block'; }
-          toast(`⚠️ ${e.message}`);
-          return;
-        }
-      }
-
-      // Resilient fallback: Allow instant sign-in so users are never blocked
-      const fallbackUser = {
-        id: 'usr_' + Date.now(),
-        email: email,
-      };
-      window.supabaseUser = fallbackUser;
-      updateLoggedInUI(fallbackUser);
-      let localCredits = parseInt(localStorage.getItem('dh_user_credits') || '10', 10);
-      localStorage.setItem('dh_user_credits', localCredits.toString());
-      updateUserCreditsDisplay(localCredits);
-      closeModal('loginModal');
-      toast(`✓ Logged in as ${email}! (Active session enabled)`);
-      loadUserProfile();
-    }
+}
 
     async function signUpWithEmail() {
       const email = $('loginEmail')?.value.trim();
