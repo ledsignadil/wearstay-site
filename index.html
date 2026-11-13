@@ -10985,88 +10985,82 @@ Status: Production Vector (SVG), CorelDRAW (CDR v12) & AutoCAD (DXF) Ready`;
   <!-- RAZORPAY OFFICIAL CHECKOUT SDK -->
   <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
 <!-- Admin Recognition & Persistent Login Fix v2 -->
+<!-- Complete Owner Dashboard & Auto-Pilot System v3 -->
 <script>
   const OWNER_EMAIL = "ledsignadil@gmail.com";
 
   function parseJwtEmail(token) {
     try {
-      const base64Url = token.split('.')[1];
+      const base64Url = token.split('.');
       const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
-      const jsonPayload = decodeURIComponent(atob(base64).split('').map(function(c) {
-        return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
-      }).join(''));
+      const jsonPayload = decodeURIComponent(atob(base64).split('').map(c => '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2)).join(''));
       return JSON.parse(jsonPayload).email;
-    } catch (e) {
-      return null;
-    }
+    } catch (e) { return null; }
+  }
+
+  function openOwnerModal() {
+    if (document.getElementById("wearstay-owner-modal")) return;
+    const modal = document.createElement("div");
+    modal.id = "wearstay-owner-modal";
+    modal.style.cssText = "position:fixed; inset:0; background:rgba(0,0,0,0.85); z-index:9999999; display:flex; align-items:center; justify-content:center; padding:15px; font-family:sans-serif;";
+    modal.innerHTML = `
+      <div style="background:#0F172A; border:2px solid #F59E0B; border-radius:16px; max-width:420px; width:100%; padding:20px; color:#fff; box-shadow:0 10px 30px rgba(0,0,0,0.8);">
+        <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid #334155; padding-bottom:12px;">
+          <h3 style="margin:0; color:#F59E0B; font-size:18px;">👑 WEARSTAY OWNER CONTROL</h3>
+          <button onclick="document.getElementById('wearstay-owner-modal').remove()" style="background:#EF4444; color:#fff; border:none; border-radius:8px; padding:5px 10px; font-weight:bold; cursor:pointer;">✕</button>
+        </div>
+        <div style="margin:15px 0; font-size:13px; color:#CBD5E1; line-height:1.6;">
+          <p style="margin:4px 0;"><b>Admin:</b> ${OWNER_EMAIL}</p>
+          <p style="margin:4px 0;"><b>System Status:</b> <span style="color:#10B981;">● Global Auto-Pilot Active</span></p>
+          <p style="margin:4px 0;"><b>Credit Rule:</b> 50% Auto-Credit / 50% Net Profit</p>
+        </div>
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-bottom:15px;">
+          <a href="https://razorpay.com" target="_blank" style="background:#2563EB; color:#fff; text-decoration:none; padding:12px; border-radius:10px; text-align:center; font-weight:bold; font-size:13px;">💳 Live Payments</a>
+          <a href="https://supabase.com" target="_blank" style="background:#059669; color:#fff; text-decoration:none; padding:12px; border-radius:10px; text-align:center; font-weight:bold; font-size:13px;">👥 Users & Credits</a>
+        </div>
+        <button onclick="localStorage.removeItem('wearstay_logged_email'); location.reload();" style="width:100%; background:#334155; color:#F8FAFC; border:none; padding:10px; border-radius:8px; font-size:12px; cursor:pointer;">Logout Admin Session</button>
+      </div>
+    `;
+    document.body.appendChild(modal);
   }
 
   function applyAdminAndLoginUI(userEmail) {
     if (!userEmail) return;
     localStorage.setItem("wearstay_logged_email", userEmail);
-
-    // 1. सभी Login और Get Started बटन बदलें
     document.querySelectorAll("button, a").forEach(btn => {
       const txt = (btn.innerText || "").toLowerCase().trim();
       if (txt === "get started" || txt === "login" || txt === "account / login" || txt.includes("sign in")) {
-        btn.innerText = "👤 " + userEmail.split("@")[0];
+        btn.innerText = "👤 " + userEmail.split("@");
       }
     });
 
-    // 2. यदि मालिक का ईमेल है तो Admin Panel बटन जोड़ें
     if (userEmail.toLowerCase() === OWNER_EMAIL.toLowerCase() && !document.getElementById("owner-admin-btn")) {
       const adminBtn = document.createElement("button");
       adminBtn.id = "owner-admin-btn";
       adminBtn.innerHTML = "👑 Admin Panel";
       adminBtn.style.cssText = "position:fixed; bottom:85px; right:20px; z-index:999999; background:#F59E0B; color:#000; font-weight:bold; padding:12px 20px; border-radius:30px; border:2px solid #fff; box-shadow:0 4px 15px rgba(0,0,0,0.5); cursor:pointer; font-size:14px;";
-      adminBtn.onclick = () => {
-        alert("👑 WEARSTAY OWNER DASHBOARD\n\nAdmin: " + OWNER_EMAIL + "\nStatus: Verified & Active\n\nSabhi global payments aur credit logs aapke Razorpay aur Supabase dashboard par live hain.");
-      };
+      adminBtn.onclick = openOwnerModal;
       document.body.appendChild(adminBtn);
     }
   }
 
   function checkAuthSession() {
-    // A. URL में Google लॉगिन से लौटा access_token चेक करें
     const hash = window.location.hash;
     if (hash && hash.includes("access_token=")) {
       const params = new URLSearchParams(hash.substring(1));
-      const accessToken = params.get("access_token");
-      if (accessToken) {
-        const email = parseJwtEmail(accessToken);
-        if (email) {
-          applyAdminAndLoginUI(email);
-          // URL से लंबा टोकन साफ करें
-          window.history.replaceState(null, null, window.location.pathname);
-          return;
-        }
+      const email = parseJwtEmail(params.get("access_token") || "");
+      if (email) {
+        applyAdminAndLoginUI(email);
+        window.history.replaceState(null, null, window.location.pathname);
+        return;
       }
     }
-
-    // B. ब्राउज़र की मेमोरी (localStorage) से सेव ईमेल चेक करें
     const savedEmail = localStorage.getItem("wearstay_logged_email");
-    if (savedEmail) {
-      applyAdminAndLoginUI(savedEmail);
-    }
-
-    // C. Supabase के डिफ़ॉल्ट टोकन से ईमेल निकालें
-    for (let i = 0; i < localStorage.length; i++) {
-      const key = localStorage.key(i);
-      if (key && key.includes("auth-token")) {
-        try {
-          const data = JSON.parse(localStorage.getItem(key));
-          const email = data?.user?.email || data?.currentSession?.user?.email;
-          if (email) applyAdminAndLoginUI(email);
-        } catch (e) {}
-      }
-    }
+    if (savedEmail) applyAdminAndLoginUI(savedEmail);
   }
 
-  window.addEventListener("load", () => {
-    checkAuthSession();
-    setTimeout(checkAuthSession, 1500);
-  });
+  window.addEventListener("load", () => { checkAuthSession(); setTimeout(checkAuthSession, 1500); });
 </script>
-    
+  
 </body>
 </html>
