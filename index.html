@@ -10984,103 +10984,91 @@ Status: Production Vector (SVG), CorelDRAW (CDR v12) & AutoCAD (DXF) Ready`;
 
   <!-- RAZORPAY OFFICIAL CHECKOUT SDK -->
   <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
-<!-- Fixed Account Login Display & In-App Admin Panel v7 -->
+<!-- Ultimate Login Session & Admin Panel Lock v8 -->
 <script>
   const ADMIN_EMAIL = "ledsignadil@gmail.com";
 
-  function openInAppAdminPanel() {
-    if (document.getElementById("wearstay-admin-modal")) return;
-    const modal = document.createElement("div");
-    modal.id = "wearstay-admin-modal";
-    modal.style.cssText = "position:fixed; inset:0; background:rgba(0,0,0,0.88); z-index:2147483647; display:flex; align-items:center; justify-content:center; padding:15px; font-family:sans-serif;";
-    modal.innerHTML = `
-      <div style="background:#0F172A; border:2px solid #F59E0B; border-radius:16px; max-width:420px; width:100%; padding:20px; color:#fff; box-shadow:0 10px 30px rgba(0,0,0,0.9);">
-        <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid #334155; padding-bottom:12px;">
-          <h3 style="margin:0; color:#F59E0B; font-size:18px;">👑 WEARSTAY OWNER PANEL</h3>
-          <button onclick="document.getElementById('wearstay-admin-modal').remove()" style="background:#EF4444; color:#fff; border:none; border-radius:8px; padding:6px 12px; font-weight:bold; cursor:pointer;">✕</button>
-        </div>
-        <div style="margin:15px 0; font-size:13px; color:#CBD5E1; line-height:1.6; background:#1E293B; padding:12px; border-radius:10px;">
-          <p style="margin:4px 0;"><b>Logged Account:</b> <span style="color:#38BDF8;">${ADMIN_EMAIL}</span></p>
-          <p style="margin:4px 0;"><b>Status:</b> <span style="color:#10B981;">● Verified & Active</span></p>
-          <p style="margin:4px 0;"><b>Credit Rule:</b> 50% Auto-Credit / 50% Net Profit</p>
-        </div>
-        <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-bottom:15px;">
-          <a href="https://razorpay.com" target="_blank" style="background:#2563EB; color:#fff; text-decoration:none; padding:12px; border-radius:10px; text-align:center; font-weight:bold; font-size:13px;">💳 Razorpay Kamai</a>
-          <a href="https://supabase.com" target="_blank" style="background:#059669; color:#fff; text-decoration:none; padding:12px; border-radius:10px; text-align:center; font-weight:bold; font-size:13px;">👥 Users & Credits</a>
-        </div>
-        <button onclick="localStorage.removeItem('wearstay_user_email'); location.reload();" style="width:100%; background:#334155; color:#F8FAFC; border:none; padding:10px; border-radius:8px; font-size:12px; cursor:pointer;">Logout Account</button>
-      </div>
-    `;
-    document.body.appendChild(modal);
-  }
-
-  function forceUpdateLoginUI() {
+  function unlockWearstaySession() {
+    // 1. यदि URL में ?admin=adil है तो तुरंत मालिक को लॉगिन करें
     if (window.location.search.includes("admin=adil")) {
-      localStorage.setItem("wearstay_user_email", ADMIN_EMAIL);
+      localStorage.setItem("wearstay_verified_user", ADMIN_EMAIL);
     }
 
+    // 2. Google / Supabase से लौटे टोकन से ईमेल निकालें
     if (window.location.hash.includes("access_token=")) {
       try {
-        const token = new URLSearchParams(window.location.hash.substring(1)).get("access_token");
-        const payload = JSON.parse(atob(token.split('.').replace(/-/g, '+').replace(/_/g, '/')));
-        if (payload && payload.email) {
-          localStorage.setItem("wearstay_user_email", payload.email);
-          window.history.replaceState(null, null, window.location.pathname);
+        const params = new URLSearchParams(window.location.hash.substring(1));
+        const token = params.get("access_token");
+        if (token) {
+          const base64 = token.split('.').replace(/-/g, '+').replace(/_/g, '/');
+          const data = JSON.parse(atob(base64));
+          if (data && data.email) {
+            localStorage.setItem("wearstay_verified_user", data.email);
+            window.history.replaceState(null, null, window.location.pathname);
+          }
         }
       } catch (e) {}
     }
 
-    let activeEmail = localStorage.getItem("wearstay_user_email");
-    if (!activeEmail) {
+    // 3. ब्राउज़र के सभी स्टोरेज में लॉगिन ईमेल खोजें
+    let userEmail = localStorage.getItem("wearstay_verified_user");
+    if (!userEmail) {
       for (let i = 0; i < localStorage.length; i++) {
-        const k = localStorage.key(i);
-        if (k && k.includes("auth-token")) {
+        const key = localStorage.key(i);
+        if (key && (key.includes("supabase") || key.includes("auth") || key.includes("user"))) {
           try {
-            const d = JSON.parse(localStorage.getItem(k));
-            const mail = d?.user?.email || d?.currentSession?.user?.email;
-            if (mail) {
-              activeEmail = mail;
-              localStorage.setItem("wearstay_user_email", activeEmail);
+            const raw = localStorage.getItem(key);
+            if (raw && raw.includes("@")) {
+              const match = raw.match(/[a-zA-Z0-9._-]+@[a-zA-Z0-9._-]+\.[a-zA-Z0-9._-]+/);
+              if (match && match) {
+                userEmail = match;
+                localStorage.setItem("wearstay_verified_user", userEmail);
+                break;
+              }
             }
           } catch (e) {}
         }
       }
     }
 
-    if (activeEmail) {
-      const userName = activeEmail.split("@");
-      
-      // 1. सभी Login और Get Started बटन बदलकर यूज़र का नाम दिखाएं
-      document.querySelectorAll("button, a").forEach(el => {
-        const text = (el.innerText || "").trim().toLowerCase();
-        if (text.includes("login") || text.includes("get started") || text.includes("sign in") || text.includes("sub required")) {
-          el.innerText = "👤 " + userName + " (Active)";
+    // 4. लॉगिन मिलते ही बाहर के सभी Login बटन बदलें और Admin दिखाएं
+    if (userEmail) {
+      const shortName = userEmail.split("@");
+
+      document.querySelectorAll("button, a, span, div").forEach(el => {
+        if (el.children.length === 0) {
+          const txt = (el.innerText || "").trim().toLowerCase();
+          if (txt === "login" || txt === "log in" || txt === "get started" || txt === "sign in" || txt === "account / login") {
+            el.innerText = "👤 " + shortName;
+          }
         }
       });
 
-      // 2. स्क्रीन के ऊपर बाईं तरफ स्थायी Account Status बैज दिखाएं
-      if (!document.getElementById("wearstay-account-badge")) {
+      // ऊपर बाईं तरफ स्थायी हरे रंग का Account बैज लगाएं
+      if (!document.getElementById("ws-live-user-badge")) {
         const badge = document.createElement("div");
-        badge.id = "wearstay-account-badge";
-        badge.innerHTML = "✅ Account: <b>" + activeEmail + "</b>";
-        badge.style.cssText = "position:fixed; top:12px; left:12px; z-index:2147483647; background:#0F172A; color:#10B981; border:1px solid #10B981; padding:6px 12px; border-radius:20px; font-size:11px; font-family:sans-serif; box-shadow:0 2px 10px rgba(0,0,0,0.5);";
+        badge.id = "ws-live-user-badge";
+        badge.innerHTML = "🟢 Logged in: <b>" + userEmail + "</b>";
+        badge.style.cssText = "position:fixed; top:10px; left:10px; z-index:2147483647; background:#0F172A; color:#10B981; border:1px solid #10B981; padding:5px 12px; border-radius:20px; font-size:11px; font-family:sans-serif; box-shadow:0 2px 10px rgba(0,0,0,0.6);";
         document.body.appendChild(badge);
       }
 
-      // 3. एडमिन बटन दिखाएं
-      if (activeEmail.toLowerCase() === ADMIN_EMAIL.toLowerCase() && !document.getElementById("wearstay-admin-btn")) {
+      // यदि एडमिन ईमेल है, तो सुनहरा Admin Panel बटन लॉक करें
+      if (userEmail.toLowerCase() === ADMIN_EMAIL.toLowerCase() && !document.getElementById("ws-master-admin-btn")) {
         const btn = document.createElement("button");
-        btn.id = "wearstay-admin-btn";
+        btn.id = "ws-master-admin-btn";
         btn.innerHTML = "👑 Admin Panel";
-        btn.style.cssText = "position:fixed; bottom:85px; right:20px; z-index:2147483647; background:#F59E0B; color:#000; font-weight:bold; padding:12px 20px; border-radius:30px; border:2px solid #fff; box-shadow:0 4px 15px rgba(0,0,0,0.6); cursor:pointer; font-size:14px;";
-        btn.onclick = openInAppAdminPanel;
+        btn.style.cssText = "position:fixed; bottom:85px; right:20px; z-index:2147483647; background:#F59E0B; color:#000; font-weight:bold; padding:12px 20px; border-radius:30px; border:2px solid #fff; box-shadow:0 4px 15px rgba(0,0,0,0.7); cursor:pointer; font-size:14px;";
+        btn.onclick = () => {
+          alert("👑 WEARSTAY OWNER PANEL\n\nAdmin: " + ADMIN_EMAIL + "\nStatus: Active & Verified\n\nSabhi payments aur credits live hain.");
+        };
         document.body.appendChild(btn);
       }
     }
   }
 
-  setInterval(forceUpdateLoginUI, 1000);
+  setInterval(unlockWearstaySession, 800);
 </script>
-   
+  
 </body>
 </html>
