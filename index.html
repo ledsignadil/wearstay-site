@@ -8107,49 +8107,18 @@ Customer: ${clientName} (${phone})`;
         console.warn('loadUserProfile error:', err);
       }
     }
-          
-async function signInWithGoogle() {
+    
+    async function signInWithGoogle() {
   const errEl = document.getElementById('loginErrorText');
   if (errEl) { errEl.style.display = 'none'; errEl.textContent = ''; }
 
-  if (!window.supabaseClient) {
-    toast('Syncing with Supabase...');
-    if (typeof initAuth === 'function') await initAuth();
-  }
-
-  if (!window.supabaseClient) {
-    toast('⚠️ Supabase client not initialized.');
-    const banner = document.getElementById('supabaseConnectBanner');
-    const form = document.getElementById('supabaseQuickConfigForm');
-    if (banner) banner.style.display = 'block';
-    if (form) form.style.display = 'block';
-    return;
-  }
-
-  toast('Connecting to Google Sign-In...');
-  try {
-    const { error } = await window.supabaseClient.auth.signInWithOAuth({
-      provider: 'google',
-      options: { 
-        redirectTo: window.location.origin 
-      }
-    });
-    if (error) {
-      if (errEl) {
-        errEl.innerHTML = `⚠️ <b>Google Login Error:</b> ${escapeHtml(error.message)}`;
-        errEl.style.display = 'block';
-      }
-      toast('⚠️ ' + error.message);
+  const supabaseUrl = 'https://pnfxyxexxhbucjkgtwxj.supabase.co';
+  const redirectUrl = `${supabaseUrl}/auth/v1/authorize?provider=google&redirect_to=${encodeURIComponent(window.location.origin)}`;
+  
+  toast('Redirecting to Google Sign-In...');
+  window.location.href = redirectUrl;
     }
-  } catch (e) {
-    if (errEl) {
-      errEl.innerHTML = `⚠️ <b>Error:</b> ${escapeHtml(e.message)}`;
-      errEl.style.display = 'block';
-    }
-    toast('⚠️ ' + e.message);
-  }
-}
-
+    
     async function signUpWithEmail() {
       const email = $('loginEmail')?.value.trim();
       const pass = $('loginPass')?.value.trim();
