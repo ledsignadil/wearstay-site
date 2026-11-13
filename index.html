@@ -10984,5 +10984,54 @@ Status: Production Vector (SVG), CorelDRAW (CDR v12) & AutoCAD (DXF) Ready`;
 
   <!-- RAZORPAY OFFICIAL CHECKOUT SDK -->
   <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+<!-- Admin Recognition & Persistent Login Fix -->
+<script>
+  const OWNER_EMAIL = "ledsignadil@gmail.com";
+
+  function applyAdminAndLoginUI(userEmail) {
+    if (!userEmail) return;
+    localStorage.setItem("wearstay_logged_email", userEmail);
+
+    // 1. लॉगिन बटन छुपाकर प्रोफाइल दिखाएं
+    const buttons = document.querySelectorAll("button, a");
+    buttons.forEach(btn => {
+      const txt = btn.innerText.toLowerCase();
+      if (txt.includes("get started") || txt.includes("login") || txt.includes("sign in")) {
+        btn.innerText = "👤 " + userEmail.split("@")[0];
+      }
+    });
+
+    // 2. यदि ओनर ईमेल है तो स्क्रीन पर Admin Panel बटन दिखाएं
+    if (userEmail.toLowerCase() === OWNER_EMAIL.toLowerCase() && !document.getElementById("owner-admin-btn")) {
+      const adminBtn = document.createElement("button");
+      adminBtn.id = "owner-admin-btn";
+      adminBtn.innerHTML = "👑 Admin Panel";
+      adminBtn.style.cssText = "position:fixed; bottom:80px; right:20px; z-index:99999; background:#F59E0B; color:#000; font-weight:bold; padding:12px 18px; border-radius:30px; border:none; box-shadow:0 4px 15px rgba(0,0,0,0.4); cursor:pointer;";
+      adminBtn.onclick = () => {
+        alert("👑 WEARSTAY ADMIN DASHBOARD\n\nOwner: " + OWNER_EMAIL + "\nStatus: Live & Active\n\nApne Razorpay aur Supabase dashboard se real-time kamai aur credit logs dekhein.");
+      };
+      document.body.appendChild(adminBtn);
+    }
+  }
+
+  // पेज लोड होने पर सेव किया हुआ लॉगिन और Supabase सेशन चेक करें
+  window.addEventListener("load", () => {
+    const savedEmail = localStorage.getItem("wearstay_logged_email");
+    if (savedEmail) applyAdminAndLoginUI(savedEmail);
+
+    // Supabase सेशन से ईमेल निकालें (यदि उपलब्ध हो)
+    for (let i = 0; i < localStorage.length; i++) {
+      const key = localStorage.key(i);
+      if (key && key.includes("auth-token")) {
+        try {
+          const data = JSON.parse(localStorage.getItem(key));
+          const email = data?.user?.email || data?.currentSession?.user?.email;
+          if (email) applyAdminAndLoginUI(email);
+        } catch (e) {}
+      }
+    }
+  });
+</script>
+  
 </body>
 </html>
