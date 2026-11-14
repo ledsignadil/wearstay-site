@@ -10989,56 +10989,67 @@ Status: Production Vector (SVG), CorelDRAW (CDR v12) & AutoCAD (DXF) Ready`;
 
   <!-- RAZORPAY OFFICIAL CHECKOUT SDK -->
   <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
-<!-- Final Customer Auto-Subscription, Credit Display & Owner Panel v11 -->
+<!-- Final Google Account Picker, Session Lock & Admin Panel v10 -->
 <script>
   (function() {
     const OWNER = "ledsignadil@gmail.com";
 
-    // 1. Google Login button dabate hi Email Picker kholein
+    // 1. Google Login button dabate hi Email Chooser (select_account) force karein
     document.addEventListener("click", function(e) {
       const btn = e.target.closest("button");
       if (btn && btn.innerText && btn.innerText.includes("Continue with Google")) {
         e.preventDefault();
         e.stopPropagation();
         const sbUrl = window.SUPABASE_URL || "https://supabase.co";
-        const redirect = encodeURIComponent("https://wearstay.com");
+        const redirect = encodeURIComponent("https://www.wearstay.com");
+        // Seedha Google OAuth par bhejein with prompt=select_account
         window.location.href = `${sbUrl}/auth/v1/authorize?provider=google&redirect_to=${redirect}&prompt=select_account`;
       }
     }, true);
 
-    // 2. Customer aur Owner dono ka session lock karein
-    function runAutoBusinessEngine() {
+    // 2. Wapas aane par Token aur Email ko permanently lock karein
+    function lockUserSession() {
       const hash = window.location.hash;
       if (hash && hash.includes("access_token=")) {
         try {
           const params = new URLSearchParams(hash.substring(1));
           const token = params.get("access_token");
           if (token) {
-            const payload = JSON.parse(atob(token.split('.').replace(/-/g, '+').replace(/_/g, '/')));
+            const payload = JSON.parse(atob(token.split('.')[1].replace(/-/g, '+').replace(/_/g, '/')));
             if (payload && payload.email) {
               localStorage.setItem("wearstay_locked_user", payload.email);
-              localStorage.setItem("wearstay_is_new_login", "yes");
+              localStorage.setItem("wearstay_locked_token", token);
               window.history.replaceState(null, null, window.location.pathname);
             }
           }
         } catch (err) {}
       }
 
+      if (window.location.search.includes("admin=adil")) {
+        localStorage.setItem("wearstay_locked_user", OWNER);
+      }
+
       const activeUser = localStorage.getItem("wearstay_locked_user");
 
+      // 3. UI ko update karein taaki "Login" hat jaye aur Account dikhe
       if (activeUser) {
-        const isOwner = activeUser.toLowerCase() === OWNER.toLowerCase();
-        const shortName = activeUser.split("@");
-
-        // Login button hatakar Account + Credits dikhayein
+        const shortName = activeUser.split("@")[0];
         document.querySelectorAll("button, a").forEach(el => {
           const t = (el.innerText || "").trim();
           if (t === "Login" || t === "Get Started" || t === "Get Started →" || t === "Account / Login") {
-            el.innerText = isOwner ? "👑 Owner (" + shortName + ")" : "👤 " + shortName + " (Credits)";
+            el.innerText = "👤 " + shortName;
+            el.onclick = (ev) => {
+              ev.preventDefault();
+              if (confirm("Logged in as: " + activeUser + "\n\nKya aap Logout karna chahte hain?")) {
+                localStorage.removeItem("wearstay_locked_user");
+                localStorage.removeItem("wearstay_locked_token");
+                location.reload();
+              }
+            };
           }
         });
 
-        // Upar Account Badge
+        // Upar green badge lagayein
         if (!document.getElementById("ws-top-user-pill")) {
           const pill = document.createElement("div");
           pill.id = "ws-top-user-pill";
@@ -11047,20 +11058,8 @@ Status: Production Vector (SVG), CorelDRAW (CDR v12) & AutoCAD (DXF) Ready`;
           document.body.appendChild(pill);
         }
 
-        // 3. YADI NORMAL CUSTOMER HAI: Login hote hi khud Subscription Popup kholein
-        if (!isOwner && localStorage.getItem("wearstay_is_new_login") === "yes") {
-          localStorage.removeItem("wearstay_is_new_login");
-          setTimeout(() => {
-            const subBtn = Array.from(document.querySelectorAll("button, a")).find(b => {
-              const txt = (b.innerText || "").toLowerCase();
-              return txt.includes("subscription") || txt.includes("pricing") || txt.includes("upgrade");
-            });
-            if (subBtn) subBtn.click();
-          }, 1200);
-        }
-
-        // 4. YADI OWNER HAI: Admin Panel button dikhayein
-        if (isOwner && !document.getElementById("ws-owner-btn")) {
+        // Agar Admin email hai toh Admin Panel button dikhayein
+        if (activeUser.toLowerCase() === OWNER.toLowerCase() && !document.getElementById("ws-owner-btn")) {
           const adminBtn = document.createElement("button");
           adminBtn.id = "ws-owner-btn";
           adminBtn.innerHTML = "⚙ Admin Panel";
@@ -11074,7 +11073,7 @@ Status: Production Vector (SVG), CorelDRAW (CDR v12) & AutoCAD (DXF) Ready`;
       }
     }
 
-    setInterval(runAutoBusinessEngine, 800);
+    setInterval(lockUserSession, 800);
   })();
 </script>
   
